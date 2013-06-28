@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40929857-BDDA-4872-A232-D2A1540AF547}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EASTester</RootNamespace>
+    <AssemblyName>EASTester</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASCommandRequest.cs" />
+    <Compile Include="ASCommandResponse.cs" />
+    <Compile Include="ASOptionsRequest.cs" />
+    <Compile Include="ASOptionsResponse.cs" />
+    <Compile Include="ASProvisionResponse.cs" />
+    <Compile Include="ASWBXML.cs" />
+    <Compile Include="DecodeWbxmlBinaryFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecodeWbxmlBinaryFile.Designer.cs">
+      <DependentUpon>DecodeWbxmlBinaryFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EncodedRequest.cs" />
+    <Compile Include="ASWBXMLByteQueue.cs" />
+    <Compile Include="ASWBXMLCodePage.cs" />
+    <Compile Include="ChooseExamples.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseExamples.Designer.cs">
+      <DependentUpon>ChooseExamples.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RequestForm.Designer.cs">
+      <DependentUpon>RequestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DecodeWbxmlBytesIntoXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecodeWbxmlBytesIntoXML.Designer.cs">
+      <DependentUpon>DecodeWbxmlBytesIntoXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\UserIoHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExampleResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExampleResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateRequests.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateRequests.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DecodeWbxmlBinaryFile.resx">
+      <DependentUpon>DecodeWbxmlBinaryFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseExamples.resx">
+      <DependentUpon>ChooseExamples.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RequestForm.resx">
+      <DependentUpon>RequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DecodeWbxmlBytesIntoXML.resx">
+      <DependentUpon>DecodeWbxmlBytesIntoXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExampleResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExampleResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemplateRequests.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TemplateRequests.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="Examples\ItemOperations-Fetch-Email.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Examples\ItemOperations-Fetch-MessageMime.xml" />
+    <Content Include="Examples\Ping.xml" />
+    <Content Include="Examples\Provision - second part.xml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Examples\Errors.txt" />
+    <Content Include="Examples\FolderDelete.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Examples\GetItemEstimate.xml" />
+    <Content Include="Examples\ItemsOperations - EmptyFolderContents - DeleteSubFolders.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Examples\Provision- first part.xml" />
+    <Content Include="Examples\Search.xml" />
+    <Content Include="Examples\Sync - Contacts - Sync Key 0.xml" />
+    <Content Include="Examples\Settings - Settings - UserInformation - Get.xml" />
+    <Content Include="Examples\Foldersync - FileHierarchy.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Examples\ItemsOperations - Fetch.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(TargetDir)Examples"
+Copy /Y "$(ProjectDir)Examples\*.*" "$(TargetDir)Examples\*.*"
+Copy /Y "$(ProjectDir)Readme.txt" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

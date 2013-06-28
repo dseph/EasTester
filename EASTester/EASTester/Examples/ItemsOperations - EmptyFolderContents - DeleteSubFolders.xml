@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ItemOperations xmlns:A0="AirSync:" xmlns:A1="POOMCONTACTS:" xmlns:A2="POOMMAIL:" xmlns:A3="AirNotify:" xmlns:A4="POOMCAL:" xmlns:A5="Move:" xmlns:A6="GetItemEstimate:" xmlns:A7="FolderHierarchy:" xmlns:A8="MeetingResponse:" xmlns:A9="POOMTASKS:" xmlns:A10="ResolveRecipients:" xmlns:A11="ValidateCert:" xmlns:A12="POOMCONTACTS2:" xmlns:A13="Ping:" xmlns:A14="Provision:" xmlns:A15="Search:" xmlns:A16="Gal:" xmlns:A17="AirSyncBase:" xmlns:A18="Settings:" xmlns:A19="DocumentLibrary:" xmlns="ItemOperations:" xmlns:A24="RightsManagement:">
+  <EmptyFolderContents>
+    <A0:CollectionId>3</A0:CollectionId>
+    <Options>
+      <DeleteSubFolders />
+    </Options>
+  </EmptyFolderContents>
+</ItemOperations>

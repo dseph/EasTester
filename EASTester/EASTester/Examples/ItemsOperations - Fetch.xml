@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ItemOperations xmlns="ItemOperations:">
+  <Fetch>
+    <Store>Mailbox</Store>
+    <FileReference xmlns="AirSyncBase:">14%3a11792%3a1</FileReference>
+  </Fetch>
+</ItemOperations>

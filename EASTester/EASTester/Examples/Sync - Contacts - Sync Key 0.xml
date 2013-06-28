@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Sync xmlns="AirSync:">
+  <Collections>
+    <Collection>
+      <Class>Contacts</Class>
+      <SyncKey>0</SyncKey>
+    </Collection>
+  </Collections>
+</Sync>
