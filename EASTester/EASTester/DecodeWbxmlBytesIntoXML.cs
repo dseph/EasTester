@@ -21,52 +21,54 @@ namespace EASTester
             InitializeComponent();
         }
 
-        // Convert an array of ints WBXML into XML: 1, 2, 3, 4,    
+        // Convert WBXML content in an integer array into XML.  Example: 1, 2, 3, 4,    
         private void btnConvertfromIntArray_Click(object sender, EventArgs e)
         {
-            txtEASDecoded.Text = "";
-            txtTo.Text = "";
-            txtToDump.Text = "";
-
-            string sWork = string.Empty;
-            sWork = txtFrom.Text;
-            //bool bContinue = true;
-
-            // weed out junk
-            var sb = new StringBuilder(sWork.Length); 
-            foreach (char i in sWork)
-                if (i != '\n' && i != '\r' && i != '\t' && i != '\r' && i != '[' && i != ']' && i != ';')
-                    sb.Append(i);
-            sWork = sb.ToString();
-            sWork = sWork.Replace("    ", " ");
-            sWork = sWork.Replace("    ", " ");
-            sWork = sWork.Replace("   ", " ");
-            sWork = sWork.Replace("  ", " ");
- 
-            string sConverted = string.Empty;
-
-            sb = new StringBuilder();
-            string[] sItems = sWork.Split(',').Select(sValue => sValue.Trim()).ToArray();
-
-            // Now build a clean string of hex values.  
-            int iVal = 0;
-            string sHex = string.Empty;
-
-            foreach (string sNum in sItems)
+            if (txtFrom.Text.Trim().Length != 0)
             {
-                iVal = int.Parse(sNum.Trim());
+                txtEASDecoded.Text = "";
+                txtTo.Text = "";
+                txtToDump.Text = "";
 
-                sHex = string.Format("{00:X}", iVal).PadLeft(2, '0');
-                sb.Append(sHex);
+                string sWork = string.Empty;
+                sWork = txtFrom.Text;
+                //bool bContinue = true;
+
+                // weed out junk
+                var sb = new StringBuilder(sWork.Length);
+                foreach (char i in sWork)
+                    if (i != '\n' && i != '\r' && i != '\t' && i != '\r' && i != '[' && i != ']' && i != ';')
+                        sb.Append(i);
+                sWork = sb.ToString();
+                sWork = sWork.Replace("    ", " ");
+                sWork = sWork.Replace("    ", " ");
+                sWork = sWork.Replace("   ", " ");
+                sWork = sWork.Replace("  ", " ");
+
+                string sConverted = string.Empty;
+
+                sb = new StringBuilder();
+                string[] sItems = sWork.Split(',').Select(sValue => sValue.Trim()).ToArray();
+
+                // Now build a clean string of hex values.  
+                int iVal = 0;
+                string sHex = string.Empty;
+
+                foreach (string sNum in sItems)
+                {
+                    iVal = int.Parse(sNum.Trim());
+
+                    sHex = string.Format("{00:X}", iVal).PadLeft(2, '0');
+                    sb.Append(sHex);
+                }
+
+
+                // With a clean string of hex values the rest of of the conversions can be done.
+                string sHexString = sb.ToString();
+                txtTo.Text = sHexString;
+                ConvertFromHexString(sHexString);
+
             }
-
-
-            // With a clean string of hex values the rest of of the conversions can be done.
-            string sHexString = sb.ToString();
-            txtTo.Text = sHexString;
-            ConvertFromHexString(sHexString);
-
-       
 
         }
 
@@ -207,17 +209,20 @@ namespace EASTester
 
         }
 
-        // Convert Hex Array of WBXML to XML: e7, 46, 16, 26
+        // Convert WBXML content in an hex array into XML.  Example: e7, 46, 16, 26 
         private void btnConvertfromHexArray_Click(object sender, EventArgs e)
         {
 
-            txtEASDecoded.Text = "";
-            txtTo.Text = "";
-            txtToDump.Text = "";
+            if (txtFrom.Text.Trim().Length != 0)
+            {
 
-            ConvertFromHexArray(txtFrom.Text);
+                txtEASDecoded.Text = "";
+                txtTo.Text = "";
+                txtToDump.Text = "";
 
-     
+                ConvertFromHexArray(txtFrom.Text);
+
+            }
         }
 
         // input string can be space or comma delimited
@@ -318,63 +323,67 @@ namespace EASTester
             }
         }
 
-         
-        // Convert an int csv string to a hex csv string
+
+        // Convert an integer comma-delimited string into a hex comma-delimited string.
         private void btnHexCsvFromIntCsv_Click(object sender, EventArgs e)
         {
-            txtEASDecoded.Text = "";
-            txtTo.Text = "";
-            txtToDump.Text = "";
-
-            string sWork = string.Empty;
-            sWork = txtFrom.Text;
-  
-
-            // weed out junk
-            var sb = new StringBuilder(sWork.Length);
-            foreach (char i in sWork)
-                if (i != '\n' && i != '\r' && i != '\t' && i != '\r' && i != '[' && i != ']' && i != ';')
-                    sb.Append(i);
-            sWork = sb.ToString();
-            sWork = sWork.Replace("\t", " ");
-            sWork = sWork.Replace("    ", " ");
-            sWork = sWork.Replace("    ", " ");
-            sWork = sWork.Replace("   ", " ");
-            sWork = sWork.Replace("  ", " ");
-
-            string sConverted = string.Empty;
-
-            sb = new StringBuilder();
-            string[] sItems = sWork.Split(',').Select(sValue => sValue.Trim()).ToArray();
-            try
+            if (txtFrom.Text.Trim().Length != 0)
             {
-                // Now build a clean string of hex values.  
-                int iVal = 0;
-                string sHex = string.Empty;
-                bool bAfterFirst = false;
-                foreach (string sNum in sItems)
+
+                txtEASDecoded.Text = "";
+                txtTo.Text = "";
+                txtToDump.Text = "";
+
+                string sWork = string.Empty;
+                sWork = txtFrom.Text;
+
+
+                // weed out junk
+                var sb = new StringBuilder(sWork.Length);
+                foreach (char i in sWork)
+                    if (i != '\n' && i != '\r' && i != '\t' && i != '\r' && i != '[' && i != ']' && i != ';')
+                        sb.Append(i);
+                sWork = sb.ToString();
+                sWork = sWork.Replace("\t", " ");
+                sWork = sWork.Replace("    ", " ");
+                sWork = sWork.Replace("    ", " ");
+                sWork = sWork.Replace("   ", " ");
+                sWork = sWork.Replace("  ", " ");
+
+                string sConverted = string.Empty;
+
+                sb = new StringBuilder();
+                string[] sItems = sWork.Split(',').Select(sValue => sValue.Trim()).ToArray();
+                try
                 {
-                    iVal = int.Parse(sNum.Trim());
+                    // Now build a clean string of hex values.  
+                    int iVal = 0;
+                    string sHex = string.Empty;
+                    bool bAfterFirst = false;
+                    foreach (string sNum in sItems)
+                    {
+                        iVal = int.Parse(sNum.Trim());
 
-                    if (bAfterFirst == true)
-                        sb.Append(", ");
-                    sHex = string.Format("{00:X}", iVal).PadLeft(2, '0');
-                    sb.Append(sHex);
+                        if (bAfterFirst == true)
+                            sb.Append(", ");
+                        sHex = string.Format("{00:X}", iVal).PadLeft(2, '0');
+                        sb.Append(sHex);
 
-                    bAfterFirst = true;
+                        bAfterFirst = true;
+                    }
+                    txtTo.Text = sb.ToString();
                 }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("--------------------------");
+                    System.Diagnostics.Debug.WriteLine("Exception:");
+                    System.Diagnostics.Debug.WriteLine("  Message: " + ex.Message);
+                    System.Diagnostics.Debug.WriteLine("    Stack: " + ex.StackTrace);
+                    txtTo.Text = "Error during parsing. This is what was parsed so far: " + sb.ToString();
+                }
+
                 txtTo.Text = sb.ToString();
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("--------------------------");
-                System.Diagnostics.Debug.WriteLine("Exception:");
-                System.Diagnostics.Debug.WriteLine("  Message: " + ex.Message);
-                System.Diagnostics.Debug.WriteLine("    Stack: " + ex.StackTrace);
-                txtTo.Text = "Error during parsing. This is what was parsed so far: " + sb.ToString();
-            }
-
-            txtTo.Text = sb.ToString();
         }
 
         private void ConvertHexDumpToHexStream()
@@ -415,24 +424,30 @@ namespace EASTester
             ConvertFromHexArray(sWork);
         }
 
-        // Convert a continious hex stream - no seperators or end of lines.
+        //Convert WBXML content in an undelmited hex string into XML.
+         
         private void btnConvertfromHexStream_Click(object sender, EventArgs e)
         {
-            txtEASDecoded.Text = "";
-            txtTo.Text = "";
-            txtToDump.Text = "";
+            if (txtFrom.Text.Trim().Length != 0)
+            {
+                txtEASDecoded.Text = "";
+                txtTo.Text = "";
+                txtToDump.Text = "";
 
-            ConvertFromHexString(txtFrom.Text.Trim());
-             
+                ConvertFromHexString(txtFrom.Text.Trim());
+            }
         }
 
         private void btnHexDumpToHexStream_Click(object sender, EventArgs e)
         {
-            txtEASDecoded.Text = "";
-            txtTo.Text = "";
-            txtToDump.Text = "";
+            if (txtFrom.Text.Trim().Length != 0)
+            {
+                txtEASDecoded.Text = "";
+                txtTo.Text = "";
+                txtToDump.Text = "";
 
-            ConvertHexDumpToHexStream();
+                ConvertHexDumpToHexStream();
+            }
         }
 
         private void txtFrom_TextChanged(object sender, EventArgs e)
