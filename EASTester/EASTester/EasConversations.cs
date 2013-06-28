@@ -31,8 +31,7 @@ namespace EASTester
             bool bError = false;
             txtResponse.Text = string.Empty;
             txtResponse.Update();
-            txtResultInfo.Text = string.Empty;
-            txtResultInfo.Update();
+ 
 
             this.Cursor = Cursors.WaitCursor;
 
@@ -76,14 +75,14 @@ namespace EASTester
                     }
                     catch (FormatException eFormat)
                     {
-                        MessageBox.Show("Input string is not a sequence of digits.", "Entry Error");
-                        //Console.WriteLine("Input string is not a sequence of digits.");
+                        MessageBox.Show("The Policy Key needs to be all numbers.", "Entry Error");
+                        string s = eFormat.Message; // defeat compile warning for not using eFormat
                         bError = true;
                     }
                     catch (OverflowException eOverflow)
                     {
-                        //Console.WriteLine("The number cannot fit in an Int32.");
-                        MessageBox.Show("The number cannot fit in an Int32.");
+                        MessageBox.Show("The Policy Key has too large of a value.");
+                        string s = eOverflow.Message;  // defeat compile warning for not using eFormat
                         bError = true;
                     }
                     finally
@@ -405,13 +404,65 @@ namespace EASTester
 
         private void btnExamples_Click_1(object sender, EventArgs e)
         {
-            ChooseExamples oForm = new ChooseExamples();
-            oForm.ShowDialog();
-            if (oForm.ChoseOK == true)
+            //ChooseExamples oForm = new ChooseExamples();
+            //oForm.ShowDialog();
+            //if (oForm.ChoseOK == true)
+            //{
+            //    this.txtRequest.Text = oForm.ChosenExample;
+            //}
+        }
+
+        private void txtResultInfo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveExample_Click(object sender, EventArgs e)
+        {
+            string sInitialDirectory = Application.StartupPath + "\\Examples";
+
+            string sSuggestedFilename = "*.xml";
+            string sSelectedfile = string.Empty;
+            string sFilter = "Text files (*.xml)|*.xml|All files (*.*)|*.*";
+
+            if (MyHelpers.UserIoHelper.PickSaveFileToFolder(sInitialDirectory, sSuggestedFilename, ref  sSelectedfile, sFilter))
             {
-                this.txtRequest.Text = oForm.ChosenExample;
+                try
+                {
+                    System.IO.File.WriteAllText(sSelectedfile, txtRequest.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error writting file.");
+                }
+
             }
         }
+
+        private void btnLoadExample_Click(object sender, EventArgs e)
+        {
+            string sInitialDirectory = Application.StartupPath + "\\Examples";
+
+            string sSuggestedFilename = "*.xml";
+            string sSelectedfile = string.Empty;
+            string sFilter = "Text files (*.xml)|*.xml|All files (*.*)|*.*";
+
+            if (MyHelpers.UserIoHelper.PickLoadFromFile(sInitialDirectory, sSuggestedFilename, ref  sSelectedfile, sFilter))
+            {
+                try
+                {
+
+                    txtRequest.Text = System.IO.File.ReadAllText(sSelectedfile);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error reading file.");
+                }
+
+            }
+        }
+ 
+ 
  
 
  

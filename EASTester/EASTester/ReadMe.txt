@@ -68,3 +68,9 @@ Fixed policy key issues.
 Added an Example window.
 Lots of code cleaned-up.
  
+6/29/2013
+Changed examples to load from files. Added feature to save to files. Content is saved under app program folder.
+Added some help text.
+Minor clean-up issues.
+Checked in code.
+Initial release - 1.0

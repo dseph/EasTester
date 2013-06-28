@@ -47,38 +47,45 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmboCommand = new System.Windows.Forms.ComboBox();
-            this.txtResultInfo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.btnOptions = new System.Windows.Forms.Button();
             this.chkUseSSL = new System.Windows.Forms.CheckBox();
             this.chkOverrideSslCertificateVerification = new System.Windows.Forms.CheckBox();
             this.txtPolicyKey = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnExamples = new System.Windows.Forms.Button();
+            this.btnSaveExample = new System.Windows.Forms.Button();
+            this.btnLoadExample = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // txtDomain
             // 
+            this.helpProvider1.SetHelpString(this.txtDomain, "Domain of the user. If you entered an  SMTP address into the User field, then lea" +
+                    "ve this field blank.");
             this.txtDomain.Location = new System.Drawing.Point(75, 99);
             this.txtDomain.Name = "txtDomain";
+            this.helpProvider1.SetShowHelp(this.txtDomain, true);
             this.txtDomain.Size = new System.Drawing.Size(254, 20);
             this.txtDomain.TabIndex = 3;
             // 
             // txtPassword
             // 
+            this.helpProvider1.SetHelpString(this.txtPassword, "User password.");
             this.txtPassword.Location = new System.Drawing.Point(75, 73);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
+            this.helpProvider1.SetShowHelp(this.txtPassword, true);
             this.txtPassword.Size = new System.Drawing.Size(254, 20);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtUser
             // 
+            this.helpProvider1.SetHelpString(this.txtUser, "User alias or smtp address.");
             this.txtUser.Location = new System.Drawing.Point(73, 47);
             this.txtUser.Name = "txtUser";
+            this.helpProvider1.SetShowHelp(this.txtUser, true);
             this.txtUser.Size = new System.Drawing.Size(254, 20);
             this.txtUser.TabIndex = 1;
             // 
@@ -111,11 +118,12 @@
             // 
             // txtServerUrl
             // 
+            this.helpProvider1.SetHelpString(this.txtServerUrl, "Mailbox domain or address.  Example: contoso.com");
             this.txtServerUrl.Location = new System.Drawing.Point(163, 18);
             this.txtServerUrl.Name = "txtServerUrl";
+            this.helpProvider1.SetShowHelp(this.txtServerUrl, true);
             this.txtServerUrl.Size = new System.Drawing.Size(195, 20);
             this.txtServerUrl.TabIndex = 0;
-            this.txtServerUrl.Text = "mail.contoso.com";
             this.txtServerUrl.TextChanged += new System.EventHandler(this.txtServerUrl_TextChanged);
             // 
             // ServerUrl
@@ -164,7 +172,7 @@
             this.txtRequest.Multiline = true;
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtRequest.Size = new System.Drawing.Size(1009, 160);
+            this.txtRequest.Size = new System.Drawing.Size(1009, 214);
             this.txtRequest.TabIndex = 14;
             this.txtRequest.WordWrap = false;
             // 
@@ -174,12 +182,12 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResponse.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtResponse.Location = new System.Drawing.Point(11, 390);
+            this.txtResponse.Location = new System.Drawing.Point(11, 439);
             this.txtResponse.MaxLength = 0;
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(1009, 184);
+            this.txtResponse.Size = new System.Drawing.Size(1009, 220);
             this.txtResponse.TabIndex = 15;
             this.txtResponse.WordWrap = false;
             this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged);
@@ -206,20 +214,22 @@
             // 
             // txtDeviceId
             // 
+            this.helpProvider1.SetHelpString(this.txtDeviceId, "TheID of the device.");
             this.txtDeviceId.Location = new System.Drawing.Point(460, 48);
             this.txtDeviceId.Name = "txtDeviceId";
+            this.helpProvider1.SetShowHelp(this.txtDeviceId, true);
             this.txtDeviceId.Size = new System.Drawing.Size(271, 20);
             this.txtDeviceId.TabIndex = 7;
-            this.txtDeviceId.Text = "SuperCoolPhone5";
             this.txtDeviceId.TextChanged += new System.EventHandler(this.txtDeviceId_TextChanged);
             // 
             // txtDeviceType
             // 
+            this.helpProvider1.SetHelpString(this.txtDeviceType, "Device Type");
             this.txtDeviceType.Location = new System.Drawing.Point(460, 74);
             this.txtDeviceType.Name = "txtDeviceType";
+            this.helpProvider1.SetShowHelp(this.txtDeviceType, true);
             this.txtDeviceType.Size = new System.Drawing.Size(157, 20);
             this.txtDeviceType.TabIndex = 8;
-            this.txtDeviceType.Text = "NewType";
             this.txtDeviceType.TextChanged += new System.EventHandler(this.txtDeviceType_TextChanged);
             // 
             // label3
@@ -244,34 +254,31 @@
             // 
             this.cmboCommand.FormattingEnabled = true;
             this.cmboCommand.Items.AddRange(new object[] {
-            "Provision",
-            "Sync",
-            "GetItemEstimate",
-            "FolderSync",
-            "FolderDelete",
-            "ItemOperations",
-            "SmartForward",
-            "SmartReply",
-            "SendMail"});
+            "SYNC",
+            "SENDMAIL",
+            "SMARTFORWARD ",
+            "SMARTREPLY",
+            "GETATTACHMENT",
+            "FOLDERSYNC",
+            "FOLDERCREATE",
+            "FOLDERDELETE",
+            "FOLDERUPDATE",
+            "MOVEITEMS;",
+            "GETITEMESTIMATE;",
+            "MEETINGRESPONSE",
+            "SEARCH",
+            "SETTINGS",
+            "PING",
+            "ITEMOPERATIONS",
+            "PROVISION",
+            "RESOLVERECIPIENTS",
+            "VALIDATECERT"});
             this.cmboCommand.Location = new System.Drawing.Point(460, 100);
             this.cmboCommand.Name = "cmboCommand";
             this.cmboCommand.Size = new System.Drawing.Size(95, 21);
             this.cmboCommand.TabIndex = 9;
-            this.cmboCommand.Text = "Sync";
+            this.cmboCommand.Text = "SYNC";
             this.cmboCommand.SelectedIndexChanged += new System.EventHandler(this.cmboCommand_SelectedIndexChanged);
-            // 
-            // txtResultInfo
-            // 
-            this.txtResultInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResultInfo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtResultInfo.Location = new System.Drawing.Point(11, 591);
-            this.txtResultInfo.MaxLength = 0;
-            this.txtResultInfo.Multiline = true;
-            this.txtResultInfo.Name = "txtResultInfo";
-            this.txtResultInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResultInfo.Size = new System.Drawing.Size(1000, 68);
-            this.txtResultInfo.TabIndex = 16;
             // 
             // label5
             // 
@@ -285,22 +292,12 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 374);
+            this.label6.Location = new System.Drawing.Point(8, 423);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 13);
             this.label6.TabIndex = 39;
             this.label6.Text = "Response:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 577);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 13);
-            this.label7.TabIndex = 40;
-            this.label7.Text = "Response Info:";
             // 
             // btnOptions
             // 
@@ -318,7 +315,7 @@
             this.chkUseSSL.AutoSize = true;
             this.chkUseSSL.Checked = true;
             this.chkUseSSL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUseSSL.Location = new System.Drawing.Point(19, 131);
+            this.chkUseSSL.Location = new System.Drawing.Point(15, 133);
             this.chkUseSSL.Name = "chkUseSSL";
             this.chkUseSSL.Size = new System.Drawing.Size(71, 17);
             this.chkUseSSL.TabIndex = 4;
@@ -330,18 +327,23 @@
             this.chkOverrideSslCertificateVerification.AutoSize = true;
             this.chkOverrideSslCertificateVerification.Checked = true;
             this.chkOverrideSslCertificateVerification.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOverrideSslCertificateVerification.Location = new System.Drawing.Point(19, 154);
+            this.helpProvider1.SetHelpString(this.chkOverrideSslCertificateVerification, "Check to assume that all certificates are valid.");
+            this.chkOverrideSslCertificateVerification.Location = new System.Drawing.Point(15, 156);
             this.chkOverrideSslCertificateVerification.Name = "chkOverrideSslCertificateVerification";
-            this.chkOverrideSslCertificateVerification.Size = new System.Drawing.Size(193, 17);
+            this.helpProvider1.SetShowHelp(this.chkOverrideSslCertificateVerification, true);
+            this.chkOverrideSslCertificateVerification.Size = new System.Drawing.Size(192, 17);
             this.chkOverrideSslCertificateVerification.TabIndex = 5;
-            this.chkOverrideSslCertificateVerification.Text = "Override SSL Certificate verification";
+            this.chkOverrideSslCertificateVerification.Text = "Override SSL certificate verification";
             this.chkOverrideSslCertificateVerification.UseVisualStyleBackColor = true;
             this.chkOverrideSslCertificateVerification.CheckedChanged += new System.EventHandler(this.chkOverrideSslCertificateVerification_CheckedChanged);
             // 
             // txtPolicyKey
             // 
+            this.helpProvider1.SetHelpString(this.txtPolicyKey, "This is needed if there is a policy enforced.  Getting a  permanent policy key is" +
+                    " a two part process - see documentation on how to get it.");
             this.txtPolicyKey.Location = new System.Drawing.Point(460, 128);
             this.txtPolicyKey.Name = "txtPolicyKey";
+            this.helpProvider1.SetShowHelp(this.txtPolicyKey, true);
             this.txtPolicyKey.Size = new System.Drawing.Size(271, 20);
             this.txtPolicyKey.TabIndex = 10;
             // 
@@ -354,16 +356,27 @@
             this.label4.TabIndex = 42;
             this.label4.Text = "Policy Key:";
             // 
-            // btnExamples
+            // btnSaveExample
             // 
-            this.btnExamples.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExamples.Location = new System.Drawing.Point(837, 52);
-            this.btnExamples.Name = "btnExamples";
-            this.btnExamples.Size = new System.Drawing.Size(180, 23);
-            this.btnExamples.TabIndex = 12;
-            this.btnExamples.Text = "Examples";
-            this.btnExamples.UseVisualStyleBackColor = true;
-            this.btnExamples.Click += new System.EventHandler(this.btnExamples_Click_1);
+            this.btnSaveExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveExample.Location = new System.Drawing.Point(837, 72);
+            this.btnSaveExample.Name = "btnSaveExample";
+            this.btnSaveExample.Size = new System.Drawing.Size(180, 23);
+            this.btnSaveExample.TabIndex = 45;
+            this.btnSaveExample.Text = "Save Example";
+            this.btnSaveExample.UseVisualStyleBackColor = true;
+            this.btnSaveExample.Click += new System.EventHandler(this.btnSaveExample_Click);
+            // 
+            // btnLoadExample
+            // 
+            this.btnLoadExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadExample.Location = new System.Drawing.Point(837, 47);
+            this.btnLoadExample.Name = "btnLoadExample";
+            this.btnLoadExample.Size = new System.Drawing.Size(180, 23);
+            this.btnLoadExample.TabIndex = 47;
+            this.btnLoadExample.Text = "Load Example";
+            this.btnLoadExample.UseVisualStyleBackColor = true;
+            this.btnLoadExample.Click += new System.EventHandler(this.btnLoadExample_Click);
             // 
             // frmRawEAS
             // 
@@ -371,16 +384,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(1029, 671);
-            this.Controls.Add(this.btnExamples);
+            this.Controls.Add(this.btnLoadExample);
+            this.Controls.Add(this.btnSaveExample);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPolicyKey);
             this.Controls.Add(this.chkOverrideSslCertificateVerification);
             this.Controls.Add(this.chkUseSSL);
             this.Controls.Add(this.btnOptions);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtResultInfo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmboCommand);
             this.Controls.Add(this.txtDeviceType);
@@ -429,16 +441,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox cmboCommand;
-        private System.Windows.Forms.TextBox txtResultInfo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnOptions;
         private System.Windows.Forms.CheckBox chkUseSSL;
         private System.Windows.Forms.CheckBox chkOverrideSslCertificateVerification;
         public System.Windows.Forms.TextBox txtPolicyKey;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnExamples;
+        private System.Windows.Forms.Button btnSaveExample;
+        private System.Windows.Forms.Button btnLoadExample;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
 

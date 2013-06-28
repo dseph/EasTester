@@ -77,11 +77,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RequestForm.cs">
+    <Compile Include="EasConversations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RequestForm.Designer.cs">
-      <DependentUpon>RequestForm.cs</DependentUpon>
+    <Compile Include="EasConversations.Designer.cs">
+      <DependentUpon>EasConversations.cs</DependentUpon>
     </Compile>
     <Compile Include="DecodeWbxmlBytesIntoXML.cs">
       <SubType>Form</SubType>
@@ -112,8 +112,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RequestForm.resx">
-      <DependentUpon>RequestForm.cs</DependentUpon>
+    <EmbeddedResource Include="EasConversations.resx">
+      <DependentUpon>EasConversations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DecodeWbxmlBytesIntoXML.resx">
       <DependentUpon>DecodeWbxmlBytesIntoXML.cs</DependentUpon>
