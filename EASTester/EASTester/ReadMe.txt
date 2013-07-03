@@ -74,3 +74,15 @@ Added some help text.
 Minor clean-up issues.
 Checked in code.
 Initial release - 1.0 
+
+7/1/2013
+Make only these versions of EAS selectable in conversatgions window:
+    14.1
+    14.0
+    12.1
+    12.0
+    2.5
+Slight changes to the EAS Conversations windows in order to narrow it down.
+
+7/3/2013
+Releaseed 1.1
