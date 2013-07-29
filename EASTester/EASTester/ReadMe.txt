@@ -85,4 +85,12 @@ Make only these versions of EAS selectable in conversatgions window:
 Slight changes to the EAS Conversations windows in order to narrow it down.
 
 7/3/2013
-Releaseed 1.1
+Released 1.1
+
+7/29/2013
+Added more to EAS samples
+Corrected some issues with eas samples.
+Added encoding form to Conversations window.  Right now it just does basic operations to support 
+working with the message body for sending email.
+Reworked list of Commands in Conversations window.
+

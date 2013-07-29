@@ -42,7 +42,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 236);
+            this.label6.Location = new System.Drawing.Point(7, 259);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 7;
@@ -64,19 +64,19 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDecoded.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtDecoded.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDecoded.Location = new System.Drawing.Point(10, 252);
+            this.txtDecoded.Location = new System.Drawing.Point(10, 275);
             this.txtDecoded.MaxLength = 0;
             this.txtDecoded.Multiline = true;
             this.txtDecoded.Name = "txtDecoded";
             this.txtDecoded.ReadOnly = true;
             this.txtDecoded.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDecoded.Size = new System.Drawing.Size(797, 210);
+            this.txtDecoded.Size = new System.Drawing.Size(868, 210);
             this.txtDecoded.TabIndex = 8;
             // 
             // btnLoadFile
             // 
             this.btnLoadFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoadFile.Location = new System.Drawing.Point(705, 6);
+            this.btnLoadFile.Location = new System.Drawing.Point(776, 6);
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.Size = new System.Drawing.Size(102, 29);
             this.btnLoadFile.TabIndex = 4;
@@ -90,7 +90,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFile.Location = new System.Drawing.Point(81, 11);
             this.txtFile.Name = "txtFile";
-            this.txtFile.Size = new System.Drawing.Size(587, 20);
+            this.txtFile.Size = new System.Drawing.Size(658, 20);
             this.txtFile.TabIndex = 2;
             this.txtFile.Text = "c:\\";
             // 
@@ -107,7 +107,7 @@
             this.txtEncoded.Name = "txtEncoded";
             this.txtEncoded.ReadOnly = true;
             this.txtEncoded.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtEncoded.Size = new System.Drawing.Size(797, 164);
+            this.txtEncoded.Size = new System.Drawing.Size(868, 187);
             this.txtEncoded.TabIndex = 6;
             // 
             // label1
@@ -122,7 +122,7 @@
             // btnSelectFile
             // 
             this.btnSelectFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelectFile.Location = new System.Drawing.Point(674, 6);
+            this.btnSelectFile.Location = new System.Drawing.Point(745, 6);
             this.btnSelectFile.Name = "btnSelectFile";
             this.btnSelectFile.Size = new System.Drawing.Size(25, 29);
             this.btnSelectFile.TabIndex = 3;
@@ -135,7 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(819, 474);
+            this.ClientSize = new System.Drawing.Size(890, 497);
             this.Controls.Add(this.btnSelectFile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFile);

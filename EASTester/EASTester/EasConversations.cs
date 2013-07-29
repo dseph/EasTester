@@ -461,6 +461,12 @@ namespace EASTester
 
             }
         }
+
+        private void btnEncodingHelper_Click(object sender, EventArgs e)
+        {
+            EncodeForm oForm = new EncodeForm();
+            oForm.ShowDialog();
+        }
  
  
  

@@ -57,6 +57,7 @@
             this.btnSaveExample = new System.Windows.Forms.Button();
             this.btnLoadExample = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.btnEncodingHelper = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtDomain
@@ -226,7 +227,7 @@
             this.txtDeviceType.Location = new System.Drawing.Point(458, 74);
             this.txtDeviceType.Name = "txtDeviceType";
             this.helpProvider1.SetShowHelp(this.txtDeviceType, true);
-            this.txtDeviceType.Size = new System.Drawing.Size(157, 20);
+            this.txtDeviceType.Size = new System.Drawing.Size(271, 20);
             this.txtDeviceType.TabIndex = 8;
             this.txtDeviceType.TextChanged += new System.EventHandler(this.txtDeviceType_TextChanged);
             // 
@@ -252,30 +253,30 @@
             // 
             this.cmboCommand.FormattingEnabled = true;
             this.cmboCommand.Items.AddRange(new object[] {
-            "SYNC",
-            "SENDMAIL",
-            "SMARTFORWARD ",
-            "SMARTREPLY",
-            "GETATTACHMENT",
-            "FOLDERSYNC",
-            "FOLDERCREATE",
-            "FOLDERDELETE",
-            "FOLDERUPDATE",
-            "MOVEITEMS;",
-            "GETITEMESTIMATE;",
-            "MEETINGRESPONSE",
-            "SEARCH",
-            "SETTINGS",
-            "PING",
-            "ITEMOPERATIONS",
-            "PROVISION",
-            "RESOLVERECIPIENTS",
-            "VALIDATECERT"});
+            "SendMail",
+            "SmartForward",
+            "SmartReply",
+            "FolderSync",
+            "FolderCreate",
+            "FolderDelete",
+            "FolderUpdate",
+            "ItemsOperations",
+            "GetAttachment",
+            "GetItemEstimate",
+            "MeetingResponse",
+            "MoveItems",
+            "Ping",
+            "Provision",
+            "ResolveRecipients",
+            "Search",
+            "Settings",
+            "Sync",
+            "ValidateCert"});
             this.cmboCommand.Location = new System.Drawing.Point(458, 100);
             this.cmboCommand.Name = "cmboCommand";
-            this.cmboCommand.Size = new System.Drawing.Size(95, 21);
+            this.cmboCommand.Size = new System.Drawing.Size(174, 21);
             this.cmboCommand.TabIndex = 9;
-            this.cmboCommand.Text = "SYNC";
+            this.cmboCommand.Text = "Command";
             this.cmboCommand.SelectedIndexChanged += new System.EventHandler(this.cmboCommand_SelectedIndexChanged);
             // 
             // label5
@@ -300,7 +301,7 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(762, 9);
+            this.btnOptions.Location = new System.Drawing.Point(762, 43);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(129, 23);
             this.btnOptions.TabIndex = 11;
@@ -357,7 +358,7 @@
             // btnSaveExample
             // 
             this.btnSaveExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveExample.Location = new System.Drawing.Point(759, 73);
+            this.btnSaveExample.Location = new System.Drawing.Point(759, 107);
             this.btnSaveExample.Name = "btnSaveExample";
             this.btnSaveExample.Size = new System.Drawing.Size(132, 23);
             this.btnSaveExample.TabIndex = 45;
@@ -368,7 +369,7 @@
             // btnLoadExample
             // 
             this.btnLoadExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoadExample.Location = new System.Drawing.Point(759, 48);
+            this.btnLoadExample.Location = new System.Drawing.Point(759, 82);
             this.btnLoadExample.Name = "btnLoadExample";
             this.btnLoadExample.Size = new System.Drawing.Size(132, 23);
             this.btnLoadExample.TabIndex = 47;
@@ -376,12 +377,24 @@
             this.btnLoadExample.UseVisualStyleBackColor = true;
             this.btnLoadExample.Click += new System.EventHandler(this.btnLoadExample_Click);
             // 
+            // btnEncodingHelper
+            // 
+            this.btnEncodingHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEncodingHelper.Location = new System.Drawing.Point(759, 8);
+            this.btnEncodingHelper.Name = "btnEncodingHelper";
+            this.btnEncodingHelper.Size = new System.Drawing.Size(132, 23);
+            this.btnEncodingHelper.TabIndex = 48;
+            this.btnEncodingHelper.Text = "Encoding Helper";
+            this.btnEncodingHelper.UseVisualStyleBackColor = true;
+            this.btnEncodingHelper.Click += new System.EventHandler(this.btnEncodingHelper_Click);
+            // 
             // frmRawEAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(903, 671);
+            this.Controls.Add(this.btnEncodingHelper);
             this.Controls.Add(this.btnLoadExample);
             this.Controls.Add(this.btnSaveExample);
             this.Controls.Add(this.label4);
@@ -449,6 +462,7 @@
         private System.Windows.Forms.Button btnSaveExample;
         private System.Windows.Forms.Button btnLoadExample;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Button btnEncodingHelper;
     }
 }
 

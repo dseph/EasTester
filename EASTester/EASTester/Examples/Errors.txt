@@ -2,7 +2,7 @@
 
 101 InvalidContent
 102 InvalidWBXML
-103 InvalidWBXML
+103 InvalidXML
 104 InvalidDateTime
 105 InvalidCombinationOfIDs
 106 InvalidIds
