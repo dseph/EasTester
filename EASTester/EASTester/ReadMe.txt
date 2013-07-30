@@ -93,4 +93,4 @@ Corrected some issues with eas samples.
 Added encoding form to Conversations window.  Right now it just does basic operations to support 
 working with the message body for sending email.
 Reworked list of Commands in Conversations window.
-
+Released 1.2

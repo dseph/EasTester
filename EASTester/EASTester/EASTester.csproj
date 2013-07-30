@@ -176,6 +176,12 @@
     <Content Include="Examples\ItemsOperations - Fetch.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Examples\Sync - Inbox - Sync Key 0.xml" />
+    <Content Include="Examples\Sync - Inbox -2 weeks - Mime for Smime - body for rest.xml" />
+    <Content Include="Examples\Sync - Inbox items - 2 weeks - truncate mime.xml" />
+    <Content Include="Examples\Sync - Sync email folder - move deleted items to deleted items folder - get changes.xml" />
+    <Content Include="Examples\Sync - Sync messages - get truncated MIME.xml" />
+    <Content Include="Examples\Sync -Calendar - Sync Key 0.xml" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />
