@@ -46,9 +46,16 @@ that you know the set of provisioning calls which must be done to get a policy k
 
 --------------------
 NOTE:
+--------------------
 
 This code is not supported by anyone and exists purely for educational purposes.  If you are building an ActiveSync 
 application which is going to be commercialized then you really need to look into licensing.
+
+--------------------
+Pointers:
+--------------------
+If you are getting a Queue empty error being thrown in DecodeWBXML while loading WBXML, it is likely that the WBXML 
+body is incomplete. Be sure to export the full body for request or response from your networking tool.
 
 --------------------
 History:
@@ -87,6 +94,8 @@ Slight changes to the EAS Conversations windows in order to narrow it down.
 7/3/2013
 Released 1.1
 
+--
+
 7/29/2013
 Added more to EAS samples
 Corrected some issues with eas samples.
@@ -94,3 +103,8 @@ Added encoding form to Conversations window.  Right now it just does basic opera
 working with the message body for sending email.
 Reworked list of Commands in Conversations window.
 Released 1.2
+
+--
+7/29/2013
+Added some notes to readme.txt
+Incremented version number to 1.3 for development.
