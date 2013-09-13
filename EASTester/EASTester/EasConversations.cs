@@ -467,9 +467,96 @@ namespace EASTester
             EncodeForm oForm = new EncodeForm();
             oForm.ShowDialog();
         }
+
+        private void btnLoadSettings_Click(object sender, EventArgs e)
+        {
+            string sFile = string.Empty;
+            string sConnectionSettings = string.Empty;
+            ConnectionSetting oConnectionSetting = null;
+            string sFileContents = string.Empty;
+
+            if (UserIoHelper.PickLoadFromFile(Application.UserAppDataPath, "*.xml", ref sFile, "XML files (*.xml)|*.xml"))
+            {
+                try
+                {
+                    sFileContents = System.IO.File.ReadAllText(sFile);
+                    oConnectionSetting = SerialHelper.DeserializeObjectFromString<ConnectionSetting>(sFileContents);
+                    SetFormFromConnectionSettings(oConnectionSetting);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error Loading File: " + sFile);
+                }
+
+            }
+            oConnectionSetting = null;
+        }
+
+
+        private void SetFormFromConnectionSettings(ConnectionSetting oConnectionSetting)
+        {
+
+            this.txtServerUrl.Text = oConnectionSetting.MailDomain;
  
+            this.txtUser.Text = oConnectionSetting.User;
+            this.txtDomain.Text = oConnectionSetting.Domain;
+            //this.txtPassword.Text = oConnectionSetting.Password;
+            this.chkUseSSL.Checked = oConnectionSetting.UseSSL;
+            this.chkOverrideSslCertificateVerification.Checked = oConnectionSetting.OverrideSsslCertVerification;
+            this.cmboVersion.Text = oConnectionSetting.EasVersion;
+            this.txtDeviceId.Text = oConnectionSetting.DeviceId;
+            this.txtDeviceType.Text = oConnectionSetting.DeviceType;
+            this.cmboCommand.Text = oConnectionSetting.Command;
+            this.txtPolicyKey.Text = oConnectionSetting.PolicyKey;
+            this.txtRequest.Text = oConnectionSetting.EasRequest;
+            this.txtResponse.Text = oConnectionSetting.EasResponse;
  
- 
+        }
+
+
+        private void SetConnectionSettingsFromForm(ref ConnectionSetting oConnectionSetting)
+        {
+
+
+            //this.txtServerUrl.Text = oConnectionSetting.MailDomain;
+
+            oConnectionSetting.User = this.txtUser.Text;
+            oConnectionSetting.Domain = this.txtDomain.Text;
+            //oConnectionSetting.Password = this.txtPassword.Text;
+            oConnectionSetting.UseSSL = this.chkUseSSL.Checked;
+            oConnectionSetting.OverrideSsslCertVerification = this.chkOverrideSslCertificateVerification.Checked;
+            oConnectionSetting.EasVersion = this.cmboVersion.Text;
+            oConnectionSetting.DeviceId = this.txtDeviceId.Text;
+            oConnectionSetting.DeviceType = this.txtDeviceType.Text;
+            oConnectionSetting.Command = this.cmboCommand.Text;
+            oConnectionSetting.PolicyKey = this.txtPolicyKey.Text;
+            oConnectionSetting.EasRequest = this.txtRequest.Text;
+            oConnectionSetting.EasResponse = this.txtResponse.Text;
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            string sFile = string.Empty;
+            string sConnectionSettings = string.Empty;
+            ConnectionSetting oConnectionSetting = new ConnectionSetting();
+            SetConnectionSettingsFromForm(ref oConnectionSetting);
+
+            if (UserIoHelper.PickSaveFileToFolder(Application.UserAppDataPath, "Connection Settings " + TimeHelper.NowMashup() + ".xml", ref sFile, "XML files (*.xml)|*.xml"))
+            {
+                sConnectionSettings = SerialHelper.SerializeObjectToString<ConnectionSetting>(oConnectionSetting);
+                if (sConnectionSettings != string.Empty)
+                {
+                    try
+                    {
+                        System.IO.File.WriteAllText(sFile, sConnectionSettings);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error Saving File");
+                    }
+                }
+            }
+        }
 
  
 

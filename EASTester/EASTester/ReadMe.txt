@@ -108,3 +108,5 @@ Released 1.2
 7/29/2013
 Added some notes to readme.txt
 Incremented version number to 1.3 for development.
+Fixed ItemOperations folder clear sample.
+Changed "ItemsOperations" to "ItemOperations" in Conversation window.

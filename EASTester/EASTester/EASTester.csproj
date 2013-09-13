@@ -61,6 +61,7 @@
     <Compile Include="ASOptionsResponse.cs" />
     <Compile Include="ASProvisionResponse.cs" />
     <Compile Include="ASWBXML.cs" />
+    <Compile Include="ConnectionSettings.cs" />
     <Compile Include="DecodeWbxmlBinaryFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,11 +110,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExampleResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SerialHelpercs.cs" />
     <Compile Include="TemplateRequests.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TemplateRequests.resx</DependentUpon>
     </Compile>
+    <Compile Include="TimeHelper.cs" />
+    <Compile Include="UserIoHelper.cs" />
     <EmbeddedResource Include="DecodeWbxmlBinaryFile.resx">
       <DependentUpon>DecodeWbxmlBinaryFile.cs</DependentUpon>
     </EmbeddedResource>
