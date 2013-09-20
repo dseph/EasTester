@@ -12,7 +12,6 @@ namespace EASTester
     public class SerialHelper
     {
 
-
         public static string SerializeObjectToString<T>(T obj)
         {
 
@@ -29,12 +28,11 @@ namespace EASTester
                     oXmlWriterSettings.Encoding = Encoding.UTF8;
                     oXmlWriterSettings.Indent = true;
                     //oXmlWriterSettings.IndentChars = "\t";
-                    oXmlWriterSettings.NewLineChars = Environment.NewLine;
+                    //oXmlWriterSettings.NewLineChars = Environment.NewLine;
                     oXmlWriterSettings.ConformanceLevel = ConformanceLevel.Document;
 
                     XmlSerializer oXmlSerializer = new XmlSerializer(typeof(T));
                     oXmlTextWriter = new XmlTextWriter(oMemoryStream, Encoding.UTF8);
-                    oXmlTextWriter.Settings.NewLineChars = Environment.NewLine;
                     oXmlSerializer.Serialize(oXmlTextWriter, obj);
                     oMemoryStream = (MemoryStream)oXmlTextWriter.BaseStream;
                     oUTF8Encoding = new UTF8Encoding();
@@ -57,24 +55,12 @@ namespace EASTester
             MemoryStream oMemoryStream = null;
             XmlTextWriter oXmlTextWriter = null;
             UTF8Encoding oUTF8Encoding = new UTF8Encoding();
-            XmlWriterSettings oXmlWriterSettings = new XmlWriterSettings();
 
             try
             {
- 
-
                 oXmlSerializer = new XmlSerializer(typeof(T));
                 oMemoryStream = new MemoryStream(oUTF8Encoding.GetBytes(xml));
-                 
-                oXmlTextWriter = new XmlTextWriter(oMemoryStream, Encoding.UTF8 );
-
-                //oXmlWriterSettings.Encoding = Encoding.UTF8;
-                //oXmlWriterSettings.Indent = true;
-                //oXmlWriterSettings.NewLineChars = Environment.NewLine;
-                //oXmlWriterSettings.ConformanceLevel = ConformanceLevel.Document;
-
- 
-                 
+                oXmlTextWriter = new XmlTextWriter(oMemoryStream, Encoding.UTF8);
                 return (T)oXmlSerializer.Deserialize(oMemoryStream);
             }
             catch (Exception ex)

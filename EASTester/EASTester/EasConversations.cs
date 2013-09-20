@@ -479,13 +479,16 @@ namespace EASTester
             {
                 try
                 {
-                    sFileContents = System.IO.File.ReadAllText(sFile);
+                    sFileContents = System.IO.File.ReadAllText(sFile );
                     oConnectionSetting = SerialHelper.DeserializeObjectFromString<ConnectionSetting>(sFileContents);
+                    if (oConnectionSetting == null)
+                        throw new Exception("Settings file cannot be deserialized.");
                     SetFormFromConnectionSettings(oConnectionSetting);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error Loading File: " + sFile);
+           
+                    MessageBox.Show(ex.ToString(), "Error Loading File");
                 }
 
             }
@@ -495,22 +498,47 @@ namespace EASTester
 
         private void SetFormFromConnectionSettings(ConnectionSetting oConnectionSetting)
         {
+            try
+            {
+                this.txtServerUrl.Text = FixSetting(oConnectionSetting.MailDomain);
 
-            this.txtServerUrl.Text = oConnectionSetting.MailDomain;
+                this.txtUser.Text = FixSetting(oConnectionSetting.User);
+                this.txtDomain.Text = FixSetting(oConnectionSetting.Domain);
+                //this.txtPassword.Text = oConnectionSetting.Password;
+                this.chkUseSSL.Checked = oConnectionSetting.UseSSL;
+
+                //if (oConnectionSetting.OverrideSsslCertVerification == null)
+                //    this.chkUseSSL.Checked = false;
+                //else
+                this.chkUseSSL.Checked = oConnectionSetting.UseSSL;
+
+                //if (oConnectionSetting.OverrideSsslCertVerification == null)
+                //    this.chkOverrideSslCertificateVerification.Checked = false;
+                //else
+                this.chkOverrideSslCertificateVerification.Checked = oConnectionSetting.OverrideSsslCertVerification;
+
+                this.cmboVersion.Text = FixSetting(oConnectionSetting.EasVersion);
+                this.txtDeviceId.Text = FixSetting(oConnectionSetting.DeviceId);
+                this.txtDeviceType.Text = FixSetting(oConnectionSetting.DeviceType);
+                this.cmboCommand.Text = FixSetting(oConnectionSetting.Command);
+                this.txtPolicyKey.Text = FixSetting(oConnectionSetting.PolicyKey);
+                this.txtRequest.Text = FixSetting(oConnectionSetting.EasRequest).Replace("\n", "\r\n");
+                this.txtResponse.Text = FixSetting(oConnectionSetting.EasResponse).Replace("\n", "\r\n");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error loading settings into form");
+            }
  
-            this.txtUser.Text = oConnectionSetting.User;
-            this.txtDomain.Text = oConnectionSetting.Domain;
-            //this.txtPassword.Text = oConnectionSetting.Password;
-            this.chkUseSSL.Checked = oConnectionSetting.UseSSL;
-            this.chkOverrideSslCertificateVerification.Checked = oConnectionSetting.OverrideSsslCertVerification;
-            this.cmboVersion.Text = oConnectionSetting.EasVersion;
-            this.txtDeviceId.Text = oConnectionSetting.DeviceId;
-            this.txtDeviceType.Text = oConnectionSetting.DeviceType;
-            this.cmboCommand.Text = oConnectionSetting.Command;
-            this.txtPolicyKey.Text = oConnectionSetting.PolicyKey;
-            this.txtRequest.Text = oConnectionSetting.EasRequest;
-            this.txtResponse.Text = oConnectionSetting.EasResponse;
- 
+        }
+
+        private string FixSetting(string sSetting)
+        {
+            if (sSetting == null)
+                return "";
+            else
+                return sSetting;
+
         }
 
 
@@ -539,6 +567,7 @@ namespace EASTester
             string sFile = string.Empty;
             string sConnectionSettings = string.Empty;
             ConnectionSetting oConnectionSetting = new ConnectionSetting();
+
             SetConnectionSettingsFromForm(ref oConnectionSetting);
 
             if (UserIoHelper.PickSaveFileToFolder(Application.UserAppDataPath, "Connection Settings " + TimeHelper.NowMashup() + ".xml", ref sFile, "XML files (*.xml)|*.xml"))
@@ -557,8 +586,6 @@ namespace EASTester
                 }
             }
         }
-
  
-
     }
 }

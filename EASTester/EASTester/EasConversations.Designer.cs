@@ -60,6 +60,10 @@
             this.btnEncodingHelper = new System.Windows.Forms.Button();
             this.btnLoadSettings = new System.Windows.Forms.Button();
             this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDomain
@@ -168,7 +172,7 @@
             // 
             this.txtRequest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRequest.Location = new System.Drawing.Point(11, 216);
+            this.txtRequest.Location = new System.Drawing.Point(9, 216);
             this.txtRequest.MaxLength = 0;
             this.txtRequest.Multiline = true;
             this.txtRequest.Name = "txtRequest";
@@ -303,7 +307,7 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(252, 8);
+            this.btnOptions.Location = new System.Drawing.Point(759, 146);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(129, 23);
             this.btnOptions.TabIndex = 11;
@@ -359,8 +363,7 @@
             // 
             // btnSaveExample
             // 
-            this.btnSaveExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveExample.Location = new System.Drawing.Point(513, 8);
+            this.btnSaveExample.Location = new System.Drawing.Point(109, 3);
             this.btnSaveExample.Name = "btnSaveExample";
             this.btnSaveExample.Size = new System.Drawing.Size(97, 23);
             this.btnSaveExample.TabIndex = 45;
@@ -370,8 +373,7 @@
             // 
             // btnLoadExample
             // 
-            this.btnLoadExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoadExample.Location = new System.Drawing.Point(406, 8);
+            this.btnLoadExample.Location = new System.Drawing.Point(3, 3);
             this.btnLoadExample.Name = "btnLoadExample";
             this.btnLoadExample.Size = new System.Drawing.Size(97, 23);
             this.btnLoadExample.TabIndex = 47;
@@ -382,9 +384,9 @@
             // btnEncodingHelper
             // 
             this.btnEncodingHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEncodingHelper.Location = new System.Drawing.Point(644, 8);
+            this.btnEncodingHelper.Location = new System.Drawing.Point(759, 116);
             this.btnEncodingHelper.Name = "btnEncodingHelper";
-            this.btnEncodingHelper.Size = new System.Drawing.Size(112, 23);
+            this.btnEncodingHelper.Size = new System.Drawing.Size(129, 23);
             this.btnEncodingHelper.TabIndex = 48;
             this.btnEncodingHelper.Text = "Encoding Helper";
             this.btnEncodingHelper.UseVisualStyleBackColor = true;
@@ -392,8 +394,7 @@
             // 
             // btnLoadSettings
             // 
-            this.btnLoadSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoadSettings.Location = new System.Drawing.Point(8, 8);
+            this.btnLoadSettings.Location = new System.Drawing.Point(3, 3);
             this.btnLoadSettings.Name = "btnLoadSettings";
             this.btnLoadSettings.Size = new System.Drawing.Size(105, 23);
             this.btnLoadSettings.TabIndex = 49;
@@ -403,8 +404,7 @@
             // 
             // btnSaveSettings
             // 
-            this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveSettings.Location = new System.Drawing.Point(119, 8);
+            this.btnSaveSettings.Location = new System.Drawing.Point(114, 4);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(104, 23);
             this.btnSaveSettings.TabIndex = 50;
@@ -412,17 +412,35 @@
             this.btnSaveSettings.UseVisualStyleBackColor = true;
             this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnLoadSettings);
+            this.panel1.Controls.Add(this.btnSaveSettings);
+            this.panel1.Location = new System.Drawing.Point(9, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(223, 30);
+            this.panel1.TabIndex = 51;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnLoadExample);
+            this.panel2.Controls.Add(this.btnSaveExample);
+            this.panel2.Location = new System.Drawing.Point(238, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(213, 30);
+            this.panel2.TabIndex = 52;
+            // 
             // frmRawEAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(903, 671);
-            this.Controls.Add(this.btnSaveSettings);
-            this.Controls.Add(this.btnLoadSettings);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEncodingHelper);
-            this.Controls.Add(this.btnLoadExample);
-            this.Controls.Add(this.btnSaveExample);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPolicyKey);
             this.Controls.Add(this.chkOverrideSslCertificateVerification);
@@ -452,6 +470,8 @@
             this.Name = "frmRawEAS";
             this.Text = "EAS Conversations";
             this.Load += new System.EventHandler(this.frmRawEAS_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -491,6 +511,8 @@
         private System.Windows.Forms.Button btnEncodingHelper;
         private System.Windows.Forms.Button btnLoadSettings;
         private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

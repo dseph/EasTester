@@ -110,3 +110,7 @@ Added some notes to readme.txt
 Incremented version number to 1.3 for development.
 Fixed ItemOperations folder clear sample.
 Changed "ItemsOperations" to "ItemOperations" in Conversation window.
+
+9/20/2013
+Conversations view now can save and load settings + last request + last response.  Password is not saved.
+Release 1.3
