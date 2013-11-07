@@ -114,3 +114,9 @@ Changed "ItemsOperations" to "ItemOperations" in Conversation window.
 9/20/2013
 Conversations view now can save and load settings + last request + last response.  Password is not saved.
 Release 1.3
+
+11/7/2013
+Changed version to 1.4
+Fixed a bug in Conversation view where the server was not being saved.
+Adding processing to load a string which describes the response code. This will make Conversation view a lot 
+easier to work with since is a pain to look-up the respose code meaning.

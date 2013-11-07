@@ -186,6 +186,7 @@
     <Content Include="Examples\Sync - Sync email folder - move deleted items to deleted items folder - get changes.xml" />
     <Content Include="Examples\Sync - Sync messages - get truncated MIME.xml" />
     <Content Include="Examples\Sync -Calendar - Sync Key 0.xml" />
+    <Content Include="Examples\Errors.xml" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />

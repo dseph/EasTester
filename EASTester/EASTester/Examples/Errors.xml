@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes xmlns="urn:statuscodes-schema">
+  <Status>
+    <StatusValue>110</StatusValue>
+    <StatusText>ServerError</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+  <Status>
+    <StatusValue>111</StatusValue>
+    <StatusText>ServerErrorRetryLater</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+  <Status>
+    <StatusValue>112</StatusValue>
+    <StatusText>ServerErrorRetryLater</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+  <Status>
+    <StatusValue>113</StatusValue>
+    <StatusText>MailboxQuotaExceeded</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+  <Status>
+    <StatusValue>142</StatusValue>
+    <StatusText>DeviceNotProvisioned</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+  <Status>
+    <StatusValue>143</StatusValue>
+    <StatusText>PolicyRefresh</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+  <Status>
+    <StatusValue>144</StatusValue>
+    <StatusText>InvalidPolicyKey</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+  <Status>
+    <StatusValue>177</StatusValue>
+    <StatusText>MaximumDevicesReached</StatusText>
+    <StatusDescription></StatusDescription>
+  </Status>
+</StatusCodes>
+

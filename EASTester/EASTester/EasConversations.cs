@@ -31,7 +31,7 @@ namespace EASTester
             bool bError = false;
             txtResponse.Text = string.Empty;
             txtResponse.Update();
- 
+            ClearStatusCodeInfo();
 
             this.Cursor = Cursors.WaitCursor;
 
@@ -112,6 +112,8 @@ namespace EASTester
                     {
 
                         txtResponse.Text = commandResponse.XMLString;
+
+                        DisplayStatusCodeInfo(txtResponse.Text);
                     }
                     else
                     {
@@ -127,6 +129,101 @@ namespace EASTester
 
             this.Cursor = Cursors.Default;
 
+        }
+
+        private void ClearStatusCodeInfo() 
+        {
+            this.txtResponseCode.Text = "";
+            this.txtResponseText.Text = "";
+            this.lblResponseDesc.Text = "";
+
+            txtResponseCode.Update();
+            txtResponseText.Update();
+            lblResponseDesc.Update();
+        }
+
+        private void DisplayStatusCodeInfo(string sResponse)
+        {
+            XmlDocument doc = new XmlDocument();
+            string sNodeQuery = string.Empty;
+            string ResponseCodeToFind = string.Empty;
+
+            XmlNode FoundNode = null;
+
+            //doc.LoadXml(sResponse);
+            //XmlNode root = doc.DocumentElement;
+            //XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            //nsmgr.AddNamespace("xprefix", "xmlns:folderhierarchy");
+            //FoundNode = root.SelectSingleNode("descendant::bk:book[bk:author/bk:last-name='Kingsolver']", nsmgr);
+
+
+            // Example response
+            //<?xml version="1.0" encoding="utf-8"?>
+            //<folderhierarchy:FolderSync xmlns:folderhierarchy="FolderHierarchy:">
+            //  <folderhierarchy:Status>144</folderhierarchy:Status>
+            //</folderhierarchy:FolderSync>
+
+            //sNodeQuery = "//folderhierarchy:Status[text()=" + CodeToFind + "]";
+            //FoundNode = doc.DocumentElement.SelectSingleNode(sNodeQuery).ParentNode;
+            //string ResponseCodeFilePath = Application.StartupPath + "\\Examples\\Errors.xml";
+            //doc.Load(ResponseCodeFilePath);
+
+            int iStart = 0;
+            iStart = sResponse.IndexOf("Status>");
+            iStart += 7;
+            string sSub = sResponse.Substring(iStart,20);
+            int iEnd = sSub.Substring(0).IndexOf("<");
+            ResponseCodeToFind = sSub.Substring(0, iEnd);
+
+            this.txtResponseCode.Text = ResponseCodeToFind;
+ 
+            //<StatusCodes>
+            //  <Status>
+            //    <StatusValue>110</StatusValue>
+            //    <StatusText>ServerError</StatusText>
+            //    <StatusDescription></StatusDescription>
+            //  </Status>
+
+            //<?xml version="1.0" encoding="utf-8"?>
+            //<folderhierarchy:FolderSync xmlns:folderhierarchy="FolderHierarchy:">
+            //  <folderhierarchy:Status>144</folderhierarchy:Status>
+            //</folderhierarchy:FolderSync>
+
+            FoundNode = null;
+            string StatusText = string.Empty;
+            string StatusDescription = string.Empty;
+            //  xmlns="urn:status-codes-schema"
+
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("sc", "urn:statuscodes-schema");
+            XmlNode RootNode =  null;
+            RootNode = doc.DocumentElement;
+
+            
+            // TODO: finish looking up status codes for 1.4
+            //try
+            //{
+            //    FoundNode = RootNode.SelectSingleNode("descendant::sc:StatusCodes[sc:Status/sc:StatusValue='" + ResponseCodeToFind + "']", nsmgr);
+            //    FoundNode = RootNode.SelectSingleNode("//Status[StatusValue = '143']");
+            //    sNodeQuery = "//StatusCodes//Status//StatusValue[text()='" + ResponseCodeToFind + "']";
+
+            //    FoundNode = doc.DocumentElement.SelectSingleNode(sNodeQuery).ParentNode;
+            //    if (FoundNode != null)
+            //    {
+            //        StatusText = FoundNode.ChildNodes[1].InnerText;
+            //        StatusDescription = FoundNode.ChildNodes[2].InnerText;
+
+
+            //        this.txtResponseText.Text = StatusText;
+            //        this.txtResponseDesc.Text = StatusDescription;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.txtResponseText.Text = "";
+            //    this.txtResponseDesc.Text = "";
+            //}
+                
         }
 
         private string BuildUseEasUrl()
@@ -546,7 +643,7 @@ namespace EASTester
         {
 
 
-            //this.txtServerUrl.Text = oConnectionSetting.MailDomain;
+            oConnectionSetting.MailDomain = this.txtServerUrl.Text;
 
             oConnectionSetting.User = this.txtUser.Text;
             oConnectionSetting.Domain = this.txtDomain.Text;

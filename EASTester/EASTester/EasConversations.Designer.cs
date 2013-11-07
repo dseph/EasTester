@@ -62,6 +62,12 @@
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblResponseCode = new System.Windows.Forms.Label();
+            this.txtResponseCode = new System.Windows.Forms.TextBox();
+            this.lblResponseText = new System.Windows.Forms.Label();
+            this.txtResponseText = new System.Windows.Forms.TextBox();
+            this.lblResponseDesc = new System.Windows.Forms.Label();
+            this.txtResponseDesc = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -192,7 +198,7 @@
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(883, 220);
+            this.txtResponse.Size = new System.Drawing.Size(883, 197);
             this.txtResponse.TabIndex = 15;
             this.txtResponse.WordWrap = false;
             this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged);
@@ -432,12 +438,66 @@
             this.panel2.Size = new System.Drawing.Size(213, 30);
             this.panel2.TabIndex = 52;
             // 
+            // lblResponseCode
+            // 
+            this.lblResponseCode.AutoSize = true;
+            this.lblResponseCode.Location = new System.Drawing.Point(12, 649);
+            this.lblResponseCode.Name = "lblResponseCode";
+            this.lblResponseCode.Size = new System.Drawing.Size(66, 13);
+            this.lblResponseCode.TabIndex = 53;
+            this.lblResponseCode.Text = "Resp Code::";
+            // 
+            // txtResponseCode
+            // 
+            this.txtResponseCode.Location = new System.Drawing.Point(78, 646);
+            this.txtResponseCode.Name = "txtResponseCode";
+            this.txtResponseCode.Size = new System.Drawing.Size(59, 20);
+            this.txtResponseCode.TabIndex = 54;
+            // 
+            // lblResponseText
+            // 
+            this.lblResponseText.AutoSize = true;
+            this.lblResponseText.Location = new System.Drawing.Point(143, 649);
+            this.lblResponseText.Name = "lblResponseText";
+            this.lblResponseText.Size = new System.Drawing.Size(58, 13);
+            this.lblResponseText.TabIndex = 55;
+            this.lblResponseText.Text = "Response:";
+            // 
+            // txtResponseText
+            // 
+            this.txtResponseText.Location = new System.Drawing.Point(207, 646);
+            this.txtResponseText.Name = "txtResponseText";
+            this.txtResponseText.Size = new System.Drawing.Size(234, 20);
+            this.txtResponseText.TabIndex = 56;
+            // 
+            // lblResponseDesc
+            // 
+            this.lblResponseDesc.AutoSize = true;
+            this.lblResponseDesc.Location = new System.Drawing.Point(454, 649);
+            this.lblResponseDesc.Name = "lblResponseDesc";
+            this.lblResponseDesc.Size = new System.Drawing.Size(58, 13);
+            this.lblResponseDesc.TabIndex = 57;
+            this.lblResponseDesc.Text = "Response:";
+            // 
+            // txtResponseDesc
+            // 
+            this.txtResponseDesc.Location = new System.Drawing.Point(518, 646);
+            this.txtResponseDesc.Name = "txtResponseDesc";
+            this.txtResponseDesc.Size = new System.Drawing.Size(373, 20);
+            this.txtResponseDesc.TabIndex = 58;
+            // 
             // frmRawEAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(903, 671);
+            this.Controls.Add(this.txtResponseDesc);
+            this.Controls.Add(this.lblResponseDesc);
+            this.Controls.Add(this.txtResponseText);
+            this.Controls.Add(this.lblResponseText);
+            this.Controls.Add(this.txtResponseCode);
+            this.Controls.Add(this.lblResponseCode);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEncodingHelper);
@@ -513,6 +573,12 @@
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblResponseCode;
+        private System.Windows.Forms.TextBox txtResponseCode;
+        private System.Windows.Forms.Label lblResponseText;
+        private System.Windows.Forms.TextBox txtResponseText;
+        private System.Windows.Forms.Label lblResponseDesc;
+        private System.Windows.Forms.TextBox txtResponseDesc;
     }
 }
 
