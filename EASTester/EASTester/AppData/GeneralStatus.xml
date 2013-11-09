@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="101">
+    <Meaning>InvalidContent</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="102">
+    <Meaning>InvalidWBXML</Meaning>
+    <Cause>
+      The request contains WBXML but it could not be decoded into XML.
+    </Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="103">
+    <Meaning>InvalidXML</Meaning>
+    <Cause>
+    The XML provided in the request does not follow the protocol requirements.
+    </Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="104">
+    <Meaning>InvalidDateTime</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="105">
+    <Meaning>InvalidCombinationOfIDs</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="106">
+    <Meaning>InvalidIds</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="107">
+    <Meaning>InvalidMIME</Meaning>
+    <Cause>
+      The request contains MIME that could not be parsed.
+    </Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="108">
+    <Meaning>DeviceIdMissingOrInvalid</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="109">
+    <Meaning>DeviceTypeMissingOrInvalid</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="110">
+    <Meaning>ServerError</Meaning>
+    <Cause>The server encountered an unknown error. The device SHOULD NOT retry later.</Cause>
+    <Resolution>
+      The device SHOULD NOT retry later.
+    </Resolution>
+  </Status>
+  <Status ID="111">
+    <Meaning>ServerErrorRetryLater</Meaning>
+    <Cause>The server encountered an unknown error. The device SHOULD retry later.</Cause>
+    <Resolution>The device SHOULD retry later.</Resolution>
+  </Status>
+  <Status ID="112">
+    <Meaning>ActiveDirectoryAccessDenied</Meaning>
+    <Cause>
+      The server does not have access to read/write to an object in the directory service.
+    </Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="113">
+    <Meaning>MailboxQuotaExceeded</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="114">
+    <Meaning>MailServerOffline</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="115">
+    <Meaning>SendQuotaExceeded</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="116">
+    <Meaning>MessageRecipientUnresolved</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="117">
+    <Meaning>MessageReplyNotAllowed</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="118">
+    <Meaning>MessagePreviouslySent</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="119">
+    <Meaning>MessageHasNoRecipient</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="120">
+    <Meaning>MailSubmissionFailed</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="121">
+    <Meaning>MessageReplyFailed</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="122">
+    <Meaning>AttachmentIsTooLarge</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="123">
+    <Meaning>UserHasNoMailbox</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="124">
+    <Meaning>UserCannotBeAnonymous</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="125">
+    <Meaning>UserPrincipalCouldNotBeFound</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="126">
+    <Meaning>UserDisabledForSync</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="127">
+    <Meaning>UserOnNewMailboxCannotSync</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="128">
+    <Meaning>UserOnLegacyMailboxCannotSync</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="129">
+    <Meaning>DeviceIsBlockedForThisUser</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="130">
+    <Meaning>AccessDenied</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="131">
+    <Meaning>AccountDisabled</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="132">
+    <Meaning>SyncStateNotFound</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="133">
+    <Meaning>SyncStateLocked</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="134">
+    <Meaning>SyncStateCorrupt</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="135">
+    <Meaning>SyncStateAlreadyExists</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="136">
+    <Meaning>SyncStateInvalid</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="137">
+    <Meaning>CommandNotSupported</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="138">
+    <Meaning>VersionNotSupported</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="139">
+    <Meaning>DeviceNotFullyProvisionable</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="140">
+    <Meaning>RemoteWipeRequested</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="141">
+    <Meaning>LegacyDeviceOnStrictPolicy</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="142">
+    <Meaning>DeviceNotProvisioned</Meaning>
+    <Cause>
+      There is a policy in place and the device needs to provision.
+    </Cause>
+    <Resolution>The request will need to use a provisioned policy key.</Resolution>
+  </Status>
+  <Status ID="143">
+    <Meaning>PolicyRefresh</Meaning>
+    <Cause>
+      The policy is configured to be refreshed every few hours.
+    </Cause>
+    <Resolution>The device needs to re-provision in order to get a new policy key which will be used for further requests.</Resolution>
+  </Status>
+  <Status ID="144">
+    <Meaning>InvalidPolicyKey</Meaning>
+    <Cause>The device's policy key is invalid.</Cause>
+    <Resolution>The policy has likely changed.  Obtain a new policy key by re-provisioning.</Resolution>
+  </Status>
+  <Status ID="145">
+    <Meaning>ExternalManagedDevicesNotAllowed</Meaning>
+    <Cause>
+      The device claimed to be externally managed, but the server doesn't allow externally managed devices to sync.
+    </Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="146">
+    <Meaning>NoRecurrenceInCalendar</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="147">
+    <Meaning>UnexpectedItemClass</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="148">
+    <Meaning>RemoteServerHasNoSSL</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="149">
+    <Meaning>InvalidStoredRequest</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="150">
+    <Meaning>ItemNotFound</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="151">
+    <Meaning>TooManyFolders</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="152">
+    <Meaning>NoFoldersFound</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="153">
+    <Meaning>ItemsLostAfterMove</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="154">
+    <Meaning>FailureInMoveOperation</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="155">
+    <Meaning>MoveCommandDisallowedForNonPersistentMoveAction</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="156">
+    <Meaning>MoveCommandInvalidDestinationFolder</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="160">
+    <Meaning>AvailabilityTooManyRecipients</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="161">
+    <Meaning>AvailabilityDLLimitReached</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="162">
+    <Meaning>AvailabilityTransientFailure</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="163">
+    <Meaning>AvailabilityFailure</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="164">
+    <Meaning>BodyPartPreferenceTypeNotSupported</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="165">
+    <Meaning>DeviceInformationRequired</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="166">
+    <Meaning>InvalidAccountId</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="167">
+    <Meaning>AccountSendDisabled</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="168">
+    <Meaning>IRM_FeatureDisabled</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="169">
+    <Meaning>IRM_TransientError</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="170">
+    <Meaning>IRM_PermanentError</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="171">
+    <Meaning>IRM_InvalidTemplateID</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="172">
+    <Meaning>IRM_OperationNotPermitted</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="173">
+    <Meaning>NoPicture</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="174">
+    <Meaning>PictureTooLarge</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="175">
+    <Meaning>PictureLimitReached</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="176">
+    <Meaning>BodyPart_ConversationTooLarge</Meaning>
+    <Cause></Cause>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="177">
+    <Meaning>MaximumDevicesReached</Meaning>
+    <Cause>
+      The user's account has too many device partnerships.
+    </Cause>
+    <Resolution>
+      Delete partnerships on the server before proceeding.
+    </Resolution>
+  </Status>
+</StatusCodes>
+
+

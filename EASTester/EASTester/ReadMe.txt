@@ -120,3 +120,7 @@ Changed version to 1.4
 Fixed a bug in Conversation view where the server was not being saved.
 Adding processing to load a string which describes the response code. This will make Conversation view a lot 
 easier to work with since is a pain to look-up the respose code meaning.
+
+11/8/2013
+Status lookup is working for common codes and status codes for several high usage commands.
+If a command specific code is not found then it tries to get the common status code if there is one.

@@ -133,13 +133,15 @@ namespace EASTester
 
         private void ClearStatusCodeInfo() 
         {
-            this.txtResponseCode.Text = "";
-            this.txtResponseText.Text = "";
-            this.lblResponseDesc.Text = "";
+            this.txtStatusCode.Text = "";
+            this.txtStatusMeaning.Text = "";
+            this.txtStatusCause.Text = "";
+            this.txtStatusResolution.Text = "";
 
-            txtResponseCode.Update();
-            txtResponseText.Update();
-            lblResponseDesc.Update();
+            txtStatusCode.Update();
+            txtStatusMeaning.Update();
+            txtStatusCause.Update();
+            txtStatusResolution.Update();
         }
 
         private void DisplayStatusCodeInfo(string sResponse)
@@ -148,7 +150,15 @@ namespace EASTester
             string sNodeQuery = string.Empty;
             string ResponseCodeToFind = string.Empty;
 
-            XmlNode FoundNode = null;
+            ClearStatusCodeInfo();
+            
+            // in ms-ascmd - see:  
+            //    1.2.3.162.2  FolderCreate
+            //    2.2.3.162.3  FolderDelete
+            //    2.2.3.162.4  FolderSync
+            //    2.2.3.152.5  FolderUpdate
+            //    2.2.3.162.6  GetItemEstimate
+            //    2.2.3.162.7  ItemsOperation
 
             //doc.LoadXml(sResponse);
             //XmlNode root = doc.DocumentElement;
@@ -165,8 +175,7 @@ namespace EASTester
 
             //sNodeQuery = "//folderhierarchy:Status[text()=" + CodeToFind + "]";
             //FoundNode = doc.DocumentElement.SelectSingleNode(sNodeQuery).ParentNode;
-            //string ResponseCodeFilePath = Application.StartupPath + "\\Examples\\Errors.xml";
-            //doc.Load(ResponseCodeFilePath);
+ 
 
             int iStart = 0;
             iStart = sResponse.IndexOf("Status>");
@@ -175,55 +184,196 @@ namespace EASTester
             int iEnd = sSub.Substring(0).IndexOf("<");
             ResponseCodeToFind = sSub.Substring(0, iEnd);
 
-            this.txtResponseCode.Text = ResponseCodeToFind;
  
-            //<StatusCodes>
-            //  <Status>
-            //    <StatusValue>110</StatusValue>
-            //    <StatusText>ServerError</StatusText>
-            //    <StatusDescription></StatusDescription>
-            //  </Status>
-
-            //<?xml version="1.0" encoding="utf-8"?>
-            //<folderhierarchy:FolderSync xmlns:folderhierarchy="FolderHierarchy:">
-            //  <folderhierarchy:Status>144</folderhierarchy:Status>
-            //</folderhierarchy:FolderSync>
-
-            FoundNode = null;
-            string StatusText = string.Empty;
-            string StatusDescription = string.Empty;
-            //  xmlns="urn:status-codes-schema"
-
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
-            nsmgr.AddNamespace("sc", "urn:statuscodes-schema");
-            XmlNode RootNode =  null;
-            RootNode = doc.DocumentElement;
-
-            
-            // TODO: finish looking up status codes for 1.4
-            //try
-            //{
-            //    FoundNode = RootNode.SelectSingleNode("descendant::sc:StatusCodes[sc:Status/sc:StatusValue='" + ResponseCodeToFind + "']", nsmgr);
-            //    FoundNode = RootNode.SelectSingleNode("//Status[StatusValue = '143']");
-            //    sNodeQuery = "//StatusCodes//Status//StatusValue[text()='" + ResponseCodeToFind + "']";
-
-            //    FoundNode = doc.DocumentElement.SelectSingleNode(sNodeQuery).ParentNode;
-            //    if (FoundNode != null)
-            //    {
-            //        StatusText = FoundNode.ChildNodes[1].InnerText;
-            //        StatusDescription = FoundNode.ChildNodes[2].InnerText;
 
 
-            //        this.txtResponseText.Text = StatusText;
-            //        this.txtResponseDesc.Text = StatusDescription;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.txtResponseText.Text = "";
-            //    this.txtResponseDesc.Text = "";
-            //}
-                
+            SetStatusInfo(ResponseCodeToFind, cmboCommand.Text.Trim());
+ 
+        }
+
+        private void SetStatusInfo(string StatusCode, string sCommand)
+        {
+            this.txtStatusCode.Text = StatusCode;
+            string SpecificStatusFile = string.Empty;
+            string DocReference = "See: 2.2.3.162.2 in the ms-ascmd Exchange Protocol Documentation";
+
+            switch (sCommand)
+            {
+
+                case "FolderCreate":
+                    SpecificStatusFile = "FolderCreateStatus.xml";    // 2.2.3.162.2 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.2 in ms-ascmd";
+                    break;
+                case "FolderDelete":
+                    SpecificStatusFile = "FolderDeleteStatus.xml";    // 2.2.3.162.3 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.3 in ms-ascmd";
+                    break;
+                case "FolderSync":
+                    SpecificStatusFile = "FolderSyncStatus.xml";        // 2.2.3.162.4 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.4 in ms-ascmd";
+                    break;
+                //case "FolderUpdate":
+                //    SpecificStatusFile = "FolderUpdateStatus.xml";    // 2.2.3.162.5 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.5 in ms-ascmd";
+                //    break;
+                case "GetItemEstimate":
+                    SpecificStatusFile = "GetItemEstimateStatus.xml";   // 2.2.3.162.6 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.6 in ms-ascmd";
+                    break;
+                case "ItemsOperations":
+                    SpecificStatusFile = "ItemsOperationsStatus.xml";   // 2.2.3.162.7 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.7 in ms-ascmd";
+                    break;
+                //case "MeetingResponse":
+                //    SpecificStatusFile = "MeetingResponseStatus.xml";  // 2.2.3.162.8 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.8 in ms-ascmd";
+                //    break;
+                //case "MoveItems":
+                //    SpecificStatusFile = "MoveItemsStatus.xml";  // 2.2.3.162.9 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.9 in ms-ascmd";
+                //    break;
+                //case "Ping":
+                //    SpecificStatusFile = "PingStatus.xml";  // 2.2.3.162.10 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.10 in ms-ascmd";
+                //    break;
+                //case "ResolveRecipients":
+                //    SpecificStatusFile = "ResolveRecipientsStatus.xml";  // 2.2.3.162.11 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.11 in ms-ascmd";
+                //    break;
+                //case "Search":
+                //    SpecificStatusFile = "SearchStatus.xml";  // 2.2.3.162.12 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.12 in ms-ascmd";
+                //    break;
+                //case "SendMail":
+                //    SpecificStatusFile = "SendMailStatus.xml";  // 2.2.3.162.13 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.13 in ms-ascmd";
+                //    break;
+                //case "Settings":
+                //    SpecificStatusFile = "SettingsStatus.xml";  // 2.2.3.162.14 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.14 in ms-ascmd";
+                //    break;
+                //case "SmartForward":
+                //case "SmartReply":
+                //    SpecificStatusFile = "SmartForwardAndReplyStatus.xml";  // 2.2.3.162.15 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.15 in ms-ascmd";
+                //    break;
+                case "Sync":
+                    SpecificStatusFile = "SyncStatus.xml"; // 2.2.3.162.16 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.16 in ms-ascmd";
+                    break;
+                case "ValidateCert":
+                    SpecificStatusFile = "ValidateCertStatus.xml"; // 2.2.3.162.17 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.17 in ms-ascmd";
+                    break;
+                default:
+                    SpecificStatusFile = string.Empty;
+                    DocReference = string.Empty;
+                    break;
+            }
+
+            string StatusFile = string.Empty;
+
+            string Meaning = string.Empty;
+            string Cause = string.Empty;
+            string Resolution = string.Empty;
+
+            if (SpecificStatusFile != string.Empty)
+            {
+                StatusFile = Application.StartupPath + "\\AppData\\" + SpecificStatusFile;
+                GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution);
+            }
+
+
+            if (Meaning == string.Empty)  // command specific status found?
+            {   // Yes
+                // OK, nothing returned for the specific command, so lets check for a general status.
+                StatusFile = Application.StartupPath + "\\AppData\\GeneralStatus.xml";
+                GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution);
+                SpecificStatusFile = "See: 2.2.4 in ms-ascmd";
+            }
+
+            if (StatusCode != string.Empty)
+            {
+                // complete the string...
+                DocReference += " found in the Exchange Protocol Documentation";
+            }
+            else
+            {
+                // clear the string since there is no status code returned.
+                DocReference = string.Empty;
+            }
+
+            this.txtStatusMeaning.Text = Meaning.Trim();
+            this.txtStatusCause.Text = Cause.Trim();
+            this.txtStatusResolution.Text = Resolution.Trim() + "\r\n" + DocReference;
+ 
+        }
+
+        private bool GetStatusCodesFromFile(string StatusFile, string StatusCode, ref string Meaning, ref string Cause, ref string Resolution)
+        {
+            bool bError = false;
+            XmlDocument oXmlDocument = new XmlDocument();
+
+            try
+            {
+                oXmlDocument.Load(StatusFile);
+
+                XmlElement root = oXmlDocument.DocumentElement;
+                XmlNode oXmlNode = null;
+
+                Meaning = string.Empty;
+                Cause = string.Empty;
+                Resolution = string.Empty;
+
+                try
+                {
+                    oXmlNode = root.SelectSingleNode("//Status[@ID='" + StatusCode + "']/Meaning");
+                    if (oXmlNode != null)
+                    {
+                        Meaning = oXmlNode.InnerText;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Meaning = string.Empty;
+                }
+
+                try
+                {
+                    oXmlNode = root.SelectSingleNode("//Status[@ID='" + StatusCode + "']/Cause");
+                    if (oXmlNode != null)
+                    {
+                        Cause = oXmlNode.InnerText;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Cause = string.Empty;
+                }
+
+                try
+                {
+                    oXmlNode = root.SelectSingleNode("//Status[@ID='" + StatusCode + "']/Resolution");
+                    if (oXmlNode != null)
+                    {
+                        Resolution = oXmlNode.InnerText;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Resolution = string.Empty;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.InnerException.ToString(), "Could not load status file '" + StatusFile + "'.");
+
+                bError = true;
+            }
+
+            return bError;
+
         }
 
         private string BuildUseEasUrl()

@@ -144,6 +144,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TemplateRequests.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="AppData\FolderCreateStatus.xml" />
+    <Content Include="AppData\FolderDeleteStatus.xml" />
+    <Content Include="AppData\FolderSyncStatus.xml" />
+    <Content Include="AppData\SyncStatus.xml" />
+    <Content Include="AppData\ItemsOperationsStatus.xml" />
+    <Content Include="AppData\GetItemEstimateStatus.xml" />
+    <Content Include="AppData\ValidateCertStatus.xml" />
     <Content Include="Examples\ItemOperations-Fetch-Email.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -162,7 +169,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Examples\Errors.txt" />
+    <Content Include="AppData\GeneralStatus.txt" />
     <Content Include="Examples\FolderDelete.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -186,7 +193,7 @@
     <Content Include="Examples\Sync - Sync email folder - move deleted items to deleted items folder - get changes.xml" />
     <Content Include="Examples\Sync - Sync messages - get truncated MIME.xml" />
     <Content Include="Examples\Sync -Calendar - Sync Key 0.xml" />
-    <Content Include="Examples\Errors.xml" />
+    <Content Include="AppData\GeneralStatus.xml" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />
@@ -194,7 +201,8 @@
   <PropertyGroup>
     <PostBuildEvent>md "$(TargetDir)Examples"
 Copy /Y "$(ProjectDir)Examples\*.*" "$(TargetDir)Examples\*.*"
-Copy /Y "$(ProjectDir)Readme.txt" "$(TargetDir)"</PostBuildEvent>
+Copy /Y "$(ProjectDir)Readme.txt" "$(TargetDir)"
+Copy /Y "$(ProjectDir)AppData\*.*" "$(TargetDir)AppData\*.*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
