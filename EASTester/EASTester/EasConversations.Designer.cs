@@ -185,7 +185,7 @@
             this.txtRequest.Multiline = true;
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtRequest.Size = new System.Drawing.Size(883, 204);
+            this.txtRequest.Size = new System.Drawing.Size(1024, 204);
             this.txtRequest.TabIndex = 14;
             this.txtRequest.WordWrap = false;
             // 
@@ -200,7 +200,7 @@
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(883, 144);
+            this.txtResponse.Size = new System.Drawing.Size(1024, 164);
             this.txtResponse.TabIndex = 15;
             this.txtResponse.WordWrap = false;
             this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged);
@@ -208,7 +208,7 @@
             // btnRun
             // 
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRun.Location = new System.Drawing.Point(759, 177);
+            this.btnRun.Location = new System.Drawing.Point(900, 177);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(132, 23);
             this.btnRun.TabIndex = 13;
@@ -315,7 +315,7 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(759, 146);
+            this.btnOptions.Location = new System.Drawing.Point(900, 146);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(129, 23);
             this.btnOptions.TabIndex = 11;
@@ -392,7 +392,7 @@
             // btnEncodingHelper
             // 
             this.btnEncodingHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEncodingHelper.Location = new System.Drawing.Point(759, 116);
+            this.btnEncodingHelper.Location = new System.Drawing.Point(900, 116);
             this.btnEncodingHelper.Name = "btnEncodingHelper";
             this.btnEncodingHelper.Size = new System.Drawing.Size(129, 23);
             this.btnEncodingHelper.TabIndex = 48;
@@ -442,8 +442,9 @@
             // 
             // lblResponseCode
             // 
+            this.lblResponseCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblResponseCode.AutoSize = true;
-            this.lblResponseCode.Location = new System.Drawing.Point(6, 597);
+            this.lblResponseCode.Location = new System.Drawing.Point(6, 617);
             this.lblResponseCode.Name = "lblResponseCode";
             this.lblResponseCode.Size = new System.Drawing.Size(63, 13);
             this.lblResponseCode.TabIndex = 53;
@@ -451,16 +452,18 @@
             // 
             // txtStatusCode
             // 
+            this.txtStatusCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtStatusCode.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusCode.Location = new System.Drawing.Point(75, 594);
+            this.txtStatusCode.Location = new System.Drawing.Point(68, 614);
             this.txtStatusCode.Name = "txtStatusCode";
             this.txtStatusCode.Size = new System.Drawing.Size(59, 20);
             this.txtStatusCode.TabIndex = 54;
             // 
             // lblStatusMeaning
             // 
+            this.lblStatusMeaning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusMeaning.AutoSize = true;
-            this.lblStatusMeaning.Location = new System.Drawing.Point(150, 597);
+            this.lblStatusMeaning.Location = new System.Drawing.Point(133, 617);
             this.lblStatusMeaning.Name = "lblStatusMeaning";
             this.lblStatusMeaning.Size = new System.Drawing.Size(51, 13);
             this.lblStatusMeaning.TabIndex = 55;
@@ -468,17 +471,20 @@
             // 
             // txtStatusMeaning
             // 
+            this.txtStatusMeaning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStatusMeaning.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusMeaning.Location = new System.Drawing.Point(204, 594);
+            this.txtStatusMeaning.Location = new System.Drawing.Point(190, 614);
             this.txtStatusMeaning.Name = "txtStatusMeaning";
             this.txtStatusMeaning.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatusMeaning.Size = new System.Drawing.Size(688, 20);
+            this.txtStatusMeaning.Size = new System.Drawing.Size(845, 20);
             this.txtStatusMeaning.TabIndex = 56;
             // 
             // lblStatusCause
             // 
+            this.lblStatusCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusCause.AutoSize = true;
-            this.lblStatusCause.Location = new System.Drawing.Point(26, 623);
+            this.lblStatusCause.Location = new System.Drawing.Point(16, 640);
             this.lblStatusCause.Name = "lblStatusCause";
             this.lblStatusCause.Size = new System.Drawing.Size(40, 13);
             this.lblStatusCause.TabIndex = 57;
@@ -486,18 +492,20 @@
             // 
             // txtStatusCause
             // 
+            this.txtStatusCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtStatusCause.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusCause.Location = new System.Drawing.Point(75, 620);
+            this.txtStatusCause.Location = new System.Drawing.Point(68, 640);
             this.txtStatusCause.Multiline = true;
             this.txtStatusCause.Name = "txtStatusCause";
             this.txtStatusCause.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatusCause.Size = new System.Drawing.Size(376, 71);
+            this.txtStatusCause.Size = new System.Drawing.Size(401, 71);
             this.txtStatusCause.TabIndex = 58;
             // 
             // lblStatusResolution
             // 
+            this.lblStatusResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusResolution.AutoSize = true;
-            this.lblStatusResolution.Location = new System.Drawing.Point(457, 620);
+            this.lblStatusResolution.Location = new System.Drawing.Point(475, 640);
             this.lblStatusResolution.Name = "lblStatusResolution";
             this.lblStatusResolution.Size = new System.Drawing.Size(60, 13);
             this.lblStatusResolution.TabIndex = 59;
@@ -505,12 +513,14 @@
             // 
             // txtStatusResolution
             // 
+            this.txtStatusResolution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStatusResolution.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusResolution.Location = new System.Drawing.Point(514, 620);
+            this.txtStatusResolution.Location = new System.Drawing.Point(541, 640);
             this.txtStatusResolution.Multiline = true;
             this.txtStatusResolution.Name = "txtStatusResolution";
             this.txtStatusResolution.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatusResolution.Size = new System.Drawing.Size(380, 71);
+            this.txtStatusResolution.Size = new System.Drawing.Size(494, 71);
             this.txtStatusResolution.TabIndex = 60;
             // 
             // frmRawEAS
@@ -518,7 +528,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(903, 693);
+            this.ClientSize = new System.Drawing.Size(1044, 713);
             this.Controls.Add(this.txtStatusResolution);
             this.Controls.Add(this.lblStatusResolution);
             this.Controls.Add(this.txtStatusCause);
