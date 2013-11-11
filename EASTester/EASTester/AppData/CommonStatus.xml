@@ -2,7 +2,10 @@
 <StatusCodes>
   <Status ID="101">
     <Meaning>InvalidContent</Meaning>
-    <Cause></Cause>
+    <Cause>
+      The body of the HTTP request sent by the client is invalid. Ensure the HTTP request is using the specified Content-Type and length, and that the request is not missing (when an empty body is not allowed).  Examples:  Ping command (section 2.2.2.11) with a text/plain body, or SendMail command (section 2.2.2.15) with version 12.1 and a WBXML body. 
+    </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="102">
@@ -10,28 +13,35 @@
     <Cause>
       The request contains WBXML but it could not be decoded into XML.
     </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="103">
     <Meaning>InvalidXML</Meaning>
     <Cause>
-    The XML provided in the request does not follow the protocol requirements.
+      The XML provided in the request does not follow the protocol requirements.
     </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="104">
     <Meaning>InvalidDateTime</Meaning>
-    <Cause></Cause>
+    <Cause>The request contains a timestamp that could not be parsed into a valid date and time.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="105">
     <Meaning>InvalidCombinationOfIDs</Meaning>
-    <Cause></Cause>
+    <Cause>The request contains a combination of parameters that is invalid.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="106">
     <Meaning>InvalidIds</Meaning>
-    <Cause></Cause>
+    <Cause>
+      The request contains one or more IDs that could not be parsed into valid values.  That is different from specifying an ID in the proper format that does not resolve to an existing item.
+    </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="107">
@@ -39,21 +49,25 @@
     <Cause>
       The request contains MIME that could not be parsed.
     </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="108">
     <Meaning>DeviceIdMissingOrInvalid</Meaning>
-    <Cause></Cause>
+    <Cause>The device type is either missing or has an invalid format.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="109">
     <Meaning>DeviceTypeMissingOrInvalid</Meaning>
-    <Cause></Cause>
+    <Cause>The device type is either missing or has an invalid format.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="110">
     <Meaning>ServerError</Meaning>
     <Cause>The server encountered an unknown error. The device SHOULD NOT retry later.</Cause>
+    <Scope></Scope>
     <Resolution>
       The device SHOULD NOT retry later.
     </Resolution>
@@ -61,6 +75,7 @@
   <Status ID="111">
     <Meaning>ServerErrorRetryLater</Meaning>
     <Cause>The server encountered an unknown error. The device SHOULD retry later.</Cause>
+    <Scope></Scope>
     <Resolution>The device SHOULD retry later.</Resolution>
   </Status>
   <Status ID="112">
@@ -68,170 +83,204 @@
     <Cause>
       The server does not have access to read/write to an object in the directory service.
     </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="113">
     <Meaning>MailboxQuotaExceeded</Meaning>
-    <Cause></Cause>
+    <Cause>The mailbox has reached its size quota.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="114">
     <Meaning>MailServerOffline</Meaning>
-    <Cause></Cause>
+    <Cause>The mailbox server is offline.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="115">
     <Meaning>SendQuotaExceeded</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="116">
     <Meaning>MessageRecipientUnresolved</Meaning>
-    <Cause></Cause>
+    <Cause>
+      One of the recipients could not be resolved to an email address.
+    </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="117">
     <Meaning>MessageReplyNotAllowed</Meaning>
-    <Cause></Cause>
+    <Cause>The mailbox server will not allow a reply of this message.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="118">
     <Meaning>MessagePreviouslySent</Meaning>
-    <Cause></Cause>
+    <Cause>The message was already sent in a previous request. The server determined this by remembering the ClientId (section 2.2.3.28) values of the last few sent messages. This request contains a ClientId that was already used in a recent message.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="119">
     <Meaning>MessageHasNoRecipient</Meaning>
-    <Cause></Cause>
+    <Cause>The message being sent contains no recipient.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="120">
     <Meaning>MailSubmissionFailed</Meaning>
-    <Cause></Cause>
+    <Cause>The server failed to submit the message for delivery.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="121">
     <Meaning>MessageReplyFailed</Meaning>
-    <Cause></Cause>
+    <Cause>The server failed to create a reply message.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="122">
     <Meaning>AttachmentIsTooLarge</Meaning>
-    <Cause></Cause>
+    <Cause>The attachment is too large to be processed by this request.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="123">
     <Meaning>UserHasNoMailbox</Meaning>
-    <Cause></Cause>
+    <Cause>A mailbox could not be found for the user.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="124">
     <Meaning>UserCannotBeAnonymous</Meaning>
-    <Cause></Cause>
+    <Cause>The request was sent without credentials. Anonymous requests are not allowed.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="125">
     <Meaning>UserPrincipalCouldNotBeFound</Meaning>
-    <Cause></Cause>
+    <Cause>The user was not found in the directory service.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="126">
     <Meaning>UserDisabledForSync</Meaning>
-    <Cause></Cause>
+    <Cause>The user object in the directory service indicates that this user is not allowed to use ActiveSync.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="127">
     <Meaning>UserOnNewMailboxCannotSync</Meaning>
-    <Cause></Cause>
+    <Cause>The server is configured to prevent users from syncing.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="128">
     <Meaning>UserOnLegacyMailboxCannotSync</Meaning>
-    <Cause></Cause>
+    <Cause>The server is configured to prevent users on legacy servers from syncing.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="129">
     <Meaning>DeviceIsBlockedForThisUser</Meaning>
-    <Cause></Cause>
+    <Cause>The user is configured to allow only some devices to sync. This device is not the allowed device</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="130">
     <Meaning>AccessDenied</Meaning>
-    <Cause></Cause>
+    <Cause>The user is not allowed to perform that request.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="131">
     <Meaning>AccountDisabled</Meaning>
-    <Cause></Cause>
+    <Cause>The user's account is disabled.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="132">
     <Meaning>SyncStateNotFound</Meaning>
-    <Cause></Cause>
+    <Cause>The server’s data file that contains the state of the client was unexpectedly missing. It might have disappeared while the request was in progress. The next request will likely answer a sync key error and the device will be forced to do full sync.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="133">
     <Meaning>SyncStateLocked</Meaning>
-    <Cause></Cause>
+    <Cause>The server’s data file that contains the state of the client is locked, possibly because the mailbox is being moved or was recently moved.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="134">
     <Meaning>SyncStateCorrupt</Meaning>
-    <Cause></Cause>
+    <Cause>The server’s data file that contains the state of the client appears to be corrupt.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="135">
     <Meaning>SyncStateAlreadyExists</Meaning>
-    <Cause></Cause>
+    <Cause>The server’s data file that contains the state of the client already exists. This can happen with two initial syncs are executed concurrently.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="136">
     <Meaning>SyncStateInvalid</Meaning>
-    <Cause></Cause>
+    <Cause>The version of the server’s data file that contains the state of the client is invalid.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="137">
     <Meaning>CommandNotSupported</Meaning>
-    <Cause></Cause>
+    <Cause>The command is not supported by this server.</Cause>
     <Resolution></Resolution>
   </Status>
   <Status ID="138">
     <Meaning>VersionNotSupported</Meaning>
-    <Cause></Cause>
+    <Cause>The command is not supported in the protocol version specified.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="139">
     <Meaning>DeviceNotFullyProvisionable</Meaning>
-    <Cause></Cause>
+    <Cause>The device uses a protocol version that cannot send all the policy settings the admin enabled. For more details, see [MS-ASPROV] section 3.1.5.2.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="140">
     <Meaning>RemoteWipeRequested</Meaning>
-    <Cause></Cause>
+    <Cause>A remote wipe was requested. The device SHOULD provision to get the request and then do another provision to acknowledge it. For more details, see [MS-ASPROV] section 3.1.5.1.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="141">
     <Meaning>LegacyDeviceOnStrictPolicy</Meaning>
-    <Cause></Cause>
+    <Cause>A policy is in place but the device is not provisionable. For more details, see [MS-ASPROV] section 3.1.5.2.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="142">
     <Meaning>DeviceNotProvisioned</Meaning>
     <Cause>
-      There is a policy in place and the device needs to provision.
+      There is a policy in place; the device needs to provision as specified in [MS-ASPROV] section 3.1.5.1.
     </Cause>
-    <Resolution>The request will need to use a provisioned policy key.</Resolution>
+    <Scope></Scope>
+    <Resolution></Resolution>
   </Status>
   <Status ID="143">
     <Meaning>PolicyRefresh</Meaning>
     <Cause>
-      The policy is configured to be refreshed every few hours.
+      The policy is configured to be refreshed every few hours. The device needs to re-provision as specified in [MS-ASPROV] section 3.1.5.1.
     </Cause>
-    <Resolution>The device needs to re-provision in order to get a new policy key which will be used for further requests.</Resolution>
+    <Scope></Scope>
+    <Resolution></Resolution>
   </Status>
   <Status ID="144">
     <Meaning>InvalidPolicyKey</Meaning>
     <Cause>The device's policy key is invalid.</Cause>
+    <Scope></Scope>
     <Resolution>The policy has likely changed.  Obtain a new policy key by re-provisioning.</Resolution>
   </Status>
   <Status ID="145">
@@ -239,153 +288,185 @@
     <Cause>
       The device claimed to be externally managed, but the server doesn't allow externally managed devices to sync.
     </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="146">
     <Meaning>NoRecurrenceInCalendar</Meaning>
-    <Cause></Cause>
+    <Cause>The request tried to forward an occurrence of a meeting that has no recurrence.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="147">
     <Meaning>UnexpectedItemClass</Meaning>
-    <Cause></Cause>
+    <Cause>The request tried to operate on a type of items unknown to the server.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="148">
     <Meaning>RemoteServerHasNoSSL</Meaning>
-    <Cause></Cause>
+    <Cause>The request needs to be proxied to another server but that server doesn't have Secure Sockets Layer (SSL) enabled. This server is configured to only proxy requests to servers with SSL enabled.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="149">
     <Meaning>InvalidStoredRequest</Meaning>
-    <Cause></Cause>
+    <Cause>The server had stored the previous request from that device. When the device sent an empty request, the server tried to re-execute that previous request but it was found to be impossible. The device needs to send the full request again.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="150">
     <Meaning>ItemNotFound</Meaning>
-    <Cause></Cause>
+    <Cause>The ItemId (section 2.2.3.84) value specified in the SmartReply command (section 2.2.2.18) or SmartForward command (section 2.2.2.17) request could not be found in the mailbox.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="151">
     <Meaning>TooManyFolders</Meaning>
-    <Cause></Cause>
+    <Cause>The mailbox contains too many folders. By default, the mailbox cannot contain more than 1000 folders.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="152">
     <Meaning>NoFoldersFound</Meaning>
-    <Cause></Cause>
+    <Cause>The mailbox contains no folders.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="153">
     <Meaning>ItemsLostAfterMove</Meaning>
-    <Cause></Cause>
+    <Cause>After moving items to the destination folder, some of those items could not be found.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="154">
     <Meaning>FailureInMoveOperation</Meaning>
-    <Cause></Cause>
+    <Cause>The mailbox server returned an unknown error while moving items.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="155">
     <Meaning>MoveCommandDisallowedForNonPersistentMoveAction</Meaning>
-    <Cause></Cause>
+    <Cause>An ItemOperations command request (section 2.2.2.8) to move a conversation is missing the MoveAlways element (section 2.2.3.108).</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="156">
     <Meaning>MoveCommandInvalidDestinationFolder</Meaning>
-    <Cause></Cause>
+    <Cause>The destination folder for the move is invalid.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="160">
     <Meaning>AvailabilityTooManyRecipients</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="161">
     <Meaning>AvailabilityDLLimitReached</Meaning>
-    <Cause></Cause>
+    <Cause>The command has reached the maximum number of recipients that it can request availability for.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="162">
     <Meaning>AvailabilityTransientFailure</Meaning>
-    <Cause></Cause>
+    <Cause>Availability service request failed with a transient error.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="163">
     <Meaning>AvailabilityFailure</Meaning>
-    <Cause></Cause>
+    <Cause>Availability service request failed with an error.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="164">
     <Meaning>BodyPartPreferenceTypeNotSupported</Meaning>
-    <Cause></Cause>
+    <Cause>The BodyPartPreference node (as specified in [MS-ASAIRS] section 2.2.2.7) has an unsupported Type element (as specified in [MS-ASAIRS] section 2.2.2.22.4) value.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="165">
     <Meaning>DeviceInformationRequired</Meaning>
-    <Cause></Cause>
+    <Cause>The required DeviceInformation element (as specified in [MS-ASPROV] section 2.2.2.52) is missing in the Provision request.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="166">
     <Meaning>InvalidAccountId</Meaning>
-    <Cause></Cause>
+    <Cause>The AccountId (section 2.2.3.3) value is not valid.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="167">
     <Meaning>AccountSendDisabled</Meaning>
-    <Cause></Cause>
+    <Cause>The AccountId value specified in the request does not support sending email.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="168">
     <Meaning>IRM_FeatureDisabled</Meaning>
-    <Cause></Cause>
+    <Cause>The Information Rights Management feature is disabled.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="169">
     <Meaning>IRM_TransientError</Meaning>
-    <Cause></Cause>
+    <Cause>Information Rights Management encountered an error. </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="170">
     <Meaning>IRM_PermanentError</Meaning>
-    <Cause></Cause>
+    <Cause>Information Rights Management encountered an error. </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="171">
     <Meaning>IRM_InvalidTemplateID</Meaning>
-    <Cause></Cause>
+    <Cause>The Template ID value is not valid.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="172">
     <Meaning>IRM_OperationNotPermitted</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="173">
     <Meaning>NoPicture</Meaning>
-    <Cause></Cause>
+    <Cause>
+      The user does not have a contact photo.
+    </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="174">
     <Meaning>PictureTooLarge</Meaning>
-    <Cause></Cause>
+    <Cause>The contact photo exceeds the size limit set by the MaxSize element (section 2.2.3.95).</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="175">
     <Meaning>PictureLimitReached</Meaning>
-    <Cause></Cause>
+    <Cause>The number of contact photos returned exceeds the size limit set by the MaxPictures element (section 2.2.3.94).</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="176">
     <Meaning>BodyPart_ConversationTooLarge</Meaning>
-    <Cause></Cause>
+    <Cause>The conversation is too large to compute the body parts. Try requesting the body of the item again, without body parts.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="177">
     <Meaning>MaximumDevicesReached</Meaning>
     <Cause>
-      The user's account has too many device partnerships.
+      The user's account has too many device partnerships. Delete partnerships on the server before proceeding.
     </Cause>
+    <Scope></Scope>
     <Resolution>
       Delete partnerships on the server before proceeding.
     </Resolution>
