@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success.</Meaning>
+    <Cause>Server successfully completed command.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>Invalid meeting request.</Meaning>
+    <Cause>
+      The client has sent a malformed or invalid item.
+      The request is referencing an item other than a meeting request, email, or calendar item.
+      The request points to an appointment in which the user is the organizer.
+      The InstanceId element (section 2.2.3.83.1) specifies an email meeting request item.
+      The InstanceId element specifies a nonexistent instance or is null.
+    </Cause>
+    <Scope>Item</Scope>
+    <Resolution>Stop sending the item. This is not a transient condition. </Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>An error occurred on the server mailbox.</Meaning>
+    <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Retry the MeetingResponse command. If continued attempts fail, synchronize the folder again, and then attempt the MeetingResponse command again. If it still continues to fail, make no changes.</Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>An error occurred on the server.</Meaning>
+    <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Retry the MeetingResponse command. If continued attempts fail, synchronize the folder again, and then attempt the MeetingResponse command again. If it still continues to fail, make no changes.</Resolution>
+  </Status>
+
+</StatusCodes>

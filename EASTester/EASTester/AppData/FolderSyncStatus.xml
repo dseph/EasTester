@@ -3,6 +3,7 @@
   <Status ID="1">
     <Meaning>Success</Meaning>
     <Cause>Server successfully completed command.</Cause>
+    <Scope></Scope>
     <Resolution>None.</Resolution>
   </Status>
   <Status ID="6">
@@ -10,6 +11,7 @@
       An error occurred on the server.
     </Meaning>
     <Cause> Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope></Scope>
     <Resolution>
       Retry the FolderSync command. If continued attempts to synchronization fail, consider returning to synchronization key zero (0).
     </Resolution>
@@ -21,6 +23,7 @@
     <Cause>
       The client sent a malformed or mismatched synchronization key, or the synchronization state is corrupted on the server.
     </Cause>
+    <Scope></Scope>
     <Resolution>
       Delete items added since last synchronization and return to synchronization key zero (0).
     </Resolution>
@@ -33,6 +36,7 @@
     <Cause>
       The client sent a malformed or mismatched synchronization key, or the synchronization state is corrupted on the server.
     </Cause>
+    <Scope></Scope>
     <Resolution>
       Delete items added since last synchronization and return to synchronization key zero (0).
     </Resolution>
@@ -44,6 +48,7 @@
     <Cause>
       The client sent a FolderSync command request that contains a semantic or syntactic error.
     </Cause>
+    <Scope></Scope>
     <Resolution>
       Double-check the request for accuracy.
     </Resolution>
@@ -55,6 +60,7 @@
     <Cause>
       Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.
     </Cause>
+    <Scope></Scope>
     <Resolution>
       Retry the FolderSync command. If continued attempts to synchronization fail, consider returning to synchronization key zero (0).
     </Resolution>
@@ -66,6 +72,7 @@
     <Cause>
       Unusual back-end issue.
     </Cause>
+    <Scope></Scope>
     <Resolution>
       None.
     </Resolution>

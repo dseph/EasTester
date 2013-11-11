@@ -201,21 +201,21 @@ namespace EASTester
             {
 
                 case "FolderCreate":
-                    SpecificStatusFile = "FolderCreateStatus.xml";    // 2.2.3.162.2 in ms-ascmd
+                    SpecificStatusFile = "FolderCreateStatus.xml";      // 2.2.3.162.2 in ms-ascmd
                     DocReference = "See: 2.2.3.162.2 in ms-ascmd";
                     break;
                 case "FolderDelete":
-                    SpecificStatusFile = "FolderDeleteStatus.xml";    // 2.2.3.162.3 in ms-ascmd
+                    SpecificStatusFile = "FolderDeleteStatus.xml";      // 2.2.3.162.3 in ms-ascmd
                     DocReference = "See: 2.2.3.162.3 in ms-ascmd";
                     break;
                 case "FolderSync":
                     SpecificStatusFile = "FolderSyncStatus.xml";        // 2.2.3.162.4 in ms-ascmd
                     DocReference = "See: 2.2.3.162.4 in ms-ascmd";
                     break;
-                //case "FolderUpdate":
-                //    SpecificStatusFile = "FolderUpdateStatus.xml";    // 2.2.3.162.5 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.5 in ms-ascmd";
-                //    break;
+                case "FolderUpdate":
+                    SpecificStatusFile = "FolderUpdateStatus.xml";      // 2.2.3.162.5 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.5 in ms-ascmd";
+                    break;
                 case "GetItemEstimate":
                     SpecificStatusFile = "GetItemEstimateStatus.xml";   // 2.2.3.162.6 in ms-ascmd
                     DocReference = "See: 2.2.3.162.6 in ms-ascmd";
@@ -228,14 +228,14 @@ namespace EASTester
                 //    SpecificStatusFile = "MeetingResponseStatus.xml";  // 2.2.3.162.8 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.8 in ms-ascmd";
                 //    break;
-                //case "MoveItems":
-                //    SpecificStatusFile = "MoveItemsStatus.xml";  // 2.2.3.162.9 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.9 in ms-ascmd";
-                //    break;
-                //case "Ping":
-                //    SpecificStatusFile = "PingStatus.xml";  // 2.2.3.162.10 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.10 in ms-ascmd";
-                //    break;
+                case "MoveItems":
+                    SpecificStatusFile = "MoveItemsStatus.xml";  // 2.2.3.162.9 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.9 in ms-ascmd";
+                    break;
+                case "Ping":
+                    SpecificStatusFile = "PingStatus.xml";  // 2.2.3.162.10 in ms-ascmd
+                    DocReference = "See: 2.2.3.162.10 in ms-ascmd";
+                    break;
                 //case "ResolveRecipients":
                 //    SpecificStatusFile = "ResolveRecipientsStatus.xml";  // 2.2.3.162.11 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.11 in ms-ascmd";
@@ -245,6 +245,7 @@ namespace EASTester
                 //    DocReference = "See: 2.2.3.162.12 in ms-ascmd";
                 //    break;
                 //case "SendMail":
+                //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
                 //    SpecificStatusFile = "SendMailStatus.xml";  // 2.2.3.162.13 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.13 in ms-ascmd";
                 //    break;
@@ -253,7 +254,9 @@ namespace EASTester
                 //    DocReference = "See: 2.2.3.162.14 in ms-ascmd";
                 //    break;
                 //case "SmartForward":
+                //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
                 //case "SmartReply":
+                //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
                 //    SpecificStatusFile = "SmartForwardAndReplyStatus.xml";  // 2.2.3.162.15 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.15 in ms-ascmd";
                 //    break;
@@ -286,8 +289,8 @@ namespace EASTester
 
             if (Meaning == string.Empty)  // command specific status found?
             {   // Yes
-                // OK, nothing returned for the specific command, so lets check for a general status.
-                StatusFile = Application.StartupPath + "\\AppData\\GeneralStatus.xml";
+                // OK, nothing returned for the specific command, so lets check for a common status.
+                StatusFile = Application.StartupPath + "\\AppData\\CommonStatus.xml";
                 GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution);
                 SpecificStatusFile = "See: 2.2.4 in ms-ascmd";
             }

@@ -147,6 +147,13 @@
     <Content Include="AppData\FolderCreateStatus.xml" />
     <Content Include="AppData\FolderDeleteStatus.xml" />
     <Content Include="AppData\FolderSyncStatus.xml" />
+    <Content Include="AppData\FolderUpdateStatus.xml" />
+    <Content Include="AppData\MeetingResponseStatus.xml" />
+    <Content Include="AppData\MoveItemsStatus.xml" />
+    <Content Include="AppData\PingStatus.xml" />
+    <Content Include="AppData\SettingsDevicePasswordStatus.xml" />
+    <Content Include="AppData\SettingsGeneralStatus.xml" />
+    <Content Include="AppData\SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml" />
     <Content Include="AppData\SyncStatus.xml" />
     <Content Include="AppData\ItemsOperationsStatus.xml" />
     <Content Include="AppData\GetItemEstimateStatus.xml" />
@@ -169,7 +176,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppData\GeneralStatus.txt" />
+    <Content Include="AppData\CommonStatus.txt" />
     <Content Include="Examples\FolderDelete.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -193,7 +200,7 @@
     <Content Include="Examples\Sync - Sync email folder - move deleted items to deleted items folder - get changes.xml" />
     <Content Include="Examples\Sync - Sync messages - get truncated MIME.xml" />
     <Content Include="Examples\Sync -Calendar - Sync Key 0.xml" />
-    <Content Include="AppData\GeneralStatus.xml" />
+    <Content Include="AppData\CommonStatus.xml" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />
