@@ -151,6 +151,7 @@
     <Content Include="AppData\MeetingResponseStatus.xml" />
     <Content Include="AppData\MoveItemsStatus.xml" />
     <Content Include="AppData\PingStatus.xml" />
+    <Content Include="AppData\ProvisionStatus.xml" />
     <Content Include="AppData\SettingsDevicePasswordStatus.xml" />
     <Content Include="AppData\SettingsGeneralStatus.xml" />
     <Content Include="AppData\SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml" />
@@ -162,6 +163,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Examples\ItemOperations-Fetch-MessageMime.xml" />
+    <Content Include="Examples\Sync- Inbox - Getchanges Email with HTML body.xml" />
     <Content Include="Examples\Ping.xml" />
     <Content Include="Examples\Provision - second part.xml" />
     <None Include="app.config" />
@@ -200,7 +202,9 @@
     <Content Include="Examples\Sync - Sync email folder - move deleted items to deleted items folder - get changes.xml" />
     <Content Include="Examples\Sync - Sync messages - get truncated MIME.xml" />
     <Content Include="Examples\Sync -Calendar - Sync Key 0.xml" />
-    <Content Include="AppData\CommonStatus.xml" />
+    <Content Include="AppData\CommonStatus.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />

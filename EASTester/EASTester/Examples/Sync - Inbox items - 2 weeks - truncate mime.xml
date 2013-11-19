@@ -8,8 +8,8 @@
       <WindowSize>25</WindowSize>
       <Options>
         <FilterType>4</FilterType>
-	<MIMETruncation>1</MIMETruncation>
-	<MIMESupport>1</MIMESupport>
+	      <MIMETruncation>1</MIMETruncation>
+	      <MIMESupport>1</MIMESupport>
         <BodyPreference xmlns="AirSyncBase:">
           <Type>1</Type>
           <TruncationSize>500</TruncationSize>

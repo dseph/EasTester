@@ -3,9 +3,9 @@
   <Collections>
     <Collection>
       <SyncKey>0</SyncKey>
-      <CollectionId>16</CollectionId>
+      <CollectionId>5</CollectionId>
       <DeletesAsMoves>1</DeletesAsMoves>
-      <GetChanges>0</GetChanges>
+      <GetChanges/>
       <WindowSize>512</WindowSize>
     </Collection>
   </Collections>

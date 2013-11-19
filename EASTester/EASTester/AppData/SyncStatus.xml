@@ -20,7 +20,7 @@
       There was a semantic error in the synchronization request. The client is issuing a request that does not comply with the specification requirements.
     </Cause>
     <Resolution>
-      Double-check the request for accuracy and ret
+      Double-check the request for accuracy and retry.
     </Resolution>
   </Status>
   <Status ID="5">
