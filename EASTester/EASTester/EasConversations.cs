@@ -244,7 +244,7 @@ namespace EASTester
                 //    SpecificStatusFile = "SearchStatus.xml";  // 2.2.3.162.12 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.12 in ms-ascmd";
                 //    break;
-                //case "SendMail":
+                //case "SendMail":  (Uses common status codes)
                 //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
                 //    SpecificStatusFile = "SendMailStatus.xml";  // 2.2.3.162.13 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.13 in ms-ascmd";
@@ -253,9 +253,9 @@ namespace EASTester
                 //    SpecificStatusFile = "SettingsStatus.xml";  // 2.2.3.162.14 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.14 in ms-ascmd";
                 //    break;
-                //case "SmartForward":
+                //case "SmartForward":   (Uses common status codes)
                 //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
-                //case "SmartReply":
+                //case "SmartReply":     (Uses common status codes)
                 //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
                 //    SpecificStatusFile = "SmartForwardAndReplyStatus.xml";  // 2.2.3.162.15 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.15 in ms-ascmd";

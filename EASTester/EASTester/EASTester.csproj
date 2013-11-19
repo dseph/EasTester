@@ -159,10 +159,14 @@
     <Content Include="AppData\ItemsOperationsStatus.xml" />
     <Content Include="AppData\GetItemEstimateStatus.xml" />
     <Content Include="AppData\ValidateCertStatus.xml" />
+    <Content Include="Examples\Settings - DevicePassword - Set.xml" />
+    <Content Include="Examples\Settings - Oof - Get.xml" />
     <Content Include="Examples\ItemOperations-Fetch-Email.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Examples\ItemOperations-Fetch-MessageMime.xml" />
+    <Content Include="Examples\Settings - Oof - Set - just state.xml" />
+    <Content Include="Examples\Settings - Oof - Set.xml" />
     <Content Include="Examples\Sync- Inbox - Getchanges Email with HTML body.xml" />
     <Content Include="Examples\Ping.xml" />
     <Content Include="Examples\Provision - second part.xml" />
@@ -189,7 +193,7 @@
     <Content Include="Examples\Provision- first part.xml" />
     <Content Include="Examples\Search.xml" />
     <Content Include="Examples\Sync - Contacts - Sync Key 0.xml" />
-    <Content Include="Examples\Settings - Settings - UserInformation - Get.xml" />
+    <Content Include="Examples\Settings - UserInformation - Get.xml" />
     <Content Include="Examples\Foldersync - FileHierarchy.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -198,7 +202,9 @@
     </Content>
     <Content Include="Examples\Sync - Inbox - Sync Key 0.xml" />
     <Content Include="Examples\Sync - Inbox -2 weeks - Mime for Smime - body for rest.xml" />
-    <Content Include="Examples\Sync - Inbox items - 2 weeks - truncate mime.xml" />
+    <Content Include="Examples\Sync - Inbox items - 2 weeks - truncate mime.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Examples\Sync - Sync email folder - move deleted items to deleted items folder - get changes.xml" />
     <Content Include="Examples\Sync - Sync messages - get truncated MIME.xml" />
     <Content Include="Examples\Sync -Calendar - Sync Key 0.xml" />
