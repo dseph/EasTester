@@ -3,96 +3,115 @@
   <Status ID="1">
     <Meaning>Success</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="2">
     <Meaning>Protocol error - protocol violation/XML validation error.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="3">
     <Meaning>Server error.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="4">
     <Meaning>Document library access - The specified URI is bad.</Meaning>
     <Cause>The specified URI is bad.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="5">
     <Meaning>Document library - Access denied.</Meaning>
     <Cause>Access denied.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="6">
     <Meaning>Document library - The object was not found or access denied.</Meaning>
     <Cause>The object was not found or access denied.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="7">
     <Meaning>Document library - Failed to connect to the server.</Meaning>
     <Cause>Failed to connect to the server.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="8">
     <Meaning>The byte-range is invalid or too large.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="9">
     <Meaning>The store is unknown or unsupported.</Meaning>
-    <Cause>T</Cause>
+    <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="10">
     <Meaning>The file is empty.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="11">
     <Meaning>The requested data size is too large.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="12">
     <Meaning>Failed to download file because of input/output (I/O) failure.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="14">
     <Meaning>Mailbox fetch provider - The item failed conversion.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="15">
     <Meaning>Attachment fetch provider - Attachment or attachment ID is invalid.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="16">
     <Meaning>Access to the resource is denied.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="17">
     <Meaning>Partial success; the command completed partially.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="18">
     <Meaning>Credentials required. </Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="155">
     <Meaning>Protocol error.</Meaning>
     <Cause>The Options element and the MoveAlways element are missing from the ItemOperations request.</Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="156">
     <Meaning>Action not supported.</Meaning>
     <Cause>The Options element and the MoveAlways element are missing from the ItemOperations request.</Cause>
+    <Scope></Scope>
     <Resolution>The destination folder MUST be of type IPF.Note. </Resolution>
   </Status>
 </StatusCodes>

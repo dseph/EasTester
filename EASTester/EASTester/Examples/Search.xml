@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Search xmlns="Search" xmlns:airsync="AirSync" xmlns:email="Email">
+<Search xmlns="Search:" xmlns:airsync="AirSync:" xmlns:email="Email:">
   <Store>
     <Name>Mailbox</Name>
     <Query>

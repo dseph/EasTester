@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Ping xmlns="Ping">
-  <HeartbeatInterval>80</HeartbeatInterval>
+<Ping xmlns="Ping:">
+  <HeartbeatInterval>90</HeartbeatInterval>
   <Folders>
     <Folder>
       <Id>5</Id>

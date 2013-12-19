@@ -1,0 +1,35 @@
+﻿Partial response from first part in provisioning.
+
+<?xml version="1.0" encoding="utf-8"?>
+<provision:Provision xmlns:provision="Provision:">
+  <settings:DeviceInformation xmlns:settings="Settings:">
+    <settings:Status>1</settings:Status>
+  </settings:DeviceInformation>
+  <provision:Status>1</provision:Status>
+  <provision:Policies>
+    <provision:Policy>
+      <provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType>
+      <provision:Status>1</provision:Status>
+      <provision:PolicyKey>2355410786</provision:PolicyKey>
+      <provision:Data>
+        <provision:EASProvisionDoc>
+          <provision:DevicePasswordEnabled>0</provision:DevicePasswordEnabled>
+          <provision:AlphanumericDevicePasswordRequired>0</provision:AlphanumericDevicePasswordRequired>
+          <provision:PasswordRecoveryEnabled>0</provision:PasswordRecoveryEnabled>
+       
+
+
+Partial response from second part in provisioning.
+
+<?xml version="1.0" encoding="utf-8"?>
+<provision:Provision xmlns:provision="Provision:">
+  <provision:Status>1</provision:Status>
+  <provision:Policies>
+    <provision:Policy>
+      <provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType>
+      <provision:Status>1</provision:Status>
+
+      <provision:PolicyKey>1190728787</provision:PolicyKey>
+    </provision:Policy>
+  </provision:Policies>
+</provision:Provision>

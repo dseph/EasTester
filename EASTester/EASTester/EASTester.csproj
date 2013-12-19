@@ -151,7 +151,10 @@
     <Content Include="AppData\MeetingResponseStatus.xml" />
     <Content Include="AppData\MoveItemsStatus.xml" />
     <Content Include="AppData\PingStatus.xml" />
+    <Content Include="AppData\Provision_Policy_StatusChildOfPolicyResponse_Status.xml" />
+    <Content Include="AppData\Provision_Provision_Status.xml" />
     <Content Include="AppData\ProvisionStatus.xml" />
+    <Content Include="AppData\Provision_RepoteWipe_Status.xml" />
     <Content Include="AppData\SettingsDevicePasswordStatus.xml" />
     <Content Include="AppData\SettingsGeneralStatus.xml" />
     <Content Include="AppData\SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml" />
@@ -159,8 +162,11 @@
     <Content Include="AppData\ItemsOperationsStatus.xml" />
     <Content Include="AppData\GetItemEstimateStatus.xml" />
     <Content Include="AppData\ValidateCertStatus.xml" />
+    <Content Include="Developer notes.txt" />
     <Content Include="Examples\Settings - DevicePassword - Set.xml" />
-    <Content Include="Examples\Settings - Oof - Get.xml" />
+    <Content Include="Examples\Settings - Oof - Get.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Examples\ItemOperations-Fetch-Email.xml">
       <SubType>Designer</SubType>
     </Content>

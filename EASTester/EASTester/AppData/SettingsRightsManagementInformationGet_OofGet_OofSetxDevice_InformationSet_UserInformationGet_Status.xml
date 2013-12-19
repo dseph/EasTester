@@ -3,26 +3,26 @@
   <Status ID="1">
     <Meaning>Success.</Meaning>
     <Cause></Cause>
-    <Resolution>
-    </Resolution>
+    <Scope></Scope>
+    <Resolution></Resolution>
   </Status>
   <Status ID="2">
     <Meaning>Protocol error. The XML code is formatted incorrectly.</Meaning>
     <Cause></Cause>
-    <Resolution>
-    </Resolution>
+    <Scope></Scope>
+    <Resolution></Resolution>
   </Status>
   <Status ID="5">
     <Meaning>Invalid arguments.</Meaning>
     <Cause></Cause>
-    <Resolution>
-    </Resolution>
+    <Scope></Scope>
+    <Resolution></Resolution>
   </Status>
   <Status ID="6">
     <Meaning>Conflicting arguments.</Meaning>
     <Cause></Cause>
-    <Resolution>
-    </Resolution>
+    <Scope></Scope>
+    <Resolution></Resolution>
   </Status>
 
 </StatusCodes>

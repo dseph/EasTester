@@ -7,23 +7,18 @@
     <Resolution></Resolution>
   </Status>
   <Status ID="2">
-    <Meaning>Protocol error. The XML code is formatted incorrectly.</Meaning>
+    <Meaning>Protocol error.</Meaning>
     <Cause></Cause>
     <Scope></Scope>
     <Resolution></Resolution>
   </Status>
-  <Status ID="5">
-    <Meaning>Invalid arguments. The specified password is too long.</Meaning>
+  <Status ID="3">
+    <Meaning>General server error.</Meaning>
     <Cause></Cause>
     <Scope></Scope>
     <Resolution></Resolution>
   </Status>
-  <Status ID="7">
-    <Meaning>Denied by policy. The administrator has disabled password recovery in this deployment.</Meaning>
-    <Cause></Cause>
-    <Scope></Scope>
-    <Resolution></Resolution>
-  </Status>
-  
+
 </StatusCodes>
+
 

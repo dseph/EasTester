@@ -7,23 +7,30 @@
     <Resolution></Resolution>
   </Status>
   <Status ID="2">
-    <Meaning>Protocol error. The XML code is formatted incorrectly.</Meaning>
+    <Meaning>There is no policy for this client. </Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>Unknown PolicyType value.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>The policy data on the server is corrupted (possibly tampered with).</Meaning>
     <Cause></Cause>
     <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="5">
-    <Meaning>Invalid arguments. The specified password is too long.</Meaning>
+    <Meaning>The client is acknowledging the wrong policy key.</Meaning>
     <Cause></Cause>
     <Scope></Scope>
     <Resolution></Resolution>
   </Status>
-  <Status ID="7">
-    <Meaning>Denied by policy. The administrator has disabled password recovery in this deployment.</Meaning>
-    <Cause></Cause>
-    <Scope></Scope>
-    <Resolution></Resolution>
-  </Status>
-  
+
 </StatusCodes>
+
 

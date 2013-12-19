@@ -3,47 +3,51 @@
   <Status ID="1">
     <Meaning>The heartbeat interval expired before any changes occurred in the folders being monitored.</Meaning>
     <Cause></Cause>
+    <Scope></Scope>
     <Resolution>Reissue the Ping command request. </Resolution>
   </Status>
   <Status ID="2">
     <Meaning>Changes occurred in at least one of the monitored folders. The response specifies the changed folders.</Meaning>
-    <Cause>Issue a Sync command request (section 2.2.2.19) for each folder that was specified in the Ping command response to retrieve the server changes. Reissue the Ping command when the Sync command completes to stay up to date.</Cause>
-    <Resolution></Resolution>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution>Issue a Sync command request (section 2.2.2.19) for each folder that was specified in the Ping command response to retrieve the server changes. Reissue the Ping command when the Sync command completes to stay up to date.</Resolution>
   </Status>
   <Status ID="3">
     <Meaning>The Ping command request omitted required parameters.</Meaning>
     <Cause>The Ping command request did not specify all the necessary parameters. The client MUST issue a Ping request that includes both the heartbeat interval and the folder list at least once. The server saves the heartbeat interval value (section 2.2.3.79.1), so only the folder list is required on subsequent requests.</Cause>
-    <Resolution>
-      Reissue the Ping command request with the entire XML body.
-    </Resolution>
+    <Scope></Scope>
+    <Resolution>Reissue the Ping command request with the entire XML body.</Resolution>
   </Status>
   <Status ID="4">
     <Meaning>Syntax error in Ping command request.</Meaning>
     <Cause>Frequently caused by poorly formatted WBXML.</Cause>
+    <Scope></Scope>
     <Resolution>Double-check the request for accuracy.</Resolution>
   </Status>
   <Status ID="5">
     <Meaning>The specified heartbeat interval is outside the allowed range. For intervals that were too short, the response contains the shortest allowed interval. For intervals that were too long, the response contains the longest allowed interval.</Meaning>
     <Cause>The client sent a Ping command request with a heartbeat interval that was either too long or too short.</Cause>
+    <Scope></Scope>
     <Resolution>Reissue the Ping command by using a heartbeat interval inside the allowed range. Setting the interval to the value returned in the Ping response will most closely accommodate the original value specified.</Resolution>
   </Status>
   <Status ID="6">
     <Meaning>The Ping command request specified more than the allowed number of folders to monitor. The response indicates the allowed number in the MaxFolders element (section 2.2.3.92).</Meaning>
     <Cause>The client sent a Ping command request that specified more folders than the server is configured to monitor.</Cause>
+    <Scope></Scope>
     <Resolution>Direct the user to select fewer folders to monitor. Resend the Ping command request with the new, shorter list.</Resolution>
   </Status>
   <Status ID="7">
     <Meaning>Folder hierarchy sync required.</Meaning>
     <Cause>The folder hierarchy is out of date; a folder hierarchy sync is required.</Cause>
+    <Scope></Scope>
     <Resolution>Issue a FolderSync command (section 2.2.2.4) to get the new hierarchy and prompt the user, if it is necessary, for new folders to monitor. Reissue the Ping command.</Resolution>
   </Status>
 
   <Status ID="8">
     <Meaning>An error occurred on the server.</Meaning>
     <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
-    <Resolution>
-      Retry the Ping command.
-    </Resolution>
+    <Scope></Scope>
+    <Resolution>Retry the Ping command.</Resolution>
   </Status>
 
 </StatusCodes>

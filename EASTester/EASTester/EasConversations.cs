@@ -35,6 +35,8 @@ namespace EASTester
 
             this.Cursor = Cursors.WaitCursor;
 
+ 
+
 
             // Create credentials for the user
             NetworkCredential cred = null;
@@ -47,12 +49,13 @@ namespace EASTester
  
             try
             {
- 
- 
+                string sCommand = cmboCommand.Text.Trim();
+                string[] Work = sCommand.Split(new Char[] { ' ' });
+                string sUseCommand = Work[0];
 
                 // Initialize the command request
                 ASCommandRequest commandRequest = new ASCommandRequest();
-                commandRequest.Command = cmboCommand.Text.Trim(); // "Provision";
+                commandRequest.Command = sUseCommand; // Ex: "Provision";   cmboCommand.Text.Trim();
                 commandRequest.Credentials = cred;
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
@@ -184,74 +187,90 @@ namespace EASTester
             int iEnd = sSub.Substring(0).IndexOf("<");
             ResponseCodeToFind = sSub.Substring(0, iEnd);
 
- 
 
 
-            SetStatusInfo(ResponseCodeToFind, cmboCommand.Text.Trim());
+
+            SetStatusInfo(ResponseCodeToFind, cmboCommand.Text.Trim(), sResponse);
  
         }
 
-        private void SetStatusInfo(string StatusCode, string sCommand)
+        private void SetStatusInfo(string StatusCode, string sCommand, string sResponse)
         {
             this.txtStatusCode.Text = StatusCode;
             string SpecificStatusFile = string.Empty;
             string DocReference = "See: 2.2.3.162.2 in the ms-ascmd Exchange Protocol Documentation";
+            string DocSuffix = " found in the Exchange Protocol Documentation.";
+
+
+            //string[] Work = sCommand.Split(new Char[] {' '});
+
+            //string sUseCommand = Work[0];
 
             switch (sCommand)
             {
 
                 case "FolderCreate":
                     SpecificStatusFile = "FolderCreateStatus.xml";      // 2.2.3.162.2 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.2 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.2 in ms-ascmd" + DocSuffix;
                     break;
                 case "FolderDelete":
                     SpecificStatusFile = "FolderDeleteStatus.xml";      // 2.2.3.162.3 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.3 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.3 in ms-ascmd" + DocSuffix;
                     break;
                 case "FolderSync":
                     SpecificStatusFile = "FolderSyncStatus.xml";        // 2.2.3.162.4 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.4 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.4 in ms-ascmd" + DocSuffix;
                     break;
                 case "FolderUpdate":
                     SpecificStatusFile = "FolderUpdateStatus.xml";      // 2.2.3.162.5 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.5 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.5 in ms-ascmd" + DocSuffix;
                     break;
                 case "GetItemEstimate":
                     SpecificStatusFile = "GetItemEstimateStatus.xml";   // 2.2.3.162.6 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.6 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.6 in ms-ascmd" + DocSuffix;
                     break;
                 case "ItemsOperations":
                     SpecificStatusFile = "ItemsOperationsStatus.xml";   // 2.2.3.162.7 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.7 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.7 in ms-ascmd" + DocSuffix;
                     break;
                 //case "MeetingResponse":
                 //    SpecificStatusFile = "MeetingResponseStatus.xml";  // 2.2.3.162.8 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.8 in ms-ascmd";
+                //    DocReference = "See: 2.2.3.162.8 in ms-ascmd" + DocSuffix;
                 //    break;
                 case "MoveItems":
                     SpecificStatusFile = "MoveItemsStatus.xml";  // 2.2.3.162.9 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.9 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.9 in ms-ascmd" + DocSuffix;
                     break;
                 case "Ping":
                     SpecificStatusFile = "PingStatus.xml";  // 2.2.3.162.10 in ms-ascmd
-                    DocReference = "See: 2.2.3.162.10 in ms-ascmd";
+                    DocReference = "See: 2.2.3.162.10 in ms-ascmd" + DocSuffix;
                     break;
                 //case "ResolveRecipients":
                 //    SpecificStatusFile = "ResolveRecipientsStatus.xml";  // 2.2.3.162.11 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.11 in ms-ascmd";
+                //    DocReference = "See: 2.2.3.162.11 in ms-ascmd" + DocSuffix;
                 //    break;
                 //case "Search":
                 //    SpecificStatusFile = "SearchStatus.xml";  // 2.2.3.162.12 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.12 in ms-ascmd";
+                //    DocReference = "See: 2.2.3.162.12 in ms-ascmd" + DocSuffix;
                 //    break;
                 //case "SendMail":  (Uses common status codes)
                 //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
                 //    SpecificStatusFile = "SendMailStatus.xml";  // 2.2.3.162.13 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.13 in ms-ascmd";
+                //    DocReference = "See: 2.2.3.162.13 in ms-ascmd" + DocSuffix;
                 //    break;
                 //case "Settings":
                 //    SpecificStatusFile = "SettingsStatus.xml";  // 2.2.3.162.14 in ms-ascmd
-                //    DocReference = "See: 2.2.3.162.14 in ms-ascmd";
+                //    if (sResponse.Contains("<DevicePassword>"))
+                //        SpecificStatusFile = "SettingsDevicePasswordStatus.xml";
+                //    if (SpecificStatusFile.Contains("<DeviceInformation>"))
+                //        SpecificStatusFile = "SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml.xml";
+                //    if (SpecificStatusFile.Contains("<UserInformation>"))
+                //        SpecificStatusFile = "SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml.xml";
+                //    if (SpecificStatusFile.Contains("<OofState>"))
+                //        SpecificStatusFile = "SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml.xml";
+                //    if (SpecificStatusFile.Contains("<RightsManagementInformation"))
+                //        SpecificStatusFile = "SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml.xml";
+                ////    DocReference = "See: 2.2.3.162.14 in ms-ascmd" + DocSuffix;
                 //    break;
                 //case "SmartForward":   (Uses common status codes)
                 //    In 2.2.3.162.15 in ms-ascmd it says to use the Common Status Codes in 2.2.4
@@ -268,6 +287,35 @@ namespace EASTester
                     SpecificStatusFile = "ValidateCertStatus.xml"; // 2.2.3.162.17 in ms-ascmd
                     DocReference = "See: 2.2.3.162.17 in ms-ascmd";
                     break;
+                //case "Provision":
+                //    if (sResponse.Contains("<Provision>"))
+                //    {
+                //        SpecificStatusFile = "Provision_Policy_StatusChildOfPolicyResponse_Status.xml"; // 2.2.3.162.17 in ms-ascmd
+                //        DocReference = "See: 2.2.2.53.1 in ms-ascmd";
+                //    }
+                //    if (sResponse.Contains("<Policy>"))
+                //    {
+                //        SpecificStatusFile = "Provision_Policy_StatusChildOfPolicyResponse_Status.xml"; // 2.2.3.162.17 in ms-ascmd
+                //        DocReference = "See: 2.2.2.53.1 in ms-ascmd";
+                //    }
+                //    if (sResponse.Contains("<RemoteWipe>"))
+                //    {
+                //        SpecificStatusFile = "Provision_Policy_StatusChildOfPolicyResponse_Status.xml"; // 2.2.3.162.17 in ms-ascmd
+                //        DocReference = "See: 2.2.2.53.1 in ms-ascmd";
+                //    }
+                //    break;
+                //case "Provision - Policy":
+                //    SpecificStatusFile = "Provision_Policy_StatusChildOfPolicyResponse_Status.xml"; // 2.2.3.162.17 in ms-ascmd
+                //    DocReference = "See: 2.2.2.53.1 in ms-ascmd";
+                //    break;
+                //case "Provision - Provision":
+                //    SpecificStatusFile = "Provision_Provision_Status.xml"; // 2.2.3.162.17 in ms-ascmd
+                //    DocReference = "See: 2.2.2.53.2 in ms-asprov";
+                //    break;
+                //case "Provision - RemoteWipe":
+                //    SpecificStatusFile = "Provision_RepoteWipe_Status.xml"; // 2.2.3.162.17 in ms-ascmd
+                //    DocReference = "See: 2.2.2.53.3 in ms-asprov";
+                //    break;
                 default:
                     SpecificStatusFile = string.Empty;
                     DocReference = string.Empty;
@@ -295,12 +343,8 @@ namespace EASTester
                 SpecificStatusFile = "See: 2.2.4 in ms-ascmd";
             }
 
-            if (StatusCode != string.Empty)
-            {
-                // complete the string...
-                DocReference += " found in the Exchange Protocol Documentation";
-            }
-            else
+ 
+            if (StatusCode == string.Empty)
             {
                 // clear the string since there is no status code returned.
                 DocReference = string.Empty;
@@ -310,6 +354,19 @@ namespace EASTester
             this.txtStatusCause.Text = Cause.Trim();
             this.txtStatusResolution.Text = Resolution.Trim() + "\r\n" + DocReference;
  
+        }
+
+        // See if a is the child of B. If not found return false.  If found then return true and set
+        // the sStatus to the child's status.  This is needed in determining the status code of
+        // child response elements for operateions such as ResolveRecipients, Search and Settings.
+        private bool GetChildStatus(ref string sStatus, string sParent, string sChild, string sXml)
+        {
+            sStatus = "0";
+            bool bFound = false;
+
+            // ...
+
+            return bFound;
         }
 
         private bool GetStatusCodesFromFile(string StatusFile, string StatusCode, ref string Meaning, ref string Cause, ref string Resolution)

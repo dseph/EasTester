@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Sync xmlns="AirSync">
+<Sync xmlns="AirSync:">
   <Collections>
     <Collection>
       <SyncKey>2</SyncKey>

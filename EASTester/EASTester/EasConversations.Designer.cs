@@ -155,9 +155,9 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(375, 44);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(66, 13);
+            this.lblVersion.Size = new System.Drawing.Size(69, 13);
             this.lblVersion.TabIndex = 25;
-            this.lblVersion.Text = "EAS Version";
+            this.lblVersion.Text = "EAS Version:";
             // 
             // cmboVersion
             // 
@@ -169,7 +169,7 @@
             "12.1",
             "12.0",
             "2.5"});
-            this.cmboVersion.Location = new System.Drawing.Point(457, 41);
+            this.cmboVersion.Location = new System.Drawing.Point(457, 42);
             this.cmboVersion.Name = "cmboVersion";
             this.cmboVersion.Size = new System.Drawing.Size(95, 21);
             this.cmboVersion.TabIndex = 6;
@@ -180,7 +180,7 @@
             // 
             this.txtRequest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRequest.Location = new System.Drawing.Point(9, 216);
+            this.txtRequest.Location = new System.Drawing.Point(5, 191);
             this.txtRequest.MaxLength = 0;
             this.txtRequest.Multiline = true;
             this.txtRequest.Name = "txtRequest";
@@ -195,12 +195,12 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResponse.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtResponse.Location = new System.Drawing.Point(11, 439);
+            this.txtResponse.Location = new System.Drawing.Point(5, 414);
             this.txtResponse.MaxLength = 0;
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(1024, 164);
+            this.txtResponse.Size = new System.Drawing.Size(1024, 195);
             this.txtResponse.TabIndex = 15;
             this.txtResponse.WordWrap = false;
             this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged);
@@ -208,7 +208,7 @@
             // btnRun
             // 
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRun.Location = new System.Drawing.Point(900, 177);
+            this.btnRun.Location = new System.Drawing.Point(900, 150);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(132, 23);
             this.btnRun.TabIndex = 13;
@@ -296,7 +296,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 200);
+            this.label5.Location = new System.Drawing.Point(5, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 38;
@@ -305,7 +305,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 423);
+            this.label6.Location = new System.Drawing.Point(4, 398);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 13);
             this.label6.TabIndex = 39;
@@ -315,7 +315,7 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(900, 146);
+            this.btnOptions.Location = new System.Drawing.Point(900, 119);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(129, 23);
             this.btnOptions.TabIndex = 11;
@@ -328,7 +328,7 @@
             this.chkUseSSL.AutoSize = true;
             this.chkUseSSL.Checked = true;
             this.chkUseSSL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUseSSL.Location = new System.Drawing.Point(9, 152);
+            this.chkUseSSL.Location = new System.Drawing.Point(823, 8);
             this.chkUseSSL.Name = "chkUseSSL";
             this.chkUseSSL.Size = new System.Drawing.Size(71, 17);
             this.chkUseSSL.TabIndex = 4;
@@ -341,7 +341,7 @@
             this.chkOverrideSslCertificateVerification.Checked = true;
             this.chkOverrideSslCertificateVerification.CheckState = System.Windows.Forms.CheckState.Checked;
             this.helpProvider1.SetHelpString(this.chkOverrideSslCertificateVerification, "Check to assume that all certificates are valid.");
-            this.chkOverrideSslCertificateVerification.Location = new System.Drawing.Point(9, 175);
+            this.chkOverrideSslCertificateVerification.Location = new System.Drawing.Point(823, 31);
             this.chkOverrideSslCertificateVerification.Name = "chkOverrideSslCertificateVerification";
             this.helpProvider1.SetShowHelp(this.chkOverrideSslCertificateVerification, true);
             this.chkOverrideSslCertificateVerification.Size = new System.Drawing.Size(192, 17);
@@ -354,7 +354,7 @@
             // 
             this.helpProvider1.SetHelpString(this.txtPolicyKey, "This is needed if there is a policy enforced.  Getting a  permanent policy key is" +
                     " a two part process - see documentation on how to get it.");
-            this.txtPolicyKey.Location = new System.Drawing.Point(457, 160);
+            this.txtPolicyKey.Location = new System.Drawing.Point(457, 153);
             this.txtPolicyKey.Name = "txtPolicyKey";
             this.helpProvider1.SetShowHelp(this.txtPolicyKey, true);
             this.txtPolicyKey.Size = new System.Drawing.Size(271, 20);
@@ -363,7 +363,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(374, 163);
+            this.label4.Location = new System.Drawing.Point(374, 156);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 42;
@@ -392,7 +392,7 @@
             // btnEncodingHelper
             // 
             this.btnEncodingHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEncodingHelper.Location = new System.Drawing.Point(900, 116);
+            this.btnEncodingHelper.Location = new System.Drawing.Point(900, 89);
             this.btnEncodingHelper.Name = "btnEncodingHelper";
             this.btnEncodingHelper.Size = new System.Drawing.Size(129, 23);
             this.btnEncodingHelper.TabIndex = 48;
@@ -444,7 +444,7 @@
             // 
             this.lblResponseCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblResponseCode.AutoSize = true;
-            this.lblResponseCode.Location = new System.Drawing.Point(6, 617);
+            this.lblResponseCode.Location = new System.Drawing.Point(3, 618);
             this.lblResponseCode.Name = "lblResponseCode";
             this.lblResponseCode.Size = new System.Drawing.Size(63, 13);
             this.lblResponseCode.TabIndex = 53;
@@ -454,7 +454,7 @@
             // 
             this.txtStatusCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtStatusCode.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusCode.Location = new System.Drawing.Point(68, 614);
+            this.txtStatusCode.Location = new System.Drawing.Point(65, 615);
             this.txtStatusCode.Name = "txtStatusCode";
             this.txtStatusCode.Size = new System.Drawing.Size(59, 20);
             this.txtStatusCode.TabIndex = 54;
@@ -463,7 +463,7 @@
             // 
             this.lblStatusMeaning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusMeaning.AutoSize = true;
-            this.lblStatusMeaning.Location = new System.Drawing.Point(133, 617);
+            this.lblStatusMeaning.Location = new System.Drawing.Point(130, 618);
             this.lblStatusMeaning.Name = "lblStatusMeaning";
             this.lblStatusMeaning.Size = new System.Drawing.Size(51, 13);
             this.lblStatusMeaning.TabIndex = 55;
@@ -474,7 +474,7 @@
             this.txtStatusMeaning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStatusMeaning.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusMeaning.Location = new System.Drawing.Point(190, 614);
+            this.txtStatusMeaning.Location = new System.Drawing.Point(187, 615);
             this.txtStatusMeaning.Name = "txtStatusMeaning";
             this.txtStatusMeaning.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtStatusMeaning.Size = new System.Drawing.Size(845, 20);
@@ -484,7 +484,7 @@
             // 
             this.lblStatusCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusCause.AutoSize = true;
-            this.lblStatusCause.Location = new System.Drawing.Point(16, 640);
+            this.lblStatusCause.Location = new System.Drawing.Point(13, 641);
             this.lblStatusCause.Name = "lblStatusCause";
             this.lblStatusCause.Size = new System.Drawing.Size(40, 13);
             this.lblStatusCause.TabIndex = 57;
@@ -494,7 +494,7 @@
             // 
             this.txtStatusCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtStatusCause.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusCause.Location = new System.Drawing.Point(68, 640);
+            this.txtStatusCause.Location = new System.Drawing.Point(65, 641);
             this.txtStatusCause.Multiline = true;
             this.txtStatusCause.Name = "txtStatusCause";
             this.txtStatusCause.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -505,7 +505,7 @@
             // 
             this.lblStatusResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusResolution.AutoSize = true;
-            this.lblStatusResolution.Location = new System.Drawing.Point(475, 640);
+            this.lblStatusResolution.Location = new System.Drawing.Point(472, 641);
             this.lblStatusResolution.Name = "lblStatusResolution";
             this.lblStatusResolution.Size = new System.Drawing.Size(60, 13);
             this.lblStatusResolution.TabIndex = 59;
@@ -516,7 +516,7 @@
             this.txtStatusResolution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStatusResolution.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusResolution.Location = new System.Drawing.Point(541, 640);
+            this.txtStatusResolution.Location = new System.Drawing.Point(538, 641);
             this.txtStatusResolution.Multiline = true;
             this.txtStatusResolution.Name = "txtStatusResolution";
             this.txtStatusResolution.ScrollBars = System.Windows.Forms.ScrollBars.Both;

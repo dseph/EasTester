@@ -3,21 +3,25 @@
   <Status ID="1">
     <Meaning>Success</Meaning>
     <Cause>Server successfully completed command.</Cause>
+    <Scope></Scope>
     <Resolution>None.</Resolution>
   </Status>
   <Status ID="2">
     <Meaning>A collection was invalid or one of the specified collection IDs was invalid.</Meaning>
     <Cause> </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="3">
     <Meaning>The synchronization state has not been primed.</Meaning>
     <Cause> </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
   <Status ID="4">
     <Meaning>The specified synchronization key was invalid.</Meaning>
     <Cause> </Cause>
+    <Scope></Scope>
     <Resolution></Resolution>
   </Status>
  

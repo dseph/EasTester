@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ItemOperations xmlns:airsync="AirSync" xmlns:airsyncbase="AirSyncBase" xmlns="ItemOperations">
+<ItemOperations xmlns:airsync="AirSync:" xmlns:airsyncbase="AirSyncBase:" xmlns="ItemOperations:">
   <Fetch>
     <Store>Mailbox</Store>
     <airsync:CollectionId>7</airsync:CollectionId>
