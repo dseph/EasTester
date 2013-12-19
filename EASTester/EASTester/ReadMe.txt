@@ -123,4 +123,4 @@ easier to work with since is a pain to look-up the respose code meaning.
 
 11/8/2013
 Status lookup is working for common codes and status codes for several high usage commands.
-If a command specific code is not found then it tries to get the common status code if there is one.
+If a command specific code is not foun found in the Exchange Protocol Documentationd then it tries to get the common status code if there is one.
