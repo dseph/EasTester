@@ -155,11 +155,13 @@
     <Content Include="AppData\Provision_Provision_Status.xml" />
     <Content Include="AppData\ProvisionStatus.xml" />
     <Content Include="AppData\Provision_RepoteWipe_Status.xml" />
-    <Content Include="AppData\ResolveRecipientsStatus - child of Availability.xml" />
+    <Content Include="AppData\ResolveRecipientsStatus - Child of Availability.xml" />
     <Content Include="AppData\ResolveRecipientsStatus - Child of Certificates.xml" />
     <Content Include="AppData\ResolveRecipientsStatus - Child of Picture.xml" />
     <Content Include="AppData\ResolveRecipientsStatus - child of ResolveRecipients.xml" />
     <Content Include="AppData\ResolveRecipientsStatus - child of Response..xml" />
+    <Content Include="AppData\SearchStatus - Child of galPicture.xml" />
+    <Content Include="AppData\SearchStatus - Child of Store.xml" />
     <Content Include="AppData\SettingsDevicePasswordStatus.xml" />
     <Content Include="AppData\SettingsGeneralStatus.xml" />
     <Content Include="AppData\SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml" />

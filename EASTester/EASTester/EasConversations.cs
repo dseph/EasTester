@@ -266,7 +266,15 @@ namespace EASTester
                 //    DocReference = "See: 2.2.3.162.11 in ms-ascmd" + DocSuffix;
                 //    break;
                 //case "Search":
-                //    SpecificStatusFile = "SearchStatus.xml";  // 2.2.3.162.12 in ms-ascmd
+                //    SpecificStatusFile = "SearchStatus - Child of Search.xml";  // 2.2.3.162.12 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.12 in ms-ascmd" + DocSuffix;
+                //    break;
+                //case "Search":
+                //    SpecificStatusFile = "SearchStatus - Child of Store.xml";  // 2.2.3.162.12 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.12 in ms-ascmd" + DocSuffix;
+                //    break;
+                //case "Search":
+                //    SpecificStatusFile = "SearchStatus - Child of gal:Picture.xml";  // 2.2.3.162.12 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.12 in ms-ascmd" + DocSuffix;
                 //    break;
                 //case "SendMail":  (Uses common status codes)

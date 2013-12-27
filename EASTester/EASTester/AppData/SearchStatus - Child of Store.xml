@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success.</Meaning>
+    <Cause>Server successfully completed command.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>The request was invalid.</Meaning>
+    <Cause>One or more of the client's search parameters was invalid.</Cause>
+    <Scope>Item</Scope>
+    <Resolution>If the user formatted the request, prompt the user to retry with different options.</Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>An error occurred on the server.</Meaning>
+    <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Retry the Search command.</Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>Bad link.</Meaning>
+    <Cause>A bad link was supplied.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Prompt user to reformat link.</Resolution>
+  </Status>
+  <Status ID="5">
+    <Meaning>Access denied.</Meaning>
+    <Cause>Access was denied to the resource</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Prompt the user.</Resolution>
+  </Status>
+  <Status ID="6">
+    <Meaning>Not found.</Meaning>
+    <Cause>Resource was not found.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Prompt the user.</Resolution>
+  </Status>
+  <Status ID="7">
+    <Meaning>Bad link.</Meaning>
+    <Cause>A bad link was supplied.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Prompt user to reformat link.</Resolution>
+  </Status>
+  <Status ID="8">
+    <Meaning>Too complex.</Meaning>
+    <Cause>The query was too complex. </Cause>
+    <Scope>Global</Scope>
+    <Resolution>Reduce the complexity of the query. Prompt user if necessary.</Resolution>
+  </Status>
+  <Status ID="10">
+    <Meaning>Timed out.</Meaning>
+    <Cause>The search timed out.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>The search timed out. Retry with or without rebuilding results. If it continues, contact the Administrator.</Resolution>
+  </Status>
+  <Status ID="11">
+    <Meaning>FolderSync required.</Meaning>
+    <Cause>The folder hierarchy is out of date. </Cause>
+    <Scope>Global</Scope>
+    <Resolution>Issue a FolderSync command (section 2.2.2.4) and then try the Search command again.</Resolution>
+  </Status>
+  <Status ID="12">
+    <Meaning>End of retrievable range warning.</Meaning>
+    <Cause>The requested range has gone past the end of the range of retrievable results.</Cause>
+    <Scope>Local</Scope>
+    <Resolution>Prompt the user that there are no more results that can be fetched, and the user might consider restricting their search query.</Resolution>
+  </Status>
+  <Status ID="13">
+    <Meaning>Access blocked.</Meaning>
+    <Cause>Access is blocked to the specified resource.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Prompt the user.</Resolution>
+  </Status>
+  <Status ID="14">
+    <Meaning>Credentials required.</Meaning>
+    <Cause>To complete this request, basic credentials are required.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>If over a trusted connection, supply the basic credentials from the user (prompt if necessary). Otherwise, fail as if the access denied status code was provided.</Resolution>
+  </Status>
+</StatusCodes>
