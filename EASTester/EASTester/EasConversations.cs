@@ -246,7 +246,23 @@ namespace EASTester
                     DocReference = "See: 2.2.3.162.10 in ms-ascmd" + DocSuffix;
                     break;
                 //case "ResolveRecipients":
-                //    SpecificStatusFile = "ResolveRecipientsStatus.xml";  // 2.2.3.162.11 in ms-ascmd
+                //    SpecificStatusFile = "ResolveRecipientsStatus - child of ResolveRecipients.xml";  // 2.2.3.162.11 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.11 in ms-ascmd" + DocSuffix;
+                //    break;
+                //case "ResolveRecipients":
+                //    SpecificStatusFile = "ResolveRecipientsStatus - child of Response..xml";  // 2.2.3.162.11 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.11 in ms-ascmd" + DocSuffix;
+                //    break;
+                //case "ResolveRecipients":
+                //    SpecificStatusFile = "ResolveRecipientsStatus - child of Availability.xml";  // 2.2.3.162.11 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.11 in ms-ascmd" + DocSuffix;
+                //    break;
+                //case "ResolveRecipients":
+                //    SpecificStatusFile = "ResolveRecipientsStatus - Child of Certificates.xml";  // 2.2.3.162.11 in ms-ascmd
+                //    DocReference = "See: 2.2.3.162.11 in ms-ascmd" + DocSuffix;
+                //    break;
+                //case "ResolveRecipients":
+                //    SpecificStatusFile = "ResolveRecipientsStatus - Child of Picture.xml";  // 2.2.3.162.11 in ms-ascmd
                 //    DocReference = "See: 2.2.3.162.11 in ms-ascmd" + DocSuffix;
                 //    break;
                 //case "Search":
