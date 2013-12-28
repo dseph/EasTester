@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<provision:Provision xmlns:provision="Provision:">
+  <provision:Status>1</provision:Status>
+  <provision:Policies>
+    <provision:Policy>
+      <provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType>
+      <provision:Status>1</provision:Status>
+      <provision:PolicyKey>1190728787</provision:PolicyKey>
+    </provision:Policy>
+  </provision:Policies>
+</provision:Provision>

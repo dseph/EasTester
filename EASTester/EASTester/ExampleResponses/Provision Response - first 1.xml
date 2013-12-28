@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<provision:Provision xmlns:provision="Provision:">
+  <settings:DeviceInformation xmlns:settings="Settings:">
+    <settings:Status>1</settings:Status>
+  </settings:DeviceInformation>
+  <provision:Status>1</provision:Status>
+  <provision:Policies>
+    <provision:Policy>
+      <provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType>
+      <provision:Status>1</provision:Status>
+      <provision:PolicyKey>2355410786</provision:PolicyKey>
+      <provision:Data>
+        <provision:EASProvisionDoc>
+          <provision:DevicePasswordEnabled>0</provision:DevicePasswordEnabled>
+          <provision:AlphanumericDevicePasswordRequired>0</provision:AlphanumericDevicePasswordRequired>
+          <provision:PasswordRecoveryEnabled>0</provision:PasswordRecoveryEnabled>
+          <provision:RequireStorageCardEncryption>0</provision:RequireStorageCardEncryption>
+          <provision:AttachmentsEnabled>1</provision:AttachmentsEnabled>
+          <provision:MinDevicePasswordLength />
+          <provision:MaxInactivityTimeDeviceLock />
+          <provision:MaxDevicePasswordFailedAttempts />
+          <provision:MaxAttachmentSize />
+          <provision:AllowSimpleDevicePassword>1</provision:AllowSimpleDevicePassword>
+          <provision:DevicePasswordExpiration />
+          <provision:DevicePasswordHistory>0</provision:DevicePasswordHistory>
+          <provision:AllowStorageCard>1</provision:AllowStorageCard>
+          <provision:AllowCamera>1</provision:AllowCamera>
+          <provision:RequireDeviceEncryption>0</provision:RequireDeviceEncryption>
+          <provision:AllowUnsignedApplications>1</provision:AllowUnsignedApplications>
+          <provision:AllowUnsignedInstallationPackages>1</provision:AllowUnsignedInstallationPackages>
+          <provision:MinDevicePasswordComplexCharacters>1</provision:MinDevicePasswordComplexCharacters>
+          <provision:AllowWiFi>1</provision:AllowWiFi>
+          <provision:AllowTextMessaging>1</provision:AllowTextMessaging>
+          <provision:AllowPOPIMAPEmail>1</provision:AllowPOPIMAPEmail>
+          <provision:AllowBluetooth>2</provision:AllowBluetooth>
+          <provision:AllowIrDA>1</provision:AllowIrDA>
+          <provision:RequireManualSyncWhenRoaming>0</provision:RequireManualSyncWhenRoaming>
+          <provision:AllowDesktopSync>1</provision:AllowDesktopSync>
+          <provision:MaxCalendarAgeFilter>0</provision:MaxCalendarAgeFilter>
+          <provision:AllowHTMLEmail>1</provision:AllowHTMLEmail>
+          <provision:MaxEmailAgeFilter>0</provision:MaxEmailAgeFilter>
+          <provision:MaxEmailBodyTruncationSize>-1</provision:MaxEmailBodyTruncationSize>
+          <provision:MaxEmailHTMLBodyTruncationSize>-1</provision:MaxEmailHTMLBodyTruncationSize>
+          <provision:RequireSignedSMIMEMessages>0</provision:RequireSignedSMIMEMessages>
+          <provision:RequireEncryptedSMIMEMessages>0</provision:RequireEncryptedSMIMEMessages>
+          <provision:RequireSignedSMIMEAlgorithm>0</provision:RequireSignedSMIMEAlgorithm>
+          <provision:RequireEncryptionSMIMEAlgorithm>0</provision:RequireEncryptionSMIMEAlgorithm>
+          <provision:AllowSMIMEEncryptionAlgorithmNegotiation>2</provision:AllowSMIMEEncryptionAlgorithmNegotiation>
+          <provision:AllowSMIMESoftCerts>1</provision:AllowSMIMESoftCerts>
+          <provision:AllowBrowser>1</provision:AllowBrowser>
+          <provision:AllowConsumerEmail>1</provision:AllowConsumerEmail>
+          <provision:AllowRemoteDesktop>1</provision:AllowRemoteDesktop>
+          <provision:AllowInternetSharing>1</provision:AllowInternetSharing>
+          <provision:UnapprovedInROMApplicationList />
+          <provision:ApprovedApplicationList />
+        </provision:EASProvisionDoc>
+      </provision:Data>
+    </provision:Policy>
+  </provision:Policies>
+</provision:Provision>

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASCMD - 2.2.3.162.10 Status (Ping) -->
 <StatusCodes>
   <Status ID="1">
     <Meaning>The heartbeat interval expired before any changes occurred in the folders being monitored.</Meaning>

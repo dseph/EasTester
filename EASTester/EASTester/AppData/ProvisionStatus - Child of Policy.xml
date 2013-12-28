@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASPROV - 3.1.5.2 Provision Command Errors -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success.</Meaning>
+    <Cause>The requested policy data is included in the response</Cause>
+    <Scope></Scope>
+    <Resolution> Apply the applicable policy.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>Policy not defined.</Meaning>
+    <Cause>No policy of the requested type is defined on the server.</Cause>
+    <Scope></Scope>
+    <Resolution>Stop sending policy information. No policy is implemented.</Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>The policy type is unknown.</Meaning>
+    <Cause>The client sent a policy that the server does not recognize.</Cause>
+    <Scope></Scope>
+    <Resolution>Issue a request with a value of "MS-EAS-Provisioning-WBXML" in the PolicyType element.</Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>Policy data is corrupt.</Meaning>
+    <Cause>The policy data on the server is corrupt.</Cause>
+    <Scope></Scope>
+    <Resolution>Server administrator intervention is required.</Resolution>
+  </Status>
+  <Status ID="5">
+    <Meaning>Policy key mismatch.</Meaning>
+    <Cause>The client is trying to acknowledge an out-of-date or invalid policy.</Cause>
+    <Scope></Scope>
+    <Resolution>Issue a new Provision request to obtain a valid policy key.</Resolution>
+  </Status>
+ 
+</StatusCodes>
