@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppData\EasHelp.cs" />
+    <Compile Include="EasHelp.cs" />
     <Compile Include="ASCommandRequest.cs" />
     <Compile Include="ASCommandResponse.cs" />
     <Compile Include="ASOptionsRequest.cs" />
@@ -236,6 +236,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>md "$(TargetDir)Examples"
+md "$(TargetDir)AppData"
 Copy /Y "$(ProjectDir)Examples\*.*" "$(TargetDir)Examples\*.*"
 Copy /Y "$(ProjectDir)Readme.txt" "$(TargetDir)"
 Copy /Y "$(ProjectDir)AppData\*.*" "$(TargetDir)AppData\*.*"</PostBuildEvent>
