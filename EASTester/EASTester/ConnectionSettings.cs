@@ -7,9 +7,7 @@ namespace EASTester
 {
     public class ConnectionSetting
     {
- 
-
- 
+  
         public string MailDomain = string.Empty;
  
         public string User = string.Empty;
@@ -27,8 +25,7 @@ namespace EASTester
 
         public string EasRequest = string.Empty;
         public string EasResponse = string.Empty;
-       
-
+ 
     }
 
 
