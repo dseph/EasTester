@@ -9,17 +9,28 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Xml;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace EASTester
 {
     public class EasHelp
     {
-        public HelpInfo GetStatusHelp(string StatusCode, string sCommand, string sResponse)
+        public ArrayList GetStatusHelp(string StatusCode, string sCommand, string sResponse)
         {
+            HelpInfo oHelpInfo = new HelpInfo();
+            ArrayList oArrayList = new ArrayList();
+            string StatusFile = string.Empty;
+            string Meaning = string.Empty;
+            string Cause = string.Empty;
+            string Resolution = string.Empty;
+
             string SpecificStatusFile = string.Empty;
-            string DocReference = "See: 2.2.3.162.2 in the ms-ascmd Exchange Protocol Documentation";
+            string DocReference = string.Empty; // "See: 2.2.3.162.2 in the ms-ascmd Exchange Protocol Documentation";
             string DocSuffix = " found in the Exchange Protocol Documentation.";
+
+
             
+            // Provide general response code info
  
             switch (sCommand)
             {
@@ -128,6 +139,12 @@ namespace EASTester
                     SpecificStatusFile = "ValidateCertStatus.xml"; // 2.2.3.162.17 in ms-ascmd
                     DocReference = "See: 2.2.3.162.17 in ms-ascmd";
                     break;
+
+                case "Provision":
+                    //ProvisionStatus - Child of Provision.xml   
+                    SpecificStatusFile = "ProvisionStatus - Child of Provision.xml"; // 3.1.5.2 in ms-asprov
+                    DocReference = "See: 3.1.5.2 in ms-asprov";  //         
+                    break;
                 //case "Provision":
                 //    if (sResponse.Contains("<Policy>")) // pcode     
                 //    {
@@ -174,45 +191,63 @@ namespace EASTester
                     break;
             }
 
-            string StatusFile = string.Empty;
-
-            string Meaning = string.Empty;
-            string Cause = string.Empty;
-            string Resolution = string.Empty;
+            bool bDetailedInfoRetreived = false;
 
             if (SpecificStatusFile != string.Empty)
             {
                 StatusFile = Application.StartupPath + "\\AppData\\" + SpecificStatusFile;
-                GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution);
+                if (GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution))
+                {
+                    if (StatusCode == string.Empty)
+                        DocReference = string.Empty;  // clear the string since there is no status code returned.
+
+                    oHelpInfo = new HelpInfo();
+                    oHelpInfo.InfoFor = sCommand;
+                    oHelpInfo.Meaning = Meaning.Trim();
+                    oHelpInfo.Cause = Cause.Trim();
+                    oHelpInfo.StatusCode = StatusCode;
+                    oHelpInfo.Resolution = Resolution.Trim();
+                    oHelpInfo.ReferenceDoc = DocReference;
+ 
+                    oArrayList.Add(oHelpInfo);
+
+                    bDetailedInfoRetreived = true;
+
+                }
             }
-
-
-            if (Meaning == string.Empty)  // command specific status found?
-            {   // Yes
-                // OK, nothing returned for the specific command, so lets check for a common status.
-                StatusFile = Application.StartupPath + "\\AppData\\CommonStatus.xml";
-                GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution);
-                SpecificStatusFile = "See: 2.2.4 in ms-ascmd";
-            }
-
-
-            if (StatusCode == string.Empty)
+ 
+            // Provide common response code info.
+            if (bDetailedInfoRetreived == false)
             {
-                // clear the string since there is no status code returned.
-                DocReference = string.Empty;
+                int iStatusCode = 0;
+                if (Int32.TryParse(StatusCode, out iStatusCode))
+                {
+                    if (iStatusCode > 100)
+                    {  
+                        StatusFile = Application.StartupPath + "\\AppData\\CommonStatus.xml";
+                        if (GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution))
+                        {
+                            //SpecificStatusFile = "See: 2.2.4 in ms-ascmd";
+                            DocReference = "See: 2.2.4 in ms-ascmd";
+                            if (StatusCode == string.Empty)
+                                DocReference = string.Empty;  // clear the string since there is no status code returned.
+
+                            oHelpInfo = new HelpInfo();
+                            oHelpInfo.InfoFor = "Common Status Codes";
+                            oHelpInfo.Meaning = Meaning.Trim();
+                            oHelpInfo.Cause = Cause.Trim();
+                            oHelpInfo.StatusCode = StatusCode;
+                            oHelpInfo.Resolution = Resolution.Trim();
+                            oHelpInfo.ReferenceDoc = DocReference;
+                            oArrayList.Add(oHelpInfo);
+                        }
+                    }
+                }
+
+ 
             }
 
-            HelpInfo oHelpInfo = new HelpInfo();
-            oHelpInfo.StatusCode = Meaning.Trim();
-            oHelpInfo.StatusCode = Cause.Trim();
-            oHelpInfo.StatusCode = StatusCode;
-            oHelpInfo.StatusCode = Resolution.Trim() + "\r\n" + DocReference;
-            //this.txtStatusMeaning.Text = Meaning.Trim();
-            //this.txtStatusCause.Text = Cause.Trim();
-            //this.txtStatusResolution.Text = Resolution.Trim() + "\r\n" + DocReference;
-
-
-            return oHelpInfo;
+            return oArrayList;
 
         }
 
@@ -231,7 +266,7 @@ namespace EASTester
 
         private bool GetStatusCodesFromFile(string StatusFile, string StatusCode, ref string Meaning, ref string Cause, ref string Resolution)
         {
-            bool bError = false;
+            bool bRet = true;
             XmlDocument oXmlDocument = new XmlDocument();
 
             try
@@ -252,10 +287,15 @@ namespace EASTester
                     {
                         Meaning = oXmlNode.InnerText;
                     }
+                    else
+                    {
+                        bRet = false;
+                    }
                 }
                 catch (Exception ex)
                 {
                     Meaning = string.Empty;
+                    bRet = false;
                 }
 
                 try
@@ -289,10 +329,10 @@ namespace EASTester
             {
                 MessageBox.Show(ex.InnerException.ToString(), "Could not load status file '" + StatusFile + "'.");
 
-                bError = true;
+                bRet = false;
             }
 
-            return bError;
+            return bRet;
 
         }
 
@@ -302,9 +342,11 @@ namespace EASTester
 
     public class HelpInfo
     {
+        public string InfoFor = string.Empty;
         public string StatusCode = string.Empty;
         public string Meaning = string.Empty;
         public string Cause = string.Empty;
         public string Resolution = string.Empty;
+        public string ReferenceDoc = string.Empty;
     }
 }

@@ -1,4 +1,8 @@
-﻿Partial response from first part in provisioning.
+﻿TODO:  
+    Finish advance response help
+	Add abilty to set proxy so that fiddler can be used to trace calls.
+
+Partial response from first part in provisioning.
 
 <?xml version="1.0" encoding="utf-8"?>
 <provision:Provision xmlns:provision="Provision:">

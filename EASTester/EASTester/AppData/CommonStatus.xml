@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <StatusCodes>
-  <Status ID="101">
-    <Meaning>InvalidContent</Meaning>
-    <Cause>
-      The body of the HTTP request sent by the client is invalid. Ensure the HTTP request is using the specified Content-Type and length, and that the request is not missing (when an empty body is not allowed).  Examples:  Ping command (section 2.2.2.11) with a text/plain body, or SendMail command (section 2.2.2.15) with version 12.1 and a WBXML body. 
-    </Cause>
-    <Scope></Scope>
-    <Resolution></Resolution>
-  </Status>
   <Status ID="102">
     <Meaning>InvalidWBXML</Meaning>
     <Cause>

@@ -84,6 +84,12 @@
     <Compile Include="EncodeForm.Designer.cs">
       <DependentUpon>EncodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoOnEasResponse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoOnEasResponse.Designer.cs">
+      <DependentUpon>InfoOnEasResponse.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EncodeForm.resx">
       <DependentUpon>EncodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoOnEasResponse.resx">
+      <DependentUpon>InfoOnEasResponse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

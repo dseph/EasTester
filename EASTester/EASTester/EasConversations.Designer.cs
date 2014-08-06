@@ -62,14 +62,21 @@
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblResponseCode = new System.Windows.Forms.Label();
-            this.txtStatusCode = new System.Windows.Forms.TextBox();
-            this.lblStatusMeaning = new System.Windows.Forms.Label();
-            this.txtStatusMeaning = new System.Windows.Forms.TextBox();
             this.lblStatusCause = new System.Windows.Forms.Label();
-            this.txtStatusCause = new System.Windows.Forms.TextBox();
-            this.lblStatusResolution = new System.Windows.Forms.Label();
-            this.txtStatusResolution = new System.Windows.Forms.TextBox();
+            this.txtInfo = new System.Windows.Forms.TextBox();
+            this.chkOverrideProxyCredentials = new System.Windows.Forms.CheckBox();
+            this.txtProxyServerDomain = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtProxyServerPassword = new System.Windows.Forms.TextBox();
+            this.txtProxyServerUserName = new System.Windows.Forms.TextBox();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.txtProxyServerPort = new System.Windows.Forms.TextBox();
+            this.lblProxyPort = new System.Windows.Forms.Label();
+            this.txtProxyServerName = new System.Windows.Forms.TextBox();
+            this.lblProxyServer = new System.Windows.Forms.Label();
+            this.chkUseProxy = new System.Windows.Forms.CheckBox();
+            this.btnStatusCodeHelper = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -77,7 +84,7 @@
             // txtDomain
             // 
             this.helpProvider1.SetHelpString(this.txtDomain, "Domain of the user. If you entered an  SMTP address into the User field, then lea" +
-                    "ve this field blank.");
+        "ve this field blank.");
             this.txtDomain.Location = new System.Drawing.Point(68, 126);
             this.txtDomain.Name = "txtDomain";
             this.helpProvider1.SetShowHelp(this.txtDomain, true);
@@ -153,7 +160,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(375, 44);
+            this.lblVersion.Location = new System.Drawing.Point(360, 43);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(69, 13);
             this.lblVersion.TabIndex = 25;
@@ -169,7 +176,7 @@
             "12.1",
             "12.0",
             "2.5"});
-            this.cmboVersion.Location = new System.Drawing.Point(457, 42);
+            this.cmboVersion.Location = new System.Drawing.Point(442, 41);
             this.cmboVersion.Name = "cmboVersion";
             this.cmboVersion.Size = new System.Drawing.Size(95, 21);
             this.cmboVersion.TabIndex = 6;
@@ -178,29 +185,29 @@
             // 
             // txtRequest
             // 
-            this.txtRequest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRequest.Location = new System.Drawing.Point(5, 191);
+            this.txtRequest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRequest.Location = new System.Drawing.Point(5, 182);
             this.txtRequest.MaxLength = 0;
             this.txtRequest.Multiline = true;
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtRequest.Size = new System.Drawing.Size(1024, 204);
+            this.txtRequest.Size = new System.Drawing.Size(1263, 237);
             this.txtRequest.TabIndex = 14;
             this.txtRequest.WordWrap = false;
             // 
             // txtResponse
             // 
-            this.txtResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResponse.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtResponse.Location = new System.Drawing.Point(5, 414);
+            this.txtResponse.Location = new System.Drawing.Point(5, 438);
             this.txtResponse.MaxLength = 0;
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(1024, 195);
+            this.txtResponse.Size = new System.Drawing.Size(1263, 168);
             this.txtResponse.TabIndex = 15;
             this.txtResponse.WordWrap = false;
             this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged);
@@ -208,7 +215,7 @@
             // btnRun
             // 
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRun.Location = new System.Drawing.Point(900, 150);
+            this.btnRun.Location = new System.Drawing.Point(1128, 152);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(132, 23);
             this.btnRun.TabIndex = 13;
@@ -219,7 +226,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(374, 76);
+            this.label2.Location = new System.Drawing.Point(359, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 29;
@@ -228,27 +235,27 @@
             // txtDeviceId
             // 
             this.helpProvider1.SetHelpString(this.txtDeviceId, "TheID of the device.");
-            this.txtDeviceId.Location = new System.Drawing.Point(457, 74);
+            this.txtDeviceId.Location = new System.Drawing.Point(442, 73);
             this.txtDeviceId.Name = "txtDeviceId";
             this.helpProvider1.SetShowHelp(this.txtDeviceId, true);
-            this.txtDeviceId.Size = new System.Drawing.Size(271, 20);
+            this.txtDeviceId.Size = new System.Drawing.Size(227, 20);
             this.txtDeviceId.TabIndex = 7;
             this.txtDeviceId.TextChanged += new System.EventHandler(this.txtDeviceId_TextChanged);
             // 
             // txtDeviceType
             // 
             this.helpProvider1.SetHelpString(this.txtDeviceType, "Device Type");
-            this.txtDeviceType.Location = new System.Drawing.Point(457, 100);
+            this.txtDeviceType.Location = new System.Drawing.Point(442, 99);
             this.txtDeviceType.Name = "txtDeviceType";
             this.helpProvider1.SetShowHelp(this.txtDeviceType, true);
-            this.txtDeviceType.Size = new System.Drawing.Size(271, 20);
+            this.txtDeviceType.Size = new System.Drawing.Size(227, 20);
             this.txtDeviceType.TabIndex = 8;
             this.txtDeviceType.TextChanged += new System.EventHandler(this.txtDeviceType_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(374, 103);
+            this.label3.Location = new System.Drawing.Point(359, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 31;
@@ -257,7 +264,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(375, 133);
+            this.label1.Location = new System.Drawing.Point(360, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 34;
@@ -286,7 +293,7 @@
             "Settings",
             "Sync",
             "ValidateCert"});
-            this.cmboCommand.Location = new System.Drawing.Point(457, 126);
+            this.cmboCommand.Location = new System.Drawing.Point(442, 125);
             this.cmboCommand.Name = "cmboCommand";
             this.cmboCommand.Size = new System.Drawing.Size(174, 21);
             this.cmboCommand.TabIndex = 9;
@@ -296,7 +303,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 175);
+            this.label5.Location = new System.Drawing.Point(6, 166);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 38;
@@ -305,7 +312,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 398);
+            this.label6.Location = new System.Drawing.Point(2, 422);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 13);
             this.label6.TabIndex = 39;
@@ -315,7 +322,7 @@
             // btnOptions
             // 
             this.btnOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptions.Location = new System.Drawing.Point(900, 119);
+            this.btnOptions.Location = new System.Drawing.Point(1128, 123);
             this.btnOptions.Name = "btnOptions";
             this.btnOptions.Size = new System.Drawing.Size(129, 23);
             this.btnOptions.TabIndex = 11;
@@ -328,7 +335,7 @@
             this.chkUseSSL.AutoSize = true;
             this.chkUseSSL.Checked = true;
             this.chkUseSSL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUseSSL.Location = new System.Drawing.Point(823, 8);
+            this.chkUseSSL.Location = new System.Drawing.Point(1034, 8);
             this.chkUseSSL.Name = "chkUseSSL";
             this.chkUseSSL.Size = new System.Drawing.Size(71, 17);
             this.chkUseSSL.TabIndex = 4;
@@ -341,7 +348,7 @@
             this.chkOverrideSslCertificateVerification.Checked = true;
             this.chkOverrideSslCertificateVerification.CheckState = System.Windows.Forms.CheckState.Checked;
             this.helpProvider1.SetHelpString(this.chkOverrideSslCertificateVerification, "Check to assume that all certificates are valid.");
-            this.chkOverrideSslCertificateVerification.Location = new System.Drawing.Point(823, 31);
+            this.chkOverrideSslCertificateVerification.Location = new System.Drawing.Point(1034, 31);
             this.chkOverrideSslCertificateVerification.Name = "chkOverrideSslCertificateVerification";
             this.helpProvider1.SetShowHelp(this.chkOverrideSslCertificateVerification, true);
             this.chkOverrideSslCertificateVerification.Size = new System.Drawing.Size(192, 17);
@@ -353,17 +360,17 @@
             // txtPolicyKey
             // 
             this.helpProvider1.SetHelpString(this.txtPolicyKey, "This is needed if there is a policy enforced.  Getting a  permanent policy key is" +
-                    " a two part process - see documentation on how to get it.");
-            this.txtPolicyKey.Location = new System.Drawing.Point(457, 153);
+        " a two part process - see documentation on how to get it.");
+            this.txtPolicyKey.Location = new System.Drawing.Point(442, 152);
             this.txtPolicyKey.Name = "txtPolicyKey";
             this.helpProvider1.SetShowHelp(this.txtPolicyKey, true);
-            this.txtPolicyKey.Size = new System.Drawing.Size(271, 20);
+            this.txtPolicyKey.Size = new System.Drawing.Size(227, 20);
             this.txtPolicyKey.TabIndex = 10;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(374, 156);
+            this.label4.Location = new System.Drawing.Point(359, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 42;
@@ -392,7 +399,7 @@
             // btnEncodingHelper
             // 
             this.btnEncodingHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEncodingHelper.Location = new System.Drawing.Point(900, 89);
+            this.btnEncodingHelper.Location = new System.Drawing.Point(1128, 91);
             this.btnEncodingHelper.Name = "btnEncodingHelper";
             this.btnEncodingHelper.Size = new System.Drawing.Size(129, 23);
             this.btnEncodingHelper.TabIndex = 48;
@@ -440,103 +447,165 @@
             this.panel2.Size = new System.Drawing.Size(213, 30);
             this.panel2.TabIndex = 52;
             // 
-            // lblResponseCode
-            // 
-            this.lblResponseCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblResponseCode.AutoSize = true;
-            this.lblResponseCode.Location = new System.Drawing.Point(3, 618);
-            this.lblResponseCode.Name = "lblResponseCode";
-            this.lblResponseCode.Size = new System.Drawing.Size(63, 13);
-            this.lblResponseCode.TabIndex = 53;
-            this.lblResponseCode.Text = "Resp Code:";
-            // 
-            // txtStatusCode
-            // 
-            this.txtStatusCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtStatusCode.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusCode.Location = new System.Drawing.Point(65, 615);
-            this.txtStatusCode.Name = "txtStatusCode";
-            this.txtStatusCode.Size = new System.Drawing.Size(59, 20);
-            this.txtStatusCode.TabIndex = 54;
-            // 
-            // lblStatusMeaning
-            // 
-            this.lblStatusMeaning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblStatusMeaning.AutoSize = true;
-            this.lblStatusMeaning.Location = new System.Drawing.Point(130, 618);
-            this.lblStatusMeaning.Name = "lblStatusMeaning";
-            this.lblStatusMeaning.Size = new System.Drawing.Size(51, 13);
-            this.lblStatusMeaning.TabIndex = 55;
-            this.lblStatusMeaning.Text = "Meaning:";
-            // 
-            // txtStatusMeaning
-            // 
-            this.txtStatusMeaning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatusMeaning.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusMeaning.Location = new System.Drawing.Point(187, 615);
-            this.txtStatusMeaning.Name = "txtStatusMeaning";
-            this.txtStatusMeaning.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatusMeaning.Size = new System.Drawing.Size(845, 20);
-            this.txtStatusMeaning.TabIndex = 56;
-            // 
             // lblStatusCause
             // 
             this.lblStatusCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusCause.AutoSize = true;
-            this.lblStatusCause.Location = new System.Drawing.Point(13, 641);
+            this.lblStatusCause.Location = new System.Drawing.Point(6, 609);
             this.lblStatusCause.Name = "lblStatusCause";
-            this.lblStatusCause.Size = new System.Drawing.Size(40, 13);
+            this.lblStatusCause.Size = new System.Drawing.Size(147, 13);
             this.lblStatusCause.TabIndex = 57;
-            this.lblStatusCause.Text = "Cause:";
+            this.lblStatusCause.Text = "Info on response status code:";
             // 
-            // txtStatusCause
+            // txtInfo
             // 
-            this.txtStatusCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtStatusCause.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusCause.Location = new System.Drawing.Point(65, 641);
-            this.txtStatusCause.Multiline = true;
-            this.txtStatusCause.Name = "txtStatusCause";
-            this.txtStatusCause.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatusCause.Size = new System.Drawing.Size(401, 71);
-            this.txtStatusCause.TabIndex = 58;
+            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInfo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtInfo.Location = new System.Drawing.Point(5, 625);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtInfo.Size = new System.Drawing.Size(1263, 102);
+            this.txtInfo.TabIndex = 58;
             // 
-            // lblStatusResolution
+            // chkOverrideProxyCredentials
             // 
-            this.lblStatusResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblStatusResolution.AutoSize = true;
-            this.lblStatusResolution.Location = new System.Drawing.Point(472, 641);
-            this.lblStatusResolution.Name = "lblStatusResolution";
-            this.lblStatusResolution.Size = new System.Drawing.Size(60, 13);
-            this.lblStatusResolution.TabIndex = 59;
-            this.lblStatusResolution.Text = "Resolution:";
+            this.chkOverrideProxyCredentials.Location = new System.Drawing.Point(714, 79);
+            this.chkOverrideProxyCredentials.Name = "chkOverrideProxyCredentials";
+            this.chkOverrideProxyCredentials.Size = new System.Drawing.Size(268, 19);
+            this.chkOverrideProxyCredentials.TabIndex = 66;
+            this.chkOverrideProxyCredentials.Text = "Override Proxy Server Credentials";
+            this.chkOverrideProxyCredentials.UseVisualStyleBackColor = true;
+            this.chkOverrideProxyCredentials.CheckedChanged += new System.EventHandler(this.chkOverrideProxyCredentials_CheckedChanged);
             // 
-            // txtStatusResolution
+            // txtProxyServerDomain
             // 
-            this.txtStatusResolution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatusResolution.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtStatusResolution.Location = new System.Drawing.Point(538, 641);
-            this.txtStatusResolution.Multiline = true;
-            this.txtStatusResolution.Name = "txtStatusResolution";
-            this.txtStatusResolution.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatusResolution.Size = new System.Drawing.Size(494, 71);
-            this.txtStatusResolution.TabIndex = 60;
+            this.txtProxyServerDomain.Enabled = false;
+            this.txtProxyServerDomain.Location = new System.Drawing.Point(835, 155);
+            this.txtProxyServerDomain.Name = "txtProxyServerDomain";
+            this.txtProxyServerDomain.Size = new System.Drawing.Size(173, 20);
+            this.txtProxyServerDomain.TabIndex = 72;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(739, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 13);
+            this.label7.TabIndex = 69;
+            this.label7.Text = "Password:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(739, 158);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(46, 13);
+            this.label8.TabIndex = 71;
+            this.label8.Text = "Domain:";
+            // 
+            // txtProxyServerPassword
+            // 
+            this.txtProxyServerPassword.Enabled = false;
+            this.txtProxyServerPassword.Location = new System.Drawing.Point(835, 130);
+            this.txtProxyServerPassword.Name = "txtProxyServerPassword";
+            this.txtProxyServerPassword.PasswordChar = '•';
+            this.txtProxyServerPassword.Size = new System.Drawing.Size(173, 20);
+            this.txtProxyServerPassword.TabIndex = 70;
+            // 
+            // txtProxyServerUserName
+            // 
+            this.txtProxyServerUserName.Enabled = false;
+            this.txtProxyServerUserName.Location = new System.Drawing.Point(835, 104);
+            this.txtProxyServerUserName.Name = "txtProxyServerUserName";
+            this.txtProxyServerUserName.Size = new System.Drawing.Size(173, 20);
+            this.txtProxyServerUserName.TabIndex = 68;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Location = new System.Drawing.Point(739, 111);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(32, 13);
+            this.lblUserName.TabIndex = 67;
+            this.lblUserName.Text = "User:";
+            // 
+            // txtProxyServerPort
+            // 
+            this.txtProxyServerPort.Location = new System.Drawing.Point(806, 53);
+            this.txtProxyServerPort.Name = "txtProxyServerPort";
+            this.txtProxyServerPort.Size = new System.Drawing.Size(202, 20);
+            this.txtProxyServerPort.TabIndex = 64;
+            this.txtProxyServerPort.Text = "8888";
+            // 
+            // lblProxyPort
+            // 
+            this.lblProxyPort.Location = new System.Drawing.Point(711, 55);
+            this.lblProxyPort.Name = "lblProxyPort";
+            this.lblProxyPort.Size = new System.Drawing.Size(77, 17);
+            this.lblProxyPort.TabIndex = 63;
+            this.lblProxyPort.Text = "Proxy Port:";
+            // 
+            // txtProxyServerName
+            // 
+            this.txtProxyServerName.Location = new System.Drawing.Point(806, 29);
+            this.txtProxyServerName.Name = "txtProxyServerName";
+            this.txtProxyServerName.Size = new System.Drawing.Size(202, 20);
+            this.txtProxyServerName.TabIndex = 62;
+            this.txtProxyServerName.Text = "127.0.0.1";
+            // 
+            // lblProxyServer
+            // 
+            this.lblProxyServer.Location = new System.Drawing.Point(711, 29);
+            this.lblProxyServer.Name = "lblProxyServer";
+            this.lblProxyServer.Size = new System.Drawing.Size(77, 17);
+            this.lblProxyServer.TabIndex = 61;
+            this.lblProxyServer.Text = "Proxy Server:";
+            // 
+            // chkUseProxy
+            // 
+            this.chkUseProxy.AutoSize = true;
+            this.chkUseProxy.Location = new System.Drawing.Point(685, 3);
+            this.chkUseProxy.Name = "chkUseProxy";
+            this.chkUseProxy.Size = new System.Drawing.Size(111, 17);
+            this.chkUseProxy.TabIndex = 73;
+            this.chkUseProxy.Text = "Use Proxy Server:";
+            this.chkUseProxy.UseVisualStyleBackColor = true;
+            this.chkUseProxy.CheckedChanged += new System.EventHandler(this.chkUseProxy_CheckedChanged);
+            // 
+            // btnStatusCodeHelper
+            // 
+            this.btnStatusCodeHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStatusCodeHelper.Location = new System.Drawing.Point(1128, 65);
+            this.btnStatusCodeHelper.Name = "btnStatusCodeHelper";
+            this.btnStatusCodeHelper.Size = new System.Drawing.Size(129, 23);
+            this.btnStatusCodeHelper.TabIndex = 74;
+            this.btnStatusCodeHelper.Text = "Status Code Helper";
+            this.btnStatusCodeHelper.UseVisualStyleBackColor = true;
+            this.btnStatusCodeHelper.Click += new System.EventHandler(this.btnStatusCodeHelper_Click);
             // 
             // frmRawEAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(1044, 713);
-            this.Controls.Add(this.txtStatusResolution);
-            this.Controls.Add(this.lblStatusResolution);
-            this.Controls.Add(this.txtStatusCause);
+            this.ClientSize = new System.Drawing.Size(1272, 730);
+            this.Controls.Add(this.btnStatusCodeHelper);
+            this.Controls.Add(this.chkUseProxy);
+            this.Controls.Add(this.chkOverrideProxyCredentials);
+            this.Controls.Add(this.txtProxyServerDomain);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtProxyServerPassword);
+            this.Controls.Add(this.txtProxyServerUserName);
+            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.txtProxyServerPort);
+            this.Controls.Add(this.lblProxyPort);
+            this.Controls.Add(this.txtProxyServerName);
+            this.Controls.Add(this.lblProxyServer);
+            this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.lblStatusCause);
-            this.Controls.Add(this.txtStatusMeaning);
-            this.Controls.Add(this.lblStatusMeaning);
-            this.Controls.Add(this.txtStatusCode);
-            this.Controls.Add(this.lblResponseCode);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEncodingHelper);
@@ -612,14 +681,21 @@
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblResponseCode;
-        private System.Windows.Forms.TextBox txtStatusCode;
-        private System.Windows.Forms.Label lblStatusMeaning;
-        private System.Windows.Forms.TextBox txtStatusMeaning;
         private System.Windows.Forms.Label lblStatusCause;
-        private System.Windows.Forms.TextBox txtStatusCause;
-        private System.Windows.Forms.Label lblStatusResolution;
-        private System.Windows.Forms.TextBox txtStatusResolution;
+        private System.Windows.Forms.TextBox txtInfo;
+        private System.Windows.Forms.CheckBox chkOverrideProxyCredentials;
+        private System.Windows.Forms.TextBox txtProxyServerDomain;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtProxyServerPassword;
+        private System.Windows.Forms.TextBox txtProxyServerUserName;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.TextBox txtProxyServerPort;
+        private System.Windows.Forms.Label lblProxyPort;
+        private System.Windows.Forms.TextBox txtProxyServerName;
+        private System.Windows.Forms.Label lblProxyServer;
+        private System.Windows.Forms.CheckBox chkUseProxy;
+        private System.Windows.Forms.Button btnStatusCodeHelper;
     }
 }
 

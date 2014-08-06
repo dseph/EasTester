@@ -12,6 +12,7 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Xml;
+using System.Collections;
 
 using VisualSync;
 
@@ -34,9 +35,7 @@ namespace EASTester
             ClearStatusCodeInfo();
 
             this.Cursor = Cursors.WaitCursor;
-
  
-
 
             // Create credentials for the user
             NetworkCredential cred = null;
@@ -65,7 +64,7 @@ namespace EASTester
                 commandRequest.User = txtUser.Text.Trim(); // "someuser";
                 commandRequest.UseSSL = chkUseSSL.Checked;
                 commandRequest.UseEncodedRequestLine = true;
-
+ 
 
                 UInt32 iPolicyKey = 0;
                 string sPolicyKey = txtPolicyKey.Text.Trim();
@@ -99,6 +98,23 @@ namespace EASTester
                             MessageBox.Show("Policy Key is too large.");
                             bError = true;
                         }
+                    }
+
+                }
+
+                
+                if (chkUseProxy.Checked == true)
+                {
+                    commandRequest.SpecifyProxySettings = true;
+                    commandRequest.ProxyServer = this.txtProxyServerName.Text.Trim();
+                    commandRequest.ProxyPort = Convert.ToInt32(this.txtProxyServerPort.Text.Trim());
+
+                    if (chkOverrideProxyCredentials.Checked == true)
+                    {
+                        commandRequest.OverrideProxyCredntials = true;
+                        commandRequest.ProxyUser = txtProxyServerUserName.Text.Trim();
+                        commandRequest.ProxyPassword = txtProxyServerUserName.Text.Trim();
+                        commandRequest.ProxyDomain = txtProxyServerDomain.Text.Trim();
                     }
 
                 }
@@ -136,15 +152,11 @@ namespace EASTester
 
         private void ClearStatusCodeInfo() 
         {
-            this.txtStatusCode.Text = "";
-            this.txtStatusMeaning.Text = "";
-            this.txtStatusCause.Text = "";
-            this.txtStatusResolution.Text = "";
-
-            txtStatusCode.Update();
-            txtStatusMeaning.Update();
-            txtStatusCause.Update();
-            txtStatusResolution.Update();
+   
+            this.txtInfo.Text = "";
+ 
+            txtInfo.Update();
+       
         }
 
         private void DisplayStatusCodeInfo(string sResponse)
@@ -178,23 +190,35 @@ namespace EASTester
 
             //sNodeQuery = "//folderhierarchy:Status[text()=" + CodeToFind + "]";
             //FoundNode = doc.DocumentElement.SelectSingleNode(sNodeQuery).ParentNode;
- 
 
+            // TODO: Expand this to get different levels of stus codes to be used later when getting help from the help files.
             int iStart = 0;
             iStart = sResponse.IndexOf("Status>");
             iStart += 7;
             string sSub = sResponse.Substring(iStart,20);
             int iEnd = sSub.Substring(0).IndexOf("<");
             ResponseCodeToFind = sSub.Substring(0, iEnd);
-
-
+ 
             EasHelp oEasHelp = new EasHelp();
-            HelpInfo oHelpInfo = oEasHelp.GetStatusHelp(ResponseCodeToFind, cmboCommand.Text.Trim(), sResponse);
+            ArrayList oArrayList = null;
+ 
+            //HelpInfo oHelpInfo = new HelpInfo();
 
-            this.txtStatusCode.Text = oHelpInfo.StatusCode;
-            this.txtStatusMeaning.Text = oHelpInfo.Meaning;
-            this.txtStatusCause.Text = oHelpInfo.Cause;
-            this.txtStatusResolution.Text = oHelpInfo.Resolution;
+            oArrayList = oEasHelp.GetStatusHelp(ResponseCodeToFind, cmboCommand.Text.Trim(), sResponse);
+ 
+            StringBuilder oSB = new StringBuilder();
+            foreach (HelpInfo oHelpInfo in oArrayList)
+            {
+                oSB.AppendFormat("Info for:  {0}\r\n", oHelpInfo.InfoFor);
+                oSB.AppendFormat("    StatusCode:  {0}\r\n", oHelpInfo.StatusCode);
+                oSB.AppendFormat("    Meaning:  {0}\r\n", oHelpInfo.Meaning);
+                oSB.AppendFormat("    Cause:  {0}\r\n", oHelpInfo.Cause);
+                oSB.AppendFormat("    Resolution:  {0}\r\n", oHelpInfo.Resolution);
+                oSB.AppendFormat("    Reference: {0}\r\n", oHelpInfo.ReferenceDoc);
+                //oSB.AppendFormat("-------------\r\n");
+            }
+
+            this.txtInfo.Text = oSB.ToString();
  
         }
 
@@ -243,6 +267,8 @@ namespace EASTester
             xmlBuilder.Append("     </Policies>\r\n");
             xmlBuilder.Append("</Provision>");
             txtRequest.Text = xmlBuilder.ToString();
+
+            SetProxyChecked();
         }
 
         private void txtServerUrl_TextChanged(object sender, EventArgs e)
@@ -351,7 +377,24 @@ namespace EASTester
             optionsRequest.Server = txtServerUrl.Text.Trim();
             optionsRequest.UseSSL = chkUseSSL.Checked;
             optionsRequest.Credentials = cred;
- 
+
+            //Set Proxy Settings if indicated
+            if (chkUseProxy.Checked == true)
+            {
+                optionsRequest.SpecifyProxySettings = true;
+                optionsRequest.ProxyServer = this.txtProxyServerName.Text.Trim();
+                optionsRequest.ProxyPort = Convert.ToInt32(this.txtProxyServerPort.Text.Trim());
+
+                if (chkOverrideProxyCredentials.Checked == true)
+                {
+                    optionsRequest.OverrideProxyCredntials = true;
+                    optionsRequest.ProxyUser = txtProxyServerUserName.Text.Trim();
+                    optionsRequest.ProxyPassword = txtProxyServerUserName.Text.Trim();
+                    optionsRequest.ProxyDomain = txtProxyServerDomain.Text.Trim();
+                }
+
+            }
+
 
             // Send the request
             ASOptionsResponse optionsResponse = optionsRequest.GetOptions();
@@ -656,6 +699,57 @@ namespace EASTester
                     }
                 }
             }
+        }
+
+        private void chkUseProxy_CheckedChanged(object sender, EventArgs e)
+        {
+            SetProxyChecked();
+        }
+
+        private void SetProxyChecked()
+        {
+            this.txtProxyServerName.Enabled = chkUseProxy.Checked;
+            this.txtProxyServerPort.Enabled = chkUseProxy.Checked;
+            this.chkOverrideProxyCredentials.Enabled = chkUseProxy.Checked;
+
+            if (chkUseProxy.Checked == true)
+            {
+                if (chkOverrideProxyCredentials.Checked == true)
+                {
+                    txtProxyServerUserName.Enabled = true;
+                    txtProxyServerPassword.Enabled = true;
+                    txtProxyServerDomain.Enabled = true; 
+                }
+                else
+                {
+                    txtProxyServerUserName.Enabled = false;
+                    txtProxyServerPassword.Enabled = false;
+                    txtProxyServerDomain.Enabled = false; 
+                }
+            }
+            else
+            {
+                txtProxyServerUserName.Enabled = false;
+                txtProxyServerPassword.Enabled = false;
+                txtProxyServerDomain.Enabled = false;
+            }
+
+        }
+
+        private void chkOverrideProxyCredentials_CheckedChanged(object sender, EventArgs e)
+        {
+            SetProxyChecked();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStatusCodeHelper_Click(object sender, EventArgs e)
+        {
+            InfoOnEasResponse oForm = new InfoOnEasResponse();
+            oForm.ShowDialog();
         }
  
     }
