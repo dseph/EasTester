@@ -124,3 +124,20 @@ easier to work with since is a pain to look-up the respose code meaning.
 11/8/2013
 Status lookup is working for common codes and status codes for several high usage commands.
 If a command specific code is not foun found in the Exchange Protocol Documentationd then it tries to get the common status code if there is one.
+
+12/19/2013
+Fixed examples - some didn't have a colon in the namepace names, so I dded them.
+Updated Ping example
+Some minor updates to help files.
+
+1/16/2014
+Fixed some issues involved with pulling source code down and compiling. It should build properly now as long as you run Visual Stuidio as Admin.
+More changes for the raw ews post screen.
+
+8/6/2014
+Finished response status help on base most common EAS commands. 
+Added a respone helper screen which allows a person to paste in a response and get info on the status code. 
+Added abiltiy to set proxy settings so Fiddler could be used with it.
+
+8/6/2014
+Release EAS Tester 1.4
