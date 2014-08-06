@@ -10,9 +10,103 @@ namespace VisualSync
 {
     class ASOptionsRequest
     {
+        private bool specifyProxySettings = false;
+        private string proxyServer = null;
+        private int proxyPort = 80;
+        private bool overrideProxyCredntials = false;
+        private string proxyUser = null;
+        private string proxyPassword = null;
+        private string proxyDomain = null;
+
         private NetworkCredential credential = null;
         private string server = null;
         private bool useSSL = true;
+
+        public bool SpecifyProxySettings
+        {
+            get
+            {
+                return specifyProxySettings;
+            }
+            set
+            {
+                specifyProxySettings = value;
+            }
+        }
+
+        public string ProxyServer
+        {
+            get
+            {
+                return proxyServer;
+            }
+            set
+            {
+                proxyServer = value;
+            }
+        }
+
+        public int ProxyPort
+        {
+            get
+            {
+                return proxyPort;
+            }
+            set
+            {
+                proxyPort = value;
+            }
+        }
+
+        public bool OverrideProxyCredntials
+        {
+            get
+            {
+                return overrideProxyCredntials;
+            }
+            set
+            {
+                overrideProxyCredntials = value;
+            }
+        }
+
+
+
+        public string ProxyUser
+        {
+            get
+            {
+                return proxyUser;
+            }
+            set
+            {
+                proxyUser = value;
+            }
+        }
+
+        public string ProxyPassword
+        {
+            get
+            {
+                return proxyPassword;
+            }
+            set
+            {
+                proxyPassword = value;
+            }
+        }
+
+        public string ProxyDomain
+        {
+            get
+            {
+                return proxyDomain;
+            }
+            set
+            {
+                proxyDomain = value;
+            }
+        }
 
         public NetworkCredential Credentials
         {
@@ -64,6 +158,34 @@ namespace VisualSync
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(strURI);
             httpReq.Credentials = creds; 
             httpReq.Method = "OPTIONS";
+
+            if (SpecifyProxySettings == true)
+            {
+                WebProxy oWebProxy = null;
+                oWebProxy = new WebProxy(ProxyServer, ProxyPort);
+                //oWebProxy.BypassProxyOnLocal = BypassProxyForLocalAddress;
+
+                if (OverrideProxyCredntials == true)
+                {
+                    if (ProxyUser.Trim().Length == 0)
+                    {
+                        oWebProxy.UseDefaultCredentials = true;
+                    }
+                    else
+                    {
+                        if (ProxyDomain.Trim().Length == 0)
+                            oWebProxy.Credentials = new NetworkCredential(ProxyUser, ProxyPassword);
+                        else
+                            oWebProxy.Credentials = new NetworkCredential(ProxyUser, ProxyPassword, ProxyDomain);
+                    }
+                }
+                else
+                {
+                    oWebProxy.UseDefaultCredentials = true;
+                }
+                
+                httpReq.Proxy = oWebProxy;
+            }
 
             try
             {
