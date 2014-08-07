@@ -43,6 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStatusCodeInfo.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtStatusCodeInfo.Location = new System.Drawing.Point(12, 413);
+            this.txtStatusCodeInfo.MaxLength = 0;
             this.txtStatusCodeInfo.Multiline = true;
             this.txtStatusCodeInfo.Name = "txtStatusCodeInfo";
             this.txtStatusCodeInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -54,6 +55,7 @@
             this.txtResponse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResponse.Location = new System.Drawing.Point(12, 49);
+            this.txtResponse.MaxLength = 0;
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;

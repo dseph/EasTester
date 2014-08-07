@@ -48,8 +48,8 @@
             // 
             // txtFrom
             // 
-            this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFrom.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFrom.Location = new System.Drawing.Point(10, 51);
             this.txtFrom.MaxLength = 0;
@@ -62,8 +62,8 @@
             // 
             // txtTo
             // 
-            this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTo.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtTo.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTo.Location = new System.Drawing.Point(10, 201);
@@ -112,7 +112,7 @@
             // btnConvertfromHexArray
             // 
             this.helpProvider1.SetHelpString(this.btnConvertfromHexArray, "Convert WBXML content contained in an array of hex values with space, semi-colon " +
-                    "or comma separators into XML.");
+        "or comma separators into XML.");
             this.btnConvertfromHexArray.Location = new System.Drawing.Point(150, 9);
             this.btnConvertfromHexArray.Name = "btnConvertfromHexArray";
             this.helpProvider1.SetShowHelp(this.btnConvertfromHexArray, true);
@@ -124,8 +124,8 @@
             // 
             // txtToDump
             // 
-            this.txtToDump.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtToDump.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtToDump.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtToDump.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtToDump.Location = new System.Drawing.Point(10, 341);
@@ -175,16 +175,17 @@
             // 
             // txtEASDecoded
             // 
-            this.txtEASDecoded.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEASDecoded.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEASDecoded.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtEASDecoded.Location = new System.Drawing.Point(15, 477);
+            this.txtEASDecoded.MaxLength = 0;
             this.txtEASDecoded.Name = "txtEASDecoded";
             this.txtEASDecoded.ReadOnly = true;
             this.txtEASDecoded.Size = new System.Drawing.Size(907, 112);
             this.txtEASDecoded.TabIndex = 9;
-            this.txtEASDecoded.Text = global::EASTester.TemplateRequests.Provision;
+            this.txtEASDecoded.Text = "";
             this.txtEASDecoded.WordWrap = false;
             // 
             // btnHexCsvFromIntCsv
@@ -201,7 +202,7 @@
             // 
             // btnConvertfromHexStream
             // 
-            this.helpProvider1.SetHelpKeyword(this.btnConvertfromHexStream, global::EASTester.TemplateRequests.Provision);
+            this.helpProvider1.SetHelpKeyword(this.btnConvertfromHexStream, "");
             this.helpProvider1.SetHelpString(this.btnConvertfromHexStream, "Convert WBXML content in an undelmited hex string into XML.");
             this.btnConvertfromHexStream.Location = new System.Drawing.Point(313, 9);
             this.btnConvertfromHexStream.Name = "btnConvertfromHexStream";
@@ -215,7 +216,7 @@
             // btnHexDumpToHexStream
             // 
             this.helpProvider1.SetHelpString(this.btnHexDumpToHexStream, "Convert hex dump in text format to a hex stream.  This may not work with all hex " +
-                    "dumps in text format.");
+        "dumps in text format.");
             this.btnHexDumpToHexStream.Location = new System.Drawing.Point(654, 9);
             this.btnHexDumpToHexStream.Name = "btnHexDumpToHexStream";
             this.helpProvider1.SetShowHelp(this.btnHexDumpToHexStream, true);
