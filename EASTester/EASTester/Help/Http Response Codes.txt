@@ -1,8 +1,8 @@
 ﻿Http response codes:
 
 	100		Informational
-			100 - Continue.
-			101 - Switching protocols.
+			100		Continue.
+			101		Switching protocols.
 	200		Success
 			200		OK
 			201		Created
