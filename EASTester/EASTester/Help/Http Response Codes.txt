@@ -1,4 +1,4 @@
-﻿Http response codes:
+﻿Http response codes (IIS 6, 7, 8):
 
 	100		Informational
 			100		Continue.
@@ -23,7 +23,7 @@
 			307		Temporary redirect
 					The temporary redirect option, which is new in IIS 6.0, is used to prevent a Web browser from losing data when the browser issues an HTTP POST request. Normally, when a Web browser issues a POST request and then receives a 302-Object Moved redirect message from the Web server, the browser issues a GET request for the new location and loses the data in the POST request. With a 307 redirect, the browser reissues the POST request with the original data to the new location.
 	400		Client Error
-			400		Bad request
+					400		Bad request
 					400.1		Invalid Destination Header.
 					400.2		Invalid Depth Header.
 					400.3		Invalid If Header.
@@ -121,16 +121,16 @@
 					500.53		A rewrite error occurred during RQ_RELEASE_REQUEST_STATE notification handling. An outbound rule execution error occurred. The rule is configured to be executed before the output user cache gets updated.
 					500.100		Internal ASP error.
 			501		Header values specify a configuration that is not implemented.
-			502		Bad gateway.
+			502.x		Bad gateway.  
+					502.0		Web server received an invalid response while acting as a gateway or proxy. 
 					502.1		CGI application timeout.
 					502.2		Bad gateway: Premature Exit
 					502.3		Bad Gateway: Forwarder Connection Error (ARR).
 					502.4		Bad Gateway: No Server (ARR).
-			503		Application pool unavailable.
+			503.x		Service unavailable. 
 					503.0		Application pool unavailable.
 					503.2		Concurrent request limit exceeded. 
-					503.3		ASP.NET queue full
-					
+					503.3		ASP.NET queue full		
 			504		Gateway timeout.
 			505		HTTP version not supported.
 
