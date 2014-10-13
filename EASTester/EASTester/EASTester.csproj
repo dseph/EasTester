@@ -187,6 +187,7 @@
     <Content Include="Developer notes.txt" />
     <Content Include="ExampleResponses\Provision Response - first 1.xml" />
     <Content Include="ExampleResponses\Provision response - part 2.xml" />
+    <Content Include="Examples\ItemsOperations - Move Conversation.xml" />
     <Content Include="Examples\Settings - DevicePassword - Set.xml" />
     <Content Include="Examples\Settings - Oof - Get.xml">
       <SubType>Designer</SubType>
