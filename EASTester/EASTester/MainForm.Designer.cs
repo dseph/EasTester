@@ -36,7 +36,7 @@
             // btnDecodeWbxmlBytesIntoXML
             // 
             this.btnDecodeWbxmlBytesIntoXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDecodeWbxmlBytesIntoXML.Location = new System.Drawing.Point(147, 87);
+            this.btnDecodeWbxmlBytesIntoXML.Location = new System.Drawing.Point(147, 93);
             this.btnDecodeWbxmlBytesIntoXML.Name = "btnDecodeWbxmlBytesIntoXML";
             this.btnDecodeWbxmlBytesIntoXML.Size = new System.Drawing.Size(250, 27);
             this.btnDecodeWbxmlBytesIntoXML.TabIndex = 2;

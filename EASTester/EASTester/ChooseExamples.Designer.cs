@@ -38,6 +38,7 @@
             // 
             this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvItems.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.lvItems.Location = new System.Drawing.Point(12, 5);
             this.lvItems.Name = "lvItems";
             this.lvItems.Size = new System.Drawing.Size(705, 196);
@@ -51,6 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.textBox1.Location = new System.Drawing.Point(12, 214);
             this.textBox1.MaxLength = 0;
             this.textBox1.Multiline = true;

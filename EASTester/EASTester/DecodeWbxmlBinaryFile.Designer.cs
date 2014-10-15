@@ -60,10 +60,10 @@
             // 
             // txtDecoded
             // 
-            this.txtDecoded.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDecoded.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDecoded.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtDecoded.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDecoded.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtDecoded.Location = new System.Drawing.Point(10, 275);
             this.txtDecoded.MaxLength = 0;
             this.txtDecoded.Multiline = true;
@@ -86,21 +86,22 @@
             // 
             // txtFile
             // 
-            this.txtFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFile.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtFile.Location = new System.Drawing.Point(81, 11);
             this.txtFile.Name = "txtFile";
-            this.txtFile.Size = new System.Drawing.Size(658, 20);
+            this.txtFile.Size = new System.Drawing.Size(658, 22);
             this.txtFile.TabIndex = 2;
             this.txtFile.Text = "c:\\";
             // 
             // txtEncoded
             // 
-            this.txtEncoded.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEncoded.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEncoded.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtEncoded.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEncoded.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtEncoded.Location = new System.Drawing.Point(10, 69);
             this.txtEncoded.MaxLength = 0;
             this.txtEncoded.Multiline = true;

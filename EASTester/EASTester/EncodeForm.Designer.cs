@@ -36,16 +36,18 @@
             // 
             // cmboFrom
             // 
+            this.cmboFrom.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.cmboFrom.FormattingEnabled = true;
             this.cmboFrom.Location = new System.Drawing.Point(2, 12);
             this.cmboFrom.Name = "cmboFrom";
-            this.cmboFrom.Size = new System.Drawing.Size(663, 21);
+            this.cmboFrom.Size = new System.Drawing.Size(663, 24);
             this.cmboFrom.TabIndex = 0;
             // 
             // txtFrom
             // 
             this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFrom.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtFrom.Location = new System.Drawing.Point(2, 38);
             this.txtFrom.MaxLength = 0;
             this.txtFrom.Multiline = true;
@@ -70,6 +72,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtTo.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtTo.Location = new System.Drawing.Point(2, 262);
             this.txtTo.MaxLength = 0;
             this.txtTo.Multiline = true;

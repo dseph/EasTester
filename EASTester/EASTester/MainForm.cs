@@ -19,21 +19,21 @@ namespace EASTester
         private void btnDecodeRawResponse_Click(object sender, EventArgs e)
         {
             DecodeWbxmlBinaryFile oForm = new DecodeWbxmlBinaryFile();
-            oForm.ShowDialog();
+            oForm.Show();
             oForm = null;
         }
 
         private void btnDecodeWbxmlBytesIntoXML_Click(object sender, EventArgs e)
         {
             DecodeWbxmlBytesIntoXML oForm = new DecodeWbxmlBytesIntoXML();
-            oForm.ShowDialog();
+            oForm.Show();
             oForm = null;
         }
 
         private void btsEasConversations_Click(object sender, EventArgs e)
         {
             frmRawEAS oForm = new frmRawEAS();
-            oForm.ShowDialog();
+            oForm.Show();
             oForm = null;
         }
     }

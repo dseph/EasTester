@@ -50,7 +50,7 @@
             // 
             this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFrom.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFrom.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtFrom.Location = new System.Drawing.Point(10, 51);
             this.txtFrom.MaxLength = 0;
             this.txtFrom.Multiline = true;
@@ -65,7 +65,7 @@
             this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtTo.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTo.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtTo.Location = new System.Drawing.Point(10, 201);
             this.txtTo.MaxLength = 0;
             this.txtTo.Multiline = true;
@@ -127,7 +127,7 @@
             this.txtToDump.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtToDump.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtToDump.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtToDump.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtToDump.Location = new System.Drawing.Point(10, 341);
             this.txtToDump.MaxLength = 0;
             this.txtToDump.Multiline = true;
@@ -179,11 +179,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEASDecoded.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtEASDecoded.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtEASDecoded.Location = new System.Drawing.Point(15, 477);
             this.txtEASDecoded.MaxLength = 0;
             this.txtEASDecoded.Name = "txtEASDecoded";
             this.txtEASDecoded.ReadOnly = true;
-            this.txtEASDecoded.Size = new System.Drawing.Size(907, 112);
+            this.txtEASDecoded.Size = new System.Drawing.Size(907, 124);
             this.txtEASDecoded.TabIndex = 9;
             this.txtEASDecoded.Text = "";
             this.txtEASDecoded.WordWrap = false;
