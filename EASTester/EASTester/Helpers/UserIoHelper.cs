@@ -48,7 +48,7 @@ namespace MyHelpers
             SelectedFile = SuggestedName;
             fsd.InitialDirectory = InitialDirectory;
             fsd.FileName = SuggestedName;
-            fsd.Filter = "All files (*.*)|*.*";
+            fsd.Filter = FileFilter;  //"All files (*.*)|*.*";
             fsd.FilterIndex = 1;
             fsd.RestoreDirectory = false;
             fsd.Title = "Save File To Folder";

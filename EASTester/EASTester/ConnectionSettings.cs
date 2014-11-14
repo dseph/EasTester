@@ -25,6 +25,8 @@ namespace EASTester
 
         public string EasRequest = string.Empty;
         public string EasResponse = string.Empty;
+
+        public string EasResponseInfo = string.Empty;
  
     }
 

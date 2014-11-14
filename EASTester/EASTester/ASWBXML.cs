@@ -907,7 +907,7 @@ namespace VisualSync
 
                         if (hasAttributes)
                             // Maybe use Trace.Assert here?
-                            throw new InvalidDataException(string.Format("Token 0x{0:X} has attributes.", token));
+                            throw new InvalidDataException(string.Format("Token 0x{0:X} has attributes. ", token));
 
                         string strTag = codePages[currentCodePage].GetTag(token);
                         if (strTag == null)

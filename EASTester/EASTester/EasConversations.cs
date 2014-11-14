@@ -19,9 +19,13 @@ using VisualSync;
 namespace EASTester
 {
     // http://msdn.microsoft.com/en-us/library/hh361570(EXCHG.140).aspx 
+
+    
     public partial class frmRawEAS : Form
     {
- 
+
+        string sOrigionalResponse = string.Empty;
+
         public frmRawEAS()
         {
             InitializeComponent();
@@ -31,7 +35,14 @@ namespace EASTester
         {
             bool bError = false;
             txtResponse.Text = string.Empty;
+            txtHexResponse.Text = string.Empty;
+            sOrigionalResponse = string.Empty; ;
             txtResponse.Update();
+            txtHexResponse.Update();
+            txtInfo.Text = string.Empty;
+            txtInfo.Update();
+            MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, "");
+             
             ClearStatusCodeInfo();
 
             this.Cursor = Cursors.WaitCursor;
@@ -129,14 +140,23 @@ namespace EASTester
 
                     if (commandResponse != null)
                     {
+                        // Seen nulls returned - ex: conversation id, which is in a cdata as binary
+                        string sCleaned = commandResponse.XMLString.Replace("\0","");
+                         
+                        MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
+                        txtResponse.Text = sCleaned;
 
-                        txtResponse.Text = commandResponse.XMLString;
+                        sOrigionalResponse = commandResponse.XMLString;
+                        txtHexResponse.Text = MyHelpers.StringHelper.DumpString(sOrigionalResponse);
 
-                        DisplayStatusCodeInfo(txtResponse.Text);
+                        DisplayStatusCodeInfo(sCleaned);
                     }
                     else
                     {
                         txtResponse.Text = "";
+                        txtHexResponse.Text = "";
+                        MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, "");
+                        sOrigionalResponse = string.Empty;
 
                     }
                 }
@@ -407,7 +427,13 @@ namespace EASTester
                 s.Append(string.Format("Highest Supported Version: {0}\r\n", optionsResponse.HighestSupportedVersion));
                 s.Append(string.Format("Supported Commands: {0}\r\n", optionsResponse.SupportedCommands));
             }
-            txtResponse.Text = s.ToString();
+            string sResponse = s.ToString();
+            txtResponse.Text = sResponse;
+            txtHexResponse.Text = MyHelpers.StringHelper.DumpString (sResponse);
+            MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sResponse);
+            sOrigionalResponse = sResponse;
+            txtInfo.Text = string.Empty;
+
 
             //Console.WriteLine("Supported Versions: {0}\r\n"", optionsResponse.SupportedVersions);
             //Console.WriteLine("Highest Supported Version: {0}\r\n", optionsResponse.HighestSupportedVersion);
@@ -537,7 +563,7 @@ namespace EASTester
 
             string sSuggestedFilename = "*.xml";
             string sSelectedfile = string.Empty;
-            string sFilter = "Text files (*.xml)|*.xml|All files (*.*)|*.*";
+            string sFilter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
 
             if (MyHelpers.UserIoHelper.PickSaveFileToFolder(sInitialDirectory, sSuggestedFilename, ref  sSelectedfile, sFilter))
             {
@@ -559,7 +585,7 @@ namespace EASTester
 
             string sSuggestedFilename = "*.xml";
             string sSelectedfile = string.Empty;
-            string sFilter = "Text files (*.xml)|*.xml|All files (*.*)|*.*";
+            string sFilter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
 
             if (MyHelpers.UserIoHelper.PickLoadFromFile(sInitialDirectory, sSuggestedFilename, ref  sSelectedfile, sFilter))
             {
@@ -585,11 +611,12 @@ namespace EASTester
         private void btnLoadSettings_Click(object sender, EventArgs e)
         {
             string sFile = string.Empty;
+            string sFilter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
             string sConnectionSettings = string.Empty;
             ConnectionSetting oConnectionSetting = null;
             string sFileContents = string.Empty;
 
-            if (UserIoHelper.PickLoadFromFile(Application.UserAppDataPath, "*.xml", ref sFile, "XML files (*.xml)|*.xml"))
+            if (UserIoHelper.PickLoadFromFile(Application.UserAppDataPath, "*.xml", ref sFile, sFilter))
             {
                 try
                 {
@@ -637,7 +664,16 @@ namespace EASTester
                 this.cmboCommand.Text = FixSetting(oConnectionSetting.Command);
                 this.txtPolicyKey.Text = FixSetting(oConnectionSetting.PolicyKey);
                 this.txtRequest.Text = FixSetting(oConnectionSetting.EasRequest).Replace("\n", "\r\n");
-                this.txtResponse.Text = FixSetting(oConnectionSetting.EasResponse).Replace("\n", "\r\n");
+                 
+
+                sOrigionalResponse = FixSetting(oConnectionSetting.EasResponse).Replace("\n", "\r\n");
+                txtHexResponse.Text = MyHelpers.StringHelper.DumpString(sOrigionalResponse);
+                string sCleaned = sOrigionalResponse.Replace("\0", "");
+                this.txtResponse.Text = sCleaned;
+                MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
+
+                this.txtInfo.Text = this.txtPolicyKey.Text = FixSetting(oConnectionSetting.EasResponseInfo).Replace("\n", "\r\n"); ;
+                
             }
             catch (Exception ex)
             {
@@ -673,18 +709,24 @@ namespace EASTester
             oConnectionSetting.Command = this.cmboCommand.Text;
             oConnectionSetting.PolicyKey = this.txtPolicyKey.Text;
             oConnectionSetting.EasRequest = this.txtRequest.Text;
-            oConnectionSetting.EasResponse = this.txtResponse.Text;
+            //oConnectionSetting.EasResponse = this.txtResponse.Text;
+            oConnectionSetting.EasResponse = sOrigionalResponse;
+            //MyHelpers.WebcontrolHelper.Equals(webBrowser1, oConnectionSetting.EasResponse);
+            oConnectionSetting.EasResponseInfo = this.txtInfo.Text;
+             
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {
             string sFile = string.Empty;
+            string sFilter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+
             string sConnectionSettings = string.Empty;
             ConnectionSetting oConnectionSetting = new ConnectionSetting();
 
             SetConnectionSettingsFromForm(ref oConnectionSetting);
 
-            if (UserIoHelper.PickSaveFileToFolder(Application.UserAppDataPath, "Connection Settings " + TimeHelper.NowMashup() + ".xml", ref sFile, "XML files (*.xml)|*.xml"))
+            if (UserIoHelper.PickSaveFileToFolder(Application.UserAppDataPath, "Connection Settings " + TimeHelper.NowMashup() + ".xml", ref sFile, sFilter))
             {
                 sConnectionSettings = SerialHelper.SerializeObjectToString<ConnectionSetting>(oConnectionSetting);
                 if (sConnectionSettings != string.Empty)
@@ -750,6 +792,11 @@ namespace EASTester
         {
             InfoOnEasResponse oForm = new InfoOnEasResponse();
             oForm.ShowDialog();
+        }
+
+        private void txtResponse_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
  
     }

@@ -101,14 +101,17 @@ namespace MyHelpers
         {
             string sResults = string.Empty;
             char[] CharA = sString.ToCharArray();
+            StringBuilder oSB = new StringBuilder();
             string sChar = " ";
             //int iCharCode = 0;
             //string sHex = "";
             string sLeft = "";
             string sRight = "";
             int iLine = 0;
-            sResults = "000000 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF\r\n";
-            sResults += "------+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+-----------------\r\n";
+            oSB.Append("000000 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF\r\n");
+            oSB.Append("------+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+-----------------\r\n");
+            //sResults = "000000 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF\r\n";
+            //sResults += "------+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+-----------------\r\n";
             int iChar = 0;
             for (int iCount = 0; iCount < sString.Length; iCount++)
             {
@@ -153,7 +156,9 @@ namespace MyHelpers
                 //sResults += "" + sHex + " " + sChar + " " ;
                 if (iCount % 16 == 15)
                 {
-                    sResults += String.Format("{0:X}", iLine).PadLeft(6, '0') + " " + sLeft + " " + sRight + "\r\n";
+                    oSB.Append(String.Format("{0:X}", iLine).PadLeft(6, '0'));
+                    oSB.AppendFormat(" {0} {1}\r\n", sLeft, sRight);
+                    //sResults += String.Format("{0:X}", iLine).PadLeft(6, '0') + " " + sLeft + " " + sRight + "\r\n";
                     sLeft = "";
                     sRight = "";
                     iLine++;
@@ -161,10 +166,13 @@ namespace MyHelpers
             }
             if (sLeft.Length != 0)
             {
-                sResults += String.Format("{0:X}", iLine).PadLeft(6, '0') + " ";
-                sResults += sLeft.PadRight(48, ' ') + " " + sRight + "\r\n";
+                oSB.Append(String.Format("{0:X}", iLine).PadLeft(6, '0') + " "); 
+                //sResults += String.Format("{0:X}", iLine).PadLeft(6, '0') + " ";
+                oSB.Append(sLeft.PadRight(48, ' ') + " " + sRight + "\r\n");
+                //sResults += sLeft.PadRight(48, ' ') + " " + sRight + "\r\n";
             }
-            sResults = sResults.TrimEnd();
+            sResults = oSB.ToString();
+           // sResults = sResults.TrimEnd();
             sResults += "\r\n";
             return sResults;
         }

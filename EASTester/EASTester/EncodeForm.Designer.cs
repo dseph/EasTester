@@ -36,6 +36,8 @@
             // 
             // cmboFrom
             // 
+            this.cmboFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmboFrom.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.cmboFrom.FormattingEnabled = true;
             this.cmboFrom.Location = new System.Drawing.Point(2, 12);

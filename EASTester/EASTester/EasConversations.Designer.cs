@@ -39,7 +39,6 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.cmboVersion = new System.Windows.Forms.ComboBox();
             this.txtRequest = new System.Windows.Forms.TextBox();
-            this.txtResponse = new System.Windows.Forms.TextBox();
             this.btnRun = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDeviceId = new System.Windows.Forms.TextBox();
@@ -77,8 +76,19 @@
             this.lblProxyServer = new System.Windows.Forms.Label();
             this.chkUseProxy = new System.Windows.Forms.CheckBox();
             this.btnStatusCodeHelper = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtResponse = new System.Windows.Forms.TextBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtHexResponse = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDomain
@@ -196,23 +206,6 @@
             this.txtRequest.Size = new System.Drawing.Size(1013, 237);
             this.txtRequest.TabIndex = 14;
             this.txtRequest.WordWrap = false;
-            // 
-            // txtResponse
-            // 
-            this.txtResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResponse.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtResponse.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.txtResponse.Location = new System.Drawing.Point(5, 438);
-            this.txtResponse.MaxLength = 0;
-            this.txtResponse.Multiline = true;
-            this.txtResponse.Name = "txtResponse";
-            this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(1013, 168);
-            this.txtResponse.TabIndex = 15;
-            this.txtResponse.WordWrap = false;
-            this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged);
             // 
             // btnRun
             // 
@@ -589,12 +582,101 @@
             this.btnStatusCodeHelper.UseVisualStyleBackColor = true;
             this.btnStatusCodeHelper.Click += new System.EventHandler(this.btnStatusCodeHelper_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(5, 438);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1013, 168);
+            this.tabControl1.TabIndex = 75;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.webBrowser1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1005, 142);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "IE  Rendered";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.txtResponse);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1005, 142);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Text  Rendered";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtResponse
+            // 
+            this.txtResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtResponse.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtResponse.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.txtResponse.Location = new System.Drawing.Point(3, 0);
+            this.txtResponse.MaxLength = 0;
+            this.txtResponse.Multiline = true;
+            this.txtResponse.Name = "txtResponse";
+            this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtResponse.Size = new System.Drawing.Size(999, 139);
+            this.txtResponse.TabIndex = 16;
+            this.txtResponse.WordWrap = false;
+            this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged_1);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(999, 136);
+            this.webBrowser1.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txtHexResponse);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1005, 142);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Hex";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // txtHexResponse
+            // 
+            this.txtHexResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHexResponse.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtHexResponse.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHexResponse.Location = new System.Drawing.Point(3, 2);
+            this.txtHexResponse.MaxLength = 0;
+            this.txtHexResponse.Multiline = true;
+            this.txtHexResponse.Name = "txtHexResponse";
+            this.txtHexResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtHexResponse.Size = new System.Drawing.Size(999, 139);
+            this.txtHexResponse.TabIndex = 17;
+            this.txtHexResponse.WordWrap = false;
+            // 
             // frmRawEAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(1022, 730);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnStatusCodeHelper);
             this.Controls.Add(this.chkUseProxy);
             this.Controls.Add(this.chkOverrideProxyCredentials);
@@ -627,7 +709,6 @@
             this.Controls.Add(this.txtDeviceId);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnRun);
-            this.Controls.Add(this.txtResponse);
             this.Controls.Add(this.txtRequest);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.cmboVersion);
@@ -644,6 +725,12 @@
             this.Load += new System.EventHandler(this.frmRawEAS_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -662,7 +749,6 @@
         private System.Windows.Forms.Label lblVersion;
         public System.Windows.Forms.ComboBox cmboVersion;
         private System.Windows.Forms.TextBox txtRequest;
-        private System.Windows.Forms.TextBox txtResponse;
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox txtDeviceId;
@@ -700,6 +786,13 @@
         private System.Windows.Forms.Label lblProxyServer;
         private System.Windows.Forms.CheckBox chkUseProxy;
         private System.Windows.Forms.Button btnStatusCodeHelper;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.TextBox txtResponse;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txtHexResponse;
     }
 }
 
