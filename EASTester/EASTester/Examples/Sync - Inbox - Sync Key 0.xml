@@ -5,7 +5,6 @@
       <SyncKey>0</SyncKey>
       <CollectionId>5</CollectionId>
       <DeletesAsMoves>1</DeletesAsMoves>
-      <GetChanges/>
       <WindowSize>512</WindowSize>
     </Collection>
   </Collections>
