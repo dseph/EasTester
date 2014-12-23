@@ -137,7 +137,27 @@ More changes for the raw ews post screen.
 8/6/2014
 Finished response status help on base most common EAS commands. 
 Added a respone helper screen which allows a person to paste in a response and get info on the status code. 
-Added abiltiy to set proxy settings so Fiddler could be used with it.
+Added abiltiy to set proxy settings so Fiddler and other proxy appsand network tracers could be used with it.
 
 8/6/2014
-Release EAS Tester 1.4
+Released EAS Tester 1.4
+
+9/7/2014
+Seveal multiline text boxes were limiting content to 32k - I removed this limit.
+
+10/13/2014
+Added ItemsOperations - Move on ConversationId sample
+
+10/15/2014
+Screen reformatting and chaingingfont sizes
+
+11/14/2014
+Fixed bug where null returend prevents displaying all data in text box
+Added ie rendering of response
+Added hex display of response
+Fixed file types noted when saving and loading 
+Response analysis is now saved and loaded
+
+12/23/2014
+Fixed inbox sync key 0 sample - removed getchanges tag
+
