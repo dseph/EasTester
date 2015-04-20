@@ -46,7 +46,7 @@ namespace EASTester
         private void EncodeForm_Load(object sender, EventArgs e)
         { 
         cmboFrom.Items.Clear();
- 
+  
         cmboFrom.Items.Add(UrlEncode);
         cmboFrom.Items.Add(UrlDecode);
         cmboFrom.Items.Add(UrlEncodeUnicode);
