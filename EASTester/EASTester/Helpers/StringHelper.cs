@@ -406,6 +406,15 @@ namespace MyHelpers
                             }
                         }
 
+                        if (iItem > 0 && iItem != iItemsPerLine)
+                        {
+                            int iPadLength = (3 * (16 - iItem)) + 2;
+                            string sPadding = String.Format("{0:X}", "").PadLeft(iPadLength, ' ');
+                            oSB.Append(sPadding);
+                            oSB.Append(sText); // Add text representation of hex.
+                            oSB.Append("\r\n");
+                            pos++;
+                        }
 
                         pos += iReadSize;  // Point to next.
                     }
@@ -493,6 +502,16 @@ namespace MyHelpers
 
                 }
 
+                if (iItem > 0 && iItem != iItemsPerLine)
+                {
+                    int iPadLength = (3 * (16 - iItem)) + 2;
+                    string sPadding = String.Format("{0:X}", "").PadLeft(iPadLength, ' ');
+                    oSB.Append(sPadding);
+                    oSB.Append(sText); // Add text representation of hex.
+                    oSB.Append("\r\n");
+                    pos++;
+                }
+
                 pos++;
             }
             sRet = oSB.ToString();
@@ -501,7 +520,84 @@ namespace MyHelpers
         }
 
 
-        public static string HexStringFromByteArray(byte[] baArrayToDump)
+        public static bool RoughHexStringToByteArray(string sHex, ref byte[] ByteData, ref string sError)
+        {
+            StringBuilder sb = null;
+            bool bContinue = true;
+            string sConversionErrors = string.Empty;
+            string sToDump = string.Empty;
+            string sEASDecoded = string.Empty;
+            bool bRet = false;
+            byte[] oBytes = null;
+
+            // Convert to two byte hex values with space delimiter.
+            string sHexStrings = sHex;
+            sb = new StringBuilder();
+            int iCount = 0;
+            foreach (char a in sHexStrings)
+            {
+                if ((a >= 'a' && a <= 'f') ||
+                    (a >= 'A' && a <= 'F') ||
+                    (a >= '0' && a <= '9'))
+                {
+                    sb.Append(a);
+                    iCount += 1;
+                    if (iCount == 2)
+                    {
+                        sb.Append(' ');
+                        iCount = 0;
+                    }
+
+                }
+                else
+                {
+
+                    sConversionErrors += string.Format("Byte '{0}' at position {1} is not a hex digit.\r\n", a, iCount);
+                    iCount += 1;
+                    bContinue = false;
+                }
+
+            }
+
+
+            if (bContinue == true)
+            {
+
+                sHexStrings = sb.ToString().TrimEnd();
+
+
+                string[] hexValuesSplit = sHexStrings.Split(' ');
+                oBytes = new byte[hexValuesSplit.Length];
+                int iCountBytes = 0;
+                foreach (String hex in hexValuesSplit)
+                {
+                    if (hex.Length != 2)
+                    {
+                        sConversionErrors += string.Format("Byte pair '{0}' does not have two byte values.\r\n", hex);
+                        bContinue = false;
+                        break;
+                    }
+                    else
+                        oBytes[iCountBytes] = Convert.ToByte(hex, 16);
+
+                    iCountBytes++;
+                }
+
+                bRet = bContinue;
+
+                HexDumpFromByteArray(oBytes);
+
+
+            }
+
+            ByteData = oBytes;
+
+            sError = sConversionErrors;
+            return bRet;
+        }
+        
+
+        public static string HexStringFromByteArray(byte[] baArrayToDump, bool bSpaceDelimit)
         {
             string sRet = string.Empty;
 
@@ -541,7 +637,9 @@ namespace MyHelpers
 
                 //if (iItem <= iItemsPerLine)
                 //{
-                oSB.Append(" ");
+                if (bSpaceDelimit)
+                    oSB.Append(" ");
+
                 sHex = string.Format("{00:X}", iValue).PadLeft(2, '0');
                 oSB.Append(sHex);
 
