@@ -520,6 +520,103 @@ namespace MyHelpers
         }
 
 
+        public static bool CleanHexString(string sFrom, ref string sCleanString, ref string sErrors)
+        {
+            string sWork = string.Empty;
+            sWork = sFrom.Trim();
+            string sHexStingErrors = string.Empty;
+            bool bContinue = true;
+            string sReturn = string.Empty;
+            bool bRet = false;
+
+            // weed out junk
+            var sb = new StringBuilder(sWork.Length);
+            foreach (char i in sWork)
+                if (i != '\n' && i != '\r' && i != '\t' && i != '\r' && i != '[' && i != ']' && i != ';')
+                    sb.Append(i);
+            sWork = sb.ToString();
+            sWork = sWork.Replace("    ", " ");
+            sWork = sWork.Replace("    ", " ");
+            sWork = sWork.Replace("   ", " ");
+            sWork = sWork.Replace("  ", " ");
+            sWork = sWork.Replace(" ", ",");
+
+            sb = new StringBuilder();
+            string[] sItems = sWork.Split(',').Select(sValue => sValue.Trim()).ToArray();
+
+            string sHex = string.Empty;
+            int iCount = 1;
+            int iTest = 0;
+            bool bTest = false;
+            bool bError = false;
+
+            foreach (string sNum in sItems)
+            {
+                sHex = sNum.Trim();
+
+                if (bContinue == true)
+                {
+                    if (sHex == "")  // this would be encountered if the hex values did not fill a full line.
+                    {
+                        bContinue = false;
+                    }
+                }
+
+                if (bContinue == true)
+                {
+                    if (sHex.Length > 2)
+                    {
+                        sHexStingErrors += string.Format("Hex digit'{0}' in position '{1} is more than 2 characters and has been replaced with 'XX'", sHex, sb.Length);
+                        sHex = "XX";
+                        bContinue = false;
+                        bError = true;
+                    }
+                }
+
+                if (bContinue == true)
+                {
+                    if (sHex.Length < 2)
+                    {
+                        sHexStingErrors += string.Format("Hex digit'{0}' in position '{1} is less than 2 characters and has been replaced with 'XX'", sHex, sb.Length);
+                        sHex = "XX";
+                        bContinue = false;
+                        bError = true;
+                    }
+                }
+
+                if (bContinue == true)
+                {
+                    bTest = Int32.TryParse(sHex, System.Globalization.NumberStyles.HexNumber, null, out iTest);
+                    if (bTest == false)
+                    {
+                        sHexStingErrors += string.Format("Hex digit'{0}' in position '{1} is not hex 'XX'", sHex, sb.Length);
+                        sHex = "XX";
+                        bContinue = false;
+                        bError = true;
+                    }
+                }
+
+                sb.Append(sHex);
+                iCount++;
+
+                if (bContinue == false)
+                    break;
+            }
+
+            // With a clean string of hex values the rest of of the conversions can be done.
+            sCleanString = sb.ToString();
+            sErrors = sHexStingErrors;
+
+            if (bError == false)
+                bRet = true;
+            else
+                bRet = false; ;
+
+            return bRet;
+
+        }
+
+
         public static bool RoughHexStringToByteArray(string sHex, ref byte[] ByteData, ref string sError)
         {
             StringBuilder sb = null;

@@ -37,7 +37,11 @@ namespace EASTester
         private const string XmlBase64ToHexSpaceDelimited = "Base 64 to Hex - Space delimited";
         private const string XmlHexToBase64 = "Hex to Base 64";
 
-        private const string XmlHexDumpText = "Hex Dump text";
+        private const string XmlHexToText = "Hex to text string";
+        private const string XmlHexToCleanHexText = "Clean Hex text so that its only has hex characters";
+        private const string XmlTextToHex = "Text to Hex string";
+        private const string XmlTextToHexSpaceDelimited = "Text to space delimited Hex string";
+        private const string XmlHexDumpText = "Text to Hex Dump";
         private const string XmlBase64ToHexDump = "Decode Base 64 content and Hex dump";
 
         private const string XmlConvertVerifyXmlChars = "XmlConvert - VerifyXmlChars";
@@ -63,6 +67,10 @@ namespace EASTester
         cmboFrom.Items.Add(XmlBase64ToHexSpaceDelimited);
         cmboFrom.Items.Add( XmlHexToBase64);
 
+        cmboFrom.Items.Add(XmlHexToText);
+        cmboFrom.Items.Add(XmlHexToCleanHexText);
+        cmboFrom.Items.Add(XmlTextToHex);
+        cmboFrom.Items.Add(XmlTextToHexSpaceDelimited);
         cmboFrom.Items.Add(XmlHexDumpText);
         cmboFrom.Items.Add(XmlBase64ToHexDump);
 
@@ -207,6 +215,67 @@ namespace EASTester
                         oFromBytes = System.Convert.FromBase64String(FromText);  // Convert to Bytes first.
 
                         ToText = StringHelper.HexStringFromByteArray(oFromBytes, true);  // Now convert it to a hex string.
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+
+                case XmlTextToHex:
+
+                    try
+                    {
+                        System.Text.ASCIIEncoding oEncoding = new System.Text.ASCIIEncoding();
+                        oFromBytes = oEncoding.GetBytes(sFrom);
+                        ToText = StringHelper.HexStringFromByteArray(oFromBytes, false);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+                case XmlTextToHexSpaceDelimited:
+                    try
+                    {
+                        System.Text.ASCIIEncoding oEncoding = new System.Text.ASCIIEncoding();
+                        oFromBytes = oEncoding.GetBytes(sFrom);
+                        ToText = StringHelper.HexStringFromByteArray(oFromBytes, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+
+                case XmlHexToCleanHexText:
+
+                    try
+                    {
+                        if (StringHelper.CleanHexString(FromText, ref ToText, ref sError) == false)
+                        {
+                            ToText = sError;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+
+                case XmlHexToText:
+
+                    try
+                    {
+                        if (StringHelper.RoughHexStringToByteArray(FromText, ref oFromBytes, ref sError) == true)
+                        {
+
+                            ToText = oFromBytes.ToString();
+                        }
+                        else
+                        {
+                            ToText = sError;
+                        }
                     }
                     catch (Exception ex)
                     {
