@@ -270,7 +270,7 @@ namespace EASTester
                         if (StringHelper.RoughHexStringToByteArray(FromText, ref oFromBytes, ref sError) == true)
                         {
 
-                            ToText = oFromBytes.ToString();
+                            ToText = System.Text.Encoding.ASCII.GetString(oFromBytes);
                         }
                         else
                         {
