@@ -161,3 +161,18 @@ Response analysis is now saved and loaded
 12/23/2014
 Fixed inbox sync key 0 sample - removed getchanges tag
 
+4/20/2015
+In Encode form: Fixed some issues with hex dump code, added conversions 
+for base 64 to hex string, base 64 to space delimited hex string, 
+hex dump and hex dump of content in a base64 endoded string. These 
+additions will help situations when a user wants to decode and edit 
+binary data - which eas base64 encodes. The data binary data can 
+also be dumped easily for review due to the hex dump feature.
+
+4/22/2015
+Added new hex string conversions to Encoding window.
+
+Finished changes for new hex string conversions.
+
+5/4/2015
+Released EASTester 1.6
