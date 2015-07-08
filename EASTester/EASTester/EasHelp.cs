@@ -294,6 +294,7 @@ namespace EASTester
                 }
                 catch (Exception ex)
                 {
+                    string sJunk = ex.ToString(); 
                     Meaning = string.Empty;
                     bRet = false;
                 }
@@ -308,6 +309,7 @@ namespace EASTester
                 }
                 catch (Exception ex)
                 {
+                    string sJunk = ex.ToString();
                     Cause = string.Empty;
                 }
 
@@ -321,6 +323,7 @@ namespace EASTester
                 }
                 catch (Exception ex)
                 {
+                    string sJunk = ex.ToString(); 
                     Resolution = string.Empty;
                 }
 

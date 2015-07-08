@@ -181,6 +181,7 @@
             this.cmboVersion.FormattingEnabled = true;
             this.cmboVersion.ItemHeight = 13;
             this.cmboVersion.Items.AddRange(new object[] {
+            "16.0",
             "14.1",
             "14.0",
             "12.1",

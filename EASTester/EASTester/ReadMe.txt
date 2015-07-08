@@ -176,3 +176,13 @@ Finished changes for new hex string conversions.
 
 5/4/2015
 Released EASTester 1.6
+
+7/8/2015
+	I'm adding prelminary schema EAS 16.0 fields.  Note that these are not for the final release of EAS 16. I'll update it further when EAS 16 reaches RTM.
+	See the following for the preliminary EAS 16.0 specs:  
+		https://msdn.microsoft.com/en-us/library/ee941641.aspx#exchange_server
+			MS-ASWBXML covers the EAS Schema
+	EasConversations.cs - added version 16.0
+	ASWBXML.cs - added new EAS schema fields
+
+
