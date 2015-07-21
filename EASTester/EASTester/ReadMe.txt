@@ -182,7 +182,12 @@ Released EASTester 1.6
 	See the following for the preliminary EAS 16.0 specs:  
 		https://msdn.microsoft.com/en-us/library/ee941641.aspx#exchange_server
 			MS-ASWBXML covers the EAS Schema
-	EasConversations.cs - added version 16.0
-	ASWBXML.cs - added new EAS schema fields
+	EasConversations.cs - added version 16.0  (Preliminary EAS 16)
+	ASWBXML.cs - added new EAS schema fields (Preliminary EAS 16)
+
+7/21/2015
+	Released EASTester 1.7
+	Note that this release has preliminary EAS 16 coverage.  The functionality of these new fields are not tested as yet.  This is just sample code for your education.
+
 
 
