@@ -191,6 +191,7 @@
     <Content Include="ExampleResponses\Provision Response - first 1.xml" />
     <Content Include="ExampleResponses\Provision response - part 2.xml" />
     <Content Include="Examples\ItemsOperations - Move Conversation.xml" />
+    <Content Include="Examples\SendMail.xml" />
     <Content Include="Examples\Settings - DevicePassword - Set.xml" />
     <Content Include="Examples\Settings - Oof - Get.xml">
       <SubType>Designer</SubType>
@@ -201,6 +202,7 @@
     <Content Include="Examples\ItemOperations-Fetch-MessageMime.xml" />
     <Content Include="Examples\Settings - Oof - Set - just state.xml" />
     <Content Include="Examples\Settings - Oof - Set.xml" />
+    <Content Include="Examples\SmartReply.xml" />
     <Content Include="Examples\Sync- Inbox - Getchanges Email with HTML body.xml" />
     <Content Include="Examples\Ping.xml" />
     <Content Include="Examples\Provision - second part.xml" />

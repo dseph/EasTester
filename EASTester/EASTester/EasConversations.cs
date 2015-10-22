@@ -66,7 +66,7 @@ namespace EASTester
                 // Initialize the command request
                 ASCommandRequest commandRequest = new ASCommandRequest();
                 commandRequest.Command = sUseCommand; // Ex: "Provision";   cmboCommand.Text.Trim();
-                commandRequest.Credentials = cred;
+                commandRequest.Credentials = cred; 
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
                 commandRequest.ProtocolVersion = cmboVersion.Text.Trim();  //"14.1";
@@ -85,7 +85,7 @@ namespace EASTester
                     try
                     {
                         iPolicyKey = Convert.ToUInt32(sPolicyKey);
-                    }
+                    } 
                     catch (FormatException eFormat)
                     {
                         MessageBox.Show("The Policy Key needs to be all numbers.", "Entry Error");
