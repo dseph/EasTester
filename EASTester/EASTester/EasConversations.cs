@@ -654,7 +654,7 @@ namespace EASTester
                 this.chkUseSSL.Checked = oConnectionSetting.UseSSL;
 
                 //if (oConnectionSetting.OverrideSsslCertVerification == null)
-                //    this.chkOverrideSslCertificateVerification.Checked = false;
+                //    this.chkOverrideSslCertificateVerification.Checked = false;Now
                 //else
                 this.chkOverrideSslCertificateVerification.Checked = oConnectionSetting.OverrideSsslCertVerification;
 
@@ -672,7 +672,7 @@ namespace EASTester
                 this.txtResponse.Text = sCleaned;
                 MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
 
-                this.txtInfo.Text = this.txtPolicyKey.Text = FixSetting(oConnectionSetting.EasResponseInfo).Replace("\n", "\r\n"); ;
+                this.txtInfo.Text =  FixSetting(oConnectionSetting.EasResponseInfo).Replace("\n", "\r\n"); ;
                 
             }
             catch (Exception ex)
