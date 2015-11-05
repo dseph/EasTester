@@ -150,6 +150,8 @@ namespace EASTester
                         txtHexResponse.Text = MyHelpers.StringHelper.DumpString(sOrigionalResponse);
 
                         DisplayStatusCodeInfo(sCleaned);
+
+                         
                     }
                     else
                     {
@@ -185,61 +187,72 @@ namespace EASTester
             string sNodeQuery = string.Empty;
             string ResponseCodeToFind = string.Empty;
 
-            ClearStatusCodeInfo();
-            
-            // in ms-ascmd - see:  
-            //    1.2.3.162.2  FolderCreate
-            //    2.2.3.162.3  FolderDelete
-            //    2.2.3.162.4  FolderSync
-            //    2.2.3.152.5  FolderUpdate
-            //    2.2.3.162.6  GetItemEstimate
-            //    2.2.3.162.7  ItemsOperation
-
-            //doc.LoadXml(sResponse);
-            //XmlNode root = doc.DocumentElement;
-            //XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
-            //nsmgr.AddNamespace("xprefix", "xmlns:folderhierarchy");
-            //FoundNode = root.SelectSingleNode("descendant::bk:book[bk:author/bk:last-name='Kingsolver']", nsmgr);
-
-
-            // Example response
-            //<?xml version="1.0" encoding="utf-8"?>
-            //<folderhierarchy:FolderSync xmlns:folderhierarchy="FolderHierarchy:">
-            //  <folderhierarchy:Status>144</folderhierarchy:Status>
-            //</folderhierarchy:FolderSync>
-
-            //sNodeQuery = "//folderhierarchy:Status[text()=" + CodeToFind + "]";
-            //FoundNode = doc.DocumentElement.SelectSingleNode(sNodeQuery).ParentNode;
-
-            // TODO: Expand this to get different levels of stus codes to be used later when getting help from the help files.
-            int iStart = 0;
-            iStart = sResponse.IndexOf("Status>");
-            iStart += 7;
-            string sSub = sResponse.Substring(iStart,20);
-            int iEnd = sSub.Substring(0).IndexOf("<");
-            ResponseCodeToFind = sSub.Substring(0, iEnd);
- 
-            EasHelp oEasHelp = new EasHelp();
-            ArrayList oArrayList = null;
- 
-            //HelpInfo oHelpInfo = new HelpInfo();
-
-            oArrayList = oEasHelp.GetStatusHelp(ResponseCodeToFind, cmboCommand.Text.Trim(), sResponse);
- 
-            StringBuilder oSB = new StringBuilder();
-            foreach (HelpInfo oHelpInfo in oArrayList)
+            if (sResponse.Length != 0)
             {
-                oSB.AppendFormat("Info for:  {0}\r\n", oHelpInfo.InfoFor);
-                oSB.AppendFormat("    StatusCode:  {0}\r\n", oHelpInfo.StatusCode);
-                oSB.AppendFormat("    Meaning:  {0}\r\n", oHelpInfo.Meaning);
-                oSB.AppendFormat("    Cause:  {0}\r\n", oHelpInfo.Cause);
-                oSB.AppendFormat("    Resolution:  {0}\r\n", oHelpInfo.Resolution);
-                oSB.AppendFormat("    Reference: {0}\r\n", oHelpInfo.ReferenceDoc);
-                //oSB.AppendFormat("-------------\r\n");
+
+                ClearStatusCodeInfo();
+
+                // in ms-ascmd - see:  
+                //    1.2.3.162.2  FolderCreate
+                //    2.2.3.162.3  FolderDelete
+                //    2.2.3.162.4  FolderSync
+                //    2.2.3.152.5  FolderUpdate
+                //    2.2.3.162.6  GetItemEstimate
+                //    2.2.3.162.7  ItemsOperation
+
+                //doc.LoadXml(sResponse);
+                //XmlNode root = doc.DocumentElement;
+                //XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+                //nsmgr.AddNamespace("xprefix", "xmlns:folderhierarchy");
+                //FoundNode = root.SelectSingleNode("descendant::bk:book[bk:author/bk:last-name='Kingsolver']", nsmgr);
+
+
+                // Example response
+                //<?xml version="1.0" encoding="utf-8"?>
+                //<folderhierarchy:FolderSync xmlns:folderhierarchy="FolderHierarchy:">
+                //  <folderhierarchy:Status>144</folderhierarchy:Status>
+                //</folderhierarchy:FolderSync>
+
+                //sNodeQuery = "//folderhierarchy:Status[text()=" + CodeToFind + "]";
+                //FoundNode = doc.DocumentElement.SelectSingleNode(sNodeQuery).ParentNode;
+
+                // TODO: Expand this to get different levels of stus codes to be used later when getting help from the help files.
+                int iStart = 0;
+                iStart = sResponse.IndexOf("Status>");
+                iStart += 7;
+                string sSub = sResponse.Substring(iStart, 20);
+                int iEnd = sSub.Substring(0).IndexOf("<");
+                ResponseCodeToFind = sSub.Substring(0, iEnd);
+
+                EasHelp oEasHelp = new EasHelp();
+                ArrayList oArrayList = null;
+
+                //HelpInfo oHelpInfo = new HelpInfo();
+
+                oArrayList = oEasHelp.GetStatusHelp(ResponseCodeToFind, cmboCommand.Text.Trim(), sResponse);
+
+                StringBuilder oSB = new StringBuilder();
+                foreach (HelpInfo oHelpInfo in oArrayList)
+                {
+                    oSB.AppendFormat("Info for:  {0}\r\n", oHelpInfo.InfoFor);
+                    oSB.AppendFormat("    StatusCode:  {0}\r\n", oHelpInfo.StatusCode);
+                    oSB.AppendFormat("    Meaning:  {0}\r\n", oHelpInfo.Meaning);
+                    oSB.AppendFormat("    Cause:  {0}\r\n", oHelpInfo.Cause);
+                    oSB.AppendFormat("    Resolution:  {0}\r\n", oHelpInfo.Resolution);
+                    oSB.AppendFormat("    Reference: {0}\r\n", oHelpInfo.ReferenceDoc);
+                    //oSB.AppendFormat("-------------\r\n");
+                }
+
+                this.txtInfo.Text = oSB.ToString();
+            }
+            else
+            {
+
+                this.txtInfo.Text = "The EAS response body was empty, so further information cannot be provided. ";
             }
 
-            this.txtInfo.Text = oSB.ToString();
- 
+            this.txtInfo.Text += "\r\nLast call: " + DateTime.Now.ToString();
+
         }
 
           

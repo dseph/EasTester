@@ -51,8 +51,10 @@ namespace VisualSync
             }
 
             wbxmlBytes = bytes.ToArray();
-
-            xmlString = DecodeWBXML(wbxmlBytes);
+            if (bytes.Count == 0)
+                xmlString = string.Empty;  // in the case the response body was empty.
+            else
+                xmlString = DecodeWBXML(wbxmlBytes);
         }
 
         public ASCommandResponse(byte[] wbxml)

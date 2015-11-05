@@ -161,6 +161,7 @@
     <Content Include="AppData\FolderDeleteStatus.xml" />
     <Content Include="AppData\FolderSyncStatus.xml" />
     <Content Include="AppData\FolderUpdateStatus.xml" />
+    <Content Include="AppData\HttpResponseCodes.xml" />
     <Content Include="AppData\MeetingResponseStatus.xml" />
     <Content Include="AppData\MoveItemsStatus.xml" />
     <Content Include="AppData\PingStatus.xml" />

@@ -41,6 +41,7 @@ namespace VisualSync
         private UInt32 policyKey = 0;
         private CommandParameter[] parameters = null;
 
+
         #region Property Accessors
         
         public bool SpecifyProxySettings
@@ -306,6 +307,13 @@ namespace VisualSync
 
         public ASCommandResponse GetResponse()
         {
+
+            string StatusCode = string.Empty;
+            string Meaning = string.Empty;
+            string Cause = string.Empty;
+            string Resolution = string.Empty;
+            EASTester.EasHelp oHelp = new EASTester.EasHelp();
+
             GenerateXMLPayload();
 
             if (Credentials == null || Server == null || ProtocolVersion == null || WbxmlBytes == null)
@@ -365,20 +373,29 @@ namespace VisualSync
 
                 HttpWebResponse httpResp = (HttpWebResponse)httpReq.GetResponse();
 
+                float iisStatusCode = (float)httpResp.StatusCode;
+                 
+
                 ASCommandResponse response = WrapHttpResponse(httpResp);
 
                 httpResp.Close();
+
+                StatusCode = iisStatusCode.ToString();
+                Meaning = string.Empty;
+                Cause = string.Empty;
+                Resolution = string.Empty;
+
+                oHelp.GetHttpStatusInfo(StatusCode, ref Meaning, ref Cause, ref Resolution);
+
+                MessageBox.Show("IIS Resposne Code: " + StatusCode + "\r\nDescription: " + Meaning);
 
                 return response;
             }
             catch (Exception ex)
             {
-                //VSError.ReportException(ex);
+
                 MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error");
-                System.Diagnostics.Debug.WriteLine("--------------------------");
-                System.Diagnostics.Debug.WriteLine("Exception:");
-                System.Diagnostics.Debug.WriteLine("  Message: " + ex.Message);
-                System.Diagnostics.Debug.WriteLine("    Stack: " + ex.StackTrace);
+
                 return null;
             }
         }

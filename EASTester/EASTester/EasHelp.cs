@@ -264,6 +264,33 @@ namespace EASTester
             return bFound;
         }
 
+        public bool GetHttpStatusInfo(string StatusCode, ref string Meaning, ref string Cause, ref string Resolution)
+        {
+            
+            string StatusFile = Application.StartupPath + "\\AppData\\HttpResponseCodes.xml";
+            return GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution);
+
+            //if (GetStatusCodesFromFile(StatusFile, StatusCode, ref Meaning, ref Cause, ref Resolution))
+            //{
+            //    //SpecificStatusFile = "See: 2.2.4 in ms-ascmd";
+            //    DocReference = "See: 2.2.4 in ms-ascmd";
+            //    if (StatusCode == string.Empty)
+            //        DocReference = string.Empty;  // clear the string since there is no status code returned.
+
+            //    oHelpInfo = new HelpInfo();
+            //    oHelpInfo.InfoFor = "Common Status Codes";
+            //    oHelpInfo.Meaning = Meaning.Trim();
+            //    oHelpInfo.Cause = Cause.Trim();
+            //    oHelpInfo.StatusCode = StatusCode;
+            //    oHelpInfo.Resolution = Resolution.Trim();
+            //    oHelpInfo.ReferenceDoc = DocReference;
+            //    oArrayList.Add(oHelpInfo);
+            //}
+
+
+            // HttpResponseCodes.xml
+        }
+
         private bool GetStatusCodesFromFile(string StatusFile, string StatusCode, ref string Meaning, ref string Cause, ref string Resolution)
         {
             bool bRet = true;
