@@ -189,5 +189,16 @@ Released EASTester 1.6
 	Released EASTester 1.7
 	Note that this release has preliminary EAS 16 coverage.  The functionality of these new fields are not tested as yet.  This is just sample code for your education.
 
-
+11/6/2015
+	Released EASTester 1.8
+	* Added a new sample for sendmail.
+	* Policy key was not getting loaded correctly in conversations window - fixed.
+	* Empty response body is now handled better. 
+	* Https response code now displayed with descriptions for each POST done in conversations window.
+	* In the Convert WBXML bytes into XML window the following was changed:
+	  . Fixed bugs in converting hex streams.
+	  . Null data is now filtered before displaying EAS decoded results.
+	  . Hex dump not rendering correctly - fixed.
+	  . Added a button to remove whitespace characters.
+	  . If conversions fail it now better identifies where it fails.
 

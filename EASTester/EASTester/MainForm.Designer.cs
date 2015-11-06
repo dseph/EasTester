@@ -36,9 +36,10 @@
             // btnDecodeWbxmlBytesIntoXML
             // 
             this.btnDecodeWbxmlBytesIntoXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDecodeWbxmlBytesIntoXML.Location = new System.Drawing.Point(147, 93);
+            this.btnDecodeWbxmlBytesIntoXML.Location = new System.Drawing.Point(220, 143);
+            this.btnDecodeWbxmlBytesIntoXML.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDecodeWbxmlBytesIntoXML.Name = "btnDecodeWbxmlBytesIntoXML";
-            this.btnDecodeWbxmlBytesIntoXML.Size = new System.Drawing.Size(250, 27);
+            this.btnDecodeWbxmlBytesIntoXML.Size = new System.Drawing.Size(375, 42);
             this.btnDecodeWbxmlBytesIntoXML.TabIndex = 2;
             this.btnDecodeWbxmlBytesIntoXML.Text = "Convert WBXML bytes into XML";
             this.btnDecodeWbxmlBytesIntoXML.UseVisualStyleBackColor = true;
@@ -47,9 +48,10 @@
             // btnDecodeRawResponse
             // 
             this.btnDecodeRawResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDecodeRawResponse.Location = new System.Drawing.Point(147, 37);
+            this.btnDecodeRawResponse.Location = new System.Drawing.Point(220, 57);
+            this.btnDecodeRawResponse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDecodeRawResponse.Name = "btnDecodeRawResponse";
-            this.btnDecodeRawResponse.Size = new System.Drawing.Size(250, 29);
+            this.btnDecodeRawResponse.Size = new System.Drawing.Size(375, 45);
             this.btnDecodeRawResponse.TabIndex = 1;
             this.btnDecodeRawResponse.Text = "Decode WBXML binary file into XML";
             this.btnDecodeRawResponse.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@
             // btsEasConversations
             // 
             this.btsEasConversations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btsEasConversations.Location = new System.Drawing.Point(147, 143);
+            this.btsEasConversations.Location = new System.Drawing.Point(220, 220);
+            this.btsEasConversations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btsEasConversations.Name = "btsEasConversations";
-            this.btsEasConversations.Size = new System.Drawing.Size(250, 29);
+            this.btsEasConversations.Size = new System.Drawing.Size(375, 45);
             this.btsEasConversations.TabIndex = 3;
             this.btsEasConversations.Text = "EAS Conversations";
             this.btsEasConversations.UseVisualStyleBackColor = true;
@@ -68,15 +71,17 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(520, 241);
+            this.ClientSize = new System.Drawing.Size(780, 371);
             this.Controls.Add(this.btsEasConversations);
             this.Controls.Add(this.btnDecodeWbxmlBytesIntoXML);
             this.Controls.Add(this.btnDecodeRawResponse);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "EAS Tester";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
         }

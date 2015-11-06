@@ -36,5 +36,10 @@ namespace EASTester
             oForm.Show();
             oForm = null;
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            this.Text  += " (" + Application.ProductVersion + ")";
+        }
     }
 }

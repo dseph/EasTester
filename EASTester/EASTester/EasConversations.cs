@@ -251,7 +251,7 @@ namespace EASTester
                 this.txtInfo.Text = "The EAS response body was empty, so further information cannot be provided. ";
             }
 
-            this.txtInfo.Text += "\r\nLast call: " + DateTime.Now.ToString();
+            this.txtInfo.Text += "\r\nTime: " + DateTime.Now.ToString();
 
         }
 
