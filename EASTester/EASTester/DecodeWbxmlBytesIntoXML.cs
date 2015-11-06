@@ -24,6 +24,8 @@ namespace EASTester
         // Convert WBXML content in an integer array into XML.  Example: 1, 2, 3, 4,    
         private void btnConvertfromIntArray_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             if (txtFrom.Text.Trim().Length != 0)
             {
                 txtEASDecoded.Text = "";
@@ -70,6 +72,8 @@ namespace EASTester
 
             }
 
+            this.Cursor = Cursors.Default;
+
         }
 
         private void ConvertFromHexString(string sHex)
@@ -79,79 +83,129 @@ namespace EASTester
             string sHexStingErrors = string.Empty;
             string sToDump = string.Empty;
             string sEASDecoded = string.Empty;
+            string StringByteErrors = string.Empty;
+            StringBuilder oPureHexStream = new StringBuilder();
 
-            // Convert to two byte hex values with space delimiter.
-            string sHexStrings = sHex;
-            sb = new StringBuilder();
-            int iCount = 0;
-            foreach (char a in sHexStrings)
-            {
-                if ((a >= 'a' && a <= 'f') ||
-                    (a >= 'A' && a <= 'F') ||
-                    (a >= '0' && a <= '9'))
-                {
-                    sb.Append(a);
-                    iCount += 1;
-                    if (iCount == 2)
-                    {
-                        sb.Append(' ');
-                        iCount = 0;
-                    }
-
-                }
-                else
-                {
-                    sHexStingErrors += string.Format("Byte '{0}' at position {1} is not a hex digit and was replaced by 'X'.\r\n", a, iCount);
-                    iCount += 1;
-                    bContinue = false;
-                }
-
-            }
-
- 
-            if (bContinue == true)
+            try
             {
 
-                sHexStrings = sb.ToString().TrimEnd();
-                string StringByteErrors = string.Empty;
- 
-                string[] hexValuesSplit = sHexStrings.Split(' ');
-                byte[] oBytes = new byte[hexValuesSplit.Length];
-                int iCountBytes = 0;
-                foreach (String hex in hexValuesSplit)
+                // Convert to two byte hex values with space delimiter.
+                string sHexStrings = sHex; //.Trim();
+                sb = new StringBuilder();
+                int iCount = 0;
+                int iPosition = 0;
+                foreach (char a in sHexStrings)
                 {
-                    if (hex.Length != 2)
+                    iPosition++;
+
+                    if ((a >= 'a' && a <= 'f') ||
+                        (a >= 'A' && a <= 'F') ||
+                        (a >= '0' && a <= '9'))
                     {
-                        StringByteErrors += string.Format("Byte pair '{0}' does not have two byte values.\r\n", hex);
-                        bContinue = false;
-                        break;
+                        sb.Append(a);
+                        iCount += 1;
+                        if (iCount == 2)
+                        {
+                            sb.Append(' ');
+                            iCount = 0;
+                        }
+
                     }
                     else
-                        oBytes[iCountBytes] = Convert.ToByte(hex, 16);
+                    {
+                        sb.Append(a);
+                        sHexStingErrors += string.Format("A non-hex character found at position {0}.  Character'{1}' was found. \r\n", iPosition, a);
+                        sHexStingErrors += string.Format("Below is what was converted so far: \r\n{0}\r\n", PurgeWhiteSpace(sb.ToString()));
+                        iCount += 1;
+                        bContinue = false;
 
-                    iCountBytes++;
+                        break;
+                    }
+                    
+
                 }
 
-                if (sHexStingErrors.Length != 0)
-                {
-                    sToDump = "Content up to bad byte pair: \r\n" + MyHelpers.StringHelper.HexDumpFromByteArray(oBytes); // Dump what we have
-                    sToDump += "\r\n\r\n" + sHexStingErrors;
-                }
 
                 if (bContinue == true)
                 {
 
-                    sToDump = MyHelpers.StringHelper.HexDumpFromByteArray(oBytes);
-                    ASCommandResponse commandResponse = new ASCommandResponse(oBytes);
-                    sEASDecoded = commandResponse.XMLString;
+                    sHexStrings = sb.ToString().TrimEnd();
+                     
 
+                    string[] hexValuesSplit = sHexStrings.Split(' ');
+                    byte[] oBytes = new byte[hexValuesSplit.Length];
+                    int iCountBytes = 0;
+                    StringBuilder oSbConvertDiag = new StringBuilder();
+
+                    foreach (String hex in hexValuesSplit)
+                    {
+                        oBytes[iCountBytes] = Convert.ToByte(hex, 16);
+
+                        oSbConvertDiag.Append(hex);
+
+                        if (hex.Length != 2)
+                        {
+                            StringByteErrors += string.Format("Byte pair '{0}' does not have two byte values at pair poisition {1}.\r\n\r\n", hex, iCountBytes);
+                            StringByteErrors += string.Format("Below is what has been processed so far: \r\n{0}", oSbConvertDiag.ToString());
+
+                            bContinue = false;
+                            break;
+                        }
+                        //else
+                        //{ 
+                        //    oBytes[iCountBytes] = Convert.ToByte(hex, 16);
+                        //}
+
+                        iCountBytes++;
+                    }
+
+                    
+                  
+
+                    //if (sHexStingErrors.Length != 0)
+                    //{
+                    //    sToDump = "Content up to bad byte pair: \r\n" + MyHelpers.StringHelper.HexDumpFromByteArray(oBytes); // Dump what we have
+                    //    sToDump += "\r\n\r\n" + sHexStingErrors;
+                    //}
+
+                    if (bContinue == true)
+                    {
+
+                        sToDump = MyHelpers.StringHelper.HexDumpFromByteArray(oBytes);
+                        ASCommandResponse commandResponse = new ASCommandResponse(oBytes);
+                        sEASDecoded = commandResponse.XMLString;
+
+                    }
                 }
-            }
 
-            if (sHexStingErrors.Length != 0)
-                txtTo.Text += "\r\n\r\n" + sHexStingErrors;
-            txtToDump.Text = sToDump;
-            txtEASDecoded.Text = sEASDecoded;
+                if (sHexStingErrors.Length != 0)
+                    txtTo.Text += "\r\nError parsing values: " + sHexStingErrors;
+
+                if (StringByteErrors.Length != 0)
+                    txtTo.Text += "\r\n\r\n" + StringByteErrors;
+
+ 
+                sEASDecoded = CheckForResultingBadCharacters(sEASDecoded);
+
+                txtToDump.Text = sToDump;
+                txtEASDecoded.Text = sEASDecoded;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+
+            }
+        }
+
+        private string CheckForResultingBadCharacters(string sEasXmlBody)
+        {
+            if (sEasXmlBody.Contains(Convert.ToChar(0)))
+            {
+                MessageBox.Show("The decoded body contains one or more null characters and have been replaced with spaces since they will cause the remaining text to be truncated when displayed.", "Conversion Issue");
+                sEasXmlBody = sEasXmlBody.Replace(Convert.ToChar(0), ' '); // Get rid of null characters
+            }
+            return sEasXmlBody;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -212,6 +266,7 @@ namespace EASTester
         // Convert WBXML content in an hex array into XML.  Example: e7, 46, 16, 26 
         private void btnConvertfromHexArray_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
 
             if (txtFrom.Text.Trim().Length != 0)
             {
@@ -305,6 +360,8 @@ namespace EASTester
 
                 if (bContinue == false)
                     break;
+
+                this.Cursor = Cursors.Default;
             }
 
             // With a clean string of hex values the rest of of the conversions can be done.
@@ -327,6 +384,8 @@ namespace EASTester
         // Convert an integer comma-delimited string into a hex comma-delimited string.
         private void btnHexCsvFromIntCsv_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             if (txtFrom.Text.Trim().Length != 0)
             {
 
@@ -384,6 +443,8 @@ namespace EASTester
 
                 txtTo.Text = sb.ToString();
             }
+
+            this.Cursor = Cursors.Default;
         }
 
         private void ConvertHexDumpToHexStream()
@@ -428,6 +489,9 @@ namespace EASTester
          
         private void btnConvertfromHexStream_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+ 
+
             if (txtFrom.Text.Trim().Length != 0)
             {
                 txtEASDecoded.Text = "";
@@ -436,6 +500,8 @@ namespace EASTester
 
                 ConvertFromHexString(txtFrom.Text.Trim());
             }
+
+            this.Cursor = Cursors.Default;
         }
 
         private void btnHexDumpToHexStream_Click(object sender, EventArgs e)
@@ -452,6 +518,79 @@ namespace EASTester
 
         private void txtFrom_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnRemoveWhitespaceChars_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            txtFrom.Text = PurgeWhiteSpace(txtFrom.Text);
+            this.Cursor = Cursors.Default;
+        }
+
+        private string PurgeWhiteSpaceAndControlChars(string sStarting)
+        {
+
+            StringBuilder sb = null;
+
+            sb = new StringBuilder();
+
+            foreach (char a in sStarting)
+            {
+                if (!char.IsControl(a) && !char.IsWhiteSpace(a))
+                {
+                    sb.Append(a);
+
+                }
+ 
+            }
+
+            return sb.ToString();
+
+        }
+
+        private string PurgeWhiteSpace(string sStarting)
+        {
+
+            StringBuilder sb = null;
+
+            sb = new StringBuilder();
+
+            foreach (char a in sStarting)
+            {
+                if (!char.IsWhiteSpace(a))
+                {
+                    sb.Append(a);
+
+                }
+
+            }
+
+            return sb.ToString();
+
+        }
+
+
+        private string PurgeStringToHexOnly(string sStarting)
+        { 
+
+            StringBuilder sb = null;
+
+            sb = new StringBuilder();
+       
+            foreach (char a in sStarting)
+            {
+
+         
+                if ((a >= 'a' && a <= 'f') ||
+                    (a >= 'A' && a <= 'F') ||
+                    (a >= '0' && a <= '9'))
+                {
+                    sb.Append(a);
+                }
+            }
+
+            return sb.ToString();
 
         }
         

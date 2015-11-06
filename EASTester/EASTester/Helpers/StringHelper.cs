@@ -438,6 +438,21 @@ namespace MyHelpers
 
         }
 
+        public static string ByteArraytoString(byte[] baSomething)
+        {
+            string s = System.Text.Encoding.UTF8.GetString(baSomething, 0, baSomething.Length);
+
+            return s;
+        }
+
+        //public static string HexDumpFromByteArray(byte[] baArrayToDump)
+        //{
+        //    string s = System.Text.Encoding.UTF8.GetString(baArrayToDump, 0, baArrayToDump.Length);
+
+        //    return DumpString(s);
+
+        //}
+
         public static string HexDumpFromByteArray(byte[] baArrayToDump)
         {
             string sRet = string.Empty;
@@ -450,7 +465,10 @@ namespace MyHelpers
             int iValue = 0;
             int iItem = 0;
 
+            string s = string.Empty;
+
             string sText = string.Empty;
+            string sPadding = string.Empty;
 
             string sHeader1 = "       00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF\r\n";
             string sHeader2 = "------+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+-----------------\r\n";
@@ -471,13 +489,15 @@ namespace MyHelpers
                 }
                 else
                 {
-                    sText += string.Format("{0}", (char)iValue).PadLeft(1, ' ');
+                    s = string.Format("{0}", (char)iValue).PadLeft(1, ' ');
+                    sText += s;
                 }
 
                 // Start of Line - Add position
                 if (iItem == 1)
                 {
-                    oSB.Append(string.Format("{0000:X}", pos).PadLeft(4, '0'));
+                    s = string.Format("{0000:X}", pos).PadLeft(4, '0');
+                    oSB.Append(s);
                     oSB.Append("  ");
                 }
 
@@ -502,18 +522,21 @@ namespace MyHelpers
 
                 }
 
-                if (iItem > 0 && iItem != iItemsPerLine)
-                {
-                    int iPadLength = (3 * (16 - iItem)) + 2;
-                    string sPadding = String.Format("{0:X}", "").PadLeft(iPadLength, ' ');
-                    oSB.Append(sPadding);
-                    oSB.Append(sText); // Add text representation of hex.
-                    oSB.Append("\r\n");
-                    pos++;
-                }
+ 
 
                 pos++;
             }
+
+            if (iItem > 0 && iItem != iItemsPerLine)
+            {
+                int iPadLength = (3 * (16 - iItem)) + 2;
+                sPadding = String.Format("{0:X}", "").PadLeft(iPadLength, ' ');
+                oSB.Append(sPadding);
+                oSB.Append(sText); // Add text representation of hex.
+                oSB.Append("\r\n");
+                //pos++;
+            }
+
             sRet = oSB.ToString();
             return sRet;
 
