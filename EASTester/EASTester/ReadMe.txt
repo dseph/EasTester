@@ -191,6 +191,8 @@ Released EASTester 1.6
 
 11/6/2015
 	Released EASTester 1.8
+	* Shows version in main window.
+	* Changed lists to dropdown lists so user cannot edit text when they should not.
 	* Added a new sample for sendmail.
 	* Policy key was not getting loaded correctly in conversations window - fixed.
 	* Empty response body is now handled better. 
