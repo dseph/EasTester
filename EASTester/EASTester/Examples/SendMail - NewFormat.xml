@@ -4,8 +4,8 @@
   <SaveInSentItems />
   <MIME>
     <![CDATA[Content-Type: multipart/alternative;
-From: <abc@microsoft.com>
-To: "Daniel" <def@yahoo.com>
+From: <abc@contoso.com>
+To: "Daniel" <def@contoso.com>
 Subject: Test - this works
 Date: Mon, 1 Nov 2015 12:02:57 +0300
 MIME-Version: 1.0
