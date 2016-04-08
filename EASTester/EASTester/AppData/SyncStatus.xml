@@ -2,7 +2,7 @@
 <StatusCodes>
   <Status ID="1">
     <Meaning>Success</Meaning>
-    <Cause>Server successfully comopleted command.</Cause>
+    <Cause>Server successfully completed command.</Cause>
     <Scope></Scope>
     <Resolution>None.</Resolution>
   </Status>
@@ -11,14 +11,14 @@
     <Cause>Invalid or mismatched synchronization key. -or- Synchronization state</Cause>
     <Scope></Scope>
     <Resolution>
-      Must return to SyncKey element value of 0.  The client SHOULD either delete anyitems 
+      Must return to SyncKey element value of 0.  The client SHOULD either delete any items 
       that were added since the last successful Sync or the client MUST add those items back 
       to the server after completing the full resynchronization.
     </Resolution>
   </Status>
   <Status ID="4">
     <Meaning>Protocol Error.</Meaning>
-    <Cause>There was a semantic error in the synchronization request. The client is issuing a request that does not comply with the specification requirements.</Cause>
+    <Cause>There was a semantic error in the synchronization request. The client is missing a request that does not comply with the specification requirements.</Cause>
     <Scope></Scope>
     <Resolution>Double-check the request for accuracy and retry.</Resolution>
   </Status>
@@ -35,7 +35,7 @@
     <Resolution>Stop sending the item. This is not a transient condition.</Resolution>
   </Status>
   <Status ID="7">
-    <Meaning>Conflict matching the clinet and server object.</Meaning>
+    <Meaning>Conflict matching the client and server object.</Meaning>
     <Cause>The client has changed an item for which the conflict policy indicates that the server's changes take precedence.</Cause>
     <Scope></Scope>
     <Resolution>If it is necessary, inform the user that the change they made to the item has been overwritten by a server change.</Resolution>
@@ -60,7 +60,7 @@
   </Status>
   <Status ID="13">
     <Meaning>The sync command is not complete.</Meaning>
-    <Cause>An empty or partial Sync command request is received and the cached set of notifyable collections is missing.</Cause>
+    <Cause>An empty or partial Sync command request is received and the cached set of notifiable collections is missing.</Cause>
     <Scope></Scope>
     <Resolution>Resend a full Sync command request.</Resolution>
   </Status>

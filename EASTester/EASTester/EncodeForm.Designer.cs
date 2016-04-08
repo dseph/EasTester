@@ -38,31 +38,37 @@
             // 
             this.cmboFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmboFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmboFrom.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.cmboFrom.FormattingEnabled = true;
-            this.cmboFrom.Location = new System.Drawing.Point(2, 12);
+            this.cmboFrom.Location = new System.Drawing.Point(3, 15);
+            this.cmboFrom.Margin = new System.Windows.Forms.Padding(4);
             this.cmboFrom.Name = "cmboFrom";
-            this.cmboFrom.Size = new System.Drawing.Size(663, 24);
+            this.cmboFrom.Size = new System.Drawing.Size(881, 26);
             this.cmboFrom.TabIndex = 0;
+            this.cmboFrom.SelectedIndexChanged += new System.EventHandler(this.cmboFrom_SelectedIndexChanged);
             // 
             // txtFrom
             // 
             this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFrom.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.txtFrom.Location = new System.Drawing.Point(2, 38);
+            this.txtFrom.Location = new System.Drawing.Point(3, 47);
+            this.txtFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtFrom.MaxLength = 0;
             this.txtFrom.Multiline = true;
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtFrom.Size = new System.Drawing.Size(709, 218);
+            this.txtFrom.Size = new System.Drawing.Size(947, 267);
             this.txtFrom.TabIndex = 2;
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(671, 7);
+            this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGo.Location = new System.Drawing.Point(895, 9);
+            this.btnGo.Margin = new System.Windows.Forms.Padding(4);
             this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(41, 25);
+            this.btnGo.Size = new System.Drawing.Size(55, 31);
             this.btnGo.TabIndex = 3;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
@@ -75,24 +81,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTo.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtTo.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.txtTo.Location = new System.Drawing.Point(2, 262);
+            this.txtTo.Location = new System.Drawing.Point(3, 322);
+            this.txtTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTo.MaxLength = 0;
             this.txtTo.Multiline = true;
             this.txtTo.Name = "txtTo";
             this.txtTo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtTo.Size = new System.Drawing.Size(709, 263);
+            this.txtTo.Size = new System.Drawing.Size(947, 338);
             this.txtTo.TabIndex = 5;
             // 
             // EncodeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(719, 537);
+            this.ClientSize = new System.Drawing.Size(957, 663);
             this.Controls.Add(this.txtTo);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.txtFrom);
             this.Controls.Add(this.cmboFrom);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EncodeForm";
             this.Text = "Encoding Helper";
             this.Load += new System.EventHandler(this.EncodeForm_Load);

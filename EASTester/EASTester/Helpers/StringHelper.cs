@@ -72,6 +72,7 @@ namespace MyHelpers
                 if (xChar == '\r') iCr++;
                 if (xChar == '\n') iLF++;
             }
+            iLongestLine++;
             sResults += " Total Lines: " + iTotalLines.ToString() + " ";
             sResults += "Total Characters: " + iTotalCharacters.ToString() + " ";
             sResults += "Longest Line is " + iLongestLine.ToString() + " having " + iLongestLineChars.ToString() + " characters\r\n";

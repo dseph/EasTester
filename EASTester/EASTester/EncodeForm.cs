@@ -46,6 +46,8 @@ namespace EASTester
 
         private const string XmlConvertVerifyXmlChars = "XmlConvert - VerifyXmlChars";
 
+        private const string StringStatistics = "Information about text";
+
  
         private void EncodeForm_Load(object sender, EventArgs e)
         { 
@@ -73,6 +75,9 @@ namespace EASTester
         cmboFrom.Items.Add(XmlTextToHexSpaceDelimited);
         cmboFrom.Items.Add(XmlHexDumpText);
         cmboFrom.Items.Add(XmlBase64ToHexDump);
+
+        cmboFrom.Items.Add(StringStatistics);
+          
 
         cmboFrom.SelectedIndex = 0;
  
@@ -361,13 +366,33 @@ namespace EASTester
                 //    ToText = System.Text.Encoding.ASCII.GetString(ToBytes);
                 //    break;
  
+                case StringStatistics:
 
-              
+                    try
+                    {
+                        ToText = StringHelper.GetStringStats(FromText);
+
+                    }
+                    catch (XmlException XmlExx)
+                    {
+                        MessageBox.Show(XmlExx.ToString(), "Error");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+     
  
             }
 
             return  ToText;
              
+
+        }
+
+        private void cmboFrom_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
