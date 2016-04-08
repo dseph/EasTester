@@ -204,3 +204,10 @@ Released EASTester 1.6
 	  . Added a button to remove whitespace characters.
 	  . If conversions fail it now better identifies where it fails.
 
+4/8/2016
+
+	Released EASTester 1.9
+		Fixed alignement issues with controls.
+		Fixed some spelling issues in help
+		Added a feature to provide statistics on text pasted into the conversion helper window.
+
