@@ -229,7 +229,10 @@ namespace EASTester
 
                 //HelpInfo oHelpInfo = new HelpInfo();
 
-                oArrayList = oEasHelp.GetStatusHelp(ResponseCodeToFind, cmboCommand.Text.Trim(), sResponse);
+                string sTopic = string.Empty;
+                sTopic = cmboCommand.Text.Trim();
+
+                oArrayList = oEasHelp.GetStatusHelp(ResponseCodeToFind, sTopic, sResponse);
 
                 StringBuilder oSB = new StringBuilder();
                 foreach (HelpInfo oHelpInfo in oArrayList)
@@ -618,7 +621,7 @@ namespace EASTester
         private void btnEncodingHelper_Click(object sender, EventArgs e)
         {
             EncodeForm oForm = new EncodeForm();
-            oForm.ShowDialog();
+            oForm.Show();
         }
 
         private void btnLoadSettings_Click(object sender, EventArgs e)
@@ -642,8 +645,11 @@ namespace EASTester
                 catch (Exception ex)
                 {
            
-                    MessageBox.Show(ex.ToString(), "Error Loading File");
+                    // Moved display of error to deserialization routine.
+                    // MessageBox.Show(ex.ToString(), "Error Loading File");
+
                 }
+ 
 
             }
             oConnectionSetting = null;
@@ -815,6 +821,12 @@ namespace EASTester
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnViewInBrowser_Click(object sender, EventArgs e)
+        {
+            ViewInBrowser oForm = new ViewInBrowser();
+            oForm.Show();
         }
  
     }

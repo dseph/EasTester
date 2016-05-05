@@ -47,7 +47,10 @@ namespace EASTester
         private const string XmlConvertVerifyXmlChars = "XmlConvert - VerifyXmlChars";
 
         private const string StringStatistics = "Information about text";
-
+        private const string CheckForNonASCIICharacters = "Check for non-ASCII characters and control codes (Except CR, LF and TAB)";
+        private const string sRemoveControlCodes = "Remove control codes (Except CR, LF and TAB)";
+        private const string sRemoveNonAsciiAndControlCharacters = "Remove non-ASCII and control codes (Except CR, LF and TAB)";
+        private const string sRemoveNonExtendedAsciiAndControlCharacters = "Remove non-Extended ASCII and control codes (Except CR, LF and TAB)";
  
         private void EncodeForm_Load(object sender, EventArgs e)
         { 
@@ -77,7 +80,10 @@ namespace EASTester
         cmboFrom.Items.Add(XmlBase64ToHexDump);
 
         cmboFrom.Items.Add(StringStatistics);
-          
+        cmboFrom.Items.Add(CheckForNonASCIICharacters);
+        cmboFrom.Items.Add(sRemoveControlCodes);
+        cmboFrom.Items.Add(sRemoveNonAsciiAndControlCharacters);
+        cmboFrom.Items.Add(sRemoveNonExtendedAsciiAndControlCharacters);     
 
         cmboFrom.SelectedIndex = 0;
  
@@ -371,7 +377,6 @@ namespace EASTester
                     try
                     {
                         ToText = StringHelper.GetStringStats(FromText);
-
                     }
                     catch (XmlException XmlExx)
                     {
@@ -382,8 +387,55 @@ namespace EASTester
                         MessageBox.Show(ex.ToString(), "Error");
                     }
                     break;
-     
- 
+
+
+                case CheckForNonASCIICharacters:
+                    try
+                    {
+
+                        ToText = StringHelper.CheckResponseForOddCharacters(FromText);
+
+                    }
+                    catch (Exception exCheckForInvalidCharacters)
+                    {
+                        MessageBox.Show(exCheckForInvalidCharacters.ToString(), "Error");
+                    }
+                    break;
+
+                case sRemoveControlCodes:
+                    try
+                    {
+                        ToText = StringHelper.RemoveControlCodes(FromText);
+                    }
+                    catch (Exception exRemoveControlCodes)
+                    {
+                        MessageBox.Show(exRemoveControlCodes.ToString(), "Error");
+                    }
+                    break;
+
+
+                case sRemoveNonAsciiAndControlCharacters:
+                    try
+                    {
+                        ToText = StringHelper.RemoveNonAsciiAndControlCharacters(FromText);
+                    }
+                    catch (Exception exRemoveNonAsciiAndControlCharacters)
+                    {
+                        MessageBox.Show(exRemoveNonAsciiAndControlCharacters.ToString(), "Error");
+                    }
+                    break;
+
+                case sRemoveNonExtendedAsciiAndControlCharacters:
+                    try
+                    {
+                        ToText = StringHelper.RemoveNonExtendedAsciiAndControlCharacters(FromText);
+                    }
+                    catch (Exception exRemoveNonExtendedAsciiAndControlCharacters)
+                    {
+                        MessageBox.Show(exRemoveNonExtendedAsciiAndControlCharacters.ToString(), "Error");
+                    }
+                    break;
+
             }
 
             return  ToText;

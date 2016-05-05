@@ -33,6 +33,7 @@ namespace EASTester
 
                     XmlSerializer oXmlSerializer = new XmlSerializer(typeof(T));
                     oXmlTextWriter = new XmlTextWriter(oMemoryStream, Encoding.UTF8);
+                    
                     oXmlSerializer.Serialize(oXmlTextWriter, obj);
                     oMemoryStream = (MemoryStream)oXmlTextWriter.BaseStream;
                     oUTF8Encoding = new UTF8Encoding();
@@ -59,16 +60,31 @@ namespace EASTester
             try
             {
                 oXmlSerializer = new XmlSerializer(typeof(T));
+                
                 oMemoryStream = new MemoryStream(oUTF8Encoding.GetBytes(xml));
                 oXmlTextWriter = new XmlTextWriter(oMemoryStream, Encoding.UTF8);
+                //oXmlTextWriter.Settings.CheckCharacters = false;
+                //oXmlTextWriter.Settings.ConformanceLevel = ConformanceLevel.Fragment;
+              
                 return (T)oXmlSerializer.Deserialize(oMemoryStream);
+            }
+            catch (System.Xml.XmlException exXML)
+            {
+                Console.WriteLine(exXML.Message);
+                string sError = "Error: " + exXML.Message + "\r\n\r\n" + exXML.InnerException.ToString();
+                MessageBox.Show(sError, "XmlException Error deserializing string.");
+                return default(T);
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                //MessageBox.ShowDialog(ex.Message, "Error deserializing string");
+                string sError = "Error: " + ex.Message + "\r\n\r\n" + ex.InnerException.ToString();
+                MessageBox.Show(sError, "Error deserializing string.");
                 return default(T);
+
             }
+    
 
         }
     }

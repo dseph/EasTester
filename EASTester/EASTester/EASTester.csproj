@@ -126,6 +126,12 @@
     </Compile>
     <Compile Include="TimeHelper.cs" />
     <Compile Include="UserIoHelper.cs" />
+    <Compile Include="ViewHtmlAsWebPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewHtmlAsWebPage.designer.cs">
+      <DependentUpon>ViewHtmlAsWebPage.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DecodeWbxmlBinaryFile.resx">
       <DependentUpon>DecodeWbxmlBinaryFile.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -208,6 +214,9 @@
     <Content Include="Examples\Sync- Inbox - Getchanges Email with HTML body.xml" />
     <Content Include="Examples\Ping.xml" />
     <Content Include="Examples\Provision - second part.xml" />
+    <EmbeddedResource Include="ViewHtmlAsWebPage.resx">
+      <DependentUpon>ViewHtmlAsWebPage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -252,6 +261,7 @@
     <Content Include="Help\CommonStatusCodes.txt" />
     <Content Include="Help\EAS Schema.txt" />
     <Content Include="Help\Http Response Codes.txt" />
+    <Content Include="Help\TextFile1.txt" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />
