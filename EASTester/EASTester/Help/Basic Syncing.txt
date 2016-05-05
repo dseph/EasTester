@@ -1,0 +1,184 @@
+﻿Here is information on basic syncing with EASTester.
+
+1 First part of provisioning:
+-----------------------------
+
+When you first go into the Conversations window the call for the first part of provisioning is defaulted into the request field.  This is the same as the “Provision – first  part.xml” sample file.
+Do the first part of the provision process.  You need to provide information on your device.  What you get back is a temporary policy number and information on the current EAS policies.
+
+<?xml version="1.0" encoding="utf-8"?>
+<Provision xmlns="Provision:" xmlns:settings="Settings:">
+    <settings:DeviceInformation>
+        <settings:Set>
+            <settings:Model>Test 1.0</settings:Model>
+            <settings:IMEI>012345678901234</settings:IMEI>
+            <settings:FriendlyName>My Test App</settings:FriendlyName>
+            <settings:OS>Test OS 1.0</settings:OS>
+            <settings:OSLanguage>English</settings:OSLanguage>
+            <settings:PhoneNumber>555-123-4567</settings:PhoneNumber>
+            <settings:MobileOperator>My Phone Company</settings:MobileOperator>
+            <settings:UserAgent>TestAgent</settings:UserAgent>
+        </settings:Set>
+    </settings:DeviceInformation>
+     <Policies>
+          <Policy>
+               <PolicyType>MS-EAS-Provisioning-WBXML</PolicyType> 
+          </Policy>
+     </Policies>
+</Provision>
+
+In the response I got this: <provision:PolicyKey>4120914974</provision:PolicyKey>
+
+4120914974 is the temporary policy key and it’s going to be used in the second provisioning call in order to get the final policy key.   
+
+2 Second part of the provisioning process:
+------------------------------------------
+
+Load the “Provision - second part.xml” sample file and replace the PolicyKey data with the one from the prior provisioning call. 
+
+<?xml version="1.0" encoding="utf-8"?>
+<Provision xmlns="Provision:">
+  <Policies>
+    <Policy>
+      <PolicyType>MS-EAS-Provisioning-WBXML</PolicyType>
+      <PolicyKey>4120914974</PolicyKey>
+      <Status>1</Status>
+    </Policy>
+  </Policies>
+</Provision>
+
+Copy the provision:PolicyKey and past it into the Policy Key field.
+
+Provisioning is done – at least for now. The final policy key will eventually become invalid when it either is timed out or when they policy gets changed.  When that happens you need to do both parts of the provisioning process again in order to get a new policy key.
+
+3 Getting a list of folders
+---------------------------
+
+You will need to get a list of folders and their types and IDS.  This is done with a FolderSync call.  The data in the response needs to be saved since your later calls will need to know which folder to go against.  In the response the ServerId is the id number of the folder and is referred to later as the CollectionId.  The SyncKey is a watermark which is used to maintain a bookmark of what has and has not been synced.  When a folder is first synced the key of 0 is passed, which tells Exchange to sync back all items.  The response will contain a new SyncKey, which you need to record.  Anytime you get a new sync key in any EAS call you need to make record of it since it will be required in order to get changes.  If you lose your SyncKey then you have to start the syncing of the folder all over since there is no way to retrieve what the last one was.  EAS can work with the last sync key returned or the prior one (in addition to SyncKey 0).
+
+<?xml version="1.0" encoding="utf-8" ?>
+<FolderSync xmlns="FolderHierarchy:">
+  <SyncKey>0</SyncKey>
+</FolderSync>
+
+Below is a partial example of the response.  Note that the returned SyncKey is 1.  If we want to get the changes of the folder hierarchy changes later we would reissue the call above but use SyncKey of 1… which would return a new SyncKey to use next time.
+
+<?xml version="1.0" encoding="utf-8"?>
+<folderhierarchy:FolderSync xmlns:folderhierarchy="FolderHierarchy:">
+  <folderhierarchy:Status>1</folderhierarchy:Status>
+  <folderhierarchy:SyncKey>1</folderhierarchy:SyncKey>
+  <folderhierarchy:Changes>
+    <folderhierarchy:Count>154</folderhierarchy:Count>
+    <folderhierarchy:Add>
+      <folderhierarchy:ServerId>16</folderhierarchy:ServerId>
+      <folderhierarchy:ParentId>0</folderhierarchy:ParentId>
+      <folderhierarchy:DisplayName>Calendar</folderhierarchy:DisplayName>
+      <folderhierarchy:Type>8</folderhierarchy:Type>
+    </folderhierarchy:Add>
+    <folderhierarchy:Add>
+      <folderhierarchy:ServerId>17</folderhierarchy:ServerId>
+      <folderhierarchy:ParentId>16</folderhierarchy:ParentId>
+      <folderhierarchy:DisplayName>abcd</folderhierarchy:DisplayName>
+      <folderhierarchy:Type>12</folderhierarchy:Type>
+
+4 Get all items in a folder:
+----------------------------------
+
+Do a Sync call with a SyncKey of 0.  This gives us back a working SyncKey.  The CollectionID is the ServerID which was returned from the folderhierarchy call.
+
+<?xml version="1.0" encoding="utf-8"?>
+<Sync xmlns="AirSync:">
+  <Collections>
+    <Collection>
+      <SyncKey>0</SyncKey>
+      <CollectionId>64</CollectionId> 
+    </Collection>
+  </Collections>
+</Sync>
+
+<?xml version="1.0" encoding="utf-8"?>
+<airsync:Sync xmlns:airsync="AirSync:">
+  <airsync:Collections>
+    <airsync:Collection>
+      <airsync:SyncKey>1114463138</airsync:SyncKey>
+      <airsync:CollectionId>64</airsync:CollectionId>
+      <airsync:Status>1</airsync:Status>
+    </airsync:Collection>
+  </airsync:Collections>
+</airsync:Sync>
+
+Now use the SyncKey returned from the prior call in a call to sync for all the items in the folder:
+
+<?xml version="1.0" encoding="utf-8"?>
+<Sync xmlns="AirSync:">
+  <Collections>
+    <Collection>
+      <SyncKey>1114463138</SyncKey>
+      <CollectionId>64</CollectionId>
+      <DeletesAsMoves>1</DeletesAsMoves>
+      <WindowSize>512</WindowSize>
+      <Options>
+        <FilterType>4</FilterType>
+        <MIMETruncation>1</MIMETruncation>
+        <MIMESupport>1</MIMESupport>
+        <BodyPreference xmlns="AirSyncBase:">
+          <Type>2</Type>
+          <TruncationSize>5000</TruncationSize>
+        </BodyPreference>
+      </Options>
+    </Collection>
+  </Collections>
+</Sync>
+
+In the response will be all the items in the folder per what you asked for in the request.  Note that you get a new SyncKey.  You will need this to get changes.
+
+5 Get a list item changes in a folder:
+--------------------------------------
+ 
+Here is pretty much the same call as was used in the prior one, however we use the SyncKey from the prior call to get the changes.  If anything was changed in the folder then it will be in the response.
+
+<?xml version="1.0" encoding="utf-8"?>
+<Sync xmlns="AirSync:">
+  <Collections>
+    <Collection>
+      <SyncKey>1802103758</SyncKey>
+      <CollectionId>64</CollectionId>
+      <DeletesAsMoves>1</DeletesAsMoves>
+      <WindowSize>512</WindowSize>
+      <Options>
+        <FilterType>4</FilterType>
+        <MIMETruncation>1</MIMETruncation>
+        <MIMESupport>1</MIMESupport>
+        <BodyPreference xmlns="AirSyncBase:">
+          <Type>2</Type>
+          <TruncationSize>5000</TruncationSize>
+        </BodyPreference>
+      </Options>
+    </Collection>
+  </Collections>
+</Sync>
+
+6 To retrieve a specific item:
+------------------------------
+ 
+<?xml version="1.0" encoding="utf-8"?>
+<ItemOperations xmlns="ItemOperations:" 
+  xmlns:airsync="AirSync:" 
+  xmlns:airsyncbase="AirSyncBase:" 
+  xmlns:email="Email:"
+  xmlns:email2="Email2:">
+  <Fetch>
+    <Store>Mailbox</Store>
+    <airsync:CollectionId>64</airsync:CollectionId>
+    <airsync:ServerId>64:2</airsync:ServerId>
+    <Options>
+      <airsyncbase:BodyPreference>
+        <airsyncbase:Type>2</airsyncbase:Type>
+        <airsyncbase:TruncationSize>10240</airsyncbase:TruncationSize>
+      </airsyncbase:BodyPreference>
+      <Schema>
+         <airsyncbase:Body/>
+      </Schema> 
+    </Options>
+  </Fetch>
+</ItemOperations>
