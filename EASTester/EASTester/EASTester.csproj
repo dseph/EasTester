@@ -272,7 +272,7 @@
     <Content Include="Help\EASResultCodeIndex.html" />
     <Content Include="Help\FirstWindow.html" />
     <Content Include="Help\Help.html" />
-    <Content Include="Help\Hisotory.html" />
+    <Content Include="Help\History.html" />
     <Content Include="Help\HttpResponseCodes.html" />
     <Content Include="Help\Pointers.html" />
     <Content Include="Help\RelatedTools.html" />
