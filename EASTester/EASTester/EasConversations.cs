@@ -687,6 +687,7 @@ namespace EASTester
 
                 sOrigionalResponse = FixSetting(oConnectionSetting.EasResponse).Replace("\n", "\r\n");
                 txtHexResponse.Text = MyHelpers.StringHelper.DumpString(sOrigionalResponse);
+
                 string sCleaned = sOrigionalResponse.Replace("\0", "");
                 this.txtResponse.Text = sCleaned;
                 MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
@@ -826,6 +827,16 @@ namespace EASTester
         private void btnViewInBrowser_Click(object sender, EventArgs e)
         {
             ViewInBrowser oForm = new ViewInBrowser();
+            oForm.Show();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            string sHelpFile = string.Empty;
+            sHelpFile = Application.StartupPath + "\\Help\\" + "Help.html";
+           
+
+            HelpWindow oForm = new HelpWindow(sHelpFile);
             oForm.Show();
         }
  

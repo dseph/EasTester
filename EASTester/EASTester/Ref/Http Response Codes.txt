@@ -121,7 +121,7 @@
 					500.53		A rewrite error occurred during RQ_RELEASE_REQUEST_STATE notification handling. An outbound rule execution error occurred. The rule is configured to be executed before the output user cache gets updated.
 					500.100		Internal ASP error.
 			501		Header values specify a configuration that is not implemented.
-			502.x		Bad gateway.  
+			502.x	Bad gateway.  
 					502.0		Web server received an invalid response while acting as a gateway or proxy. 
 					502.1		CGI application timeout.
 					502.2		Bad gateway: Premature Exit

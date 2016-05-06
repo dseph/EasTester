@@ -56,12 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EasHelp.cs" />
-    <Compile Include="ASCommandRequest.cs" />
-    <Compile Include="ASCommandResponse.cs" />
-    <Compile Include="ASOptionsRequest.cs" />
-    <Compile Include="ASOptionsResponse.cs" />
-    <Compile Include="ASProvisionResponse.cs" />
-    <Compile Include="ASWBXML.cs" />
+    <Compile Include="CoreEAS\ASCommandRequest.cs" />
+    <Compile Include="CoreEAS\ASCommandResponse.cs" />
+    <Compile Include="CoreEAS\ASOptionsRequest.cs" />
+    <Compile Include="CoreEAS\ASOptionsResponse.cs" />
+    <Compile Include="CoreEAS\ASProvisionResponse.cs" />
+    <Compile Include="CoreEAS\ASWBXML.cs" />
     <Compile Include="ConnectionSettings.cs" />
     <Compile Include="DecodeWbxmlBinaryFile.cs">
       <SubType>Form</SubType>
@@ -70,8 +70,8 @@
       <DependentUpon>DecodeWbxmlBinaryFile.cs</DependentUpon>
     </Compile>
     <Compile Include="EncodedRequest.cs" />
-    <Compile Include="ASWBXMLByteQueue.cs" />
-    <Compile Include="ASWBXMLCodePage.cs" />
+    <Compile Include="CoreEAS\ASWBXMLByteQueue.cs" />
+    <Compile Include="CoreEAS\ASWBXMLCodePage.cs" />
     <Compile Include="ChooseExamples.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +85,12 @@
       <DependentUpon>EncodeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WebcontrolHelper.cs" />
+    <Compile Include="HelpWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpWindow.Designer.cs">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="InfoOnEasResponse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,13 +124,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExampleResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SerialHelpercs.cs" />
+    <Compile Include="Helpers\SerialHelpercs.cs" />
     <Compile Include="TemplateRequests.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TemplateRequests.resx</DependentUpon>
     </Compile>
-    <Compile Include="TimeHelper.cs" />
+    <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="UserIoHelper.cs" />
     <Compile Include="ViewHtmlAsWebPage.cs">
       <SubType>Form</SubType>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EncodeForm.resx">
       <DependentUpon>EncodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpWindow.resx">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InfoOnEasResponse.resx">
       <DependentUpon>InfoOnEasResponse.cs</DependentUpon>
@@ -258,10 +267,19 @@
     <Content Include="AppData\CommonStatus.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Help\CommonStatusCodes.txt" />
-    <Content Include="Help\EAS Schema.txt" />
-    <Content Include="Help\Http Response Codes.txt" />
-    <Content Include="Help\TextFile1.txt" />
+    <Content Include="Help\AboutEASTester.html" />
+    <Content Include="Help\BasicSyncing.html" />
+    <Content Include="Help\EASResultCodeIndex.html" />
+    <Content Include="Help\FirstWindow.html" />
+    <Content Include="Help\Help.html" />
+    <Content Include="Help\Hisotory.html" />
+    <Content Include="Help\HttpResponseCodes.html" />
+    <Content Include="Help\Pointers.html" />
+    <Content Include="Help\RelatedTools.html" />
+    <Content Include="Ref\CommonStatusCodes.txt" />
+    <Content Include="Ref\EAS Schema.txt" />
+    <Content Include="Ref\Http Response Codes.txt" />
+    <Content Include="Ref\Basic Syncing.txt" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />
@@ -269,9 +287,11 @@
   <PropertyGroup>
     <PostBuildEvent>md "$(TargetDir)Examples"
 md "$(TargetDir)AppData"
+md "$(TargetDir)Help"
 Copy /Y "$(ProjectDir)Examples\*.*" "$(TargetDir)Examples\*.*"
 Copy /Y "$(ProjectDir)Readme.txt" "$(TargetDir)"
-Copy /Y "$(ProjectDir)AppData\*.*" "$(TargetDir)AppData\*.*"</PostBuildEvent>
+Copy /Y "$(ProjectDir)AppData\*.*" "$(TargetDir)AppData\*.*"
+Copy /Y "$(ProjectDir)Help\*.*" "$(TargetDir)Help\*.*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
