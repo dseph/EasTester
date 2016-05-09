@@ -23,11 +23,15 @@ namespace EASTester
         public string Command = string.Empty;
         public string PolicyKey = string.Empty;
 
-        public string EasRequest = string.Empty;
-        public string EasResponse = string.Empty;
+        public string EasRequest = string.Empty;   // use for the requests from saves prior to changing to encoding the request
+        public string EasResponse = string.Empty; // use for the response from saves prior to changing to encoding the response
+
 
         public string EasResponseInfo = string.Empty;
- 
+
+        public string EncodedEasRequest = string.Empty;   // Request may contain cdata or other content with non-ascii characters - so encode.
+        public string EncodedEasResponse = string.Empty;  // Response may contain cdata or other content with non-ascii characters - so encode.
+
     }
 
 

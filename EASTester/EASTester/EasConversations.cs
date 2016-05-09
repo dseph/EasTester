@@ -13,6 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Xml;
 using System.Collections;
+using MyHelpers;
 
 using VisualSync;
 
@@ -31,7 +32,7 @@ namespace EASTester
             InitializeComponent();
         }
 
-        private void btnRun_Click(object sender, EventArgs e)
+        private void HandleRun()
         {
             bool bError = false;
             txtResponse.Text = string.Empty;
@@ -42,11 +43,14 @@ namespace EASTester
             txtInfo.Text = string.Empty;
             txtInfo.Update();
             MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, "");
-             
+
             ClearStatusCodeInfo();
 
+
+
+
             this.Cursor = Cursors.WaitCursor;
- 
+
 
             // Create credentials for the user
             NetworkCredential cred = null;
@@ -56,7 +60,7 @@ namespace EASTester
             else
                 cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
 
- 
+
             try
             {
                 string sCommand = cmboCommand.Text.Trim();
@@ -66,7 +70,7 @@ namespace EASTester
                 // Initialize the command request
                 ASCommandRequest commandRequest = new ASCommandRequest();
                 commandRequest.Command = sUseCommand; // Ex: "Provision";   cmboCommand.Text.Trim();
-                commandRequest.Credentials = cred; 
+                commandRequest.Credentials = cred;
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
                 commandRequest.ProtocolVersion = cmboVersion.Text.Trim();  //"14.1";
@@ -75,7 +79,7 @@ namespace EASTester
                 commandRequest.User = txtUser.Text.Trim(); // "someuser";
                 commandRequest.UseSSL = chkUseSSL.Checked;
                 commandRequest.UseEncodedRequestLine = true;
- 
+
 
                 UInt32 iPolicyKey = 0;
                 string sPolicyKey = txtPolicyKey.Text.Trim();
@@ -85,7 +89,7 @@ namespace EASTester
                     try
                     {
                         iPolicyKey = Convert.ToUInt32(sPolicyKey);
-                    } 
+                    }
                     catch (FormatException eFormat)
                     {
                         MessageBox.Show("The Policy Key needs to be all numbers.", "Entry Error");
@@ -113,7 +117,7 @@ namespace EASTester
 
                 }
 
-                
+
                 if (chkUseProxy.Checked == true)
                 {
                     commandRequest.SpecifyProxySettings = true;
@@ -129,7 +133,7 @@ namespace EASTester
                     }
 
                 }
- 
+
                 // Create the XML payload
                 commandRequest.XmlString = txtRequest.Text;
 
@@ -141,8 +145,8 @@ namespace EASTester
                     if (commandResponse != null)
                     {
                         // Seen nulls returned - ex: conversation id, which is in a cdata as binary
-                        string sCleaned = commandResponse.XMLString.Replace("\0","");
-                         
+                        string sCleaned = commandResponse.XMLString.Replace("\0", "");
+
                         MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
                         txtResponse.Text = sCleaned;
 
@@ -151,7 +155,7 @@ namespace EASTester
 
                         DisplayStatusCodeInfo(sCleaned);
 
-                         
+
                     }
                     else
                     {
@@ -169,6 +173,62 @@ namespace EASTester
             }
 
             this.Cursor = Cursors.Default;
+
+        }
+
+        private bool CheckEntryForRun()
+        {
+            StringBuilder sbEntryErrors = new StringBuilder();
+            bool bNoEntryErrors = true;
+
+            if (txtServerUrl.Text.Trim().Length == 0)
+            {
+                sbEntryErrors.AppendLine("Mail Domain or address is required.");
+                bNoEntryErrors = false;
+            }
+            else if (txtUser.Text.Trim().Length == 0)
+            {
+                sbEntryErrors.AppendLine("User is required.");
+                bNoEntryErrors = false;
+            }
+            else if (txtPassword.Text.Trim().Length == 0)
+            {
+                sbEntryErrors.AppendLine("Password is required.");
+                bNoEntryErrors = false;
+            }
+            else if (txtUser.Text.Contains("@") == true && txtDomain.Text.Trim().Length != 0)
+            {
+                sbEntryErrors.AppendLine("Don't enter a domain if you enter a UPN (or email address).");
+                bNoEntryErrors = false;
+            }
+            else if (this.cmboVersion.Text.Trim().Length == 0)
+            {
+                sbEntryErrors.AppendLine("EAS Version must be set.");
+                bNoEntryErrors = false;
+            }
+            else if (txtDeviceId.Text.Trim().Length == 0)
+            {
+                sbEntryErrors.AppendLine("Device Id must be set.");
+                bNoEntryErrors = false;
+            }
+            else if (txtDeviceType.Text.Trim().Length == 0)
+            {
+                sbEntryErrors.AppendLine("Device Type must be set.");
+                bNoEntryErrors = false;
+            }
+
+            if (bNoEntryErrors == false)
+            {
+                MessageBox.Show(sbEntryErrors.ToString(), "Entry Error");
+            }
+
+            return bNoEntryErrors;
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            if (CheckEntryForRun() == true)
+                HandleRun();
 
         }
 
@@ -399,6 +459,10 @@ namespace EASTester
         private void btnOptions_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+
+            if (txtDomain.Text.Trim().Length == 0)
+                MessageBox.Show("Domain or address is required", "Entry Error");
+ 
 
             // Create credentials for the user
             NetworkCredential cred = null; // new NetworkCredential("contoso\\deviceuser", "password");
@@ -660,10 +724,10 @@ namespace EASTester
         {
             try
             {
-                this.txtServerUrl.Text = FixSetting(oConnectionSetting.MailDomain);
+                this.txtServerUrl.Text = StringHelper.DeNullString(oConnectionSetting.MailDomain);
 
-                this.txtUser.Text = FixSetting(oConnectionSetting.User);
-                this.txtDomain.Text = FixSetting(oConnectionSetting.Domain);
+                this.txtUser.Text = StringHelper.DeNullString(oConnectionSetting.User);
+                this.txtDomain.Text = StringHelper.DeNullString(oConnectionSetting.Domain);
                 //this.txtPassword.Text = oConnectionSetting.Password;
                 this.chkUseSSL.Checked = oConnectionSetting.UseSSL;
 
@@ -677,22 +741,68 @@ namespace EASTester
                 //else
                 this.chkOverrideSslCertificateVerification.Checked = oConnectionSetting.OverrideSsslCertVerification;
 
-                this.cmboVersion.Text = FixSetting(oConnectionSetting.EasVersion);
-                this.txtDeviceId.Text = FixSetting(oConnectionSetting.DeviceId);
-                this.txtDeviceType.Text = FixSetting(oConnectionSetting.DeviceType);
-                this.cmboCommand.Text = FixSetting(oConnectionSetting.Command);
-                this.txtPolicyKey.Text = FixSetting(oConnectionSetting.PolicyKey);
-                this.txtRequest.Text = FixSetting(oConnectionSetting.EasRequest).Replace("\n", "\r\n");
-                 
+               
+                this.cmboVersion.Text = StringHelper.DeNullString(oConnectionSetting.EasVersion);
+                this.txtDeviceId.Text = StringHelper.DeNullString(oConnectionSetting.DeviceId);
+                this.txtDeviceType.Text = StringHelper.DeNullString(oConnectionSetting.DeviceType);
+                this.cmboCommand.Text = StringHelper.DeNullString(oConnectionSetting.Command);
+                this.txtPolicyKey.Text = StringHelper.DeNullString(oConnectionSetting.PolicyKey);
 
-                sOrigionalResponse = FixSetting(oConnectionSetting.EasResponse).Replace("\n", "\r\n");
+                //this.txtRequest.Text = StringHelper.DeNullString(oConnectionSetting.EasRequest).Replace("\n", "\r\n");
+
+
+                byte[] oFromBytes = null;
+                string sRequest = string.Empty;
+
+ 
+                if ((oConnectionSetting.EncodedEasRequest == "") &&
+                    (oConnectionSetting.EasRequest != ""))
+                {
+                    sRequest = StringHelper.DeNullString(oConnectionSetting.EasRequest).Replace("\n", "\r\n");
+
+                }
+                else
+                {
+                    try
+                    {
+                        oFromBytes = System.Convert.FromBase64String(oConnectionSetting.EncodedEasRequest);
+                        sRequest = System.Text.ASCIIEncoding.ASCII.GetString(oFromBytes);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                        sRequest = "";
+                    }
+                }
+                this.txtRequest.Text = sRequest;
+
+                // response:
+                if ((oConnectionSetting.EncodedEasResponse == "") &&
+                    (oConnectionSetting.EasResponse != ""))
+                {
+                    sOrigionalResponse = StringHelper.DeNullString(oConnectionSetting.EasResponse).Replace("\n", "\r\n");
+                }
+                else
+                {                    
+                    try
+                    {
+                        oFromBytes = System.Convert.FromBase64String(oConnectionSetting.EncodedEasResponse);
+                        sOrigionalResponse = System.Text.ASCIIEncoding.ASCII.GetString(oFromBytes);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                        sOrigionalResponse = "";
+                    }
+                }
                 txtHexResponse.Text = MyHelpers.StringHelper.DumpString(sOrigionalResponse);
 
                 string sCleaned = sOrigionalResponse.Replace("\0", "");
+
                 this.txtResponse.Text = sCleaned;
                 MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
 
-                this.txtInfo.Text =  FixSetting(oConnectionSetting.EasResponseInfo).Replace("\n", "\r\n"); ;
+                this.txtInfo.Text = StringHelper.DeNullString(oConnectionSetting.EasResponseInfo).Replace("\n", "\r\n"); ;
                 
             }
             catch (Exception ex)
@@ -702,14 +812,14 @@ namespace EASTester
  
         }
 
-        private string FixSetting(string sSetting)
-        {
-            if (sSetting == null)
-                return "";
-            else
-                return sSetting;
+        //private string FixSetting(string sSetting)
+        //{
+        //    if (sSetting == null)
+        //        return "";
+        //    else
+        //        return sSetting;
 
-        }
+        //}
 
 
         private void SetConnectionSettingsFromForm(ref ConnectionSetting oConnectionSetting)
@@ -728,10 +838,18 @@ namespace EASTester
             oConnectionSetting.DeviceType = this.txtDeviceType.Text;
             oConnectionSetting.Command = this.cmboCommand.Text;
             oConnectionSetting.PolicyKey = this.txtPolicyKey.Text;
-            oConnectionSetting.EasRequest = this.txtRequest.Text;
-            //oConnectionSetting.EasResponse = this.txtResponse.Text;
-            oConnectionSetting.EasResponse = sOrigionalResponse;
-            //MyHelpers.WebcontrolHelper.Equals(webBrowser1, oConnectionSetting.EasResponse);
+
+          
+            byte[] oFromBytes = null;
+
+            oFromBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(this.txtRequest.Text);
+            oConnectionSetting.EncodedEasRequest  = System.Convert.ToBase64String(oFromBytes);
+           // oConnectionSetting.EasRequest = this.txtRequest.Text;
+
+            oFromBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(sOrigionalResponse);
+            oConnectionSetting.EncodedEasResponse = System.Convert.ToBase64String(oFromBytes);
+            //oConnectionSetting.EasResponse = sOrigionalResponse;
+          
             oConnectionSetting.EasResponseInfo = this.txtInfo.Text;
              
         }

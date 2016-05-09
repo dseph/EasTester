@@ -146,6 +146,7 @@ namespace VisualSync
 
         public ASOptionsResponse GetOptions()
         {
+
             if (credential == null || server == null)
                 throw new InvalidDataException("ASOptionsRequest not initialized.");
 
