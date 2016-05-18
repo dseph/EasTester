@@ -32,6 +32,7 @@ namespace EASTester
  
         private const string XmlEncode = "Xml Encode";
         private const string XmlDecode = "Xml Decode";
+        private const string XmlBeautify = "Beautify XML";
 
         private const string XmlBase64ToHex = "Base 64 to Hex";
         private const string XmlBase64ToHexSpaceDelimited = "Base 64 to Hex - Space delimited";
@@ -67,10 +68,11 @@ namespace EASTester
  
         cmboFrom.Items.Add(XmlEncode);
         cmboFrom.Items.Add(XmlDecode);
+        cmboFrom.Items.Add(XmlBeautify);
 
-        cmboFrom.Items.Add( XmlBase64ToHex);
+        cmboFrom.Items.Add(XmlBase64ToHex);
         cmboFrom.Items.Add(XmlBase64ToHexSpaceDelimited);
-        cmboFrom.Items.Add( XmlHexToBase64);
+        cmboFrom.Items.Add(XmlHexToBase64);
 
         cmboFrom.Items.Add(XmlHexToText);
         cmboFrom.Items.Add(XmlHexToCleanHexText);
@@ -189,23 +191,23 @@ namespace EASTester
                 //    }
                 //    break;
 
-                case XmlEncode:
-                    try
-                    {
+                //case XmlEncode:
+                //    try
+                //    {
                         
                         
-                        XmlDocument oXmlDocument = new XmlDocument();
-                        XmlElement oXmlElement = oXmlDocument.CreateElement("SomeElement");
-                        oXmlElement.InnerText = FromText;
-                        ToText = oXmlElement.InnerXml;
-                        oXmlElement = null;
-                        oXmlDocument = null;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString(), "Error");
-                    }
-                    break;
+                //        XmlDocument oXmlDocument = new XmlDocument();
+                //        XmlElement oXmlElement = oXmlDocument.CreateElement("SomeElement");
+                //        oXmlElement.InnerText = FromText;
+                //        ToText = oXmlElement.InnerXml;
+                //        oXmlElement = null;
+                //        oXmlDocument = null;
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        MessageBox.Show(ex.ToString(), "Error");
+                //    }
+                //    break;
 
                 case XmlBase64ToHex:
                     try
@@ -325,6 +327,88 @@ namespace EASTester
                         MessageBox.Show(ex.ToString(), "Error");
                     }
                     break;
+
+                case XmlEncode:
+                    try
+                    {
+ 
+                        XmlDocument oXmlDocument = new XmlDocument();
+                        XmlElement oXmlElement = oXmlDocument.CreateElement("SomeElement");
+                        oXmlElement.InnerText = FromText;
+                        ToText = oXmlElement.InnerXml;
+                        oXmlElement = null;
+                        oXmlDocument = null; 
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+
+
+                case XmlDecode:
+                    try
+                    {
+                        //ToText = XmlConvert.DecodeName(FromText);
+
+                        XmlDocument oXmlDocument = new XmlDocument();
+                        XmlElement oXmlElement = oXmlDocument.CreateElement("SomeElement");
+                        oXmlElement.InnerXml = FromText;
+                        ToText = oXmlElement.InnerText;
+                        oXmlElement = null;
+                        oXmlDocument = null;
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+
+                case XmlBeautify:
+                    try
+                    {
+
+                        ToText = "";
+
+                        XmlDocument oXmlDocument = new XmlDocument();
+                        oXmlDocument.InnerXml = FromText;
+
+                        try
+                        {
+                            StringBuilder sb = new StringBuilder();
+                            XmlWriterSettings settings = new XmlWriterSettings
+                            {
+                                Indent = true,
+                                IndentChars = "  ",
+                                NewLineChars = "\r\n",
+                                NewLineHandling = NewLineHandling.Replace,
+                                CheckCharacters = false
+                            };
+                            using (XmlWriter writer = XmlWriter.Create(sb, settings))
+                            {
+                                oXmlDocument.Save(writer);
+                                ToText = sb.ToString();
+                                oXmlDocument = null;
+                                settings = null;
+                            }
+                        }
+                        catch (System.Xml.XmlException XmlEx)
+                        {
+                            MessageBox.Show(XmlEx.ToString(), "Error");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString(), "Error");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error");
+                    }
+                    break;
+
 
                 case XmlBase64ToHexDump:
                     try

@@ -184,8 +184,16 @@ namespace VisualSync
             }
             set
             {
+                //// Origional:
+                //policyKey = value;
+                //policyKeyLength = Convert.ToByte(sizeof(UInt32));
+
                 policyKey = value;
-                policyKeyLength = Convert.ToByte(sizeof(UInt32));
+                if (policyKey == 0)
+                    policyKeyLength = Convert.ToByte(0);
+                else
+                    policyKeyLength = Convert.ToByte(sizeof(UInt32));
+                     
             }
         }
 

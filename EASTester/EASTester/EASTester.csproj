@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EasDevice.cs" />
     <Compile Include="EasHelp.cs" />
     <Compile Include="CoreEAS\ASCommandRequest.cs" />
     <Compile Include="CoreEAS\ASCommandResponse.cs" />
@@ -170,6 +171,7 @@
     <EmbeddedResource Include="ExampleResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExampleResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TemplateRequests.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -187,7 +189,9 @@
     <Content Include="AppData\ProvisionStatus - Provision Command Errors.xml" />
     <Content Include="AppData\Provision_Policy_StatusChildOfPolicyResponse_Status.xml" />
     <Content Include="AppData\ProvisionStatus - Child of  Provision.xml" />
-    <Content Include="AppData\ProvisionStatus - Child of Provision.xml" />
+    <Content Include="AppData\ProvisionStatus - Child of Provision.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="AppData\ProvisionStatus - Child of RepoteWipes.xml" />
     <Content Include="AppData\ResolveRecipientsStatus - Child of Availability.xml">
       <SubType>Designer</SubType>
@@ -271,6 +275,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Help\AboutEASTester.html" />
+    <Content Include="Help\AboutThe451Redirect.html" />
     <Content Include="Help\BasicSyncing.html" />
     <Content Include="Help\EASResultCodeIndex.html" />
     <Content Include="Help\FirstWindow.html" />

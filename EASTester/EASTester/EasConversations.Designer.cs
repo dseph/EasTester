@@ -394,6 +394,7 @@
             this.helpProvider1.SetShowHelp(this.txtPolicyKey, true);
             this.txtPolicyKey.Size = new System.Drawing.Size(162, 26);
             this.txtPolicyKey.TabIndex = 21;
+            this.txtPolicyKey.TextChanged += new System.EventHandler(this.txtPolicyKey_TextChanged);
             // 
             // label4
             // 
