@@ -142,6 +142,19 @@ namespace EASTester
                     // Send the request
                     ASCommandResponse commandResponse = commandRequest.GetResponse();
 
+                    float iisStatusCode = (float)commandResponse.HttpResponseStatusCode;
+                    string StatusCode = iisStatusCode.ToString();
+                    string Meaning = string.Empty;
+                    string Cause = string.Empty;
+                    string Resolution = string.Empty;
+                    EASTester.EasHelp oHelp = new EASTester.EasHelp();
+                    oHelp.GetHttpStatusInfo(StatusCode, ref Meaning, ref Cause, ref Resolution);
+                    //MessageBox.Show("IIS Resposne Code: " + StatusCode + "\r\nDescription: " + Meaning);
+
+                    string ResultStatusInfo = string.Empty;
+
+                    ResultStatusInfo = "IIS Resposne Code: " + StatusCode + "  Description: " + Meaning + "\r\n";
+
                     if (commandResponse != null)
                     {
                         // Seen nulls returned - ex: conversation id, which is in a cdata as binary
@@ -153,7 +166,7 @@ namespace EASTester
                         sOrigionalResponse = commandResponse.XMLString;
                         txtHexResponse.Text = MyHelpers.StringHelper.DumpString(sOrigionalResponse);
 
-                        DisplayStatusCodeInfo(sCleaned);
+                        ResultStatusInfo += GetStatusCodeInfoFromEasXmlResponse(sCleaned);
 
 
                     }
@@ -165,6 +178,8 @@ namespace EASTester
                         sOrigionalResponse = string.Empty;
 
                     }
+
+                    this.txtInfo.Text = ResultStatusInfo;
                 }
             }
             catch (Exception ex)
@@ -241,11 +256,12 @@ namespace EASTester
        
         }
 
-        private void DisplayStatusCodeInfo(string sResponse)
+        private string GetStatusCodeInfoFromEasXmlResponse(string sResponse)
         {
             XmlDocument doc = new XmlDocument();
             string sNodeQuery = string.Empty;
             string ResponseCodeToFind = string.Empty;
+            string sReturn = string.Empty;
 
             if (sResponse.Length != 0)
             {
@@ -298,24 +314,24 @@ namespace EASTester
                 foreach (HelpInfo oHelpInfo in oArrayList)
                 {
                     oSB.AppendFormat("Info for:  {0}\r\n", oHelpInfo.InfoFor);
-                    oSB.AppendFormat("    StatusCode:  {0}\r\n", oHelpInfo.StatusCode);
-                    oSB.AppendFormat("    Meaning:  {0}\r\n", oHelpInfo.Meaning);
+                    oSB.AppendFormat("    StatusCode:  {0}  Meaning: {1}\r\n", oHelpInfo.StatusCode, oHelpInfo.Meaning);
                     oSB.AppendFormat("    Cause:  {0}\r\n", oHelpInfo.Cause);
                     oSB.AppendFormat("    Resolution:  {0}\r\n", oHelpInfo.Resolution);
                     oSB.AppendFormat("    Reference: {0}\r\n", oHelpInfo.ReferenceDoc);
                     //oSB.AppendFormat("-------------\r\n");
                 }
 
-                this.txtInfo.Text = oSB.ToString();
+                sReturn = oSB.ToString() + "\r\n";
             }
             else
             {
 
-                this.txtInfo.Text = "The EAS response body was empty, so further information cannot be provided. ";
+                sReturn = "The EAS response body was empty, so further information cannot be provided. \r\n";
             }
 
-            this.txtInfo.Text += "\r\nTime: " + DateTime.Now.ToString();
+            sReturn += "Time: " + DateTime.Now.ToString();
 
+            return sReturn;
         }
 
           
@@ -460,7 +476,7 @@ namespace EASTester
         {
             this.Cursor = Cursors.WaitCursor;
 
-            if (txtDomain.Text.Trim().Length == 0)
+            if (txtServerUrl.Text.Trim().Length == 0)
                 MessageBox.Show("Domain or address is required", "Entry Error");
  
 

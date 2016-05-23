@@ -13,6 +13,9 @@ namespace VisualSync
         private byte[] wbxmlBytes = null;
         private string xmlString = null;
 
+        private HttpStatusCode httpResponseStatusCode =   HttpStatusCode.OK;
+        string httpResponseStatusDescription = string.Empty;
+
         public byte[] WBXMLBytes
         {
             get
@@ -28,6 +31,35 @@ namespace VisualSync
                 return xmlString;
             }
         }
+
+
+        public HttpStatusCode HttpResponseStatusCode
+        {
+            get
+            {
+                return httpResponseStatusCode;
+            }
+            set
+            {
+                httpResponseStatusCode = value;
+            }
+        }
+
+        public string HttpResponseStatusDescription
+        {
+            get
+            {
+                return httpResponseStatusDescription;
+            }
+            set
+            {
+                httpResponseStatusDescription = value;
+            }
+        }
+
+  
+
+ 
 
         public ASCommandResponse(HttpWebResponse httpResponse)
         {
@@ -55,6 +87,10 @@ namespace VisualSync
                 xmlString = string.Empty;  // in the case the response body was empty.
             else
                 xmlString = DecodeWBXML(wbxmlBytes);
+
+            HttpResponseStatusCode = httpResponse.StatusCode;
+            HttpResponseStatusDescription = httpResponse.StatusDescription;
+
         }
 
         public ASCommandResponse(byte[] wbxml)

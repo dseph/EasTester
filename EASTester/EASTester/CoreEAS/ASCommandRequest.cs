@@ -373,21 +373,20 @@ namespace VisualSync
 
                 HttpWebResponse httpResp = (HttpWebResponse)httpReq.GetResponse();
 
-                float iisStatusCode = (float)httpResp.StatusCode;
+                //float iisStatusCode = (float)httpResp.StatusCode;
                  
 
                 ASCommandResponse response = WrapHttpResponse(httpResp);
 
                 httpResp.Close();
 
-                StatusCode = iisStatusCode.ToString();
-                Meaning = string.Empty;
-                Cause = string.Empty;
-                Resolution = string.Empty;
+                //StatusCode = iisStatusCode.ToString();
+                //Meaning = string.Empty;
+                //Cause = string.Empty;
+                //Resolution = string.Empty;
+                //oHelp.GetHttpStatusInfo(StatusCode, ref Meaning, ref Cause, ref Resolution);
 
-                oHelp.GetHttpStatusInfo(StatusCode, ref Meaning, ref Cause, ref Resolution);
-
-                MessageBox.Show("IIS Resposne Code: " + StatusCode + "\r\nDescription: " + Meaning);
+                //MessageBox.Show("IIS Resposne Code: " + StatusCode + "\r\nDescription: " + Meaning);
 
                 return response;
             }
