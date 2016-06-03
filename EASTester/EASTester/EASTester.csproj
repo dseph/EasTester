@@ -87,6 +87,7 @@
     <Compile Include="EncodeForm.Designer.cs">
       <DependentUpon>EncodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EasTesterUtilities.cs" />
     <Compile Include="Helpers\EncodingHelper.cs" />
     <Compile Include="Helpers\WebcontrolHelper.cs" />
     <Compile Include="HelpWindow.cs">
@@ -211,6 +212,8 @@
     <Content Include="AppData\GetItemEstimateStatus.xml" />
     <Content Include="AppData\ValidateCertStatus.xml" />
     <Content Include="Developer notes.txt" />
+    <Content Include="Embedded\BrowserTemplate.html" />
+    <Content Include="Embedded\XmlTransform.xslt" />
     <Content Include="ExampleResponses\Provision Response - first 1.xml" />
     <Content Include="ExampleResponses\Provision response - part 2.xml" />
     <Content Include="Examples\ItemsOperations - Move Conversation.xml" />
