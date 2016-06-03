@@ -55,8 +55,8 @@ namespace EASTester
                     SpecificStatusFile = "GetItemEstimateStatus.xml";   // 2.2.3.162.6 in ms-ascmd
                     DocReference = "See: 2.2.3.162.6 in ms-ascmd" + DocSuffix;
                     break;
-                case "ItemsOperations":
-                    SpecificStatusFile = "ItemsOperationsStatus.xml";   // 2.2.3.162.7 in ms-ascmd
+                case "ItemOperations":
+                    SpecificStatusFile = "ItemOperationsStatus.xml";   // 2.2.3.162.7 in ms-ascmd
                     DocReference = "See: 2.2.3.162.7 in ms-ascmd" + DocSuffix;
                     break;
                 case "MeetingResponse":

@@ -207,7 +207,7 @@
     <Content Include="AppData\SettingsGeneralStatus.xml" />
     <Content Include="AppData\SettingsRightsManagementInformationGet_OofGet_OofSetxDevice_InformationSet_UserInformationGet_Status.xml" />
     <Content Include="AppData\SyncStatus.xml" />
-    <Content Include="AppData\ItemsOperationsStatus.xml" />
+    <Content Include="AppData\ItemOperationsStatus.xml" />
     <Content Include="AppData\GetItemEstimateStatus.xml" />
     <Content Include="AppData\ValidateCertStatus.xml" />
     <Content Include="Developer notes.txt" />

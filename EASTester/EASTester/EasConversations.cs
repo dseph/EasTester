@@ -476,9 +476,13 @@ namespace EASTester
         {
             this.Cursor = Cursors.WaitCursor;
 
+            bool bEntryError = false;
+
             if (txtServerUrl.Text.Trim().Length == 0)
+            {
                 MessageBox.Show("Domain or address is required", "Entry Error");
- 
+                bEntryError = true;
+            }
 
             // Create credentials for the user
             NetworkCredential cred = null; // new NetworkCredential("contoso\\deviceuser", "password");
@@ -511,25 +515,34 @@ namespace EASTester
 
             }
 
-
-            // Send the request
-            ASOptionsResponse optionsResponse = optionsRequest.GetOptions();
-
-            string sResult = string.Empty;
-            StringBuilder s = new StringBuilder();
-            if (optionsResponse != null)
+            if (bEntryError == false)
             {
-                s.Append(string.Format("Supported Versions: {0}\r\n", optionsResponse.SupportedVersions));
-                s.Append(string.Format("Highest Supported Version: {0}\r\n", optionsResponse.HighestSupportedVersion));
-                s.Append(string.Format("Supported Commands: {0}\r\n", optionsResponse.SupportedCommands));
-            }
-            string sResponse = s.ToString();
-            txtResponse.Text = sResponse;
-            txtHexResponse.Text = MyHelpers.StringHelper.DumpString (sResponse);
-            MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sResponse);
-            sOrigionalResponse = sResponse;
-            txtInfo.Text = string.Empty;
+                ASOptionsResponse optionsResponse = null;
+                try
+                {
+                    // Send the request
+                    optionsResponse = optionsRequest.GetOptions();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Error getting OPTIONS");
+                }
 
+                string sResult = string.Empty;
+                StringBuilder s = new StringBuilder();
+                if (optionsResponse != null)
+                {
+                    s.Append(string.Format("Supported Versions: {0}\r\n", optionsResponse.SupportedVersions));
+                    s.Append(string.Format("Highest Supported Version: {0}\r\n", optionsResponse.HighestSupportedVersion));
+                    s.Append(string.Format("Supported Commands: {0}\r\n", optionsResponse.SupportedCommands));
+                }
+                string sResponse = s.ToString();
+                txtResponse.Text = sResponse;
+                txtHexResponse.Text = MyHelpers.StringHelper.DumpString(sResponse);
+                MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sResponse);
+                sOrigionalResponse = sResponse;
+                txtInfo.Text = string.Empty;
+            }
 
             //Console.WriteLine("Supported Versions: {0}\r\n"", optionsResponse.SupportedVersions);
             //Console.WriteLine("Highest Supported Version: {0}\r\n", optionsResponse.HighestSupportedVersion);
