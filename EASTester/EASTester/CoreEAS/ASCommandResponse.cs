@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Xml;
 using VisualSync;
 
 namespace VisualSync
@@ -57,7 +58,7 @@ namespace VisualSync
             }
         }
 
-  
+        public XmlDocument XmlDoc;
 
  
 
@@ -96,7 +97,21 @@ namespace VisualSync
         public ASCommandResponse(byte[] wbxml)
         {
             wbxmlBytes = wbxml;
-            xmlString = DecodeWBXML(wbxmlBytes);
+
+            ASWBXML decoder = new ASWBXML();
+
+            if (wbxml.Length > 0)
+            {
+                decoder.LoadBytes(wbxml);
+                xmlString = decoder.GetXml();
+                //xmlString = DecodeWBXML(wbxmlBytes);
+
+                // Decode with smart view parsing
+                decoder.LoadBytes(wbxml, true);
+                XmlDoc = decoder.GetXmlDoc();
+
+            }
+
         }
 
         private string DecodeWBXML(byte[] wbxml)

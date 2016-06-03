@@ -14,6 +14,7 @@ using System.Net.Security;
 using System.Xml;
 using System.Collections;
 using MyHelpers;
+using EASTester.Helpers;
 
 using VisualSync;
 
@@ -142,6 +143,7 @@ namespace EASTester
                     // Send the request
                     ASCommandResponse commandResponse = commandRequest.GetResponse();
 
+                     
                     float iisStatusCode = (float)commandResponse.HttpResponseStatusCode;
                     string StatusCode = iisStatusCode.ToString();
                     string Meaning = string.Empty;
@@ -159,8 +161,32 @@ namespace EASTester
                     {
                         // Seen nulls returned - ex: conversation id, which is in a cdata as binary
                         string sCleaned = commandResponse.XMLString.Replace("\0", "");
+  
 
-                        MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
+                        string outputDoc = string.Empty;
+                        try
+                        {
+                            XmlDocument oXmlDocument = null;
+                            oXmlDocument = new XmlDocument();
+                            oXmlDocument.LoadXml(sCleaned);
+
+                         
+                            //outputDoc = EasTesterUtilities.TransformXml(oXmlDocument);  // TODO: Get transformation to work.
+                            outputDoc = sCleaned;  // Use old way until I can get it to transform.
+                        
+                
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error in XML repsonse transformation for display.");
+                            bError = true;
+                        }
+
+                        if (bError == false)
+                        {
+                            MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, outputDoc);
+                        }
+                        //MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
                         txtResponse.Text = sCleaned;
 
                         sOrigionalResponse = commandResponse.XMLString;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using VisualSync;
+using EASTester.Helpers;
 
 namespace VisualSync
 {
@@ -838,8 +839,26 @@ namespace VisualSync
             return sw.ToString();
         }
 
+        public XmlDocument GetXmlDoc()
+        {
+            return xmlDoc;
+        }
+
         public void LoadBytes(byte[] byteWBXML)
         {
+            LoadBytes(byteWBXML, false);
+        }
+
+        /// <summary>
+        /// Parse the bytes
+        /// </summary>
+        /// <param name="byteWBXML">Input WBXML byte array</param>
+        /// <param name="smartView">Whether to modify the raw data for easier display</param>
+        public void LoadBytes(byte[] byteWBXML, bool smartView)
+        {
+            // Reset the code page as we call this multiple times
+            currentCodePage = 0;
+
             xmlDoc = new XmlDocument();
 
             ASWBXMLByteQueue bytes = new ASWBXMLByteQueue(byteWBXML);
@@ -899,12 +918,44 @@ namespace VisualSync
                         break;
                     case GlobalTokens.OPAQUE:
                         int CDATALength = bytes.DequeueMultibyteInt();
-                        XmlCDataSection newOpaqueNode = xmlDoc.CreateCDataSection(bytes.DequeueString(CDATALength));
+
+                        string CDATAString = bytes.DequeueString(CDATALength);
+
+                        if (smartView)
+                        {
+                            // In Smart View, try to decode some basic email data
+                            if ((currentNode.Name.ToLower() == "mime" && currentNode.ParentNode.Name.ToLower() == "sendmail") ||
+                                (currentNode.Name.ToLower() == "data" && currentNode.ParentNode.Name.ToLower() == "body"))
+                            {
+                                CDATAString = EasTesterUtilities.DecodeEmailData(CDATAString);
+                            }
+                            else if (currentNode.Name.ToLower() == "conversationid" || currentNode.Name.ToLower() == "conversationindex")
+                            {
+                                // The ConversationId and ConversationIndex are raw bytes in the XML.  This often results in
+                                // null characters which cannot be rendered.  Similar to how Exchange handles this, show
+                                // the ConversationId and ConversationIndex as hex
+                                CDATAString = EasTesterUtilities.GetByteString(Encoding.UTF8.GetBytes(CDATAString));
+                            }
+                        }
+
+                        XmlCDataSection newOpaqueNode = xmlDoc.CreateCDataSection(CDATAString);
                         currentNode.AppendChild(newOpaqueNode);
                         break;
                     case GlobalTokens.STR_I:
-                        XmlNode newTextNode = xmlDoc.CreateTextNode(bytes.DequeueString());
+                        string dataString = bytes.DequeueString();
+
+                        if (smartView)
+                        {
+                            // In Smart View, try to decode some basic email data
+                            if (currentNode.Name.ToLower() == "data" && currentNode.ParentNode.Name.ToLower() == "body")
+                            {
+                                dataString = EasTesterUtilities.DecodeEmailData(dataString);
+                            }
+                        }
+
+                        XmlNode newTextNode = xmlDoc.CreateTextNode(dataString);
                         currentNode.AppendChild(newTextNode);
+
                         break;
                     // According to MS-ASWBXML, these features aren't used
                     case GlobalTokens.ENTITY:
@@ -937,7 +988,7 @@ namespace VisualSync
 
                         if (hasAttributes)
                             // Maybe use Trace.Assert here?
-                            throw new InvalidDataException(string.Format("Token 0x{0:X} has attributes. ", token));
+                            throw new InvalidDataException(string.Format("Token 0x{0:X} has attributes.", token));
 
                         string strTag = codePages[currentCodePage].GetTag(token);
                         if (strTag == null)
@@ -945,8 +996,23 @@ namespace VisualSync
                             strTag = string.Format("UNKNOWN_TAG_{0,2:X}", token);
                         }
 
-                        XmlNode newNode = xmlDoc.CreateElement(codePages[currentCodePage].Xmlns, strTag, codePages[currentCodePage].Namespace);
-                        newNode.Prefix = codePages[currentCodePage].Xmlns;
+                        XmlElement newNode;
+                        if (smartView)
+                        {
+                            // For Smart View, don't display the namespace prefix for easier reading
+                            newNode = xmlDoc.CreateElement(strTag);
+
+                            if (null != codePages[currentCodePage].GetDocRef(token))
+                            {
+                                newNode.SetAttribute("DocRef", codePages[currentCodePage].GetDocRef(token));
+                            }
+                        }
+                        else
+                        {
+                            newNode = xmlDoc.CreateElement(codePages[currentCodePage].Xmlns, strTag, codePages[currentCodePage].Namespace);
+                            newNode.Prefix = codePages[currentCodePage].Xmlns;
+                        }
+
                         currentNode.AppendChild(newNode);
 
                         if (hasContent)
@@ -956,7 +1022,129 @@ namespace VisualSync
                         break;
                 }
             }
+
+            XmlDocument tempDoc = xmlDoc;
         }
+
+        //public void LoadBytes(byte[] byteWBXML)
+        //{
+        //    xmlDoc = new XmlDocument();
+
+        //    ASWBXMLByteQueue bytes = new ASWBXMLByteQueue(byteWBXML);
+
+        //    // Version is ignored
+        //    byte version = bytes.Dequeue();
+
+        //    // Public Identifier is ignored
+        //    int publicIdentifier = bytes.DequeueMultibyteInt();
+
+        //    // Character set
+        //    // Currently only UTF-8 is supported, throw if something else
+        //    int charset = bytes.DequeueMultibyteInt();
+        //    if (charset != 0x6A)
+        //        throw new InvalidDataException("ASWBXML only supports UTF-8 encoded XML.");
+
+        //    // String table length
+        //    // This should be 0, MS-ASWBXML does not use string tables
+        //    int stringTableLength = bytes.DequeueMultibyteInt();
+        //    if (stringTableLength != 0)
+        //        throw new InvalidDataException("WBXML data contains a string table.");
+
+        //    // Now we should be at the body of the data.
+        //    // Add the declaration
+        //    XmlDeclaration xmlDec = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null);
+        //    xmlDoc.InsertBefore(xmlDec, null);
+
+        //    XmlNode currentNode = xmlDoc;
+
+        //    while (bytes.Count > 0)
+        //    {
+        //        byte currentByte = bytes.Dequeue();
+
+        //        switch ((GlobalTokens)currentByte)
+        //        {
+        //            // Check for a global token that we actually implement
+        //            case GlobalTokens.SWITCH_PAGE:
+        //                int newCodePage = (int)bytes.Dequeue();
+        //                if (newCodePage >= 0 && newCodePage < 25)
+        //                {
+        //                    currentCodePage = newCodePage;
+        //                }
+        //                else
+        //                {
+        //                    throw new InvalidDataException(string.Format("Unknown code page ID 0x{0:X} encountered in WBXML", currentByte));
+        //                }
+        //                break;
+        //            case GlobalTokens.END:
+        //                if (currentNode.ParentNode != null)
+        //                {
+        //                    currentNode = currentNode.ParentNode;
+        //                }
+        //                else
+        //                {
+        //                    throw new InvalidDataException("END global token encountered out of sequence");
+        //                }
+        //                break;
+        //            case GlobalTokens.OPAQUE:
+        //                int CDATALength = bytes.DequeueMultibyteInt();
+        //                XmlCDataSection newOpaqueNode = xmlDoc.CreateCDataSection(bytes.DequeueString(CDATALength));
+        //                currentNode.AppendChild(newOpaqueNode);
+        //                break;
+        //            case GlobalTokens.STR_I:
+        //                XmlNode newTextNode = xmlDoc.CreateTextNode(bytes.DequeueString());
+        //                currentNode.AppendChild(newTextNode);
+        //                break;
+        //            // According to MS-ASWBXML, these features aren't used
+        //            case GlobalTokens.ENTITY:
+        //            case GlobalTokens.EXT_0:
+        //            case GlobalTokens.EXT_1:
+        //            case GlobalTokens.EXT_2:
+        //            case GlobalTokens.EXT_I_0:
+        //            case GlobalTokens.EXT_I_1:
+        //            case GlobalTokens.EXT_I_2:
+        //            case GlobalTokens.EXT_T_0:
+        //            case GlobalTokens.EXT_T_1:
+        //            case GlobalTokens.EXT_T_2:
+        //            case GlobalTokens.LITERAL:
+        //            case GlobalTokens.LITERAL_A:
+        //            case GlobalTokens.LITERAL_AC:
+        //            case GlobalTokens.LITERAL_C:
+        //            case GlobalTokens.PI:
+        //            case GlobalTokens.STR_T:
+        //                throw new InvalidDataException(string.Format("Encountered unknown global token 0x{0:X}.", currentByte));
+
+        //            // If it's not a global token, it should be a tag
+        //            default:
+        //                bool hasAttributes = false;
+        //                bool hasContent = false;
+
+        //                hasAttributes = (currentByte & 0x80) > 0;
+        //                hasContent = (currentByte & 0x40) > 0;
+
+        //                byte token = (byte)(currentByte & 0x3F);
+
+        //                if (hasAttributes)
+        //                    // Maybe use Trace.Assert here?
+        //                    throw new InvalidDataException(string.Format("Token 0x{0:X} has attributes. ", token));
+
+        //                string strTag = codePages[currentCodePage].GetTag(token);
+        //                if (strTag == null)
+        //                {
+        //                    strTag = string.Format("UNKNOWN_TAG_{0,2:X}", token);
+        //                }
+
+        //                XmlNode newNode = xmlDoc.CreateElement(codePages[currentCodePage].Xmlns, strTag, codePages[currentCodePage].Namespace);
+        //                newNode.Prefix = codePages[currentCodePage].Xmlns;
+        //                currentNode.AppendChild(newNode);
+
+        //                if (hasContent)
+        //                {
+        //                    currentNode = newNode;
+        //                }
+        //                break;
+        //        }
+        //    }
+        //}
 
         public byte[] GetBytes()
         {
