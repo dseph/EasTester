@@ -178,6 +178,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TemplateRequests.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="AppData\FindStatus.xml" />
     <Content Include="AppData\FolderCreateStatus.xml" />
     <Content Include="AppData\FolderDeleteStatus.xml" />
     <Content Include="AppData\FolderSyncStatus.xml" />

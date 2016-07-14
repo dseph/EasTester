@@ -463,6 +463,43 @@
       Delete partnerships on the server before proceeding.
     </Resolution>
   </Status>
+  <Status ID="178">
+    <Meaning>InvalidMimeBody Combination</Meaning>
+    <Cause>
+     The SmartForward command request included elements that are not allowed to be combined with either the Forwardees element (section 2.2.3.79) or the airsyncbase:Body element ([MS-ASAIRS] section 2.2.2.9), as specified in section 2.2.3.168.
+    </Cause>
+    <Scope></Scope>
+    <Resolution>
+       
+    </Resolution>
+  </Status>
+  <Status ID="179">
+    <Meaning>InvalidSmartForwardParameters</Meaning>
+    <Cause>
+      The Forwardees element or the airsyncbase:Body element in the SmartForward command request could not be parsed.
+    </Cause>
+    <Scope></Scope>
+    <Resolution>
+    </Resolution>
+  </Status>
+  <Status ID="183">
+    <Meaning>InvalidRecipients</Meaning>
+    <Cause>
+      A draft email either has no recipients or has a recipient email address that is not in valid SMTP format.
+    </Cause>
+    <Scope></Scope>
+    <Resolution>
+    </Resolution>
+  </Status>
+  <Status ID="184">
+    <Meaning>OneOrMoreExceptionsFailed</Meaning>
+    <Cause>
+      The server failed to successfully save all of the exceptions specified in a Sync command request (section 2.2.2.21) to add a calendar series with exceptions. This code will be returned on the item level, and the client SHOULD check the status on each of the exceptions to see which ones failed and just resend those.
+    </Cause>
+    <Scope></Scope>
+    <Resolution>
+    </Resolution>
+  </Status>
 </StatusCodes>
 
 

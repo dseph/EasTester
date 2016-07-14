@@ -57,6 +57,7 @@
             this.btnSaveExample = new System.Windows.Forms.Button();
             this.btnLoadExample = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.txtCertAuthFile = new System.Windows.Forms.TextBox();
             this.btnEncodingHelper = new System.Windows.Forms.Button();
             this.btnLoadSettings = new System.Windows.Forms.Button();
             this.btnSaveSettings = new System.Windows.Forms.Button();
@@ -89,7 +90,6 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chkUseCertAuth = new System.Windows.Forms.CheckBox();
-            this.txtCertAuthFile = new System.Windows.Forms.TextBox();
             this.btnSelectCertFile = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -301,6 +301,7 @@
             "SendMail",
             "SmartForward",
             "SmartReply",
+            "Find",
             "FolderSync",
             "FolderCreate",
             "FolderDelete",
@@ -316,7 +317,8 @@
             "Search",
             "Settings",
             "Sync",
-            "ValidateCert"});
+            "ValidateCert",
+            "Find"});
             this.cmboCommand.Location = new System.Drawing.Point(384, 124);
             this.cmboCommand.Margin = new System.Windows.Forms.Padding(4);
             this.cmboCommand.Name = "cmboCommand";
@@ -430,6 +432,17 @@
             this.btnLoadExample.Text = "Load Example";
             this.btnLoadExample.UseVisualStyleBackColor = true;
             this.btnLoadExample.Click += new System.EventHandler(this.btnLoadExample_Click);
+            // 
+            // txtCertAuthFile
+            // 
+            this.helpProvider1.SetHelpString(this.txtCertAuthFile, "Domain of the user. If you entered an  SMTP address into the User field, then lea" +
+        "ve this field blank.");
+            this.txtCertAuthFile.Location = new System.Drawing.Point(105, 77);
+            this.txtCertAuthFile.Margin = new System.Windows.Forms.Padding(0);
+            this.txtCertAuthFile.Name = "txtCertAuthFile";
+            this.helpProvider1.SetShowHelp(this.txtCertAuthFile, true);
+            this.txtCertAuthFile.Size = new System.Drawing.Size(141, 22);
+            this.txtCertAuthFile.TabIndex = 3;
             // 
             // btnEncodingHelper
             // 
@@ -683,7 +696,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(946, 202);
+            this.tabPage2.Size = new System.Drawing.Size(941, 181);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Text  Rendered";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -699,7 +712,7 @@
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(938, 194);
+            this.txtResponse.Size = new System.Drawing.Size(933, 173);
             this.txtResponse.TabIndex = 16;
             this.txtResponse.WordWrap = false;
             this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged_1);
@@ -710,7 +723,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(946, 202);
+            this.tabPage3.Size = new System.Drawing.Size(941, 181);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Hex";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -726,7 +739,7 @@
             this.txtHexResponse.Multiline = true;
             this.txtHexResponse.Name = "txtHexResponse";
             this.txtHexResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtHexResponse.Size = new System.Drawing.Size(946, 202);
+            this.txtHexResponse.Size = new System.Drawing.Size(941, 181);
             this.txtHexResponse.TabIndex = 17;
             this.txtHexResponse.WordWrap = false;
             // 
@@ -785,17 +798,6 @@
             this.chkUseCertAuth.Text = "Cert Auth:";
             this.chkUseCertAuth.UseVisualStyleBackColor = true;
             this.chkUseCertAuth.CheckedChanged += new System.EventHandler(this.chkUseCertAuth_CheckedChanged);
-            // 
-            // txtCertAuthFile
-            // 
-            this.helpProvider1.SetHelpString(this.txtCertAuthFile, "Domain of the user. If you entered an  SMTP address into the User field, then lea" +
-        "ve this field blank.");
-            this.txtCertAuthFile.Location = new System.Drawing.Point(105, 77);
-            this.txtCertAuthFile.Margin = new System.Windows.Forms.Padding(0);
-            this.txtCertAuthFile.Name = "txtCertAuthFile";
-            this.helpProvider1.SetShowHelp(this.txtCertAuthFile, true);
-            this.txtCertAuthFile.Size = new System.Drawing.Size(141, 22);
-            this.txtCertAuthFile.TabIndex = 3;
             // 
             // btnSelectCertFile
             // 

@@ -71,6 +71,10 @@ namespace EASTester
                     SpecificStatusFile = "PingStatus.xml";  // 2.2.3.162.10 in ms-ascmd
                     DocReference = "See: 2.2.3.162.10 in ms-ascmd" + DocSuffix;
                     break;
+                case "Find":
+                    SpecificStatusFile = "FindStatus.xml";  // 2.2.3.162.10 in ms-ascmd
+                    DocReference = "See: 2.2.3.69 in ms-ascmd" + DocSuffix;
+                    break;
 
                 // 
                 //case "ResolveRecipients":

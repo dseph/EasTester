@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASCMD - 2.2.3.162.4 Status (FolderSync) -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success</Meaning>
+    <Cause>Server successfully completed command. </Cause>
+    <Scope></Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>The request was invalid.</Meaning>
+    <Cause>
+      The client must reformat the request and try again.
+    </Cause>
+    <Scope></Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>FolderSync required. </Meaning>
+    <Cause>The folder hierarchy is out of date. </Cause>
+    <Scope></Scope>
+    <Resolution>Issue a FolderSync command (section 2.2.2.5) and then try the Find command again.</Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>StartWithRangeZero</Meaning>
+    <Cause>The requested range does not begin with 0. </Cause>
+    <Scope></Scope>
+    <Resolution>
+      Issue a new Find request with a Range value that begins with 0.
+    </Resolution>
+  </Status>
+
+</StatusCodes>
