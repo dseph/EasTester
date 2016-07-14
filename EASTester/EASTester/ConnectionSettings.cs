@@ -9,10 +9,14 @@ namespace EASTester
     {
   
         public string MailDomain = string.Empty;
- 
+
+        public bool UseCertificateAuthentication = false;
+        public string CertificateFile = string.Empty;
+
         public string User = string.Empty;
         public string Domain = string.Empty;
         public string Password = string.Empty;
+
         public bool UseSSL = false;
         public bool OverrideSsslCertVerification = false;
 

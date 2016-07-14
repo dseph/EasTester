@@ -6,6 +6,8 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using VisualSync;
+
+using System.Security.Cryptography.X509Certificates;
  
 namespace VisualSync
 {
@@ -28,6 +30,9 @@ namespace VisualSync
 
         private NetworkCredential credential = null;
         private string server = null;
+        private bool useCertificateAuthentication = false;
+        private string certificateFile = null;
+
         private bool useSSL = true;
         private byte[] wbxmlBytes = null;
         private string xmlString = null;
@@ -153,6 +158,32 @@ namespace VisualSync
                 server = value;
             }
         }
+
+        public bool UseCertificateAuthentication
+        {
+            get
+            {
+                return useCertificateAuthentication;
+            }
+            set
+            {
+                useCertificateAuthentication = value;
+            }
+        }
+
+        public string CertificateFile
+        {
+            get
+            {
+                return certificateFile;
+            }
+            set
+            {
+                certificateFile = value;
+            }
+        }
+ 
+ 
 
         public bool UseSSL
         {
@@ -316,18 +347,44 @@ namespace VisualSync
 
             GenerateXMLPayload();
 
-            if (Credentials == null || Server == null || ProtocolVersion == null || WbxmlBytes == null)
-                throw new InvalidDataException("ASCommandRequest not initialized.");
+            if (ProtocolVersion == null)
+                throw new InvalidDataException("ASCommandRequest not initialized - Protocol version not specified.");
+
+            if (ProtocolVersion == null)
+                throw new InvalidDataException("ASCommandRequest not initialized - EAS Protocol version must be set");
+
+            if (WbxmlBytes == null)
+                throw new InvalidDataException("ASCommandRequest not initialized - Request is empty.");
+
+            if (Server == null)
+                throw new InvalidDataException("ASCommandRequest not initialized - Server must be specified.");
+
+            if (Credentials == null && useCertificateAuthentication == false)
+                throw new InvalidDataException("ASCommandRequest not initialized for authentication.");
+
+            if (useCertificateAuthentication == true && certificateFile.Length == 0)
+                throw new InvalidDataException("ASCommandRequest not initialized - Certificate file must be specified.");
 
             string uriString = string.Format("{0}//{1}/Microsoft-Server-ActiveSync?{2}",
                 useSSL ? "https:" : "http:", server, RequestLine);
             Uri serverUri = new Uri(uriString);
-            CredentialCache creds = new CredentialCache();
-            // Using Basic authentication
-            creds.Add(serverUri, "Basic", credential);
 
+ 
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(uriString);
-            httpReq.Credentials = creds;
+            if (useCertificateAuthentication == true)
+            {
+                string sCert = File.ReadAllText(certificateFile);
+                httpReq.ClientCertificates.Add(X509Certificate.CreateFromCertFile(certificateFile)); 
+         
+            }
+            else
+            {
+                CredentialCache creds = new CredentialCache();
+                // Using Basic authentication
+                creds.Add(serverUri, "Basic", credential);
+                httpReq.Credentials = creds;
+            }
+             
             httpReq.Method = "POST";
             httpReq.ContentType = "application/vnd.ms-sync.wbxml";
 

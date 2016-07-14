@@ -47,8 +47,7 @@ namespace EASTester
 
             ClearStatusCodeInfo();
 
-
-
+ 
 
             this.Cursor = Cursors.WaitCursor;
 
@@ -56,11 +55,17 @@ namespace EASTester
             // Create credentials for the user
             NetworkCredential cred = null;
 
-            if (txtDomain.Text.Trim().Length != 0)
-                cred = new NetworkCredential(txtDomain.Text.Trim() + "\\" + txtUser.Text.Trim(), txtPassword.Text.Trim());
+            if (this.chkUseCertAuth.Checked == false)
+            {
+                if (txtDomain.Text.Trim().Length != 0)
+                    cred = new NetworkCredential(txtDomain.Text.Trim() + "\\" + txtUser.Text.Trim(), txtPassword.Text.Trim());
+                else
+                    cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
+            }
             else
-                cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
+            {
 
+            }
 
             try
             {
@@ -72,6 +77,8 @@ namespace EASTester
                 ASCommandRequest commandRequest = new ASCommandRequest();
                 commandRequest.Command = sUseCommand; // Ex: "Provision";   cmboCommand.Text.Trim();
                 commandRequest.Credentials = cred;
+                commandRequest.UseCertificateAuthentication = this.chkUseCertAuth.Checked;
+                commandRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
                 commandRequest.ProtocolVersion = cmboVersion.Text.Trim();  //"14.1";
@@ -80,7 +87,7 @@ namespace EASTester
                 commandRequest.User = txtUser.Text.Trim(); // "someuser";
                 commandRequest.UseSSL = chkUseSSL.Checked;
                 commandRequest.UseEncodedRequestLine = true;
-
+                 
 
                 UInt32 iPolicyKey = 0;
                 string sPolicyKey = txtPolicyKey.Text.Trim();
@@ -227,37 +234,50 @@ namespace EASTester
                 sbEntryErrors.AppendLine("Mail Domain or address is required.");
                 bNoEntryErrors = false;
             }
-            else if (txtUser.Text.Trim().Length == 0)
-            {
-                sbEntryErrors.AppendLine("User is required.");
-                bNoEntryErrors = false;
-            }
-            else if (txtPassword.Text.Trim().Length == 0)
-            {
-                sbEntryErrors.AppendLine("Password is required.");
-                bNoEntryErrors = false;
-            }
-            else if (txtUser.Text.Contains("@") == true && txtDomain.Text.Trim().Length != 0)
-            {
-                sbEntryErrors.AppendLine("Don't enter a domain if you enter a UPN (or email address).");
-                bNoEntryErrors = false;
-            }
-            else if (this.cmboVersion.Text.Trim().Length == 0)
+            if (this.cmboVersion.Text.Trim().Length == 0)
             {
                 sbEntryErrors.AppendLine("EAS Version must be set.");
                 bNoEntryErrors = false;
             }
-            else if (txtDeviceId.Text.Trim().Length == 0)
+            if (txtDeviceId.Text.Trim().Length == 0)
             {
                 sbEntryErrors.AppendLine("Device Id must be set.");
                 bNoEntryErrors = false;
             }
-            else if (txtDeviceType.Text.Trim().Length == 0)
+            if (txtDeviceType.Text.Trim().Length == 0)
             {
                 sbEntryErrors.AppendLine("Device Type must be set.");
                 bNoEntryErrors = false;
             }
 
+            if (this.chkUseCertAuth.Checked == true)
+            {
+                if (this.txtCertAuthFile.Text.Trim().Length == 0)
+                {
+                    sbEntryErrors.AppendLine("Certificate file must be selected.");
+                    bNoEntryErrors = false;
+                }
+            }
+            else
+            {   
+ 
+                if (txtUser.Text.Trim().Length == 0)
+                {
+                    sbEntryErrors.AppendLine("User is required.");
+                    bNoEntryErrors = false;
+                }
+                if (txtPassword.Text.Trim().Length == 0)
+                {
+                    sbEntryErrors.AppendLine("Password is required.");
+                    bNoEntryErrors = false;
+                }
+                if (txtUser.Text.Contains("@") == true && txtDomain.Text.Trim().Length != 0)
+                {
+                    sbEntryErrors.AppendLine("Don't enter a domain if you enter a UPN (or email address).");
+                    bNoEntryErrors = false;
+                }
+            }
+ 
             if (bNoEntryErrors == false)
             {
                 MessageBox.Show(sbEntryErrors.ToString(), "Entry Error");
@@ -716,6 +736,7 @@ namespace EASTester
 
         private void btnLoadExample_Click(object sender, EventArgs e)
         {
+          
             string sInitialDirectory = Application.StartupPath + "\\Examples";
 
             string sSuggestedFilename = "*.xml";
@@ -780,6 +801,9 @@ namespace EASTester
             try
             {
                 this.txtServerUrl.Text = StringHelper.DeNullString(oConnectionSetting.MailDomain);
+
+                this.chkUseCertAuth.Checked = oConnectionSetting.UseCertificateAuthentication;
+                this.txtCertAuthFile.Text = StringHelper.DeNullString(oConnectionSetting.CertificateFile);
 
                 this.txtUser.Text = StringHelper.DeNullString(oConnectionSetting.User);
                 this.txtDomain.Text = StringHelper.DeNullString(oConnectionSetting.Domain);
@@ -882,6 +906,9 @@ namespace EASTester
 
 
             oConnectionSetting.MailDomain = this.txtServerUrl.Text;
+
+            oConnectionSetting.UseCertificateAuthentication = chkUseCertAuth.Checked;
+            oConnectionSetting.CertificateFile = this.txtCertAuthFile.Text;
 
             oConnectionSetting.User = this.txtUser.Text;
             oConnectionSetting.Domain = this.txtDomain.Text;
@@ -1016,6 +1043,50 @@ namespace EASTester
         private void txtPolicyKey_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkUseCertAuth_CheckedChanged(object sender, EventArgs e)
+        {
+            SetCertAuthCheckedState();
+        }
+
+        private void SetCertAuthCheckedState()
+        {
+            if (chkUseCertAuth.Checked == true)
+            {
+                this.txtCertAuthFile.Enabled = true;
+                this.btnSelectCertFile.Enabled = true;
+
+                this.txtUser.Enabled = false;
+                this.txtPassword.Enabled = false;
+                this.txtDomain.Enabled = false;
+
+            }
+            else
+            {
+                this.txtCertAuthFile.Enabled = false;
+                this.btnSelectCertFile.Enabled = false;
+
+                this.txtUser.Enabled = true;
+                this.txtPassword.Enabled = true;
+                this.txtDomain.Enabled = true;
+            }
+        }
+
+        private void btnSelectCertFile_Click(object sender, EventArgs e)
+        {
+            string sFile = string.Empty;
+
+            string sInitialDirectory = Application.StartupPath + "\\Examples";
+ 
+            string sSuggestedFilename = "*.cer";
+            string sSelectedfile = string.Empty;
+            string sFilter = "Cer files (*.cer)|*.cer|All files (*.*)|*.*";
+ 
+            if (MyHelpers.UserIoHelper.PickLoadFromFile(sInitialDirectory, sSuggestedFilename, ref  sSelectedfile, sFilter))
+            {
+                txtCertAuthFile.Text = sSelectedfile;
+            }
         }
  
     }
