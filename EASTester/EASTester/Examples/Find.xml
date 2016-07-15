@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Find xmlns:A0="AirSync:" xmlns:A2="Email:" xmlns="Find:">
+  <SearchId>7dc6ffa0-2aa5-43f6-b441-bdda13785428</SearchId>
+  <ExecuteSearch>
+    <MailBoxSearchCriterion>
+      <Query>
+        <A0:Class>Email</A0:Class>
+        <FreeText>subject: mobile</FreeText>
+      </Query>
+      <Options>
+        <Range>0-5</Range>
+      </Options>
+    </MailBoxSearchCriterion>
+  </ExecuteSearch>
+</Find>

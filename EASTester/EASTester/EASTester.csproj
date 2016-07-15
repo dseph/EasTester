@@ -217,9 +217,20 @@
     <Content Include="Embedded\XmlTransform.xslt" />
     <Content Include="ExampleResponses\Provision Response - first 1.xml" />
     <Content Include="ExampleResponses\Provision response - part 2.xml" />
+    <Content Include="Examples\Find.xml" />
+    <Content Include="Examples\FolderCreate.xml" />
+    <Content Include="Examples\FolerUpdate.xml" />
     <Content Include="Examples\ItemsOperations - Move Conversation.xml" />
+    <Content Include="Examples\MeetingResponse - Responding to Meeting Requests by Using the MeetingResponse Command.xml" />
+    <Content Include="Examples\MoveItems.xml" />
+    <Content Include="Examples\ResolveRecipients  - Resolving Recipients and Retrieving Free-Busy Data by Using the ResolveRecipients Command.xml" />
+    <Content Include="Examples\ResolveRecipients  - Retrieving Free-Busy Data By Using the ResolveRecipients Command.xml" />
+    <Content Include="Examples\Search the GAL.xml" />
+    <Content Include="Examples\Search2.xml" />
+    <Content Include="Examples\SendMail - Meeting Request.xml" />
     <Content Include="Examples\SendMail - NewFormat.xml" />
     <Content Include="Examples\SendMail.xml" />
+    <Content Include="Examples\SerachWithMimeSupport.xml" />
     <Content Include="Examples\Settings - DevicePassword - Set.xml" />
     <Content Include="Examples\Settings - Oof - Get.xml">
       <SubType>Designer</SubType>
@@ -231,6 +242,8 @@
     <Content Include="Examples\Settings - Oof - Set - just state.xml" />
     <Content Include="Examples\Settings - Oof - Set.xml" />
     <Content Include="Examples\SmartReply.xml" />
+    <Content Include="Examples\Sync - Add a Meeting request to Atendees Inbox folder.xml" />
+    <Content Include="Examples\Sync - Upload Meeting to Server.xml" />
     <Content Include="Examples\Sync- Inbox - Getchanges Email with HTML body.xml" />
     <Content Include="Examples\Ping.xml" />
     <Content Include="Examples\Provision - second part.xml" />
@@ -278,6 +291,7 @@
     <Content Include="AppData\CommonStatus.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Examples\ValidateCert - Validating Certificates by Using the ValidateCert Command.xml" />
     <Content Include="Help\AboutEASTester.html" />
     <Content Include="Help\AboutThe451Redirect.html" />
     <Content Include="Help\BasicSyncing.html" />

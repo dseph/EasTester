@@ -13,7 +13,7 @@
       The client has sent a malformed or invalid item.
       The request is referencing an item other than a meeting request, email, or calendar item.
       The request points to an appointment in which the user is the organizer.
-      The InstanceId element (section 2.2.3.83.1) specifies an email meeting request item.
+      The InstanceId element (section 2.2.3.91.1) specifies an email meeting request item.
       The InstanceId element specifies a nonexistent instance or is null.
     </Cause>
     <Scope>Item</Scope>

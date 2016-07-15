@@ -39,7 +39,7 @@
   </Status>
   <Status ID="11">
     <Meaning>An error occurred on the server.</Meaning>
-    <Cause>An unknown error occurred.</Cause>
+    <Cause>Unusual back-end issue.</Cause>
     <Scope></Scope>
     <Resolution>None.</Resolution>
   </Status>
