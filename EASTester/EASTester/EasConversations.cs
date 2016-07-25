@@ -64,7 +64,10 @@ namespace EASTester
             }
             else
             {
-
+                //if (txtDomain.Text.Trim().Length != 0)
+                //    cred = new NetworkCredential(txtDomain.Text.Trim() + "\\" + txtUser.Text.Trim(), txtPassword.Text.Trim());
+                //else
+                //    cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
             }
 
             try
@@ -397,7 +400,7 @@ namespace EASTester
 
         private void frmRawEAS_Load(object sender, EventArgs e)
         {
- 
+            SetCertAuthCheckedState();
 
             ServicePointManager.ServerCertificateValidationCallback = CertificateValidationCallBack;
 
@@ -1079,9 +1082,9 @@ namespace EASTester
 
             string sInitialDirectory = Application.StartupPath + "\\Examples";
  
-            string sSuggestedFilename = "*.cer";
+            string sSuggestedFilename = "*.pfx";
             string sSelectedfile = string.Empty;
-            string sFilter = "Cer files (*.cer)|*.cer|All files (*.*)|*.*";
+            string sFilter = "PFX files (*.pfx)|*.pfx|Cer files (*.cer)|*.cer|All files (*.*)|*.*";
  
             if (MyHelpers.UserIoHelper.PickLoadFromFile(sInitialDirectory, sSuggestedFilename, ref  sSelectedfile, sFilter))
             {

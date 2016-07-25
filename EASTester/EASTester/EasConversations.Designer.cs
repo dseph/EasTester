@@ -107,7 +107,7 @@
             // 
             this.helpProvider1.SetHelpString(this.txtDomain, "Domain of the user. If you entered an  SMTP address into the User field, then lea" +
         "ve this field blank.");
-            this.txtDomain.Location = new System.Drawing.Point(98, 151);
+            this.txtDomain.Location = new System.Drawing.Point(105, 153);
             this.txtDomain.Margin = new System.Windows.Forms.Padding(0);
             this.txtDomain.Name = "txtDomain";
             this.helpProvider1.SetShowHelp(this.txtDomain, true);
@@ -117,7 +117,7 @@
             // txtPassword
             // 
             this.helpProvider1.SetHelpString(this.txtPassword, "User password.");
-            this.txtPassword.Location = new System.Drawing.Point(98, 128);
+            this.txtPassword.Location = new System.Drawing.Point(105, 129);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(0);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -129,7 +129,7 @@
             // txtUser
             // 
             this.helpProvider1.SetHelpString(this.txtUser, "User alias or smtp address.");
-            this.txtUser.Location = new System.Drawing.Point(98, 105);
+            this.txtUser.Location = new System.Drawing.Point(105, 105);
             this.txtUser.Margin = new System.Windows.Forms.Padding(0);
             this.txtUser.Name = "txtUser";
             this.helpProvider1.SetShowHelp(this.txtUser, true);
@@ -139,7 +139,7 @@
             // lblDomain
             // 
             this.lblDomain.AutoSize = true;
-            this.lblDomain.Location = new System.Drawing.Point(7, 156);
+            this.lblDomain.Location = new System.Drawing.Point(25, 150);
             this.lblDomain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDomain.Name = "lblDomain";
             this.lblDomain.Size = new System.Drawing.Size(60, 17);
@@ -149,7 +149,7 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(7, 131);
+            this.lblPassword.Location = new System.Drawing.Point(25, 125);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(73, 17);
@@ -159,7 +159,7 @@
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(7, 105);
+            this.lblUser.Location = new System.Drawing.Point(25, 99);
             this.lblUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(42, 17);
@@ -169,11 +169,11 @@
             // txtServerUrl
             // 
             this.helpProvider1.SetHelpString(this.txtServerUrl, "Mailbox domain or address.  Example: contoso.com");
-            this.txtServerUrl.Location = new System.Drawing.Point(142, 46);
+            this.txtServerUrl.Location = new System.Drawing.Point(130, 46);
             this.txtServerUrl.Margin = new System.Windows.Forms.Padding(0);
             this.txtServerUrl.Name = "txtServerUrl";
             this.helpProvider1.SetShowHelp(this.txtServerUrl, true);
-            this.txtServerUrl.Size = new System.Drawing.Size(146, 22);
+            this.txtServerUrl.Size = new System.Drawing.Size(396, 22);
             this.txtServerUrl.TabIndex = 1;
             this.txtServerUrl.TextChanged += new System.EventHandler(this.txtServerUrl_TextChanged);
             // 
@@ -190,7 +190,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(294, 45);
+            this.lblVersion.Location = new System.Drawing.Point(300, 81);
             this.lblVersion.Margin = new System.Windows.Forms.Padding(1);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(91, 17);
@@ -203,13 +203,12 @@
             this.cmboVersion.FormattingEnabled = true;
             this.cmboVersion.ItemHeight = 16;
             this.cmboVersion.Items.AddRange(new object[] {
+            "16.1",
             "16.0",
             "14.1",
             "14.0",
-            "12.1",
-            "12.0",
-            "2.5"});
-            this.cmboVersion.Location = new System.Drawing.Point(384, 40);
+            "12.1"});
+            this.cmboVersion.Location = new System.Drawing.Point(390, 76);
             this.cmboVersion.Margin = new System.Windows.Forms.Padding(4);
             this.cmboVersion.Name = "cmboVersion";
             this.cmboVersion.Size = new System.Drawing.Size(136, 24);
@@ -226,7 +225,7 @@
             this.txtRequest.Multiline = true;
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtRequest.Size = new System.Drawing.Size(949, 175);
+            this.txtRequest.Size = new System.Drawing.Size(948, 119);
             this.txtRequest.TabIndex = 0;
             this.txtRequest.WordWrap = false;
             // 
@@ -244,7 +243,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(294, 67);
+            this.label2.Location = new System.Drawing.Point(300, 103);
             this.label2.Margin = new System.Windows.Forms.Padding(1);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 17);
@@ -254,7 +253,7 @@
             // txtDeviceId
             // 
             this.helpProvider1.SetHelpString(this.txtDeviceId, "TheID of the device.");
-            this.txtDeviceId.Location = new System.Drawing.Point(384, 69);
+            this.txtDeviceId.Location = new System.Drawing.Point(390, 105);
             this.txtDeviceId.Margin = new System.Windows.Forms.Padding(1);
             this.txtDeviceId.Name = "txtDeviceId";
             this.helpProvider1.SetShowHelp(this.txtDeviceId, true);
@@ -265,7 +264,7 @@
             // txtDeviceType
             // 
             this.helpProvider1.SetHelpString(this.txtDeviceType, "Device Type");
-            this.txtDeviceType.Location = new System.Drawing.Point(384, 97);
+            this.txtDeviceType.Location = new System.Drawing.Point(390, 133);
             this.txtDeviceType.Margin = new System.Windows.Forms.Padding(1);
             this.txtDeviceType.Name = "txtDeviceType";
             this.helpProvider1.SetShowHelp(this.txtDeviceType, true);
@@ -276,7 +275,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(294, 97);
+            this.label3.Location = new System.Drawing.Point(300, 133);
             this.label3.Margin = new System.Windows.Forms.Padding(1);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 17);
@@ -286,7 +285,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(294, 128);
+            this.label1.Location = new System.Drawing.Point(300, 164);
             this.label1.Margin = new System.Windows.Forms.Padding(1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 17);
@@ -319,7 +318,7 @@
             "Sync",
             "ValidateCert",
             "Find"});
-            this.cmboCommand.Location = new System.Drawing.Point(384, 124);
+            this.cmboCommand.Location = new System.Drawing.Point(390, 160);
             this.cmboCommand.Margin = new System.Windows.Forms.Padding(4);
             this.cmboCommand.Name = "cmboCommand";
             this.cmboCommand.Size = new System.Drawing.Size(136, 24);
@@ -393,7 +392,7 @@
             // 
             this.helpProvider1.SetHelpString(this.txtPolicyKey, "This is needed if there is a policy enforced.  Getting a  permanent policy key is" +
         " a two part process - see documentation on how to get it.");
-            this.txtPolicyKey.Location = new System.Drawing.Point(384, 153);
+            this.txtPolicyKey.Location = new System.Drawing.Point(390, 189);
             this.txtPolicyKey.Margin = new System.Windows.Forms.Padding(1);
             this.txtPolicyKey.Name = "txtPolicyKey";
             this.helpProvider1.SetShowHelp(this.txtPolicyKey, true);
@@ -404,7 +403,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(294, 154);
+            this.label4.Location = new System.Drawing.Point(300, 190);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 17);
@@ -504,7 +503,7 @@
             this.lblStatusCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatusCause.AutoSize = true;
             this.lblStatusCause.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblStatusCause.Location = new System.Drawing.Point(1, 617);
+            this.lblStatusCause.Location = new System.Drawing.Point(1, 494);
             this.lblStatusCause.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatusCause.Name = "lblStatusCause";
             this.lblStatusCause.Size = new System.Drawing.Size(244, 19);
@@ -517,13 +516,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInfo.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtInfo.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.txtInfo.Location = new System.Drawing.Point(1, 640);
+            this.txtInfo.Location = new System.Drawing.Point(1, 517);
             this.txtInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtInfo.MaxLength = 0;
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInfo.Size = new System.Drawing.Size(951, 91);
+            this.txtInfo.Size = new System.Drawing.Size(950, 91);
             this.txtInfo.TabIndex = 36;
             // 
             // chkOverrideProxyCredentials
@@ -540,7 +539,7 @@
             // txtProxyServerDomain
             // 
             this.txtProxyServerDomain.Enabled = false;
-            this.txtProxyServerDomain.Location = new System.Drawing.Point(654, 151);
+            this.txtProxyServerDomain.Location = new System.Drawing.Point(650, 150);
             this.txtProxyServerDomain.Margin = new System.Windows.Forms.Padding(0);
             this.txtProxyServerDomain.Name = "txtProxyServerDomain";
             this.txtProxyServerDomain.Size = new System.Drawing.Size(119, 22);
@@ -569,7 +568,7 @@
             // txtProxyServerPassword
             // 
             this.txtProxyServerPassword.Enabled = false;
-            this.txtProxyServerPassword.Location = new System.Drawing.Point(654, 127);
+            this.txtProxyServerPassword.Location = new System.Drawing.Point(650, 126);
             this.txtProxyServerPassword.Margin = new System.Windows.Forms.Padding(0);
             this.txtProxyServerPassword.Name = "txtProxyServerPassword";
             this.txtProxyServerPassword.PasswordChar = '•';
@@ -579,7 +578,7 @@
             // txtProxyServerUserName
             // 
             this.txtProxyServerUserName.Enabled = false;
-            this.txtProxyServerUserName.Location = new System.Drawing.Point(654, 104);
+            this.txtProxyServerUserName.Location = new System.Drawing.Point(650, 103);
             this.txtProxyServerUserName.Margin = new System.Windows.Forms.Padding(0);
             this.txtProxyServerUserName.Name = "txtProxyServerUserName";
             this.txtProxyServerUserName.Size = new System.Drawing.Size(119, 22);
@@ -600,7 +599,7 @@
             this.txtProxyServerPort.Location = new System.Drawing.Point(654, 52);
             this.txtProxyServerPort.Margin = new System.Windows.Forms.Padding(4);
             this.txtProxyServerPort.Name = "txtProxyServerPort";
-            this.txtProxyServerPort.Size = new System.Drawing.Size(104, 22);
+            this.txtProxyServerPort.Size = new System.Drawing.Size(115, 22);
             this.txtProxyServerPort.TabIndex = 27;
             this.txtProxyServerPort.Text = "8888";
             // 
@@ -618,7 +617,7 @@
             this.txtProxyServerName.Location = new System.Drawing.Point(654, 28);
             this.txtProxyServerName.Margin = new System.Windows.Forms.Padding(4);
             this.txtProxyServerName.Name = "txtProxyServerName";
-            this.txtProxyServerName.Size = new System.Drawing.Size(104, 22);
+            this.txtProxyServerName.Size = new System.Drawing.Size(115, 22);
             this.txtProxyServerName.TabIndex = 25;
             this.txtProxyServerName.Text = "127.0.0.1";
             // 
@@ -664,7 +663,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(949, 210);
+            this.tabControl1.Size = new System.Drawing.Size(948, 143);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -674,7 +673,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(941, 181);
+            this.tabPage1.Size = new System.Drawing.Size(940, 114);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "IE  Rendered";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -686,7 +685,7 @@
             this.webBrowser1.Margin = new System.Windows.Forms.Padding(4);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(933, 173);
+            this.webBrowser1.Size = new System.Drawing.Size(932, 106);
             this.webBrowser1.TabIndex = 0;
             // 
             // tabPage2
@@ -783,8 +782,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
-            this.splitContainer1.Size = new System.Drawing.Size(949, 389);
-            this.splitContainer1.SplitterDistance = 175;
+            this.splitContainer1.Size = new System.Drawing.Size(948, 266);
+            this.splitContainer1.SplitterDistance = 119;
             this.splitContainer1.TabIndex = 80;
             // 
             // chkUseCertAuth
@@ -815,7 +814,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(952, 733);
+            this.ClientSize = new System.Drawing.Size(951, 610);
             this.Controls.Add(this.btnSelectCertFile);
             this.Controls.Add(this.txtCertAuthFile);
             this.Controls.Add(this.chkUseCertAuth);

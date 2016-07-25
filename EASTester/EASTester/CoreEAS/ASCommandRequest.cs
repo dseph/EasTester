@@ -347,23 +347,23 @@ namespace VisualSync
 
             GenerateXMLPayload();
 
-            if (ProtocolVersion == null)
-                throw new InvalidDataException("ASCommandRequest not initialized - Protocol version not specified.");
+            //if (ProtocolVersion == null)
+            //    throw new InvalidDataException("ASCommandRequest not initialized - Protocol version not specified.");
 
-            if (ProtocolVersion == null)
-                throw new InvalidDataException("ASCommandRequest not initialized - EAS Protocol version must be set");
+            //if (ProtocolVersion == null)
+            //    throw new InvalidDataException("ASCommandRequest not initialized - EAS Protocol version must be set");
 
-            if (WbxmlBytes == null)
-                throw new InvalidDataException("ASCommandRequest not initialized - Request is empty.");
+            //if (WbxmlBytes == null)
+            //    throw new InvalidDataException("ASCommandRequest not initialized - Request is empty.");
 
-            if (Server == null)
-                throw new InvalidDataException("ASCommandRequest not initialized - Server must be specified.");
+            //if (Server == null)
+            //    throw new InvalidDataException("ASCommandRequest not initialized - Server must be specified.");
 
-            if (Credentials == null && useCertificateAuthentication == false)
-                throw new InvalidDataException("ASCommandRequest not initialized for authentication.");
+            //if (Credentials == null && useCertificateAuthentication == false)
+            //    throw new InvalidDataException("ASCommandRequest not initialized for authentication.");
 
-            if (useCertificateAuthentication == true && certificateFile.Length == 0)
-                throw new InvalidDataException("ASCommandRequest not initialized - Certificate file must be specified.");
+            //if (useCertificateAuthentication == true && certificateFile.Length == 0)
+            //    throw new InvalidDataException("ASCommandRequest not initialized - Certificate file must be specified.");
 
             string uriString = string.Format("{0}//{1}/Microsoft-Server-ActiveSync?{2}",
                 useSSL ? "https:" : "http:", server, RequestLine);
@@ -371,18 +371,62 @@ namespace VisualSync
 
  
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(uriString);
+
+            //bool bSettingCredsWasOK = false;
             if (useCertificateAuthentication == true)
             {
-                string sCert = File.ReadAllText(certificateFile);
-                httpReq.ClientCertificates.Add(X509Certificate.CreateFromCertFile(certificateFile)); 
+                //CredentialCache creds = new CredentialCache();
+                //// Using Basic authentication
+                //creds.Add(serverUri, "Basic", credential);
+                //httpReq.Credentials = creds;
+
+               
+
+                // https://support.microsoft.com/en-us/kb/895971
+                try
+                {
+                    //httpReq.UseDefaultCredentials = true;
+                    X509Certificate Cert = X509Certificate.CreateFromCertFile(certificateFile);
+                    // Handle any certificate errors on the certificate from the server.
+                    ServicePointManager.CertificatePolicy = new CertPolicy();
+                    httpReq.ClientCertificates.Add(Cert);
+                    //httpReq.ClientCertificates.Add(X509Certificate.CreateFromCertFile(certificateFile));
+                    //bSettingCredsWasOK = true;
+                }
+                //catch (CryptographyException exCrypto)
+                //{
+                //    //System.Diagnostics.Debug.WriteLine(ex.Message.ToString());
+                //    MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting certificate authentication.");
+                //    //bSettingCredsWasOK = false;
+                //    //return null;
+                //}
+                catch (Exception ex)
+                {
+                    //System.Diagnostics.Debug.WriteLine(ex.Message.ToString());
+                    MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting certificate authentication.");
+                    //bSettingCredsWasOK = false;
+                    //return null;
+                }
          
             }
             else
             {
-                CredentialCache creds = new CredentialCache();
-                // Using Basic authentication
-                creds.Add(serverUri, "Basic", credential);
-                httpReq.Credentials = creds;
+                try
+                {
+                    CredentialCache creds = new CredentialCache();
+                    // Using Basic authentication
+                    creds.Add(serverUri, "Basic", credential);
+                    httpReq.Credentials = creds;
+                    //bSettingCredsWasOK = true;
+                }
+                catch (Exception ex)
+                {
+                    //System.Diagnostics.Debug.WriteLine(ex.Message.ToString());
+                    MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting specified credentials.");
+                    //bSettingCredsWasOK = false;
+                    return null;
+                }
+         
             }
              
             httpReq.Method = "POST";
@@ -453,6 +497,20 @@ namespace VisualSync
                 MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error");
 
                 return null;
+            }
+        }
+
+        //Implement the ICertificatePolicy interface.
+        class CertPolicy : ICertificatePolicy
+        {
+            public bool CheckValidationResult(ServicePoint srvPoint,
+        X509Certificate certificate, WebRequest request, int certificateProblem)
+            {
+                // You can do your own certificate checking.
+                // You can obtain the error values from WinError.h.
+
+                // Return true so that any certificate will work with this sample.
+                return true;
             }
         }
 

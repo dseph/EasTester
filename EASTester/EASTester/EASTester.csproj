@@ -295,6 +295,7 @@
     <Content Include="Help\AboutEASTester.html" />
     <Content Include="Help\AboutThe451Redirect.html" />
     <Content Include="Help\BasicSyncing.html" />
+    <Content Include="Help\EasCodePages.html" />
     <Content Include="Help\EASResultCodeIndex.html" />
     <Content Include="Help\FirstWindow.html" />
     <Content Include="Help\Help.html" />

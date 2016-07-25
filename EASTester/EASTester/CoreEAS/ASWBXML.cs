@@ -53,7 +53,7 @@ namespace VisualSync
         public ASWBXML()
         {
             // Load up code pages
-            // Currently there are 25 code pages as per MS-ASWBXML
+            // Currently there are 26 code pages as per MS-ASWBXML
             codePages = new ASWBXMLCodePage[26];
 
             #region Code Page Initialization
@@ -64,6 +64,7 @@ namespace VisualSync
             codePages[0].Xmlns = "airsync";
 
             codePages[0].AddToken(0x05, "Sync");
+            codePages[0].AddDocRef(0x05, @"http://msdn.microsoft.com/en-us/library/ee218515.aspx"); // [MS-ASCMD] 2.2.2.20 Sync
             codePages[0].AddToken(0x06, "Responses");
             codePages[0].AddToken(0x07, "Add");
             codePages[0].AddToken(0x08, "Change");
@@ -851,8 +852,8 @@ namespace VisualSync
             codePages[24].AddToken(0x18, "RemoveRightsManagementDistribution"); // 14.1, 16.0, 16.1
             #endregion
 
-            // Code Page 24: RightsManagement
-            #region RightsManagement Code Page
+            // Code Page 24: Find
+            #region Find Code Page
             codePages[25] = new ASWBXMLCodePage();
             codePages[25].Namespace = "Find:";
             codePages[24].Xmlns = "find";
