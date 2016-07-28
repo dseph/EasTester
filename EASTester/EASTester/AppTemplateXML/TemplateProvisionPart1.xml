@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Provision xmlns="Provision:" xmlns:settings="Settings:">
+  <settings:DeviceInformation>
+    <settings:Set>
+      <settings:Model>Test 1.0</settings:Model>
+      <settings:IMEI>012345678901234</settings:IMEI>
+      <settings:FriendlyName>My Test App</settings:FriendlyName>
+      <settings:OS>Test OS 1.0</settings:OS>
+      <settings:OSLanguage>English</settings:OSLanguage>
+      <settings:PhoneNumber>555-123-4567</settings:PhoneNumber>
+      <settings:MobileOperator>My Phone Company</settings:MobileOperator>
+      <settings:UserAgent>TestAgent</settings:UserAgent>
+    </settings:Set>
+  </settings:DeviceInformation>
+  <Policies>
+    <Policy>
+      <PolicyType>MS-EAS-Provisioning-WBXML</PolicyType>
+    </Policy>
+  </Policies>
+</Provision>

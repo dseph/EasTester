@@ -28,9 +28,19 @@ namespace EASTester
 
         string sOrigionalResponse = string.Empty;
 
+        string sTemplateProvisionPart1 = string.Empty;
+        string sTemplateProvisionPart2 = string.Empty;
+
+
         public frmRawEAS()
         {
             InitializeComponent();
+
+            string sPathTemplate = Application.StartupPath + "\\AppTemplateXML";
+            string sPathTemplateProvisionPart1 = sPathTemplate + "\\TemplateProvisionpart1.xml";
+            string sPathTemplateProvisionPart2 = sPathTemplate + "\\TemplateProvisionpart2.xml";
+            sTemplateProvisionPart1 = File.ReadAllText(sPathTemplateProvisionPart1);
+            sTemplateProvisionPart2 = File.ReadAllText(sPathTemplateProvisionPart2);
         }
 
         private void HandleRun()
@@ -429,6 +439,8 @@ namespace EASTester
             xmlBuilder.Append("</Provision>");
             txtRequest.Text = xmlBuilder.ToString();
 
+            cmboVersion.Text = "16.0";
+
             SetProxyChecked();
         }
 
@@ -789,7 +801,7 @@ namespace EASTester
                 {
            
                     // Moved display of error to deserialization routine.
-                    // MessageBox.Show(ex.ToString(), "Error Loading File");
+                   MessageBox.Show(ex.ToString(), "Error Loading File");
 
                 }
  
@@ -885,7 +897,11 @@ namespace EASTester
                 MyHelpers.WebcontrolHelper.LoadInBrowserControl(ref webBrowser1, sCleaned);
 
                 this.txtInfo.Text = StringHelper.DeNullString(oConnectionSetting.EasResponseInfo).Replace("\n", "\r\n"); ;
-                
+
+                sTemplateProvisionPart1 = StringHelper.DeNullString(oConnectionSetting.TemplateProvisionPart1);
+                sTemplateProvisionPart2 = StringHelper.DeNullString(oConnectionSetting.TemplateProvisionPart2);
+                sTemplateProvisionPart1 = sTemplateProvisionPart1.Replace("\n", "\r\n");
+                sTemplateProvisionPart2 = sTemplateProvisionPart2.Replace("\n", "\r\n");
             }
             catch (Exception ex)
             {
@@ -936,7 +952,12 @@ namespace EASTester
             //oConnectionSetting.EasResponse = sOrigionalResponse;
           
             oConnectionSetting.EasResponseInfo = this.txtInfo.Text;
-             
+
+            //oFromBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(this.txtRequest.Text);
+            oConnectionSetting.TemplateProvisionPart1 = sTemplateProvisionPart1;
+
+            //oFromBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(this.txtRequest.Text);
+            oConnectionSetting.TemplateProvisionPart2 = sTemplateProvisionPart2;
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -952,6 +973,7 @@ namespace EASTester
             if (UserIoHelper.PickSaveFileToFolder(Application.UserAppDataPath, "Connection Settings " + TimeHelper.NowMashup() + ".xml", ref sFile, sFilter))
             {
                 sConnectionSettings = SerialHelper.SerializeObjectToString<ConnectionSetting>(oConnectionSetting);
+                
                 if (sConnectionSettings != string.Empty)
                 {
                     try
@@ -1089,6 +1111,18 @@ namespace EASTester
             if (MyHelpers.UserIoHelper.PickLoadFromFile(sInitialDirectory, sSuggestedFilename, ref  sSelectedfile, sFilter))
             {
                 txtCertAuthFile.Text = sSelectedfile;
+            }
+        }
+
+        private void btnSessionSettings_Click(object sender, EventArgs e)
+        {
+
+            SessionSettings oSessionSettings = new SessionSettings(this.sTemplateProvisionPart1, this.sTemplateProvisionPart2);
+            oSessionSettings.ShowDialog();
+            if (oSessionSettings.bChoseOK == true)
+            {
+                this.sTemplateProvisionPart1 = oSessionSettings.TemplateProvisionPart1;
+                this.sTemplateProvisionPart2 = oSessionSettings.TemplateProvisionPart2;
             }
         }
  

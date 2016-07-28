@@ -3,7 +3,7 @@
   <Policies>
     <Policy>
       <PolicyType>MS-EAS-Provisioning-WBXML</PolicyType>
-      <PolicyKey>1307199584</PolicyKey>
+      <PolicyKey>##PolicyKey##</PolicyKey>
       <Status>1</Status>
     </Policy>
   </Policies>

@@ -31,9 +31,22 @@ namespace EASTester
                     //oXmlWriterSettings.NewLineChars = Environment.NewLine;
                     oXmlWriterSettings.ConformanceLevel = ConformanceLevel.Document;
 
+                    //
+                    //oXmlWriterSettings.NewLineHandling = NewLineHandling.None;
+
+                    //XmlSerializer oXmlSerializer = new XmlSerializer(typeof(T));
+
+                    //oMemoryStream = (MemoryStream)oXmlTextWriter.BaseStream;
+                    //XmlWriter oXmlWriter = XmlWriter.Create(oMemoryStream, oXmlWriterSettings);
+                    //oXmlSerializer.Serialize(oXmlWriter, obj);
+                     
+                    //oUTF8Encoding = new UTF8Encoding();
+                    //sXML = oUTF8Encoding.GetString(oMemoryStream.ToArray());
+                    ////
+
                     XmlSerializer oXmlSerializer = new XmlSerializer(typeof(T));
                     oXmlTextWriter = new XmlTextWriter(oMemoryStream, Encoding.UTF8);
-                    
+
                     oXmlSerializer.Serialize(oXmlTextWriter, obj);
                     oMemoryStream = (MemoryStream)oXmlTextWriter.BaseStream;
                     oUTF8Encoding = new UTF8Encoding();
@@ -63,9 +76,16 @@ namespace EASTester
                 
                 oMemoryStream = new MemoryStream(oUTF8Encoding.GetBytes(xml));
                 oXmlTextWriter = new XmlTextWriter(oMemoryStream, Encoding.UTF8);
+ 
+                //oXmlTextWriter.Settings.NewLineHandling = NewLineHandling.None;
+                //oXmlTextWriter.Settings.NewLineChars = "\r\n";
+
                 //oXmlTextWriter.Settings.CheckCharacters = false;
                 //oXmlTextWriter.Settings.ConformanceLevel = ConformanceLevel.Fragment;
-              
+                //oXmlTextWriter.Formatting = Formatting.Indented;
+                //oXmlTextWriter.Settings.NewLineHandling = NewLineHandling.None;
+
+                 
                 return (T)oXmlSerializer.Deserialize(oMemoryStream);
             }
             catch (System.Xml.XmlException exXML)

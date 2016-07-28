@@ -36,6 +36,10 @@ namespace EASTester
         public string EncodedEasRequest = string.Empty;   // Request may contain cdata or other content with non-ascii characters - so encode.
         public string EncodedEasResponse = string.Empty;  // Response may contain cdata or other content with non-ascii characters - so encode.
 
+        public string TemplateProvisionPart1 = string.Empty;   
+        public string TemplateProvisionPart2 = string.Empty;   
+
+
     }
 
 

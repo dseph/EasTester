@@ -130,6 +130,12 @@
       <DependentUpon>ExampleResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SerialHelpercs.cs" />
+    <Compile Include="SessionSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SessionSettings.Designer.cs">
+      <DependentUpon>SessionSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="TemplateRequests.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -174,6 +180,9 @@
       <LastGenOutput>ExampleResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SessionSettings.resx">
+      <DependentUpon>SessionSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TemplateRequests.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TemplateRequests.Designer.cs</LastGenOutput>
@@ -212,6 +221,8 @@
     <Content Include="AppData\ItemOperationsStatus.xml" />
     <Content Include="AppData\GetItemEstimateStatus.xml" />
     <Content Include="AppData\ValidateCertStatus.xml" />
+    <Content Include="AppTemplateXML\TemplateProvisionPart1.xml" />
+    <Content Include="AppTemplateXML\TemplateProvisionPart2.xml" />
     <Content Include="Developer notes.txt" />
     <Content Include="Embedded\BrowserTemplate.html" />
     <Content Include="Embedded\XmlTransform.xslt" />
@@ -231,6 +242,7 @@
     <Content Include="Examples\SendMail - NewFormat.xml" />
     <Content Include="Examples\SendMail.xml" />
     <Content Include="Examples\SerachWithMimeSupport.xml" />
+    <Content Include="Examples\Settings - DeviceInformation - Set.xml" />
     <Content Include="Examples\Settings - DevicePassword - Set.xml" />
     <Content Include="Examples\Settings - Oof - Get.xml">
       <SubType>Designer</SubType>
@@ -315,10 +327,12 @@
     <PostBuildEvent>md "$(TargetDir)Examples"
 md "$(TargetDir)AppData"
 md "$(TargetDir)Help"
+md "$(TargetDir)AppTemplateXML"
 Copy /Y "$(ProjectDir)Examples\*.*" "$(TargetDir)Examples\*.*"
 Copy /Y "$(ProjectDir)Readme.txt" "$(TargetDir)"
 Copy /Y "$(ProjectDir)AppData\*.*" "$(TargetDir)AppData\*.*"
-Copy /Y "$(ProjectDir)Help\*.*" "$(TargetDir)Help\*.*"</PostBuildEvent>
+Copy /Y "$(ProjectDir)Help\*.*" "$(TargetDir)Help\*.*"
+Copy /Y "$(ProjectDir)AppTemplateXML\*.*" "$(TargetDir)AppTemplateXML\*.*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
