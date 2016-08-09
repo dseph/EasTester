@@ -166,22 +166,25 @@ namespace EASTester
                     // Send the request
                     ASCommandResponse commandResponse = commandRequest.GetResponse();
 
-                     
-                    float iisStatusCode = (float)commandResponse.HttpResponseStatusCode;
-                    string StatusCode = iisStatusCode.ToString();
-                    string Meaning = string.Empty;
-                    string Cause = string.Empty;
-                    string Resolution = string.Empty;
-                    EASTester.EasHelp oHelp = new EASTester.EasHelp();
-                    oHelp.GetHttpStatusInfo(StatusCode, ref Meaning, ref Cause, ref Resolution);
-                    //MessageBox.Show("IIS Resposne Code: " + StatusCode + "\r\nDescription: " + Meaning);
-
                     string ResultStatusInfo = string.Empty;
 
-                    ResultStatusInfo = "IIS Resposne Code: " + StatusCode + "  Description: " + Meaning + "\r\n";
-
                     if (commandResponse != null)
-                    {
+                    {   
+                  
+                        float iisStatusCode = (float)commandResponse.HttpResponseStatusCode;
+                        string StatusCode = iisStatusCode.ToString();
+                        string Meaning = string.Empty;
+                        string Cause = string.Empty;
+                        string Resolution = string.Empty;
+                        EASTester.EasHelp oHelp = new EASTester.EasHelp();
+                        oHelp.GetHttpStatusInfo(StatusCode, ref Meaning, ref Cause, ref Resolution);
+                        //MessageBox.Show("IIS Resposne Code: " + StatusCode + "\r\nDescription: " + Meaning);
+
+                         
+
+                        ResultStatusInfo = "IIS Resposne Code: " + StatusCode + "  Description: " + Meaning + "\r\n";
+
+
                         // Seen nulls returned - ex: conversation id, which is in a cdata as binary
                         string sCleaned = commandResponse.XMLString.Replace("\0", "");
   
@@ -230,6 +233,7 @@ namespace EASTester
 
                     this.txtInfo.Text = ResultStatusInfo;
                 }
+ 
             }
             catch (Exception ex)
             {
