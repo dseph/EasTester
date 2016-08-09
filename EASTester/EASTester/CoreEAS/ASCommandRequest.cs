@@ -32,6 +32,7 @@ namespace VisualSync
         private string server = null;
         private bool useCertificateAuthentication = false;
         private string certificateFile = null;
+        private string certificatePassword = null;
 
         private bool useSSL = true;
         private byte[] wbxmlBytes = null;
@@ -182,8 +183,18 @@ namespace VisualSync
                 certificateFile = value;
             }
         }
- 
- 
+
+        public string CertificatePassword
+        {
+            get
+            {
+                return certificatePassword;
+            }
+            set
+            {
+                certificatePassword = value;
+            }
+        }
 
         public bool UseSSL
         {
@@ -386,7 +397,14 @@ namespace VisualSync
                 try
                 {
                     //httpReq.UseDefaultCredentials = true;
-                    X509Certificate Cert = X509Certificate.CreateFromCertFile(certificateFile);
+                    X509Certificate Cert = null;
+                    if (certificatePassword.Length != 0)
+                        Cert = new X509Certificate(certificateFile, certificatePassword);
+                    else
+                        Cert = X509Certificate.CreateFromCertFile(certificateFile);
+                     
+                    //Cert = new X509Certificate(certificateFile, certificatePassword, X509KeyStorageFlags.xxx);
+
                     // Handle any certificate errors on the certificate from the server.
                     ServicePointManager.CertificatePolicy = new CertPolicy();
                     httpReq.ClientCertificates.Add(Cert);

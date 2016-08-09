@@ -12,6 +12,7 @@ namespace EASTester
 
         public bool UseCertificateAuthentication = false;
         public string CertificateFile = string.Empty;
+        public string CertificatePassword = string.Empty;
 
         public string User = string.Empty;
         public string Domain = string.Empty;

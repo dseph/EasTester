@@ -90,8 +90,11 @@ namespace EASTester
                 ASCommandRequest commandRequest = new ASCommandRequest();
                 commandRequest.Command = sUseCommand; // Ex: "Provision";   cmboCommand.Text.Trim();
                 commandRequest.Credentials = cred;
+
                 commandRequest.UseCertificateAuthentication = this.chkUseCertAuth.Checked;
                 commandRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
+                commandRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
+                 
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
                 commandRequest.ProtocolVersion = cmboVersion.Text.Trim();  //"14.1";
@@ -819,6 +822,7 @@ namespace EASTester
 
                 this.chkUseCertAuth.Checked = oConnectionSetting.UseCertificateAuthentication;
                 this.txtCertAuthFile.Text = StringHelper.DeNullString(oConnectionSetting.CertificateFile);
+                this.txtCertPassword.Text = StringHelper.DeNullString(oConnectionSetting.CertificatePassword);
 
                 this.txtUser.Text = StringHelper.DeNullString(oConnectionSetting.User);
                 this.txtDomain.Text = StringHelper.DeNullString(oConnectionSetting.Domain);
@@ -927,7 +931,9 @@ namespace EASTester
             oConnectionSetting.MailDomain = this.txtServerUrl.Text;
 
             oConnectionSetting.UseCertificateAuthentication = chkUseCertAuth.Checked;
-            oConnectionSetting.CertificateFile = this.txtCertAuthFile.Text;
+            oConnectionSetting.CertificateFile = this.txtCertAuthFile.Text.Trim();
+            oConnectionSetting.CertificatePassword = this.txtCertPassword.Text.Trim();
+            this.txtCertPassword.Text = StringHelper.DeNullString(oConnectionSetting.CertificatePassword.Trim());
 
             oConnectionSetting.User = this.txtUser.Text;
             oConnectionSetting.Domain = this.txtDomain.Text;
@@ -1081,6 +1087,7 @@ namespace EASTester
             {
                 this.txtCertAuthFile.Enabled = true;
                 this.btnSelectCertFile.Enabled = true;
+                this.txtCertPassword.Enabled = true;
 
                 this.txtUser.Enabled = false;
                 this.txtPassword.Enabled = false;
@@ -1091,6 +1098,7 @@ namespace EASTester
             {
                 this.txtCertAuthFile.Enabled = false;
                 this.btnSelectCertFile.Enabled = false;
+                this.txtCertPassword.Enabled = false;
 
                 this.txtUser.Enabled = true;
                 this.txtPassword.Enabled = true;
@@ -1124,6 +1132,11 @@ namespace EASTester
                 this.sTemplateProvisionPart1 = oSessionSettings.TemplateProvisionPart1;
                 this.sTemplateProvisionPart2 = oSessionSettings.TemplateProvisionPart2;
             }
+        }
+
+        private void txtCertAuthFile_TextChanged(object sender, EventArgs e)
+        {
+
         }
  
     }
