@@ -5,6 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 
 namespace VisualSync
 {
@@ -17,6 +20,10 @@ namespace VisualSync
         private string proxyUser = null;
         private string proxyPassword = null;
         private string proxyDomain = null;
+
+        private bool useCertificateAuthentication = false;
+        private string certificateFile = null;
+        private string certificatePassword = null;
 
         private NetworkCredential credential = null;
         private string server = null;
@@ -132,6 +139,44 @@ namespace VisualSync
             }
         }
 
+
+        public bool UseCertificateAuthentication
+        {
+            get
+            {
+                return useCertificateAuthentication;
+            }
+            set
+            {
+                useCertificateAuthentication = value;
+            }
+        }
+
+        public string CertificateFile
+        {
+            get
+            {
+                return certificateFile;
+            }
+            set
+            {
+                certificateFile = value;
+            }
+        }
+
+        public string CertificatePassword
+        {
+            get
+            {
+                return certificatePassword;
+            }
+            set
+            {
+                certificatePassword = value;
+            }
+        }
+
+
         public bool UseSSL
         {
             get
@@ -152,12 +197,38 @@ namespace VisualSync
 
             string strURI = string.Format("{0}//{1}/Microsoft-Server-ActiveSync", UseSSL ? "https:" : "http:", Server);
             Uri serverUri = new Uri(strURI);
-            CredentialCache creds = new CredentialCache();
-              // Using Basic authentication
-            creds.Add(serverUri, "Basic", Credentials);
-
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(strURI);
-            httpReq.Credentials = creds; 
+
+            if (useCertificateAuthentication == true)
+            {
+                try
+                { 
+                    httpReq.UseDefaultCredentials = false;
+                    X509Certificate oX509Certificate = null;
+                    oX509Certificate = new X509Certificate(certificateFile, certificatePassword);
+                    httpReq.ClientCertificates.Add(oX509Certificate);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting certificate authentication.");
+                    return null;
+                }
+            }
+            else
+            {
+                try
+                {
+                    CredentialCache creds = new CredentialCache();
+                    creds.Add(serverUri, "Basic", Credentials);  // Using Basic authentication
+                    httpReq.Credentials = creds;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting specified credentials.");
+                    return null;
+                }
+            }
+     
             httpReq.Method = "OPTIONS";
 
             if (SpecifyProxySettings == true)

@@ -103,43 +103,59 @@ namespace EASTester
                 commandRequest.User = txtUser.Text.Trim(); // "someuser";
                 commandRequest.UseSSL = chkUseSSL.Checked;
                 commandRequest.UseEncodedRequestLine = true;
-                 
 
                 UInt32 iPolicyKey = 0;
                 string sPolicyKey = txtPolicyKey.Text.Trim();
                 if (sPolicyKey != string.Empty)
                 {
-
-                    try
+                    string sError = string.Empty;
+                    if (CheckForProperProvisionKey(sPolicyKey, out iPolicyKey, out sError) == true)
                     {
-                        iPolicyKey = Convert.ToUInt32(sPolicyKey);
+                        commandRequest.PolicyKey = iPolicyKey;
                     }
-                    catch (FormatException eFormat)
+                    else
                     {
-                        MessageBox.Show("The Policy Key needs to be all numbers.", "Entry Error");
-                        string s = eFormat.Message; // defeat compile warning for not using eFormat
+                        MessageBox.Show(sError, "Policy Key is incorrect.");
                         bError = true;
                     }
-                    catch (OverflowException eOverflow)
-                    {
-                        MessageBox.Show("The Policy Key has too large of a value.");
-                        string s = eOverflow.Message;  // defeat compile warning for not using eFormat
-                        bError = true;
-                    }
-                    finally
-                    {
-                        if (iPolicyKey < UInt32.MaxValue)
-                        {
-                            commandRequest.PolicyKey = iPolicyKey;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Policy Key is too large.");
-                            bError = true;
-                        }
-                    }
-
                 }
+                 
+
+                //UInt32 iPolicyKey = 0;
+                //string sPolicyKey = txtPolicyKey.Text.Trim();
+                //if (sPolicyKey != string.Empty)
+                //{
+
+                //    try
+                //    {
+                //        iPolicyKey = Convert.ToUInt32(sPolicyKey);
+                //    }
+                //    catch (FormatException eFormat)
+                //    {
+                //        MessageBox.Show("The Policy Key needs to be all numbers.", "Entry Error");
+                //        string s = eFormat.Message; // defeat compile warning for not using eFormat
+                //        bError = true;
+                //    }
+                //    catch (OverflowException eOverflow)
+                //    {
+                //        MessageBox.Show("The Policy Key has too large of a value.");
+                //        string s = eOverflow.Message;  // defeat compile warning for not using eFormat
+                //        bError = true;
+                //    }
+                //    finally
+                //    {
+                //        if (iPolicyKey < UInt32.MaxValue)
+                //        {
+                //            commandRequest.PolicyKey = iPolicyKey;
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show("Policy Key is too large.");
+                //            bError = true;
+                //        }
+                //    }
+
+                //}
 
 
                 if (chkUseProxy.Checked == true)
@@ -277,6 +293,14 @@ namespace EASTester
                     sbEntryErrors.AppendLine("Certificate file must be selected.");
                     bNoEntryErrors = false;
                 }
+                else
+                {
+                    if (this.txtCertPassword.Text.Trim().Length == 0) 
+                    {
+                        sbEntryErrors.AppendLine("Certificate password must be selected.");
+                        bNoEntryErrors = false;
+                    }
+                }
             }
             else
             {   
@@ -306,11 +330,62 @@ namespace EASTester
             return bNoEntryErrors;
         }
 
+        private bool CheckForProperProvisionKey(string sKey, out UInt32 iKey, out string sError)
+        {
+            bool bOK = true;
+
+            iKey = 0;
+            UInt32 iPolicyKey = 0;
+            string sPolicyKey = sKey.Trim();
+            sError = string.Empty;
+
+            if (sPolicyKey != string.Empty)
+            {
+
+                try
+                {
+                    iPolicyKey = Convert.ToUInt32(sPolicyKey);
+                }
+                catch (FormatException eFormat)
+                {
+                    sError = "The Policy Key needs to be all numbers.";
+                    //MessageBox.Show("The Policy Key needs to be all numbers.", "Entry Error");
+                    string s = eFormat.Message; // defeat compile warning for not using eFormat
+                    bOK = false;
+                }
+                catch (OverflowException eOverflow)
+                {
+                    sError = "The Policy Key has too large of a value.";
+                    //MessageBox.Show("The Policy Key has too large of a value.");
+                    string s = eOverflow.Message;  // defeat compile warning for not using eFormat
+                    bOK = false;
+                }
+                finally
+                {
+                    if (iPolicyKey < UInt32.MaxValue)
+                    {
+                        iKey = iPolicyKey;
+                        bOK = true;
+                    }
+                    else
+                    {
+                        sError = "Policy Key is too large.";
+                        //MessageBox.Show("Policy Key is too large.");
+                        bOK = false;
+                    }
+                }
+
+            }
+
+            return bOK;
+        }
+
         private void btnRun_Click(object sender, EventArgs e)
         {
             if (CheckEntryForRun() == true)
                 HandleRun();
 
+            this.Cursor = Cursors.Default;
         }
 
         private void ClearStatusCodeInfo() 
@@ -544,7 +619,16 @@ namespace EASTester
         {
             this.Cursor = Cursors.WaitCursor;
 
+            if (CheckEntryForRun() == true)
+                HandleOptions();
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private void HandleOptions()
+        { 
             bool bEntryError = false;
+            ASOptionsRequest optionsRequest = new ASOptionsRequest();
 
             if (txtServerUrl.Text.Trim().Length == 0)
             {
@@ -552,20 +636,46 @@ namespace EASTester
                 bEntryError = true;
             }
 
-            // Create credentials for the user
-            NetworkCredential cred = null; // new NetworkCredential("contoso\\deviceuser", "password");
-            if (txtDomain.Text.Trim().Length != 0)
-                cred = new NetworkCredential(txtDomain.Text.Trim() + "\\" + txtUser.Text.Trim(), txtPassword.Text.Trim());
-            else
-                cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
- 
+            optionsRequest.UseCertificateAuthentication = this.chkUseCertAuth.Checked;
+            optionsRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
+            optionsRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
+
+            if (chkUseCertAuth.Checked == false)
+            {
+                NetworkCredential cred = null; // new NetworkCredential("contoso\\deviceuser", "password");
+
+                // Create credentials for the user
+                if (txtDomain.Text.Trim().Length != 0)
+                    cred = new NetworkCredential(txtDomain.Text.Trim() + "\\" + txtUser.Text.Trim(), txtPassword.Text.Trim());
+                else
+                    cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
+                optionsRequest.Credentials = cred;
+            }
+
+            //if (chkUseCertAuth.Checked == true)
+            //{
+            //    X509Certificate oX509Certificate = null;
+            //    oX509Certificate = new X509Certificate(this.txtCertAuthFile.Text.Trim(), this.txtCertPassword.Text.Trim());
+            //    optionsRequest.UseDefaultCredentials = false;
+            //    optionsRequest.ClientCertificates.Add(oX509Certificate);
+            //}
+            //else
+            //{ 
+            //    NetworkCredential cred = null; // new NetworkCredential("contoso\\deviceuser", "password");
+
+            //    // Create credentials for the user
+            //    if (txtDomain.Text.Trim().Length != 0)
+            //        cred = new NetworkCredential(txtDomain.Text.Trim() + "\\" + txtUser.Text.Trim(), txtPassword.Text.Trim());
+            //    else
+            //        cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
+            //    optionsRequest.Credentials = cred;
+            //}
 
             //Initialize the OPTIONS request
-            ASOptionsRequest optionsRequest = new ASOptionsRequest();
+             
             optionsRequest.Server = txtServerUrl.Text.Trim();
             optionsRequest.UseSSL = chkUseSSL.Checked;
-            optionsRequest.Credentials = cred;
-
+             
             //Set Proxy Settings if indicated
             if (chkUseProxy.Checked == true)
             {
@@ -784,6 +894,7 @@ namespace EASTester
         {
             EncodeForm oForm = new EncodeForm();
             oForm.Show();
+            this.Cursor = Cursors.Default;
         }
 
         private void btnLoadSettings_Click(object sender, EventArgs e)
@@ -1047,6 +1158,7 @@ namespace EASTester
         {
             InfoOnEasResponse oForm = new InfoOnEasResponse();
             oForm.ShowDialog();
+            this.Cursor = Cursors.Default;
         }
 
         private void txtResponse_TextChanged_1(object sender, EventArgs e)
@@ -1063,6 +1175,7 @@ namespace EASTester
         {
             ViewInBrowser oForm = new ViewInBrowser();
             oForm.Show();
+            this.Cursor = Cursors.Default;
         }
 
         private void btnHelp_Click(object sender, EventArgs e)
@@ -1070,9 +1183,10 @@ namespace EASTester
             string sHelpFile = string.Empty;
             sHelpFile = Application.StartupPath + "\\Help\\" + "Help.html";
            
-
             HelpWindow oForm = new HelpWindow(sHelpFile);
             oForm.Show();
+
+            this.Cursor = Cursors.Default;
         }
 
         private void txtPolicyKey_TextChanged(object sender, EventArgs e)
@@ -1141,6 +1255,368 @@ namespace EASTester
         private void txtCertAuthFile_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnProvision_Click(object sender, EventArgs e)
+        {
+            if (sTemplateProvisionPart1.Trim().Length == 0 || sTemplateProvisionPart2.Trim().Length == 0)
+                MessageBox.Show("You need to set provisioning templates in the Settings screen prior to usage.");
+            else
+            {
+                this.Cursor = Cursors.WaitCursor;
+                if (CheckEntryForRun() == true)
+                    HandleAutoProvision();
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private bool HandleAutoProvision()
+        {
+           
+            bool bReturn = false;
+
+            bool bRet = false;
+            string sFirstPartXml = this.sTemplateProvisionPart1;
+            string sXmlResponse = string.Empty;
+            string sErrorMessage = string.Empty;
+            string sIisCode = string.Empty;
+            string sResponseSummary =  string.Empty;
+            string sTempProvisionKey = string.Empty;
+            
+
+            bRet =  DoEasCall(
+                        "Provision",
+                        sFirstPartXml,
+                        out  sXmlResponse, 
+                        out  sErrorMessage, 
+                        out  sIisCode, 
+                        out  sResponseSummary
+                        );
+
+            if (bRet == false)
+            {
+                MessageBox.Show(sErrorMessage + "\r\n\r\n" + sResponseSummary, "First Part of Provisioning failed.");
+                return false;
+            }
+
+            XmlDocument oDoc = new XmlDocument();
+            oDoc.LoadXml(sXmlResponse);
+            string sData = string.Empty;
+
+       // XmlNamespaceManager nsmgr = null;
+       // nsmgr = new XmlNamespaceManager(oDoc.NameTable);
+       // nsmgr.AddNamespace("provision", "Provision");
+       // nsmgr.AddNamespace("settings", "Settings");
+        
+       // XmlNode oNode = null;
+       // //oNode = oDoc.SelectSingleNode("//provision:Provision/settings:DeviceInformation/settings:Status", nsmgr);
+       // oNode = oDoc.SelectSingleNode("/provision:Provision/provision:Policies", nsmgr);
+       // sData = oNode.InnerText;
+
+       //// sXmlResponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<provision:Provision xmlns:provision=\"Provision:\">\r\n  
+       ////<settings:DeviceInformation xmlns:settings=\"Settings:\">\r\n    
+       ////<settings:Status>1</settings:Status>\r\n  </settings:DeviceInformation>\r\n  <provision...
+
+       // sData = string.Empty;
+       // oNode = oDoc.SelectSingleNode("/provision:Provision/provision:Policies/settings:Status", nsmgr);
+       // sData = oNode.InnerText;
+
+       // sData = string.Empty;
+       // oNode = oDoc.SelectSingleNode("/provision:Provision/provision:Policies/provision:PolicyKey", nsmgr);
+       // sData = oNode.InnerText;
+
+
+        // "root/DGFields/DGField[@text_id='Test.ChangeRank']"  );
+
+          // IIS status of 200 is good
+          //<provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType> 
+          //<provision:Status>1</provision:Status> 
+          //<provision:PolicyKey>4120914974</provision:PolicyKey>
+
+            //<provision:Provision xmlns:provision="Provision:">
+            //  <settings:DeviceInformation xmlns:settings="Settings:">
+            //    <settings:Status>1</settings:Status>
+            //  </settings:DeviceInformation>
+            //  <provision:Status>1</provision:Status>
+            //  <provision:Policies>
+            //    <provision:Policy>
+            //      <provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType>
+            //      <provision:Status>1</provision:Status>
+            //      <provision:PolicyKey>2355410786</provision:PolicyKey>
+            //      <provision:Data>
+
+
+            // Do post using sTemplateProvisionPart1....
+            // sTempProvisionKey = xxxxxx    // Get temp provision key from response.
+
+            string sEasResponseCode = string.Empty;
+            bRet = GetStatusAndKeyFromResponse(sXmlResponse, out sTempProvisionKey, out sEasResponseCode);
+
+            // Provision Second part
+            string sSecondPartXml = this.sTemplateProvisionPart2.Replace("##PolicyKey##", sTempProvisionKey);
+
+            // Do post using sTemplateProvisionPart2....
+
+            bRet = DoEasCall(
+                "Provision",
+                sSecondPartXml,
+                out  sXmlResponse,
+                out  sErrorMessage,
+                out  sIisCode,
+                out  sResponseSummary
+                );
+
+            if (bRet == false)
+            {
+                MessageBox.Show(sErrorMessage + "\r\n\r\n" + sResponseSummary, "First Part of Provisioning failed.");
+                return false;
+            }
+
+            string sFinalProvisionKey = string.Empty;
+            bRet = GetStatusAndKeyFromResponse(sXmlResponse, out sFinalProvisionKey, out sEasResponseCode);
+
+             
+
+            // sFinalProvisionKey = xxxxxx    // Get Final provision key from response.
+            txtPolicyKey.Text = sFinalProvisionKey;
+
+            return bReturn;
+           
+        }
+
+        private bool GetStatusAndKeyFromResponse(string sXml, out string sKey, out string sEasResponseCode)
+        {
+            bool bReturn = true;
+            int iStart = 0;
+            string sSub = string.Empty;
+            int iEnd = 0;
+
+            iStart = sXml.IndexOf("<provision:Status>");
+            iStart += "<provision:Status>".Length;
+            sSub = sXml.Substring(iStart, 30);
+            iEnd = sSub.Substring(0).IndexOf("<");
+            sEasResponseCode = sSub.Substring(0, iEnd);
+
+            iStart = sXml.IndexOf("<provision:PolicyKey>");
+            iStart += "<provision:PolicyKey>".Length;
+            sSub = sXml.Substring(iStart, 30);
+            iEnd = sSub.Substring(0).IndexOf("<");
+            sKey = sSub.Substring(0, iEnd);
+
+            return bReturn;
+
+        }
+
+        // Does an EAS POST not tied to the UI
+        private bool DoEasCall(
+            string sCommand,
+            string sXmlRequest, 
+            out string sXMLResponse, 
+            out string sErrorMessage, 
+            out string sIisCode, 
+            out string sResponseSummary
+            )
+        {
+            bool bOK = true;
+
+            sXMLResponse = string.Empty;
+            sErrorMessage = string.Empty;
+            sIisCode = string.Empty;
+            sResponseSummary = string.Empty;
+
+            // Create credentials for the user
+            NetworkCredential cred = null;
+
+            if (this.chkUseCertAuth.Checked == false)
+            {
+                if (txtDomain.Text.Trim().Length != 0)
+                    cred = new NetworkCredential(txtDomain.Text.Trim() + "\\" + txtUser.Text.Trim(), txtPassword.Text.Trim());
+                else
+                    cred = new NetworkCredential(txtUser.Text.Trim(), txtPassword.Text.Trim());
+            }
+
+            try
+            {
+                //string sCommand = cmboCommand.Text.Trim();
+                //string[] Work = sCommand.Split(new Char[] { ' ' });
+                //string sUseCommand = Work[0];
+
+                // Initialize the command request
+                ASCommandRequest commandRequest = new ASCommandRequest();
+                commandRequest.Command = sCommand; // Ex: "Provision";   
+                commandRequest.Credentials = cred;
+
+                commandRequest.UseCertificateAuthentication = this.chkUseCertAuth.Checked;
+                commandRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
+                commandRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
+
+                commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
+                commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
+                commandRequest.ProtocolVersion = cmboVersion.Text.Trim();  //"14.1";
+                commandRequest.Server = txtServerUrl.Text.Trim();  //"mail.contoso.com";
+                commandRequest.UseEncodedRequestLine = true;
+                commandRequest.User = txtUser.Text.Trim(); // "someuser";
+                commandRequest.UseSSL = chkUseSSL.Checked;
+                commandRequest.UseEncodedRequestLine = true;
+
+                UInt32 iPolicyKey = 0;
+                string sPolicyKey = txtPolicyKey.Text.Trim();
+                if (sPolicyKey != string.Empty)
+                {
+                    string sError = string.Empty;
+                    if (CheckForProperProvisionKey(sPolicyKey, out iPolicyKey, out sError) == true)
+                    {
+                        commandRequest.PolicyKey = iPolicyKey;
+                    }
+                    else
+                    {
+                        sErrorMessage = "Policy Key is incorrect: " + sError;
+                        //MessageBox.Show(sError, "Error on entry of Policy Key.");
+                        bOK = false;
+                        return false;
+                    }
+                }
+
+                if (chkUseProxy.Checked == true)
+                {
+                    commandRequest.SpecifyProxySettings = true;
+                    commandRequest.ProxyServer = this.txtProxyServerName.Text.Trim();
+                    commandRequest.ProxyPort = Convert.ToInt32(this.txtProxyServerPort.Text.Trim());
+
+                    if (chkOverrideProxyCredentials.Checked == true)
+                    {
+                        commandRequest.OverrideProxyCredntials = true;
+                        commandRequest.ProxyUser = txtProxyServerUserName.Text.Trim();
+                        commandRequest.ProxyPassword = txtProxyServerUserName.Text.Trim();
+                        commandRequest.ProxyDomain = txtProxyServerDomain.Text.Trim();
+                    }
+
+                }
+
+                // Create the XML payload
+                commandRequest.XmlString = sXmlRequest;
+
+                if (bOK == true)
+                {
+                    // Send the request
+                    ASCommandResponse commandResponse = commandRequest.GetResponse();
+
+                    string ResultStatusInfo = string.Empty;
+
+                    if (commandResponse != null)
+                    {
+
+                        float iisStatusCode = (float)commandResponse.HttpResponseStatusCode;
+                        string StatusCode = iisStatusCode.ToString();
+                        string Meaning = string.Empty;
+                        string Cause = string.Empty;
+                        string Resolution = string.Empty;
+                        EASTester.EasHelp oHelp = new EASTester.EasHelp();
+                        oHelp.GetHttpStatusInfo(StatusCode, ref Meaning, ref Cause, ref Resolution);
+
+                        sIisCode = StatusCode;
+
+                        ResultStatusInfo = "IIS Resposne Code: " + StatusCode + "  Description: " + Meaning + "\r\n";
+
+                        // Seen nulls returned - ex: conversation id, which is in a cdata as binary
+                        string sCleaned = commandResponse.XMLString.Replace("\0", "");
+                        string outputDoc = string.Empty;
+                        try
+                        {
+                            XmlDocument oXmlDocument = null;
+                            oXmlDocument = new XmlDocument();
+                            oXmlDocument.LoadXml(sCleaned);
+
+                            //outputDoc = EasTesterUtilities.TransformXml(oXmlDocument);  // TODO: Get transformation to work.
+                            outputDoc = sCleaned;  // Use old way until I can get it to transform.
+
+                        }
+                        catch (Exception ex)
+                        {
+                            sErrorMessage = "Error in XML repsonse transformation for display.: " + ex.Message;
+                            //MessageBox.Show(ex.Message, "Error in XML repsonse transformation for display.");
+                            bOK = false;
+                        }
+ 
+                        sXMLResponse = sCleaned;
+
+                        ResultStatusInfo += GetStatusCodeInfoFromEasXmlResponse(sCleaned);
+
+                        sResponseSummary = ResultStatusInfo;
+
+                        bOK = true;
+                    }
+                    else
+                    {
+                        sOrigionalResponse = string.Empty;
+                        bOK = false;
+                    }
+
+                    //this.txtInfo.Text = ResultStatusInfo;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+ 
+            return bOK;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+            XmlDocument oDoc = new XmlDocument();
+            oDoc.LoadXml(txtResponse.Text.Trim());
+            string sData = string.Empty;
+
+            XmlNamespaceManager nsmgr = null;
+            nsmgr = new XmlNamespaceManager(oDoc.NameTable);
+            nsmgr.AddNamespace("provision", "Provision");
+            nsmgr.AddNamespace("settings", "Settings");
+
+            //nsmgr.AddNamespace("Provision", "Provision");
+            //nsmgr.AddNamespace("Settings", "settings");
+
+            //XmlNode root = oDoc.DocumentElement;
+
+            //XmlNode oNode = null;
+            ////oNode = oDoc.SelectSingleNode("//provision:Provision/settings:DeviceInformation/settings:Status", nsmgr);
+            //oNode = oDoc.SelectSingleNode("Provision/Policies", nsmgr);
+            //sData = oNode.InnerText;
+
+            //// sXmlResponse = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<provision:Provision xmlns:provision=\"Provision:\">\r\n  
+            ////<settings:DeviceInformation xmlns:settings=\"Settings:\">\r\n    
+            ////<settings:Status>1</settings:Status>\r\n  </settings:DeviceInformation>\r\n  <provision...
+
+            //sData = string.Empty;
+            //oNode = oDoc.SelectSingleNode("/provision:Provision/provision:Policies/settings:Status", nsmgr);
+            //sData = oNode.InnerText;
+
+            //sData = string.Empty;
+            //oNode = oDoc.SelectSingleNode("/provision:Provision/provision:Policies/provision:PolicyKey", nsmgr);
+            //sData = oNode.InnerText;
+
+
+            // "root/DGFields/DGField[@text_id='Test.ChangeRank']"  );
+
+            // IIS status of 200 is good
+            //<provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType> 
+            //<provision:Status>1</provision:Status> 
+            //<provision:PolicyKey>4120914974</provision:PolicyKey>
+
+            //<provision:Provision xmlns:provision="Provision:">
+            //  <settings:DeviceInformation xmlns:settings="Settings:">
+            //    <settings:Status>1</settings:Status>
+            //  </settings:DeviceInformation>
+            //  <provision:Status>1</provision:Status>
+            //  <provision:Policies>
+            //    <provision:Policy>
+            //      <provision:PolicyType>MS-EAS-Provisioning-WBXML</provision:PolicyType>
+            //      <provision:Status>1</provision:Status>
+            //      <provision:PolicyKey>2355410786</provision:PolicyKey>
+            //      <provision:Data>
         }
  
     }

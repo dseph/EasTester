@@ -6,8 +6,9 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using VisualSync;
-
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+
  
 namespace VisualSync
 {
@@ -380,75 +381,50 @@ namespace VisualSync
                 useSSL ? "https:" : "http:", server, RequestLine);
             Uri serverUri = new Uri(uriString);
 
- 
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(uriString);
+            httpReq.Method = "POST";
+            httpReq.ContentType = "application/vnd.ms-sync.wbxml";
+
+            // Handle any certificate errors on the certificate from the server.
+            //ServicePointManager.CertificatePolicy = new CertPolicy();
 
             //bool bSettingCredsWasOK = false;
             if (useCertificateAuthentication == true)
             {
-                //CredentialCache creds = new CredentialCache();
-                //// Using Basic authentication
-                //creds.Add(serverUri, "Basic", credential);
-                //httpReq.Credentials = creds;
-
-               
-
                 // https://support.microsoft.com/en-us/kb/895971
                 try
                 {
-                    //httpReq.UseDefaultCredentials = true;
-                    X509Certificate Cert = null;
-                    if (certificatePassword.Length != 0)
-                        Cert = new X509Certificate(certificateFile, certificatePassword);
-                    else
-                        Cert = X509Certificate.CreateFromCertFile(certificateFile);
-                     
-                    //Cert = new X509Certificate(certificateFile, certificatePassword, X509KeyStorageFlags.xxx);
-
-                    // Handle any certificate errors on the certificate from the server.
-                    ServicePointManager.CertificatePolicy = new CertPolicy();
-                    httpReq.ClientCertificates.Add(Cert);
-                    //httpReq.ClientCertificates.Add(X509Certificate.CreateFromCertFile(certificateFile));
-                    //bSettingCredsWasOK = true;
+                    httpReq.UseDefaultCredentials = false;
+                    X509Certificate oX509Certificate = null;
+                    
+                    //oX509Certificate = new X509Certificate.CreateFromCertFile(certificateFile);
+                   
+                    oX509Certificate = new X509Certificate(certificateFile, certificatePassword);
+                    httpReq.ClientCertificates.Add(oX509Certificate);
                 }
-                //catch (CryptographyException exCrypto)
-                //{
-                //    //System.Diagnostics.Debug.WriteLine(ex.Message.ToString());
-                //    MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting certificate authentication.");
-                //    //bSettingCredsWasOK = false;
-                //    //return null;
-                //}
                 catch (Exception ex)
                 {
-                    //System.Diagnostics.Debug.WriteLine(ex.Message.ToString());
                     MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting certificate authentication.");
-                    //bSettingCredsWasOK = false;
-                    //return null;
+                    return null;
                 }
-         
             }
             else
             {
                 try
                 {
                     CredentialCache creds = new CredentialCache();
-                    // Using Basic authentication
-                    creds.Add(serverUri, "Basic", credential);
+                    creds.Add(serverUri, "Basic", credential);  // Using Basic authentication
                     httpReq.Credentials = creds;
-                    //bSettingCredsWasOK = true;
                 }
                 catch (Exception ex)
                 {
-                    //System.Diagnostics.Debug.WriteLine(ex.Message.ToString());
                     MessageBox.Show("Exception: \r\n" + ex.ToString(), "Error setting specified credentials.");
-                    //bSettingCredsWasOK = false;
                     return null;
                 }
          
             }
              
-            httpReq.Method = "POST";
-            httpReq.ContentType = "application/vnd.ms-sync.wbxml";
+ 
 
             if (SpecifyProxySettings == true)
             {
@@ -509,6 +485,13 @@ namespace VisualSync
 
                 return response;
             }
+            catch (WebException wex)
+            {
+
+                MessageBox.Show("Exception: \r\n" + wex.ToString(), "Error");
+
+                return null;
+            }
             catch (Exception ex)
             {
 
@@ -522,7 +505,7 @@ namespace VisualSync
         class CertPolicy : ICertificatePolicy
         {
             public bool CheckValidationResult(ServicePoint srvPoint,
-        X509Certificate certificate, WebRequest request, int certificateProblem)
+                    X509Certificate certificate, WebRequest request, int certificateProblem)
             {
                 // You can do your own certificate checking.
                 // You can obtain the error values from WinError.h.
