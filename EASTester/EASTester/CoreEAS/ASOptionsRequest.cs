@@ -13,6 +13,7 @@ namespace VisualSync
 {
     class ASOptionsRequest
     {
+        private string useragent = string.Empty;
         private bool specifyProxySettings = false;
         private string proxyServer = null;
         private int proxyPort = 80;
@@ -28,6 +29,19 @@ namespace VisualSync
         private NetworkCredential credential = null;
         private string server = null;
         private bool useSSL = true;
+
+        public string UserAgent
+        {
+            get
+            {
+                return useragent;
+            }
+            set
+            {
+                useragent = value;
+            }
+        }
+
 
         public bool SpecifyProxySettings
         {
@@ -192,8 +206,11 @@ namespace VisualSync
         public ASOptionsResponse GetOptions()
         {
 
-            if (credential == null || server == null)
-                throw new InvalidDataException("ASOptionsRequest not initialized.");
+            if (server == null)
+                throw new InvalidDataException("ASOptionsRequest not initialized because server was not specified.");
+
+            if ((useCertificateAuthentication == false && credential == null) || server == null)
+                throw new InvalidDataException("ASOptionsRequest not initialized. User credentials or certificate authentication need to be specified.");
 
             string strURI = string.Format("{0}//{1}/Microsoft-Server-ActiveSync", UseSSL ? "https:" : "http:", Server);
             Uri serverUri = new Uri(strURI);
@@ -258,6 +275,9 @@ namespace VisualSync
                 
                 httpReq.Proxy = oWebProxy;
             }
+
+            if (UserAgent.Trim().Length != 0)
+                httpReq.UserAgent = UserAgent;
 
             try
             {

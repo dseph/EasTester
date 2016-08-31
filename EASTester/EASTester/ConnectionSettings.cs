@@ -21,12 +21,16 @@ namespace EASTester
         public bool UseSSL = false;
         public bool OverrideSsslCertVerification = false;
 
+        public string UserAgent = string.Empty;
+
         public string EasVersion = string.Empty;
 
         public string DeviceId = string.Empty;
         public string DeviceType = string.Empty;
         public string Command = string.Empty;
         public string PolicyKey = string.Empty;
+
+        public bool EncodePostLine = false;
 
         public string EasRequest = string.Empty;   // use for the requests from saves prior to changing to encoding the request
         public string EasResponse = string.Empty; // use for the response from saves prior to changing to encoding the response

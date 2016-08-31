@@ -43,6 +43,9 @@ namespace VisualSync
         private bool useEncodedRequestLine = true;
         private string command = null;
         private string user = null;
+
+        private string useragent = null;
+
         private string deviceID = null;
         private string deviceType = null;
         private UInt32 policyKey = 0;
@@ -299,6 +302,18 @@ namespace VisualSync
             }
         }
 
+        public string UserAgent
+        {
+            get
+            {
+                return useragent;
+            }
+            set
+            {
+                useragent = value;
+            }
+        }
+
         public string DeviceID
         {
             get
@@ -454,6 +469,9 @@ namespace VisualSync
                 httpReq.Proxy = oWebProxy;
             }
 
+            if (UserAgent.Trim().Length != 0)
+                httpReq.UserAgent = UserAgent;
+             
             if (!UseEncodedRequestLine)
             {
                 httpReq.Headers.Add("MS-ASProtocolVersion", ProtocolVersion);
@@ -522,8 +540,14 @@ namespace VisualSync
 
         protected virtual void BuildRequestLine()
         {
-            if (Command == null || User == null || DeviceID == null || DeviceType == null)
-                throw new InvalidDataException("ASCommandRequest not initialized.");
+            if (Command.Length == 0)
+                throw new InvalidDataException("ASCommandRequest not initialized. EAS Command needs to be specified.");
+            if (User.Length == 0 && useCertificateAuthentication == false)
+                throw new InvalidDataException("ASCommandRequest not initialized. User needs to be specified or certificate authentication specified.");
+            if (DeviceID.Length == 0)
+                throw new InvalidDataException("ASCommandRequest not initialized. Device Id needs to be specified.");
+            if (DeviceType.Length == 0)
+                throw new InvalidDataException("ASCommandRequest not initialized. Device Type neds to to be specified.");
 
             if (UseEncodedRequestLine == true)
             {

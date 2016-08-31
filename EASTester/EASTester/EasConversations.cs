@@ -89,20 +89,25 @@ namespace EASTester
                 // Initialize the command request
                 ASCommandRequest commandRequest = new ASCommandRequest();
                 commandRequest.Command = sUseCommand; // Ex: "Provision";   cmboCommand.Text.Trim();
+
+                commandRequest.UseEncodedRequestLine = chkEncodePostLine.Checked;
+
                 commandRequest.Credentials = cred;
 
                 commandRequest.UseCertificateAuthentication = this.chkUseCertAuth.Checked;
                 commandRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
                 commandRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
-                 
+
+                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
                 commandRequest.ProtocolVersion = cmboVersion.Text.Trim();  //"14.1";
                 commandRequest.Server = txtServerUrl.Text.Trim();  //"mail.contoso.com";
-                commandRequest.UseEncodedRequestLine = true;
+                //commandRequest.UseEncodedRequestLine = true;
                 commandRequest.User = txtUser.Text.Trim(); // "someuser";
                 commandRequest.UseSSL = chkUseSSL.Checked;
-                commandRequest.UseEncodedRequestLine = true;
+                //commandRequest.UseEncodedRequestLine = true;
 
                 UInt32 iPolicyKey = 0;
                 string sPolicyKey = txtPolicyKey.Text.Trim();
@@ -173,6 +178,8 @@ namespace EASTester
                     }
 
                 }
+
+                commandRequest.UserAgent = txtUserAgent.Text.Trim();
 
                 // Create the XML payload
                 commandRequest.XmlString = txtRequest.Text;
@@ -295,10 +302,13 @@ namespace EASTester
                 }
                 else
                 {
-                    if (this.txtCertPassword.Text.Trim().Length == 0) 
+                    if (this.txtCertPassword.Text.Trim().Length == 0)
                     {
-                        sbEntryErrors.AppendLine("Certificate password must be selected.");
-                        bNoEntryErrors = false;
+                        if (this.txtCertAuthFile.Text.ToLower().EndsWith(".pfx"))
+                        {
+                            sbEntryErrors.AppendLine("Certificate password must be selected for .pfx files.");
+                            bNoEntryErrors = false;
+                        }
                     }
                 }
             }
@@ -640,6 +650,8 @@ namespace EASTester
             optionsRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
             optionsRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
 
+            //optionsRequest.UseEncodedRequestLine = chkEncodePostLine.Checked;  N/A
+
             if (chkUseCertAuth.Checked == false)
             {
                 NetworkCredential cred = null; // new NetworkCredential("contoso\\deviceuser", "password");
@@ -692,6 +704,8 @@ namespace EASTester
                 }
 
             }
+
+            optionsRequest.UserAgent = txtUserAgent.Text.Trim();
 
             if (bEntryError == false)
             {
@@ -941,7 +955,7 @@ namespace EASTester
 
                 this.txtUser.Text = StringHelper.DeNullString(oConnectionSetting.User);
                 this.txtDomain.Text = StringHelper.DeNullString(oConnectionSetting.Domain);
-                //this.txtPassword.Text = oConnectionSetting.Password;
+                this.txtPassword.Text = oConnectionSetting.Password;
                 this.chkUseSSL.Checked = oConnectionSetting.UseSSL;
 
                 //if (oConnectionSetting.OverrideSsslCertVerification == null)
@@ -954,12 +968,14 @@ namespace EASTester
                 //else
                 this.chkOverrideSslCertificateVerification.Checked = oConnectionSetting.OverrideSsslCertVerification;
 
-               
+                this.txtUserAgent.Text = StringHelper.DeNullString(oConnectionSetting.UserAgent);
                 this.cmboVersion.Text = StringHelper.DeNullString(oConnectionSetting.EasVersion);
                 this.txtDeviceId.Text = StringHelper.DeNullString(oConnectionSetting.DeviceId);
                 this.txtDeviceType.Text = StringHelper.DeNullString(oConnectionSetting.DeviceType);
                 this.cmboCommand.Text = StringHelper.DeNullString(oConnectionSetting.Command);
                 this.txtPolicyKey.Text = StringHelper.DeNullString(oConnectionSetting.PolicyKey);
+
+                this.chkEncodePostLine.Checked = oConnectionSetting.EncodePostLine;
 
                 //this.txtRequest.Text = StringHelper.DeNullString(oConnectionSetting.EasRequest).Replace("\n", "\r\n");
 
@@ -1028,18 +1044,10 @@ namespace EASTester
             }
  
         }
-
-        //private string FixSetting(string sSetting)
-        //{
-        //    if (sSetting == null)
-        //        return "";
-        //    else
-        //        return sSetting;
-
-        //}
+ 
 
 
-        private void SetConnectionSettingsFromForm(ref ConnectionSetting oConnectionSetting)
+        private void SetConnectionSettingsFromForm(ref ConnectionSetting oConnectionSetting, bool bSavePasswords)
         {
 
 
@@ -1047,20 +1055,26 @@ namespace EASTester
 
             oConnectionSetting.UseCertificateAuthentication = chkUseCertAuth.Checked;
             oConnectionSetting.CertificateFile = this.txtCertAuthFile.Text.Trim();
-            oConnectionSetting.CertificatePassword = this.txtCertPassword.Text.Trim();
-            this.txtCertPassword.Text = StringHelper.DeNullString(oConnectionSetting.CertificatePassword.Trim());
+            if (bSavePasswords == true)
+                oConnectionSetting.CertificatePassword = this.txtCertPassword.Text.Trim();
+            //this.txtCertPassword.Text = StringHelper.DeNullString(oConnectionSetting.CertificatePassword.Trim());
 
             oConnectionSetting.User = this.txtUser.Text;
             oConnectionSetting.Domain = this.txtDomain.Text;
-            //oConnectionSetting.Password = this.txtPassword.Text;
+            if (bSavePasswords == true)
+                oConnectionSetting.Password = this.txtPassword.Text;
             oConnectionSetting.UseSSL = this.chkUseSSL.Checked;
             oConnectionSetting.OverrideSsslCertVerification = this.chkOverrideSslCertificateVerification.Checked;
+
+            oConnectionSetting.UserAgent = this.txtUserAgent.Text;
+
             oConnectionSetting.EasVersion = this.cmboVersion.Text;
             oConnectionSetting.DeviceId = this.txtDeviceId.Text;
             oConnectionSetting.DeviceType = this.txtDeviceType.Text;
             oConnectionSetting.Command = this.cmboCommand.Text;
             oConnectionSetting.PolicyKey = this.txtPolicyKey.Text;
 
+            oConnectionSetting.EncodePostLine = this.chkEncodePostLine.Checked;
           
             byte[] oFromBytes = null;
 
@@ -1086,10 +1100,15 @@ namespace EASTester
             string sFile = string.Empty;
             string sFilter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
 
+            bool bAskResult = false;
+            DialogResult oDialogResult = MessageBox.Show("Do you want to save passwords?", "Save Passords", MessageBoxButtons.YesNo);
+            if (oDialogResult == DialogResult.Yes)
+                bAskResult = true;
+
             string sConnectionSettings = string.Empty;
             ConnectionSetting oConnectionSetting = new ConnectionSetting();
 
-            SetConnectionSettingsFromForm(ref oConnectionSetting);
+            SetConnectionSettingsFromForm(ref oConnectionSetting, bAskResult);
 
             if (UserIoHelper.PickSaveFileToFolder(Application.UserAppDataPath, "Connection Settings " + TimeHelper.NowMashup() + ".xml", ref sFile, sFilter))
             {
@@ -1424,6 +1443,8 @@ namespace EASTester
             sIisCode = string.Empty;
             sResponseSummary = string.Empty;
 
+             
+
             // Create credentials for the user
             NetworkCredential cred = null;
 
@@ -1437,27 +1458,30 @@ namespace EASTester
 
             try
             {
-                //string sCommand = cmboCommand.Text.Trim();
-                //string[] Work = sCommand.Split(new Char[] { ' ' });
-                //string sUseCommand = Work[0];
+ 
 
                 // Initialize the command request
                 ASCommandRequest commandRequest = new ASCommandRequest();
                 commandRequest.Command = sCommand; // Ex: "Provision";   
+
+                commandRequest.UseEncodedRequestLine = chkEncodePostLine.Checked;
+
                 commandRequest.Credentials = cred;
 
                 commandRequest.UseCertificateAuthentication = this.chkUseCertAuth.Checked;
                 commandRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
                 commandRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
 
+                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
                 commandRequest.ProtocolVersion = cmboVersion.Text.Trim();  //"14.1";
                 commandRequest.Server = txtServerUrl.Text.Trim();  //"mail.contoso.com";
-                commandRequest.UseEncodedRequestLine = true;
+             
                 commandRequest.User = txtUser.Text.Trim(); // "someuser";
                 commandRequest.UseSSL = chkUseSSL.Checked;
-                commandRequest.UseEncodedRequestLine = true;
+               
 
                 UInt32 iPolicyKey = 0;
                 string sPolicyKey = txtPolicyKey.Text.Trim();
@@ -1477,6 +1501,8 @@ namespace EASTester
                     }
                 }
 
+                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+
                 if (chkUseProxy.Checked == true)
                 {
                     commandRequest.SpecifyProxySettings = true;
@@ -1492,6 +1518,8 @@ namespace EASTester
                     }
 
                 }
+
+                commandRequest.UserAgent = txtUserAgent.Text.Trim();
 
                 // Create the XML payload
                 commandRequest.XmlString = sXmlRequest;
@@ -1617,6 +1645,11 @@ namespace EASTester
             //      <provision:Status>1</provision:Status>
             //      <provision:PolicyKey>2355410786</provision:PolicyKey>
             //      <provision:Data>
+        }
+
+        private void chkEncodePostLine_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
  
     }
