@@ -58,6 +58,7 @@
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.txtCertAuthFile = new System.Windows.Forms.TextBox();
             this.txtCertPassword = new System.Windows.Forms.TextBox();
+            this.txtUserAgent = new System.Windows.Forms.TextBox();
             this.btnEncodingHelper = new System.Windows.Forms.Button();
             this.btnLoadSettings = new System.Windows.Forms.Button();
             this.btnSaveSettings = new System.Windows.Forms.Button();
@@ -96,7 +97,6 @@
             this.lblCertPassword = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtUserAgent = new System.Windows.Forms.TextBox();
             this.chkEncodePostLine = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -233,7 +233,7 @@
             this.txtRequest.Multiline = true;
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtRequest.Size = new System.Drawing.Size(950, 91);
+            this.txtRequest.Size = new System.Drawing.Size(950, 90);
             this.txtRequest.TabIndex = 0;
             this.txtRequest.WordWrap = false;
             // 
@@ -451,6 +451,18 @@
             this.helpProvider1.SetShowHelp(this.txtCertPassword, true);
             this.txtCertPassword.Size = new System.Drawing.Size(166, 22);
             this.txtCertPassword.TabIndex = 6;
+            // 
+            // txtUserAgent
+            // 
+            this.helpProvider1.SetHelpString(this.txtUserAgent, "This is needed if there is a policy enforced.  Getting a  permanent policy key is" +
+        " a two part process - see documentation on how to get it.");
+            this.txtUserAgent.Location = new System.Drawing.Point(391, 70);
+            this.txtUserAgent.Margin = new System.Windows.Forms.Padding(1);
+            this.txtUserAgent.Name = "txtUserAgent";
+            this.helpProvider1.SetShowHelp(this.txtUserAgent, true);
+            this.txtUserAgent.Size = new System.Drawing.Size(128, 22);
+            this.txtUserAgent.TabIndex = 16;
+            this.txtUserAgent.Text = "EASTester";
             // 
             // btnEncodingHelper
             // 
@@ -672,7 +684,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(950, 116);
+            this.tabControl1.Size = new System.Drawing.Size(950, 117);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -682,7 +694,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(942, 87);
+            this.tabPage1.Size = new System.Drawing.Size(942, 88);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "IE  Rendered";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -694,7 +706,7 @@
             this.webBrowser1.Margin = new System.Windows.Forms.Padding(4);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(934, 79);
+            this.webBrowser1.Size = new System.Drawing.Size(934, 80);
             this.webBrowser1.TabIndex = 0;
             // 
             // tabPage2
@@ -704,7 +716,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(939, 87);
+            this.tabPage2.Size = new System.Drawing.Size(942, 88);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Text  Rendered";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -720,7 +732,7 @@
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResponse.Size = new System.Drawing.Size(931, 79);
+            this.txtResponse.Size = new System.Drawing.Size(934, 80);
             this.txtResponse.TabIndex = 16;
             this.txtResponse.WordWrap = false;
             this.txtResponse.TextChanged += new System.EventHandler(this.txtResponse_TextChanged_1);
@@ -731,7 +743,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(939, 87);
+            this.tabPage3.Size = new System.Drawing.Size(942, 88);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Hex";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -747,7 +759,7 @@
             this.txtHexResponse.Multiline = true;
             this.txtHexResponse.Name = "txtHexResponse";
             this.txtHexResponse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtHexResponse.Size = new System.Drawing.Size(939, 87);
+            this.txtHexResponse.Size = new System.Drawing.Size(942, 88);
             this.txtHexResponse.TabIndex = 17;
             this.txtHexResponse.WordWrap = false;
             // 
@@ -792,7 +804,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Size = new System.Drawing.Size(950, 211);
-            this.splitContainer1.SplitterDistance = 91;
+            this.splitContainer1.SplitterDistance = 90;
             this.splitContainer1.TabIndex = 80;
             // 
             // chkUseCertAuth
@@ -852,7 +864,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(851, 235);
+            this.button1.Location = new System.Drawing.Point(676, 221);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 40;
@@ -870,18 +882,6 @@
             this.label5.Size = new System.Drawing.Size(83, 17);
             this.label5.TabIndex = 15;
             this.label5.Text = "User Agent:";
-            // 
-            // txtUserAgent
-            // 
-            this.helpProvider1.SetHelpString(this.txtUserAgent, "This is needed if there is a policy enforced.  Getting a  permanent policy key is" +
-        " a two part process - see documentation on how to get it.");
-            this.txtUserAgent.Location = new System.Drawing.Point(391, 70);
-            this.txtUserAgent.Margin = new System.Windows.Forms.Padding(1);
-            this.txtUserAgent.Name = "txtUserAgent";
-            this.helpProvider1.SetShowHelp(this.txtUserAgent, true);
-            this.txtUserAgent.Size = new System.Drawing.Size(128, 22);
-            this.txtUserAgent.TabIndex = 16;
-            this.txtUserAgent.Text = "EASTester";
             // 
             // chkEncodePostLine
             // 

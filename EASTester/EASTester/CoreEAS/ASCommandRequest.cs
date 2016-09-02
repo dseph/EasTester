@@ -397,6 +397,7 @@ namespace VisualSync
             Uri serverUri = new Uri(uriString);
 
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(uriString);
+            //httpReq.ClientCertificates.
             httpReq.Method = "POST";
             httpReq.ContentType = "application/vnd.ms-sync.wbxml";
 

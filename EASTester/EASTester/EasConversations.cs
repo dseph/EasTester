@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using System.Net;
 using System.IO;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Xml;
@@ -42,6 +43,87 @@ namespace EASTester
             sTemplateProvisionPart1 = File.ReadAllText(sPathTemplateProvisionPart1);
             sTemplateProvisionPart2 = File.ReadAllText(sPathTemplateProvisionPart2);
         }
+
+        private void AddCertificateToTrustedRoot(string sFile)
+        {  
+            // TODO:  Test
+
+            X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
+            store.Open(OpenFlags.ReadWrite);
+            store.Add(new X509Certificate2(X509Certificate2.CreateFromCertFile(sFile)));
+            store.Close();
+        }
+
+        private bool DoesCertificateExistInTrustedRoot(string certificateFile, string certificatePassword)
+        {
+            X509Certificate2 oX509Certificate = null;
+
+            oX509Certificate = new X509Certificate2(certificateFile, certificatePassword);
+
+            return DoesCertificateExistInTrustedRoot(oX509Certificate);
+        }
+
+
+        private bool DoesCertificateExistInTrustedRoot(X509Certificate2 oX509Certificate)
+        {
+  
+            string sSerial = oX509Certificate.GetSerialNumberString();
+           
+            X509Store store = new X509Store (StoreName.My, StoreLocation.CurrentUser);  
+            store.Open (OpenFlags.ReadOnly);
+             
+            X509Certificate2Collection collection = (X509Certificate2Collection)store.Certificates;
+            // https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509findtype(v=vs.110).aspx
+            X509Certificate2Collection colFound = collection.Find(X509FindType.FindBySerialNumber, sSerial, true);
+
+            if (colFound.Count > 0)
+                return true;
+            else
+                return false;
+ 
+        }
+
+        private bool AddCertificateToTrustedRootIfDoesNotExist(string certificateFile, string certificatePassword)
+        {
+            X509Certificate2 oX509Certificate = null;
+            oX509Certificate = new X509Certificate2(certificateFile, certificatePassword);
+            return AddCertificateToTrustedRootIfDoesNotExist(oX509Certificate);
+        }
+        
+        private bool AddCertificateToTrustedRootIfDoesNotExist(X509Certificate2 oX509Certificate)
+        {
+            // TODO:  Test
+
+            string sSerial = oX509Certificate.GetSerialNumberString();
+           
+            X509Store store = new X509Store (StoreName.Root, StoreLocation.CurrentUser);
+            store.Open (OpenFlags.ReadWrite);
+             
+            X509Certificate2Collection collection = (X509Certificate2Collection)store.Certificates;
+            // https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509findtype(v=vs.110).aspx
+            X509Certificate2Collection colFound = collection.Find(X509FindType.FindBySerialNumber, sSerial, true);
+
+            if (colFound.Count == 0)
+                return false;
+
+            bool bRet = false;
+            if (colFound.Count == 0)
+            {
+                //X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
+                //store.Open(OpenFlags.ReadWrite);
+                store.Add(oX509Certificate);
+                store.Close();
+                bRet = true;
+            }
+
+            store.Close();
+
+            return bRet;
+ 
+        }
+
+      
+
 
         private void HandleRun()
         {
@@ -98,7 +180,8 @@ namespace EASTester
                 commandRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
                 commandRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
 
-                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+                if (txtUserAgent.Text.Trim().Length != 0)
+                    commandRequest.UserAgent = txtUserAgent.Text.Trim();
 
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
@@ -125,43 +208,7 @@ namespace EASTester
                     }
                 }
                  
-
-                //UInt32 iPolicyKey = 0;
-                //string sPolicyKey = txtPolicyKey.Text.Trim();
-                //if (sPolicyKey != string.Empty)
-                //{
-
-                //    try
-                //    {
-                //        iPolicyKey = Convert.ToUInt32(sPolicyKey);
-                //    }
-                //    catch (FormatException eFormat)
-                //    {
-                //        MessageBox.Show("The Policy Key needs to be all numbers.", "Entry Error");
-                //        string s = eFormat.Message; // defeat compile warning for not using eFormat
-                //        bError = true;
-                //    }
-                //    catch (OverflowException eOverflow)
-                //    {
-                //        MessageBox.Show("The Policy Key has too large of a value.");
-                //        string s = eOverflow.Message;  // defeat compile warning for not using eFormat
-                //        bError = true;
-                //    }
-                //    finally
-                //    {
-                //        if (iPolicyKey < UInt32.MaxValue)
-                //        {
-                //            commandRequest.PolicyKey = iPolicyKey;
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show("Policy Key is too large.");
-                //            bError = true;
-                //        }
-                //    }
-
-                //}
-
+ 
 
                 if (chkUseProxy.Checked == true)
                 {
@@ -179,7 +226,7 @@ namespace EASTester
 
                 }
 
-                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+ 
 
                 // Create the XML payload
                 commandRequest.XmlString = txtRequest.Text;
@@ -302,15 +349,22 @@ namespace EASTester
                 }
                 else
                 {
-                    if (this.txtCertPassword.Text.Trim().Length == 0)
+                    if (File.Exists(this.txtCertAuthFile.Text.Trim()) == false)
                     {
-                        if (this.txtCertAuthFile.Text.ToLower().EndsWith(".pfx"))
-                        {
-                            sbEntryErrors.AppendLine("Certificate password must be selected for .pfx files.");
-                            bNoEntryErrors = false;
-                        }
+                        sbEntryErrors.AppendLine("The specified certificate file does not exist.");
+                        bNoEntryErrors = false;
                     }
                 }
+
+                if (this.txtCertPassword.Text.Trim().Length == 0)
+                {
+                    if (this.txtCertAuthFile.Text.ToLower().EndsWith(".pfx"))
+                    {
+                        sbEntryErrors.AppendLine("Certificate password must be selected for .pfx files.");
+                        bNoEntryErrors = false;
+                    }   
+                }
+ 
             }
             else
             {   
@@ -393,10 +447,63 @@ namespace EASTester
         private void btnRun_Click(object sender, EventArgs e)
         {
             if (CheckEntryForRun() == true)
+            {
+                
+                CheckForCertAndAddIfUserDesires();
+                 
                 HandleRun();
 
+            }
             this.Cursor = Cursors.Default;
         }
+
+        private bool IsCertEntryValid()
+        {
+            string sFile = this.txtCertAuthFile.Text.Trim();
+            string sPassword = this.txtCertPassword.Text.Trim();
+
+            if (chkUseCertAuth.Checked == true)
+            {
+
+                if (sFile.Length == 0)
+                {
+                    MessageBox.Show("Certificate path needs to be set.");
+                    return false;
+                }
+
+                if (sPassword.Length == 0)
+                {
+                    MessageBox.Show("Certificate password needs to be set.");
+                    return false;
+                }
+
+                if (File.Exists(sFile) == false)
+                {
+                    MessageBox.Show("Certificate file does not exist.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        //private bool AddCertToStore() 
+        //{
+        //    string sFile = this.txtCertAuthFile.Text.Trim();
+        //    string sPassword = this.txtCertPassword.Text.Trim();
+
+        //    if (this.chkUseCertAuth.Checked == true)
+        //    {
+        //        if (sFile.Length != 0 && sPassword.Length != 0)
+        //        {
+        //            if (DoesCertificateExistInTrustedRoot(sFile, sPassword ))
+        //            {
+                        
+        //            }
+        //        }
+        //    }
+        //}
 
         private void ClearStatusCodeInfo() 
         {
@@ -623,6 +730,20 @@ namespace EASTester
 
         }
 
+        private void CheckForCertAndAddIfUserDesires()
+        {
+            if (chkUseCertAuth.Checked == true)
+            {
+                if (DoesCertificateExistInTrustedRoot(txtCertAuthFile.Text.Trim(), txtCertPassword.Text.Trim()) == false)
+                {
+                    DialogResult oDialogResult = MessageBox.Show("The certificate is not in the trusted root. Do you want to add it?", "Add Certificate to trusted root?", MessageBoxButtons.YesNo);
+                    if (oDialogResult == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        AddCertificateToTrustedRoot(txtCertAuthFile.Text.Trim());
+                    }
+                }
+            }
+        }
        
 
         private void btnOptions_Click(object sender, EventArgs e)
@@ -630,8 +751,11 @@ namespace EASTester
             this.Cursor = Cursors.WaitCursor;
 
             if (CheckEntryForRun() == true)
-                HandleOptions();
+            {
+                CheckForCertAndAddIfUserDesires();
 
+                HandleOptions();
+            }
             this.Cursor = Cursors.Default;
         }
 
@@ -705,7 +829,9 @@ namespace EASTester
 
             }
 
-            optionsRequest.UserAgent = txtUserAgent.Text.Trim();
+            if (txtUserAgent.Text.Trim().Length != 0)
+                optionsRequest.UserAgent = txtUserAgent.Text.Trim();
+             
 
             if (bEntryError == false)
             {
@@ -1066,7 +1192,8 @@ namespace EASTester
             oConnectionSetting.UseSSL = this.chkUseSSL.Checked;
             oConnectionSetting.OverrideSsslCertVerification = this.chkOverrideSslCertificateVerification.Checked;
 
-            oConnectionSetting.UserAgent = this.txtUserAgent.Text;
+            if (txtUserAgent.Text.Trim().Length != 0)
+                oConnectionSetting.UserAgent = this.txtUserAgent.Text;
 
             oConnectionSetting.EasVersion = this.cmboVersion.Text;
             oConnectionSetting.DeviceId = this.txtDeviceId.Text;
@@ -1284,7 +1411,11 @@ namespace EASTester
             {
                 this.Cursor = Cursors.WaitCursor;
                 if (CheckEntryForRun() == true)
+                {
+                    CheckForCertAndAddIfUserDesires();
+
                     HandleAutoProvision();
+                }
             }
             this.Cursor = Cursors.Default;
         }
@@ -1472,7 +1603,8 @@ namespace EASTester
                 commandRequest.CertificateFile = this.txtCertAuthFile.Text.Trim();
                 commandRequest.CertificatePassword = this.txtCertPassword.Text.Trim();
 
-                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+                if (txtUserAgent.Text.Trim().Length != 0)
+                    commandRequest.UserAgent = txtUserAgent.Text.Trim();
 
                 commandRequest.DeviceID = txtDeviceId.Text.Trim(); // "TestDeviceID";
                 commandRequest.DeviceType = txtDeviceType.Text.Trim();  // "TestDeviceType";
@@ -1501,7 +1633,7 @@ namespace EASTester
                     }
                 }
 
-                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+                //commandRequest.UserAgent = txtUserAgent.Text.Trim();
 
                 if (chkUseProxy.Checked == true)
                 {
@@ -1519,7 +1651,7 @@ namespace EASTester
 
                 }
 
-                commandRequest.UserAgent = txtUserAgent.Text.Trim();
+                //commandRequest.UserAgent = txtUserAgent.Text.Trim();
 
                 // Create the XML payload
                 commandRequest.XmlString = sXmlRequest;
