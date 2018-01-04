@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Sync xmlns="AirSync:">
+  <Collections>
+    <Collection>
+      <SyncKey>494191888</SyncKey>
+      <CollectionId>5</CollectionId>
+      <DeletesAsMoves>1</DeletesAsMoves>
+      <GetChanges>1</GetChanges>
+      <WindowSize>512</WindowSize>
+      <Options>
+        <FilterType>4</FilterType>
+        <MIMETruncation>1</MIMETruncation>
+        <MIMESupport>1</MIMESupport>
+        <BodyPreference xmlns="AirSyncBase:">
+          <Type>2</Type>
+          <TruncationSize>5000</TruncationSize>
+        </BodyPreference>
+      </Options>
+    </Collection>
+  </Collections>
+</Sync>

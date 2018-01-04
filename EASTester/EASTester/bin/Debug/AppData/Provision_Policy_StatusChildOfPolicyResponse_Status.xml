@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>There is no policy for this client. </Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>Unknown PolicyType value.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>The policy data on the server is corrupted (possibly tampered with).</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="5">
+    <Meaning>The client is acknowledging the wrong policy key.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+
+</StatusCodes>
+
+

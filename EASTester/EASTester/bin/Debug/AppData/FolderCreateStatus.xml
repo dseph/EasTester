@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASCMD - 2.2.3.162.2 Status (FolderCreate) -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success</Meaning>
+    <Cause>Server successfully completed command.</Cause>
+    <Scope></Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>A folder that has this name already exists.</Meaning>
+    <Cause>The parent folder already contains a folder that has this name.</Cause>
+    <Scope></Scope>
+    <Resolution> Prompt user to supply a unique name. </Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>The specified parent folder is a special system folder.</Meaning>
+    <Cause> The specified parent folder is the Recipient information folder.</Cause>
+    <Scope></Scope>
+    <Resolution>Create the folder under a different parent. </Resolution>
+  </Status>
+  <Status ID="5">
+    <Meaning> The specified parent folder was not found.</Meaning>
+    <Cause>The parent folder does not exist  on the server, possibly because it has been deleted or renamed.</Cause>
+    <Scope></Scope>
+    <Resolution>Issue a FolderSync command (section  2.2.2.4) for the new hierarchy and prompt the user for a new parent folder.
+    </Resolution>
+  </Status>
+  <Status ID="6">
+    <Meaning> An error occurred on the server.</Meaning>
+    <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition. </Cause>
+    <Scope></Scope>
+    <Resolution>Retry the FolderSync command. If continued attempts to synchronization fail, consider returning to synchronization key to zero (0).</Resolution>
+  </Status>
+  <Status ID="9">
+    <Meaning> Synchronization key mismatch or invalid synchronization key. </Meaning>
+    <Cause>The client sent a malformed or mismatched synchronization key, or the synchronization state is corrupted on the server.</Cause>
+    <Scope></Scope>
+    <Resolution>Delete folders added since last synchronization and return to synchronization key to zero (0).</Resolution>
+  </Status>
+  <Status ID="10">
+    <Meaning>Malformed request.</Meaning>
+    <Cause> The client sent a FolderCreate command request (section 2.2.2.2) that contains a semantic error, or the client attempted to create a default folder, such as the Inbox folder, Outbox folder, or Contacts folder.</Cause>
+    <Scope></Scope>
+    <Resolution> Double-check the request for accuracy.</Resolution>
+  </Status>
+  <Status ID="11">
+    <Meaning> An unknown error occurred. </Meaning>
+    <Cause>Unkown.</Cause>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="12">
+    <Meaning> Code unknown.</Meaning>
+    <Cause>Unusual back-end issue.</Cause>
+    <Scope></Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+</StatusCodes>

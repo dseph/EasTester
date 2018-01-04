@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>The recipient was resolved successfully. For more details about the Recipient element, see section 2.2.3.132.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>The recipient was found to be ambiguous. The returned list of recipients are suggestions. No certificate nodes were returned. Prompt the user to select the intended recipient from the list returned.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>The recipient was found to be ambiguous. The returned list is a partial list of suggestions. The total count of recipients can be obtained from the RecipientCount element (section 2.2.3.133). No certificate nodes were returned. Prompt the user to select the intended recipient from the list returned or to get more recipients.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>The recipient did not resolve to any contact or GAL entry. No certificates were returned. Inform the user of the error and direct the user to check the spelling.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+</StatusCodes>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASPROV - 3.1.5.2 Provision Command Errors -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success.</Meaning>
+    <Cause>The Policies element contains information about security policies.</Cause>
+    <Scope></Scope>
+    <Resolution> Apply the applicable policy.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>Protocol error.</Meaning>
+    <Cause>Syntax error in the Provision command request.</Cause>
+    <Scope></Scope>
+    <Resolution>Fix syntax in the request and resubmit.</Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>An error occurred on the server.</Meaning>
+    <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope></Scope>
+    <Resolution> Server administrator intervention is required.</Resolution>
+  </Status>
+  <Status ID="139">
+    <Meaning>The client cannot fully comply with all requirements of the policy.</Meaning>
+    <Cause>The client returned a value of 2 in the Status child element of the Policy element in a request to the server to acknowledge a policy. The server is configured to not allow clients that cannot fully apply the policy.</Cause>
+    <Scope></Scope>
+    <Resolution>Server administrator intervention is required.</Resolution>
+  </Status>
+  <Status ID="141">
+    <Meaning>The device is not provisionable.</Meaning>
+    <Cause>The client did not submit a policy key value in a request. The server is configured to not allow clients that do not submit a policy key value.</Cause>
+    <Scope></Scope>
+    <Resolution>Include a policy key value in the X-MS-PolicyKey header ([MS-ASHTTP] section 2.2.1.1.2.6) or the Policy key field of the Base64 Encoded Query Value ([MS-ASHTTP] section 2.2.1.1.1.1).</Resolution>
+  </Status>
+  <Status ID="142">
+    <Meaning>The client is externally managed.</Meaning>
+    <Cause>The client returned a value of 4 in the Status child element of the Policy element in a request to the server to acknowledge a policy. The server is configured to not allow externally managed clients.</Cause>
+    <Scope></Scope>
+    <Resolution>The client can issue a new Provision request and apply the policy, overwriting any external provisioning. If this is not possible, server administrator intervention is required.</Resolution>
+  </Status>
+
+</StatusCodes>

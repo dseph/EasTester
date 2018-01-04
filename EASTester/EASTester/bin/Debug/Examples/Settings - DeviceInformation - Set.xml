@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings xmlns="Settings:">
+  <UserInformation>
+    <Get/>
+  </UserInformation>
+  <DeviceInformation>
+    <Set>
+      <Model>MyCoolPhoneKatanaAF</Model>
+      <OS>MyCoolPhone/20.5.3 AF312</OS>
+      <UserAgent>MyCoolPhone/20.5.3 AF312 </UserAgent>
+      <FriendlyName>MyCoolPhone 20</FriendlyName>
+      <OSLanguage>en-CH</OSLanguage>
+    </Set>
+  </DeviceInformation>
+</Settings>

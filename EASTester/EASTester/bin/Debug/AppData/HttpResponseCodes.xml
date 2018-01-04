@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Http Response Codes IIS 6, 8, 8 -->
+<StatusCodes>
+  <Status ID="100">
+    <Meaning>Continue.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="101">
+    <Meaning>Switching protocols.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="200">
+    <Meaning>Success.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="201">
+    <Meaning>Created or OK</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="202">
+    <Meaning>Accepted.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="203">
+    <Meaning>Non-Authoritative Information.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="204">
+    <Meaning>No Content.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="205">
+    <Meaning>Reset Content.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="206">
+    <Meaning>Partial Content</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+ 
+  <Status ID="300">
+    <Meaning>Redirection.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="301">
+    <Meaning>Permanent Redirect.</Meaning>
+    <Cause>This redirection status code tells the Web client that the location for the requested resource has permanently changed. The new location is specified in the Location HTTP header. This is primarily useful for Web clients that keep record of HTTP URL links. Upon receiving this status code, the Web client can update the stored URL with the new location.
+    </Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="302">
+    <Meaning>Object Moved.</Meaning>
+    <Cause>This standard redirection status code tells the Web client to issue a new request to the location specified in the Location HTTP header.</Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="303">
+    <Meaning>See other</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="304">
+    <Meaning>Not Modified.</Meaning>
+    <Cause>RFC 2616, "Hypertext Transfer Protocol — HTTP/1.1", provides functionality for conditional GET requests. For example, an HTTP client can specify an If-Modified-Since HTTP header that consists of a time and date stamp, which tells the server that it has a cached copy of the content being requested. If the request meets the condition specified in the If-Modified-Since header, the server will not return a body, but will return the 304-Not Modified result.</Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="305">
+    <Meaning>Use Proxy.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="307">
+    <Meaning>Temporary redirect.</Meaning>
+    <Cause>The temporary redirect option, which is new in IIS 6.0, is used to prevent a Web browser from losing data when the browser issues an HTTP POST request. Normally, when a Web browser issues a POST request and then receives a 302-Object Moved redirect message from the Web server, the browser issues a GET request for the new location and loses the data in the POST request. With a 307 redirect, the browser reissues the POST request with the original data to the new location.</Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  
+  <Status ID="400">
+    <Meaning>Bad request.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="400.1">
+    <Meaning>Invalid Destination Header.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="400.2">
+    <Meaning>Invalid Depth Header.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="400.3">
+    <Meaning>Invalid If Header.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="400.4">
+    <Meaning>Invalid Overwrite Header.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="400.4">
+    <Meaning>Informational</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="400.5">
+    <Meaning>Invalid Translate Header.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="400.6">
+    <Meaning>Invalid Request Body.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+<Status ID="400.7">
+  <Meaning>Invalid Content Length.</Meaning>
+  <Cause></Cause>
+  <Scope></Scope>
+  <Resolution></Resolution>
+</Status>
+<Status ID="400.8">
+  <Meaning>Invalid Timeout.</Meaning>
+  <Cause></Cause>
+  <Scope></Scope>
+  <Resolution></Resolution>
+</Status>
+<Status ID="400.9">
+  <Meaning>Invalid Lock Token.</Meaning>
+  <Cause></Cause>
+  <Scope></Scope>
+  <Resolution></Resolution>
+</Status>
+ 
+
+
+  <Status ID="401">
+    <Meaning>Access Denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="401.1">
+    <Meaning>Access is denied due to invalid credentials. </Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="401.2">
+    <Meaning>Access is denied due to server configuration favoring an alternate authentication method.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="401.3">
+    <Meaning>Access is denied due to an ACL set on the requested resource.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="401.4">
+    <Meaning>Authorization failed by a filter installed on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="401.5">
+    <Meaning>Authorization failed by an ISAPI/CGI application.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="401.6">
+    <Meaning>Acess denied by URL authorization policy on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  
+  <Status ID="403">
+    <Meaning>Forbidden.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.1">
+    <Meaning>Execute access is denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.2">
+    <Meaning>Read access is denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.3">
+    <Meaning>Write access is denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.4">
+    <Meaning>SSL is required to view this resource.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.5">
+    <Meaning>SSL 128 is required to view this resource.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.6">
+    <Meaning>IP address of the client has been rejected.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.7">
+    <Meaning>SSL client certificate is required.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.8">
+    <Meaning>DNS name of the client is rejected.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.9">
+    <Meaning>Too many clients are trying to connect to the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.10">
+    <Meaning>Web server is configured to deny Execute access.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.11">
+    <Meaning>Password has been changed.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.12">
+    <Meaning>Client certificate is denied access by the server certificate mapper.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.13">
+    <Meaning>Client certificate has been revoked on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.14">
+    <Meaning>Directory listing is denied on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.15">
+    <Meaning>Client access licenses have exceeded limits on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.16">
+    <Meaning>Client certificate is ill-formed or is not trusted by the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.17">
+    <Meaning>Client certificate has expired or is not yet valid.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.18">
+    <Meaning>Cannot execute requested URL in the current application pool.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.19">
+    <Meaning>Cannot execute CGIs for the client in this application pool.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.20">
+    <Meaning>Passport logon failed.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.21">
+    <Meaning>Forbidden: Source access denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.22">
+    <Meaning>Forbidden: Infinite depth is denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="403.502">
+    <Meaning>Forbidden: Too many requests from the same client IP; Dynamic IP Restriction limit reached.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+
+  <Status ID="404">
+    <Meaning>Not Found.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.0">
+    <Meaning>Not Found.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.1">
+    <Meaning>File or directory not found.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.2">
+    <Meaning>Web site not accessible on the requested port.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.3">
+    <Meaning>MIME map policy prevents this request.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.4">
+    <Meaning>No handler configured.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.5">
+    <Meaning>Denied by request filtering configuration.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.6">
+    <Meaning>Verb denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.7">
+    <Meaning>File extension denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.8">
+    <Meaning>Hidden namespace.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+
+  <Status ID="404.9">
+    <Meaning>File attribute hidden.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.10">
+    <Meaning>Request header too long.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.11">
+    <Meaning>Request contains double escape sequence..</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.12">
+    <Meaning>Request contains high-bit characters..</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.13">
+    <Meaning>Content length too large.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.14">
+    <Meaning>Request URL too long.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.15">
+    <Meaning>Query string too long.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+
+  <Status ID="404.16">
+    <Meaning>DAV request sent to the static file handler.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.17">
+    <Meaning>Dynamic content mapped to the static file handler via a wildcard MIME mapping.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.18">
+    <Meaning>Querystring sequence denied.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.19">
+    <Meaning>Denied by filtering rule.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="404.20">
+    <Meaning>Too Many URL Segments.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  
+  <Status ID="405">
+    <Meaning>HTTP verb used to access this page is not allowed.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="406">
+    <Meaning>Client browser does not accept the MIME type of the requested page.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="407">
+    <Meaning>Initial proxy authentication required by the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="408">
+    <Meaning>Request timed out.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="412">
+    <Meaning>Precondition set by the client failed when evaluated on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="413">
+    <Meaning>Request entity too large.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="414">
+    <Meaning>Request URL is too large and therefore unacceptable on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="415">
+    <Meaning>Unsupported media type.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="416">
+    <Meaning>Precondition set by the client failed when evaluated on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="417">
+    <Meaning>Expectation failed.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="423">
+    <Meaning>Locked error.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  
+  
+  <Status ID="500">
+    <Meaning>Internal server error.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.0">
+    <Meaning>Module or ISAPI error occurred.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.11">
+    <Meaning>Application is shutting down on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.12">
+    <Meaning>Application is busy restarting on the Web server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.13">
+    <Meaning>Web server is too busy.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.14">
+    <Meaning>Invalid application configuration on the server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+
+  <Status ID="500.15">
+    <Meaning>Direct requests for Global.asa are not allowed.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.16">
+    <Meaning>UNC authorization credentials are incorrect.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.17">
+    <Meaning>URL authorization store cannot be found.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.18">
+    <Meaning>URL authorization store cannot be opened.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.19">
+    <Meaning>Configuration data is invalid.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.20">
+    <Meaning>Invalid application configuration on the server.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status> 
+  <Status ID="500.21">
+    <Meaning>Module not recognized.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.22">
+    <Meaning>An ASP.NET httpModules configuration does not apply in Managed Pipeline mode.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.23">
+    <Meaning>An ASP.NET httpHandlers configuration does not apply in Managed Pipeline mode.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.24">
+    <Meaning>An ASP.NET impersonation configuration does not apply in Managed Pipeline mode.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+
+  <Status ID="500.50">
+    <Meaning>A rewrite error occurred during RQ_BEGIN_REQUEST notification handling. A configuration or inbound rule execution error occurred.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.51">
+    <Meaning>A rewrite error occurred during GL_PRE_BEGIN_REQUEST notification handling. A global configuration or global rule execution error occurred.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.52">
+    <Meaning>A rewrite error occurred during RQ_SEND_RESPONSE notification handling. An outbound rule execution occurred.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.53">
+    <Meaning>A rewrite error occurred during RQ_RELEASE_REQUEST_STATE notification handling. An outbound rule execution error occurred. The rule is configured to be executed before the output user cache gets updated.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="500.100">
+    <Meaning>A rewrite error occurred during RQ_RELEASE_REQUEST_STATE notification handling. An outbound rule execution error occurred. The rule is configured to be executed before the output user cache gets updated.Internal ASP error.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+
+  <Status ID="501">
+    <Meaning>Header values specify a configuration that is not implemented.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="502">
+    <Meaning>Bad gateway.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="502.0">
+    <Meaning>Web server received an invalid response while acting as a gateway or proxy.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="502.1">
+    <Meaning>CGI application timeout.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="502.2">
+    <Meaning>Bad gateway: Premature Exit.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="502.3">
+    <Meaning>Bad Gateway: Forwarder Connection Error (ARR).</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="502.4">
+    <Meaning>Bad Gateway: No Server (ARR).</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  
+  <Status ID="503">
+    <Meaning>Service unavailable.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="503.0">
+    <Meaning>Application pool unavailable.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="503.2">
+    <Meaning>Concurrent request limit exceeded.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="503.3">
+    <Meaning>ASP.NET queue full</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  
+  <Status ID="504">
+    <Meaning>Gateway timeout.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="505">
+    <Meaning>TTP version not supported.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+</StatusCodes>
+ 
+ 
+
+

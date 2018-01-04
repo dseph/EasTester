@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>One or more certificates were successfully returned.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="7">
+    <Meaning>The recipient does not have a valid S/MIME certificate. No certificates were returned.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="8">
+    <Meaning>The global certificate limit was reached and the recipient's certificate could not be returned. The count certificates not returned can be obtained from the CertificateCount element. Retry with fewer recipients if possible, otherwise prompt the user.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+</StatusCodes>

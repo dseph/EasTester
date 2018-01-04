@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Free/busy data was successfully retrieved for a given recipient. This value does not indicate that the response is complete.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="160">
+    <Meaning>There were more than 100 recipients identified by the To elements (section 2.2.3.168) in the ResolveRecipient request.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="161">
+    <Meaning>The distribution group identified by the To element of the ResolveRecipient request included more than 20 recipients.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="163">
+    <Meaning>Free/busy data could not be retrieved from the server for a given recipient. Clients SHOULD NOT reissue the request as it is caused by a lack of permission to retrieve the data.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+</StatusCodes>

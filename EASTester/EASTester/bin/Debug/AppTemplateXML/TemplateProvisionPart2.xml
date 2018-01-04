@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Provision xmlns="Provision:">
+  <Policies>
+    <Policy>
+      <PolicyType>MS-EAS-Provisioning-WBXML</PolicyType>
+      <PolicyKey>##PolicyKey##</PolicyKey>
+      <Status>1</Status>
+    </Policy>
+  </Policies>
+</Provision>

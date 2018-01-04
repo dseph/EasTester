@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASCMD - 2.2.3.162.9 Status (Move) -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Invalid source collection ID or invalid source Item ID.</Meaning>
+    <Cause>The source folder collection ID (CollectionId element (section 2.2.3.30.5) value) is not recognized by the server, possibly because the source folder has been deleted. Or, the item with the Item ID (SrcMsgId element (section 2.2.3.160)) has been previously moved out of the folder with the Folder ID (SrcFldId element (section 2.2.3.159)).</Cause>
+    <Scope></Scope>
+    <Resolution>Issue a FolderSync command (section 2.2.2.4) to get the new hierarchy. Then, issue a Sync command (section 2.2.2.19) for the SrcFldId and reissue the MoveItems command request if the items are still present in this source collection.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>Invalid destination collection ID.</Meaning>
+    <Cause>The destination folder collection ID (CollectionId element value) is not recognized by the server, possibly because the source folder has been deleted.</Cause>
+    <Scope></Scope>
+    <Resolution>Issue a FolderSync command to get the new hierarchy. Then, use a valid collection ID.</Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>Success.</Meaning>
+    <Cause>Server successfully completed command.</Cause>
+    <Scope></Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>Source and destination collection IDs are the same.</Meaning>
+    <Cause>The client supplied a destination folder that is the same as the source.</Cause>
+    <Scope></Scope>
+    <Resolution>Send only requests where the CollectionId element values for the source and destination differ.</Resolution>
+  </Status>
+  <Status ID="5">
+    <Meaning>One of the following failures occurred: the item cannot be moved to more than one item at a time, or the source or destination item was locked.</Meaning>
+    <Cause>More than one DstFldId element (section 2.2.3.49.2) was included in the request or an item with that name already exists.</Cause>
+    <Scope></Scope>
+    <Resolution>Retry the MoveItems command request with only one DstFldId element or move the item to another location.</Resolution>
+  </Status>
+  <Status ID="7">
+    <Meaning>Source or destination item was locked.</Meaning>
+    <Cause>Transient server condition.</Cause>
+    <Scope></Scope>
+    <Resolution>Retry the MoveItems command request.</Resolution>
+  </Status>
+ 
+  </StatusCodes>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASCMD - 2.2.3.162.5 Status (FolderUpdate) -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success</Meaning>
+    <Cause>Server successfully completed command.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>A folder that has this name already exists.</Meaning>
+    <Cause>A folder with that name already exists or the specified folder is a special folder.</Cause>
+    <Scope>Item</Scope>
+    <Resolution>None</Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>The specified folder is the Recipient information folder, which cannot be updated by the client.</Meaning>
+    <Cause>The client specified the Recipient information folder, which is a special folder. Special folders cannot be updated.</Cause>
+    <Scope>Item</Scope>
+    <Resolution>None. </Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>The specified folder does not exist.</Meaning>
+    <Cause>Client specified a nonexistent folder in a FolderUpdate command request.</Cause>
+    <Scope>Item</Scope>
+    <Resolution>Issue a FolderSync command (section 2.2.2.4) for the new hierarchy. </Resolution>
+  </Status>
+  <Status ID="5">
+    <Meaning>The specified parent folder was not found.</Meaning>
+    <Cause>Client specified a nonexistent folder in a FolderUpdate command request.</Cause>
+    <Scope>Item</Scope>
+    <Resolution>Issue a FolderSync command for the new hierarchy. </Resolution>
+  </Status>
+  <Status ID="6">
+    <Meaning>An error occurred on the server.</Meaning>
+    <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Retry the FolderUpdate command. If continued attempts to synchronization fail, consider returning to synchronization key 0. </Resolution>
+  </Status>
+  <Status ID="9">
+    <Meaning>Synchronization key mismatch or invalid synchronization key.</Meaning>
+    <Cause>The client sent a malformed or mismatched synchronization key, or the synchronization state is corrupted on the server.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Issue a FolderSync command request with a synchronization key of 0. </Resolution>
+  </Status>
+  <Status ID="10">
+    <Meaning>
+      Incorrectly formatted request.
+    </Meaning>
+    <Cause>The client sent a FolderUpdate command request that contains a semantic error.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>Double-check the request for accuracy.</Resolution>
+  </Status>
+  <Status ID="11">
+    <Meaning>An unknown error occurred.</Meaning>
+    <Cause>Unusual back-end issue.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  
+</StatusCodes>

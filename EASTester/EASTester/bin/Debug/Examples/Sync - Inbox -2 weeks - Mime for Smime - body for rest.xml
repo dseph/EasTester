@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sync xmlns="AirSync:">
+  <Collections>
+    <Collection>
+      <SyncKey>0</SyncKey>
+      <CollectionId>16</CollectionId>
+      <GetChanges>0</GetChanges>
+      <Options>         
+        <FilterType>4</FilterType> 
+        <BodyPreference xmlns="AirSyncBase:">
+          <Type>1</Type>
+        </BodyPreference>
+      </Options>
+    </Collection>
+  </Collections>
+</Sync>

@@ -1,0 +1,9 @@
+<itemoperations:ItemOperations xmlns:itemoperations="ItemOperations:">
+  <itemoperations:Move>
+    <itemoperations:ConversationId><![CDATA[ñU#úœwIÒ…RŽ™”ç/]]></itemoperations:ConversationId>
+    <itemoperations:DstFldId>17</itemoperations:DstFldId>
+    <itemoperations:Options>
+      <itemoperations:MoveAlways />
+    </itemoperations:Options>
+  </itemoperations:Move>
+</itemoperations:ItemOperations>

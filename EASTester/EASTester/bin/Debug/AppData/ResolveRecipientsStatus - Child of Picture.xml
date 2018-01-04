@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>The contact photo was retrieved successfully.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="173">
+    <Meaning>The user does not have a contact photo.</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="174">
+    <Meaning>The contact photo exceeded the size limit set by the MaxSize element (section 2.2.3.95.1).</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+  <Status ID="175">
+    <Meaning>The number of contact photos returned exceeded the size limit set by the MaxPictures element (section 2.2.3.94.1).</Meaning>
+    <Cause></Cause>
+    <Scope></Scope>
+    <Resolution></Resolution>
+  </Status>
+</StatusCodes>

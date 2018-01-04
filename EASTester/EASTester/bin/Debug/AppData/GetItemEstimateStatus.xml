@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASCMD - 2.2.3.162.6 Status (GetItemEstimate) -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success</Meaning>
+    <Cause>Server successfully completed command.</Cause>
+    <Scope>Global</Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="2">
+    <Meaning>A collection was invalid or one of the specified collection IDs was invalid.</Meaning>
+    <Cause>One or more of the specified folders does not exist or an incorrect folder was requested. </Cause>
+    <Scope>Item</Scope>
+    <Resolution>
+      Item Issue a FolderSync command (section 2.2.2.5) to get the new hierarchy. Then retry with a valid collection or collection ID
+    </Resolution>
+  </Status>
+  <Status ID="3">
+    <Meaning>The synchronization state has not been primed.</Meaning>
+    <Cause>
+      The client has issued a GetItemEstimate command without first issuing a Sync command request (section 2.2.2.21) with an airsync:SyncKey element (section 2.2.3.180.4) value of zero (0). 
+    </Cause>
+    <Scope>Item</Scope>
+    <Resolution>Issue a Sync command with synchronization key of zero (0) before issuing the GetItemEstimate command again. </Resolution>
+  </Status>
+  <Status ID="4">
+    <Meaning>The specified synchronization key was invalid.</Meaning>
+    <Cause>Malformed or mismatched synchronization key. —or— The synchronization state is corrupted on the server. </Cause>
+    <Scope>Global</Scope>
+    <Resolution>Issue a successful Sync command prior to issuing the GetItemEstimate command again. If the error is repeated, issue a Sync command with an airsync:SyncKey element value of zero (0).  </Resolution>
+  </Status>
+ 
+</StatusCodes>

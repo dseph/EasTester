@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- MS-ASCMD - 2.2.3.176.2 Status (Find) -->
+<StatusCodes>
+  <Status ID="1">
+    <Meaning>Success</Meaning>
+    <Cause>Server successfully completed command.</Cause>
+    <Scope></Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+  <Status ID="6">
+    <Meaning>An error occurred on the server.</Meaning>
+    <Cause> Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope></Scope>
+    <Resolution>Retry the FolderSync command. If continued attempts to synchronization fail, consider returning to synchronization key zero (0).</Resolution>
+  </Status>
+  <Status ID="9">
+    <Meaning>Synchronization key mismatch or invalid synchronization key.</Meaning>
+    <Cause>The client sent a malformed or mismatched synchronization key, or the synchronization state is corrupted on the server.</Cause>
+    <Scope></Scope>
+    <Resolution>Delete items added since last synchronization and return to synchronization key zero (0).</Resolution>
+  </Status>
+
+  <Status ID="9">
+    <Meaning>Synchronization key mismatch or invalid synchronization key.</Meaning>
+    <Cause>The client sent a malformed or mismatched synchronization key, or the synchronization state is corrupted on the server.</Cause>
+    <Scope></Scope>
+    <Resolution>Delete items added since last synchronization and return to synchronization key zero (0).</Resolution>
+  </Status>
+  <Status ID="10">
+    <Meaning>An unknown erroroccurred.</Meaning>
+    <Cause>The client sent a FolderSync command request that contains a semantic or syntactic error.</Cause>
+    <Scope></Scope>
+    <Resolution>Double-check the request for accuracy.</Resolution>
+  </Status>
+  <Status ID="11">
+    <Meaning>An unknown erroroccurred.</Meaning>
+    <Cause>Server misconfiguration, temporary system issue, or bad item. This is frequently a transient condition.</Cause>
+    <Scope></Scope>
+    <Resolution>Retry the FolderSync command. If continued attempts to synchronization fail, consider returning to synchronization key zero (0).</Resolution>
+  </Status>
+  <Status ID="12">
+    <Meaning>Code unknown.</Meaning>
+    <Cause>Unusual back-end issue.</Cause>
+    <Scope></Scope>
+    <Resolution>None.</Resolution>
+  </Status>
+
+</StatusCodes>

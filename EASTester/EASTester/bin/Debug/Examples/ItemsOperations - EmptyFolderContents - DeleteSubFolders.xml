@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ItemOperations xmlns:A0="AirSync:" xmlns="ItemOperations:" >
+  <EmptyFolderContents>
+    <A0:CollectionId>3</A0:CollectionId>
+    <Options>
+      <DeleteSubFolders />
+    </Options>
+  </EmptyFolderContents>
+</ItemOperations>
