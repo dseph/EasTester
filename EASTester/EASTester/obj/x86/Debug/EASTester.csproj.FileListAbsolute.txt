@@ -17,3 +17,4 @@ C:\Users\danba\Documents\GitHub\EasTester\EASTester\EASTester\obj\x86\Debug\EAST
 C:\Users\danba\Documents\GitHub\EasTester\EASTester\EASTester\obj\x86\Debug\EASTester.csproj.CoreCompileInputs.cache
 C:\Users\danba\Documents\GitHub\EasTester\EASTester\EASTester\obj\x86\Debug\EASTester.exe
 C:\Users\danba\Documents\GitHub\EasTester\EASTester\EASTester\obj\x86\Debug\EASTester.pdb
+C:\Users\danba\Documents\GitHub\EasTester\EASTester\EASTester\obj\x86\Debug\EASTester.csprojResolveAssemblyReference.cache
