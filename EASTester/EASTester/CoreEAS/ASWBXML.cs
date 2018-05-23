@@ -1298,7 +1298,7 @@ namespace VisualSync
             for (int i = 0; i < codePages.Length; i++)
             {
                 if (codePages[i].Namespace.ToUpper() == nameSpace.ToUpper())
-                {GlobalTokens.SWITCH_PAGE: 
+                {
                     return i;
                 }
             }
